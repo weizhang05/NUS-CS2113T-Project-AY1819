@@ -1,13 +1,13 @@
-package seedu.address.model.role;
+package seedu.address.model.privilege;
 
 
 /**
- * Determines the level of privilege of the student based on the role assigned.
+ * Determines the level of privilege of the student based on the privilege assigned.
  * Smaller number means more privilege.
- *
+ * <p>
  * e.g. HOUSE_HEAD will have more privilege compared to OGL (1 is less than 2).
  */
-public enum Role {
+public enum Privilege {
     PROJECT_DIRECTOR(0),
     HOUSE_HEAD(1),
     OGL(2),
@@ -15,11 +15,11 @@ public enum Role {
 
     private final int privilegeNumber;
 
-    Role(int privilegeNumber){
+    Privilege(int privilegeNumber) {
         this.privilegeNumber = privilegeNumber;
     }
 
-    public int getPrivilegeNumber(){
+    public int getPrivilegeNumber() {
         return this.privilegeNumber;
     }
 

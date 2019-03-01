@@ -1,4 +1,4 @@
-package seedu.address.model.camp_appointment;
+package seedu.address.model.role;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -9,7 +9,10 @@ import seedu.address.model.tag.Tag;
 
 import java.util.Set;
 
-public class Ogl extends Person {
+/**
+ * Project Director for FOP.
+ */
+public class ProjectDirector extends Person {
     /**
      * Every field must be present and not null.
      *
@@ -19,7 +22,7 @@ public class Ogl extends Person {
      * @param address
      * @param tags
      */
-    public Ogl(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public ProjectDirector(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
     }
 }

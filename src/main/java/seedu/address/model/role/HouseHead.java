@@ -1,15 +1,22 @@
-package seedu.address.model.camp_appointment;
+package seedu.address.model.role;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.privilege.Privilege;
 import seedu.address.model.tag.Tag;
 
 import java.util.Set;
 
-public class ProjectDirector extends Person {
+/**
+ * HouseHead for FOP.
+ */
+public class HouseHead extends Person {
+
+    private Privilege privilege;
+
     /**
      * Every field must be present and not null.
      *
@@ -19,7 +26,8 @@ public class ProjectDirector extends Person {
      * @param address
      * @param tags
      */
-    public ProjectDirector(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public HouseHead(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
+
     }
 }
