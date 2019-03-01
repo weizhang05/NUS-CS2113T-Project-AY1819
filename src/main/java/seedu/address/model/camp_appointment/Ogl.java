@@ -9,7 +9,7 @@ import seedu.address.model.tag.Tag;
 
 import java.util.Set;
 
-public class OGL extends Person {
+public class Ogl extends Person {
     /**
      * Every field must be present and not null.
      *
@@ -19,7 +19,7 @@ public class OGL extends Person {
      * @param address
      * @param tags
      */
-    public OGL(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Ogl(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
     }
 }
