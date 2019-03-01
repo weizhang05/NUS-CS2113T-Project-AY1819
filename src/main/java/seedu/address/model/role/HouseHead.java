@@ -1,5 +1,7 @@
 package seedu.address.model.role;
 
+import java.util.Set;
+
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -7,8 +9,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.privilege.Privilege;
 import seedu.address.model.tag.Tag;
-
-import java.util.Set;
 
 /**
  * HouseHead for FOP.
