@@ -19,8 +19,5 @@ public enum Privilege {
         this.privilegeNumber = privilegeNumber;
     }
 
-    public int getPrivilegeNumber() {
-        return this.privilegeNumber;
-    }
 
 }
