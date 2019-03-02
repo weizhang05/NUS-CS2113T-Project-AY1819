@@ -33,7 +33,7 @@ image::tantantan277.jpg[width="150", align="left"]
 {empty}[http://github.com/tantantan277[github]] [<<tantantan277#, portfolio>>]
 
 Role: Developer +
-Responsibilities: 
+Responsibilities: +
 
 '''
 
@@ -42,7 +42,7 @@ image::shanseet.jpg[width="150", align="left"]
 {empty}[http://github.com/shanseet[github]] [<<shanseet#, portfolio>>]
 
 Role: Developer +
-Responsibilities: 
+Responsibilities: +
 
 '''
 
@@ -51,6 +51,6 @@ image::ssunil3232.jpg[width="150", align="left"]
 {empty}[http://github.com/ssunil3232[github]] [<<ssunil3232#, portfolio>>]
 
 Role: Developer +
-Responsibilities: 
+Responsibilities: +
 
 '''
