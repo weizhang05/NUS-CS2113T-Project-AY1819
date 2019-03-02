@@ -13,9 +13,8 @@ import seedu.address.model.tag.Tag;
 /**
  * HouseHead for FOP.
  */
-public class HouseHead extends Person {
+public class HouseHead extends Participant {
 
-    private Privilege privilege;
 
     /**
      * Every field must be present and not null.
@@ -28,6 +27,6 @@ public class HouseHead extends Person {
      */
     public HouseHead(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
-
+        super.setPrivilege(Privilege.HOUSE_HEAD);
     }
 }

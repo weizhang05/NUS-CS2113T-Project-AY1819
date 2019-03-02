@@ -31,4 +31,8 @@ public class Participant extends Person {
         // By default everybody is a participant
         this.privilege = Privilege.PARTICIPANTS;
     }
+
+    public void setPrivilege(Privilege privilege) {
+        this.privilege = privilege;
+    }
 }

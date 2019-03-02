@@ -7,12 +7,14 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.privilege.Privilege;
 import seedu.address.model.tag.Tag;
 
 /**
  * Project Director for FOP.
  */
-public class ProjectDirector extends Person {
+public class ProjectDirector extends Participant {
+
     /**
      * Every field must be present and not null.
      *
@@ -24,5 +26,6 @@ public class ProjectDirector extends Person {
      */
     public ProjectDirector(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
+        super.setPrivilege(Privilege.PROJECT_DIRECTOR);
     }
 }
