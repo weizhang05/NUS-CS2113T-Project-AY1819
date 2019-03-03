@@ -20,25 +20,25 @@ Role: Project Advisor
 '''
 
 === Chan Wei Zhang
-image::weizhang05.jpg[width="150", align="left"]
-{empty}[https://github.com/weizhang05[github]] [<<weizhang05#, portfolio>>]
+image::weizhang05.png[width="150", align="left"]
+{empty}[http://github.com/weizhang05[github]] [<<weizhang05#, portfolio>>]
 
 Role: Team Lead + Developer
 Responsibilities: Integration
 
 '''
 
-=== Johnny Doe
-image::tantantan277.jpg[width="150", align="left"]
+=== Phan Duy Nhat Tan
+image::tantantan277.png[width="150", align="left"]
 {empty}[http://github.com/tantantan277[github]] [<<tantantan277#, portfolio>>]
 
 Role: Developer +
-Responsibilities: +
+Responsibilities: UI
 
 '''
 
-=== Johnny Roe
-image::shanseet.jpg[width="150", align="left"]
+=== Shanon Seet Shwen Ling
+image::shanseet.png[width="150", align="left"]
 {empty}[http://github.com/shanseet[github]] [<<shanseet#, portfolio>>]
 
 Role: Developer +
@@ -46,8 +46,8 @@ Responsibilities: +
 
 '''
 
-=== Benson Meier
-image::ssunil3232.jpg[width="150", align="left"]
+=== Sonia Sunil
+image::ssunil3232.png[width="150", align="left"]
 {empty}[http://github.com/ssunil3232[github]] [<<ssunil3232#, portfolio>>]
 
 Role: Developer +
