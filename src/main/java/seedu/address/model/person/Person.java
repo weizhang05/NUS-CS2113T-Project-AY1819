@@ -59,7 +59,9 @@ public class Person {
      * if modification is attempted.
      */
 
-    public Group getGroup() { return group; }
+    public Group getGroup() {
+        return group;
+    }
 
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
