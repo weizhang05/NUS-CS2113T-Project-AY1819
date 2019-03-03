@@ -12,7 +12,7 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Participant for FOP.
- * <p>
+ *
  * By default everybody will be a participant unless assigned.
  */
 public class Participant extends Person {
