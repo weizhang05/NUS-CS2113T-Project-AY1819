@@ -23,7 +23,7 @@ Role: Project Advisor
 image::weizhang05.png[width="150", align="left"]
 {empty}[http://github.com/weizhang05[github]] [<<weizhang05#, portfolio>>]
 
-Role: Team Lead + Developer
+Role: Team Lead + Developer +
 Responsibilities: Integration
 
 '''
