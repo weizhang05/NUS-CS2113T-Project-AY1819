@@ -29,9 +29,8 @@ public class HouseStorage {
     }
 
     /*
-    ** Methods
+    ** Methods to House
      */
-
     public static void addHouse(String nameToAdd) {
         houseNames.add(nameToAdd);
         houses.add(new House(nameToAdd));
@@ -45,6 +44,9 @@ public class HouseStorage {
         return houses.get(houseNames.indexOf(toGet));
     }
 
+    /*
+     ** Methods to edit House's Groups
+     */
     public static void addGroup(String groupName, String houseName) {
         int houseIndex = houseNames.indexOf(houseName);
         House tempStorage = houses.get(houseIndex);

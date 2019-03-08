@@ -27,6 +27,9 @@ public class House {
         return groups;
     }
 
+    /*
+     ** Methods
+     */
     public void addGroup (String groupName) {
         Group newGroup = new Group(groupName, houseName);
         groups.add(newGroup);
