@@ -5,6 +5,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new AddGroupCommand object
+ */
+
 public class AddGroupCommandParser implements Parser<AddGroupCommand> {
 
     /**
@@ -16,7 +20,7 @@ public class AddGroupCommandParser implements Parser<AddGroupCommand> {
     public AddGroupCommand parse(String args) throws ParseException {
         String[] splitArg = args.trim().split(" ");
 
-        if (splitArg.length!=2) {
+        if (splitArg.length != 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupCommand.MESSAGE_USAGE));
         }
 

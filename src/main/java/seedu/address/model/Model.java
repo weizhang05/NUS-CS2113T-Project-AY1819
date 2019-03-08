@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
 import seedu.address.model.person.Person;
 

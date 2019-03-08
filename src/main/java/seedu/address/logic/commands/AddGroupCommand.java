@@ -8,24 +8,36 @@ import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
 
+/**
+ * Adds a group to an existing house in the address book.
+ */
+
 public class AddGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "add_g";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a group into a house. Parameters: " +
-            "groupName + houseName";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a group into a house. Parameters: "
+            + "groupName + houseName";
 
     public static final String MESSAGE_SUCCESS = "New group added: %1$s";
     public static final String MESSAGE_NONEXISTENT_HOUSE = "This house does not exist. Create house first!";
     public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists";
 
-    public static String groupName;
-    public static String houseName;
+    private static String groupName;
+    private static String houseName;
 
     public AddGroupCommand(String groupName, String houseName) {
         requireNonNull(groupName);
         this.groupName = groupName;
         this.houseName = houseName;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public String getHouseName() {
+        return houseName;
     }
 
     @Override

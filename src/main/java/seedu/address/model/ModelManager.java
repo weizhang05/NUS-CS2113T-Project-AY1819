@@ -15,7 +15,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -124,7 +123,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasHouse(String house){
+    public boolean hasHouse(String house) {
         requireAllNonNull(house);
 
         return houseStorage.hasHouse(house);

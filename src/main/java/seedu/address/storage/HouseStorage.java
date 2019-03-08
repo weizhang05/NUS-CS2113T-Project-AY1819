@@ -4,15 +4,33 @@ import java.util.ArrayList;
 
 import seedu.address.model.grouping.House;
 
+/**
+ * Stores the list of Houses that have been created, with its (if any) constituent groups.
+ */
 public class HouseStorage {
 
     //Stores house names, and houses of type House.
     //Indices of the same houses will always match.
-    public static ArrayList<String> houseNames = new ArrayList<>();
-    public static ArrayList<House> houses = new ArrayList<>();
+    private static ArrayList<String> houseNames = new ArrayList<>();
+    private static ArrayList<House> houses = new ArrayList<>();
 
+    /**
+     * Constructs a HouseStorage object.
+     */
     public HouseStorage() {
     }
+
+    public static ArrayList<House> getHouses() {
+        return houses;
+    }
+
+    public static ArrayList<String> getHouseNames() {
+        return houseNames;
+    }
+
+    /*
+    ** Methods
+     */
 
     public static void addHouse(String nameToAdd) {
         houseNames.add(nameToAdd);
