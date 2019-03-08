@@ -28,7 +28,7 @@ public class HouseStorage {
         return houseNames;
     }
 
-    /*
+    /**
      * Adds a house that does not yet exist
      */
     public static void addHouse(String nameToAdd) {
@@ -36,7 +36,7 @@ public class HouseStorage {
         houses.add(new House(nameToAdd));
     }
 
-    /*
+    /**
      * Returns true if House exists
      * Group can be created
      */
@@ -44,14 +44,14 @@ public class HouseStorage {
         return houseNames.contains(toFind);
     }
 
-    /*
+    /**
      * Returns house object
      */
     public static House getHouse(String toGet) {
         return houses.get(houseNames.indexOf(toGet));
     }
 
-    /*
+    /**
      * Adds a valid group to the House specified
      */
     public static void addGroup(String groupName, String houseName) {

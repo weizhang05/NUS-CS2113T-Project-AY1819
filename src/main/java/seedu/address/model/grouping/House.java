@@ -27,7 +27,7 @@ public class House {
         return groups;
     }
 
-    /*
+    /**
      * Adds a new group to the house
      */
     public void addGroup (String groupName) {
@@ -35,7 +35,7 @@ public class House {
         groups.add(newGroup);
     }
 
-    /*
+    /**
      * Returns true if Group exists in House
      */
     public boolean hasGroup (String groupName) {
