@@ -19,7 +19,7 @@ endif::[]
 ** Viewing condensed reports of the current camp size.
 ** Random shuffling of freshman grouping.
 ** Sorting participants according to their groups and houses.
-** More features underway, stay tuned! 
+** More features underway, stay tuned!
 
 == Site Map
 
