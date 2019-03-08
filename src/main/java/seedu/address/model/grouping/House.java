@@ -28,13 +28,16 @@ public class House {
     }
 
     /*
-     ** Methods
+     * Adds a new group to the house
      */
     public void addGroup (String groupName) {
         Group newGroup = new Group(groupName, houseName);
         groups.add(newGroup);
     }
 
+    /*
+     * Returns true if Group exists in House
+     */
     public boolean hasGroup (String groupName) {
         return groups.contains(new Group(groupName, houseName));
     }
