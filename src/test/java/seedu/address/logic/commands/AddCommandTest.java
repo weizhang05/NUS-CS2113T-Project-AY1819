@@ -159,7 +159,7 @@ public class AddCommandTest {
         };
 
         @Override
-        public void addHouse(String house){
+        public void addHouse(String house) {
             throw new AssertionError("This method should not be called.");
         }
 
