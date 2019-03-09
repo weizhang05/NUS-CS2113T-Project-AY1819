@@ -16,18 +16,18 @@ public class AddGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "add_g";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a group into a house. Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a group into a House. Parameters: "
             + "groupName + houseName";
 
     public static final String MESSAGE_SUCCESS = "New group added: %1$s";
-    public static final String MESSAGE_NONEXISTENT_HOUSE = "This house does not exist. Create house first!";
+    public static final String MESSAGE_NONEXISTENT_HOUSE = "This House does not exist. Create House first!";
     public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists";
 
     private static String groupName;
     private static String houseName;
 
     public AddGroupCommand(String groupName, String houseName) {
-        requireNonNull(groupName);
+        requireNonNull(groupName, houseName);
         this.groupName = groupName;
         this.houseName = houseName;
     }
