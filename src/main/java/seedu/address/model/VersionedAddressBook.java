@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,9 @@ public class VersionedAddressBook extends AddressBook {
 
     private final List<ReadOnlyAddressBook> addressBookStateList;
     private int currentStatePointer;
+
+    public ArrayList<String> UndoList = new ArrayList<>();
+    public ArrayList<String> RedoList = new ArrayList<>();
 
     public VersionedAddressBook(ReadOnlyAddressBook initialState) {
         super(initialState);
@@ -23,7 +28,9 @@ public class VersionedAddressBook extends AddressBook {
      * Saves a copy of the current {@code AddressBook} state at the end of the state list.
      * Undone states are removed from the state list.
      */
-    public void commit() {
+    public void commit(String undoableCommand) {
+        UndoList.add(undoableCommand);
+        RedoList.clear();
         removeStatesAfterCurrentPointer();
         addressBookStateList.add(new AddressBook(this));
         currentStatePointer++;
@@ -41,6 +48,8 @@ public class VersionedAddressBook extends AddressBook {
         if (!canUndo()) {
             throw new NoUndoableStateException();
         }
+        RedoList.add(UndoList.get(UndoList.size()-1));
+        UndoList.remove(UndoList.size()-1);
         currentStatePointer--;
         resetData(addressBookStateList.get(currentStatePointer));
     }
@@ -52,6 +61,8 @@ public class VersionedAddressBook extends AddressBook {
         if (!canRedo()) {
             throw new NoRedoableStateException();
         }
+        UndoList.add(RedoList.get(RedoList.size()-1));
+        RedoList.remove(RedoList.size()-1);
         currentStatePointer++;
         resetData(addressBookStateList.get(currentStatePointer));
     }

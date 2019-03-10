@@ -159,8 +159,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void commitAddressBook() {
-        versionedAddressBook.commit();
+    public void commitAddressBook(String undoableCommand) {
+        versionedAddressBook.commit(undoableCommand);
     }
 
     //=========== Selected person ===========================================================================
