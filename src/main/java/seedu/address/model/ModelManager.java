@@ -167,7 +167,7 @@ public class ModelManager implements Model {
     @Override
     public void commitAddressBook() {
         versionedAddressBook.commit();
-        versionedAddressBook.UndoList.add(undoableCommand);
+        versionedAddressBook.addUndoableCommand(undoableCommand);
     }
 
     //=========== Selected person ===========================================================================

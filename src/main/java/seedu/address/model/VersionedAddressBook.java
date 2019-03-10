@@ -1,7 +1,5 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +8,12 @@ import java.util.List;
  */
 public class VersionedAddressBook extends AddressBook {
 
+    private ArrayList<String> redoList = new ArrayList<>();
+    private ArrayList<String> undoList = new ArrayList<>();
+
     private final List<ReadOnlyAddressBook> addressBookStateList;
     private int currentStatePointer;
 
-    public ArrayList<String> UndoList = new ArrayList<>();
-    public ArrayList<String> RedoList = new ArrayList<>();
 
     public VersionedAddressBook(ReadOnlyAddressBook initialState) {
         super(initialState);
@@ -24,12 +23,15 @@ public class VersionedAddressBook extends AddressBook {
         currentStatePointer = 0;
     }
 
+    public void addUndoableCommand (String undoableCommand) {
+        undoList.add(undoableCommand);
+    }
     /**
      * Saves a copy of the current {@code AddressBook} state at the end of the state list.
      * Undone states are removed from the state list.
      */
     public void commit() {
-        RedoList.clear();
+        redoList.clear();
         removeStatesAfterCurrentPointer();
         addressBookStateList.add(new AddressBook(this));
         currentStatePointer++;
@@ -47,9 +49,9 @@ public class VersionedAddressBook extends AddressBook {
         if (!canUndo()) {
             throw new NoUndoableStateException();
         }
-        if (UndoList.size() > 0) {
-            RedoList.add(UndoList.get(UndoList.size() - 1));
-            UndoList.remove(UndoList.size() - 1);
+        if (undoList.size() > 0) {
+            redoList.add(undoList.get(undoList.size() - 1));
+            undoList.remove(undoList.size() - 1);
         }
         currentStatePointer--;
         resetData(addressBookStateList.get(currentStatePointer));
@@ -62,9 +64,9 @@ public class VersionedAddressBook extends AddressBook {
         if (!canRedo()) {
             throw new NoRedoableStateException();
         }
-        if (RedoList.size() > 0) {
-            UndoList.add(RedoList.get(RedoList.size() - 1));
-            RedoList.remove(RedoList.size() - 1);
+        if (redoList.size() > 0) {
+            undoList.add(redoList.get(redoList.size() - 1));
+            redoList.remove(redoList.size() - 1);
         }
         currentStatePointer++;
         resetData(addressBookStateList.get(currentStatePointer));
