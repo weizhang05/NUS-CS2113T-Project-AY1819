@@ -28,6 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
+    private String undoableCommand;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -88,6 +89,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         versionedAddressBook.resetData(addressBook);
+        undoableCommand = "clear";
     }
 
     @Override
@@ -104,12 +106,15 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
+        undoableCommand = "delete" + target.getName().fullName;
+
     }
 
     @Override
     public void addPerson(Person person) {
         versionedAddressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        undoableCommand = "add " + person.getName().fullName;
     }
 
     @Override
@@ -117,6 +122,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         versionedAddressBook.setPerson(target, editedPerson);
+        undoableCommand = "edit " + editedPerson.getName().fullName;
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -159,8 +165,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void commitAddressBook(String undoableCommand) {
-        versionedAddressBook.commit(undoableCommand);
+    public void commitAddressBook() {
+        versionedAddressBook.commit();
+        versionedAddressBook.UndoList.add(undoableCommand);
     }
 
     //=========== Selected person ===========================================================================

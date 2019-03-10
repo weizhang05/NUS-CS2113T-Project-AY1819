@@ -109,7 +109,7 @@ public interface Model {
     /**
      * Saves the current address book state for undo/redo.
      */
-    void commitAddressBook(String undoableCommand);
+    void commitAddressBook();
 
     /**
      * Selected person in the filtered person list.

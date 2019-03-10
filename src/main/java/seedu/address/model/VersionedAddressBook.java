@@ -28,8 +28,7 @@ public class VersionedAddressBook extends AddressBook {
      * Saves a copy of the current {@code AddressBook} state at the end of the state list.
      * Undone states are removed from the state list.
      */
-    public void commit(String undoableCommand) {
-        UndoList.add(undoableCommand);
+    public void commit() {
         RedoList.clear();
         removeStatesAfterCurrentPointer();
         addressBookStateList.add(new AddressBook(this));
@@ -48,8 +47,10 @@ public class VersionedAddressBook extends AddressBook {
         if (!canUndo()) {
             throw new NoUndoableStateException();
         }
-        RedoList.add(UndoList.get(UndoList.size()-1));
-        UndoList.remove(UndoList.size()-1);
+        if (UndoList.size() > 0) {
+            RedoList.add(UndoList.get(UndoList.size() - 1));
+            UndoList.remove(UndoList.size() - 1);
+        }
         currentStatePointer--;
         resetData(addressBookStateList.get(currentStatePointer));
     }
@@ -61,8 +62,10 @@ public class VersionedAddressBook extends AddressBook {
         if (!canRedo()) {
             throw new NoRedoableStateException();
         }
-        UndoList.add(RedoList.get(RedoList.size()-1));
-        RedoList.remove(RedoList.size()-1);
+        if (RedoList.size() > 0) {
+            UndoList.add(RedoList.get(RedoList.size() - 1));
+            RedoList.remove(RedoList.size() - 1);
+        }
         currentStatePointer++;
         resetData(addressBookStateList.get(currentStatePointer));
     }
