@@ -24,10 +24,6 @@ public class HouseStorage {
         return houses;
     }
 
-    public static ArrayList<String> getHouseNames() {
-        return houseNames;
-    }
-
     /**
      * Adds a house that does not yet exist
      */
