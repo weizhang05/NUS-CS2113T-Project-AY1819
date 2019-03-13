@@ -3,6 +3,9 @@ package seedu.address.logic.parser;
 import seedu.address.logic.commands.RandomizeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Creates a new RandomizeCommand object
+ */
 public class RandomizeCommandParser implements Parser<RandomizeCommand> {
 
     /**
