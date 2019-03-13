@@ -2,7 +2,7 @@ package seedu.address.model.role;
 
 import java.util.Set;
 
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -20,11 +20,11 @@ public class ProjectDirector extends Participant {
      * @param name
      * @param phone
      * @param email
-     * @param address
+     * @param major
      * @param tags
      */
-    public ProjectDirector(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
+    public ProjectDirector(Name name, Phone phone, Email email, Major major, Set<Tag> tags) {
+        super(name, phone, email, major, tags);
         super.setPrivilege(Privilege.PROJECT_DIRECTOR);
     }
 }
