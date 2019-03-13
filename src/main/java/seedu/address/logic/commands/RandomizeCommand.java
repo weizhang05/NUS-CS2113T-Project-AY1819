@@ -19,6 +19,6 @@ public class RandomizeCommand extends Command {
 
     // This is a test function
     public void testFunction() {
-        // test
+        // for tagging purposes
     }
 }
