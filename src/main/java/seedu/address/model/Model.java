@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.grouping.House;
 import seedu.address.model.person.Person;
 
 /**
@@ -79,6 +80,24 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    /**
+     * Returns true if a House with the same name as {@code House} exists in the address book.
+     */
+    boolean hasHouse(String house);
+
+    /**
+     * Adds the given House into address book.
+     * {@code house} must not already exist in the address book.
+     */
+    void addHouse(String house);
+
+    /**
+     * Returns House object.
+     */
+    House getHouse(String house);
+
+    void addGroup(String groupName, String houseName);
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
