@@ -15,8 +15,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.grouping.House;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.storage.HouseStorage;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -28,6 +30,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
+    private final HouseStorage houseStorage = new HouseStorage();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -119,6 +122,33 @@ public class ModelManager implements Model {
         versionedAddressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasHouse(String house) {
+        requireAllNonNull(house);
+
+        return houseStorage.hasHouse(house);
+    };
+
+    @Override
+    public void addHouse(String house) {
+        requireAllNonNull(house);
+
+        houseStorage.addHouse(house);
+    };
+
+    @Override
+    public House getHouse(String house) {
+        requireAllNonNull(house);
+
+        return houseStorage.getHouse(house);
+    }
+
+    @Override
+    public void addGroup(String groupName, String houseName) {
+        requireAllNonNull(groupName, houseName);
+
+        houseStorage.addGroup(groupName, houseName);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**
