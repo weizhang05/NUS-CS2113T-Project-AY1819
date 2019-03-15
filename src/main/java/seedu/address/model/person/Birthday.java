@@ -9,21 +9,26 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Birthday {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Birthday should contain six numbers in the format of DDMMYYYY";
-    public static final String VALIDATION_REGEX = "[\\d{6}]";
+            "Birthday should contain eight numbers in the format of DDMMYYYY";
+    public static final String VALIDATION_REGEX = "\\d{8,}";
     public final String value;
 
     public Birthday(String birthday) {
         requireNonNull(birthday);
-        checkArgument(isValidBirthdya(birthday), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidBirthday(birthday), MESSAGE_CONSTRAINTS);
         value = birthday;
     }
 
     /**
      * Return true if a given string is a valid sex
      */
-    public static boolean isValidBirthdya(String test) {
+    public static boolean isValidBirthday(String test) {
         return test.matches(VALIDATION_REGEX);
+//        return true;
+    }
+
+    public int getYear() {
+        return Integer.parseInt(value.substring(4));
     }
 
     @Override

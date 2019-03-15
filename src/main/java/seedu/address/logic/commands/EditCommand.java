@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -20,9 +20,15 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Sex;
+import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Major;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.grouping.Group;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -38,7 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_MAJOR + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -93,12 +99,15 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Sex updatedSex = editPersonDescriptor.getSex().orElse(personToEdit.getSex());
+        Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Major updatedMajor = editPersonDescriptor.getMajor().orElse(personToEdit.getMajor());
+        Group updatedGroup = editPersonDescriptor.getGroup().orElse(personToEdit.getGroup());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, , , updatedPhone, updatedEmail, updatedMajor, updatedTags);
+        return new Person(updatedName, updatedSex, updatedBirthday, updatedPhone, updatedEmail, updatedMajor, updatedGroup, updatedTags);
     }
 
     @Override
@@ -125,9 +134,12 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
+        private Sex sex;
+        private Birthday birthday;
         private Phone phone;
         private Email email;
         private Major major;
+        private Group group;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -138,9 +150,12 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setSex(toCopy.sex);
+            setBirthday(toCopy.birthday);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setMajor(toCopy.major);
+            setGroup(toCopy.group);
             setTags(toCopy.tags);
         }
 
@@ -157,6 +172,22 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setSex(Sex sex) {
+            this.sex = sex;
+        }
+
+        public Optional<Sex> getSex() {
+            return Optional.ofNullable(sex);
+        }
+
+        public void setBirthday(Birthday birthday) {
+            this.birthday = birthday;
+        }
+
+        public Optional<Birthday> getBirthday() {
+            return Optional.ofNullable(birthday);
         }
 
         public void setPhone(Phone phone) {
@@ -181,6 +212,14 @@ public class EditCommand extends Command {
 
         public Optional<Major> getMajor() {
             return Optional.ofNullable(major);
+        }
+
+        public void setGroup(Group group) {
+            this.group = group;
+        }
+
+        public Optional<Group> getGroup() {
+            return Optional.ofNullable(group);
         }
 
         /**
