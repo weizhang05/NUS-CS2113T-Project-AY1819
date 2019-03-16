@@ -17,15 +17,14 @@ import guitests.guihandles.PersonListPanelHandle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Sex;
+import seedu.address.model.grouping.Group;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.Major;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.grouping.Group;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
 
 public class PersonListPanelTest extends GuiUnitTest {
     private static final ObservableList<Person> TYPICAL_PERSONS =

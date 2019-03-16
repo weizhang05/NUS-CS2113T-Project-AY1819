@@ -3,14 +3,14 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Sex;
+import seedu.address.model.grouping.Group;
 import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Major;
-import seedu.address.model.grouping.Group;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 

@@ -2,13 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -77,10 +77,12 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withSex(VALID_SEX_AMY).withBirthday(VALID_BIRTHDAY_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withMajor(VALID_MAJOR_AMY).withGroup(VALID_GROUP_AMY)
+                .withSex(VALID_SEX_AMY).withBirthday(VALID_BIRTHDAY_AMY).withPhone(VALID_PHONE_AMY)
+                .withEmail(VALID_EMAIL_AMY).withMajor(VALID_MAJOR_AMY).withGroup(VALID_GROUP_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withSex(VALID_SEX_BOB).withBirthday(VALID_BIRTHDAY_BOB).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withMajor(VALID_MAJOR_BOB).withGroup(VALID_GROUP_BOB)
+                .withSex(VALID_SEX_BOB).withBirthday(VALID_BIRTHDAY_BOB).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withMajor(VALID_MAJOR_BOB).withGroup(VALID_GROUP_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
