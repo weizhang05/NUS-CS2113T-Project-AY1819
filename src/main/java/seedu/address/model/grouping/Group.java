@@ -7,11 +7,12 @@ package seedu.address.model.grouping;
 
 public class Group {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Group can take any values, and it should not be blank";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
     private String groupName;
     private String houseName;
-
-    public static final String MESSAGE_CONSTRAINTS = "Group can take any values, and it should not be blank";
-    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public Group (String groupName) {
         this.groupName = groupName;

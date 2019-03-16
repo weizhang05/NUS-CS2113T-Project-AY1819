@@ -1,10 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -20,6 +23,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Sex;
@@ -42,9 +46,12 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_SEX + "SEX] "
+            + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_MAJOR + "ADDRESS] "
+            + "[" + PREFIX_GROUP + "GROUP] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -107,7 +114,8 @@ public class EditCommand extends Command {
         Group updatedGroup = editPersonDescriptor.getGroup().orElse(personToEdit.getGroup());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedSex, updatedBirthday, updatedPhone, updatedEmail, updatedMajor, updatedGroup, updatedTags);
+        return new Person(updatedName, updatedSex, updatedBirthday, updatedPhone, updatedEmail,
+                updatedMajor, updatedGroup, updatedTags);
     }
 
     @Override

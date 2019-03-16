@@ -24,7 +24,6 @@ public class Birthday {
      */
     public static boolean isValidBirthday(String test) {
         return test.matches(VALIDATION_REGEX);
-//        return true;
     }
 
     public int getYear() {
