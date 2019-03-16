@@ -7,10 +7,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Sex;
-
-import seedu.address.model.grouping.Group;
 import seedu.address.model.privilege.Privilege;
+import seedu.address.model.grouping.Group;
+import seedu.address.model.person.Sex;
 import seedu.address.model.tag.Tag;
 
 
@@ -22,7 +21,7 @@ public class HouseHead extends Participant {
 
     /**
      * Every field must be present and not null.
-     *  @param name
+     * @param name
      * @param sex
      * @param birthday
      * @param phone

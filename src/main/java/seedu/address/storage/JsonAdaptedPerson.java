@@ -44,8 +44,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("sex") String sex,
                              @JsonProperty("birthday") String birthday, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("major") String major, @JsonProperty("group") String group,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("email") String email, @JsonProperty("major") String major,
+                             @JsonProperty("group") String group, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.sex = sex;
         this.birthday = birthday;
@@ -102,7 +102,8 @@ class JsonAdaptedPerson {
         final Sex modelSex = new Sex(sex);
 
         if (birthday == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthday.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthday.class.getSimpleName()));
         }
         if (!Birthday.isValidBirthday(birthday)) {
             throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
@@ -142,7 +143,8 @@ class JsonAdaptedPerson {
         final Group modelGroup = new Group(group);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelSex, modelBirthday, modelPhone, modelEmail, modelMajor, modelGroup, modelTags);
+        return new Person(modelName, modelSex, modelBirthday, modelPhone, modelEmail,
+                modelMajor, modelGroup, modelTags);
     }
 
 }
