@@ -264,9 +264,12 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getSex().equals((e.getSex()))
+                    && getBirthday().equals((e.getBirthday()))
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getMajor().equals(e.getMajor())
+                    && getGroup().equals(e.getGroup())
                     && getTags().equals(e.getTags());
         }
     }

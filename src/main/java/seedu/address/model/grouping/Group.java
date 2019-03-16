@@ -18,6 +18,7 @@ public class Group {
         this.groupName = groupName;
     }
 
+
     public Group (String groupName, String houseName) {
         this.houseName = houseName;
         this.groupName = groupName;
@@ -33,5 +34,17 @@ public class Group {
 
     public static boolean isValidGroup(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public String toString() {
+        return this.groupName;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Group // instanceof handles nulls
+                && groupName.equals(((Group) other).groupName)); // state check
     }
 }

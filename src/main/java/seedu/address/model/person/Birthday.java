@@ -34,4 +34,11 @@ public class Birthday {
     public String toString() {
         return value;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Birthday // instanceof handles nulls
+                && value.equals(((Birthday) other).value)); // state check
+    }
 }

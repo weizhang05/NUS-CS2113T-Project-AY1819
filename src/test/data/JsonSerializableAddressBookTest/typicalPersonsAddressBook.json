@@ -3,7 +3,7 @@
   "persons" : [ {
     "name" : "Alice Pauline",
     "sex": "F",
-    "birthday": "01023456",
+    "birthday": "07081994",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "major" : "123, Jurong West Ave 6, #08-111",
@@ -12,7 +12,7 @@
   }, {
     "name" : "Benson Meier",
     "sex": "M",
-    "birthday": "01023456",
+    "birthday": "08071993",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "major" : "311, Clementi Ave 2, #02-25",

@@ -19,13 +19,13 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_NAME = "Alicia Pauline";
     public static final String DEFAULT_SEX = "F";
-    public static final String DEFAULT_BIRTHDAY = "01011990";
+    public static final String DEFAULT_BIRTHDAY = "12345679";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_MAJOR = "Computer Science";
-    public static final String DEFAULT_GROUP = "G1";
+    public static final String DEFAULT_GROUP = "G3";
 
 
     private Name name;
