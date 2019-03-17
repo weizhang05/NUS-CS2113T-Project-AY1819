@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-
 import java.util.ArrayList;
 
 import seedu.address.model.role.Ogl;
