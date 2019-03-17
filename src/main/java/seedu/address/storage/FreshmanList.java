@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import seedu.address.model.role.Participant;
 
+/**
+ * Adds Freshmen Names to the list
+ */
 public class FreshmanList {
     private static ArrayList<String> freshmenNames = new ArrayList<>();
     private static ArrayList<Participant> freshmen = new ArrayList<>();

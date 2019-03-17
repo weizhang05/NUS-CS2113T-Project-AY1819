@@ -110,7 +110,7 @@ public class ModelManager implements Model {
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
         if (FreshmanList.hasFreshman(target.toString())) {
-            FreshmanList.deleteFreshman(target.toString( ));
+            FreshmanList.deleteFreshman(target.toString());
         }
     }
 
