@@ -45,5 +45,4 @@ public class FreshmanList {
             System.out.println();
         }
     }
-    
 }
