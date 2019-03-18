@@ -868,22 +868,18 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |create Houses and Groups |allocate students to their groupings
 
-|`* * *` |user |delete Houses or Groups |keep my data compact if the group is not needed anymore
+|`* * *` |user |log in with a unique user type |have the correct access permissions to participants' data
+
+|`* * *` |user |randomly divide freshmen into different houses and groups |do not have to manually assign them
+
+|`* *` |user |view graphical statistics of my participants data |have visual representation of participants' data to show stakeholders
 
 |`* *` |user |save my data to cloud storage between logins |access address book data from elsewhere
-
-|`* *` |user |randomly divide freshmen into different houses and groups |do not have to manually assign them
-
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
 |`* *` |user |color code participants based on their house colors |easily identify which house they belong to
 
 |`*` |user |keep track of the prices of items I have bought for the camp |know if I am within budget
-
-|`*` |user |input a color-coded schedule |plan what is happening on each day of the camp
 |=======================================================================
-
-_{More to be added}_
 
 [appendix]
 == Use Cases
