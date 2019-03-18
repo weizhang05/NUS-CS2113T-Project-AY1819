@@ -13,16 +13,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.role.Participant;
 
 /**
- * Adds a person to the address book.
+ * Adds a freshman to the address book.
  */
-public class AddCommand extends Command {
+public class AddParticipantCommand extends AddCommand {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add_f";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a freshman to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_SEX + "SEX "
@@ -43,16 +43,17 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New freshman added: %1$s";
+    private static final String MESSAGE_DUPLICATE_FRESHMAN = "This freshman already exists in the address book";
 
-    private final Person toAdd;
+    private final Participant toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddParticipantCommand to add the specified {@code Participant}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
+
+    public AddParticipantCommand(Participant person) {
+        super(person);
         toAdd = person;
     }
 
@@ -61,18 +62,12 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_FRESHMAN);
         }
 
         model.addPerson(toAdd);
+        model.addFreshman(toAdd);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
     }
 }
