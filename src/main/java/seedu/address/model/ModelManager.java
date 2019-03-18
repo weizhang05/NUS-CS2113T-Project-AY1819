@@ -19,7 +19,6 @@ import seedu.address.model.grouping.House;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.role.Participant;
-import seedu.address.model.FreshmanList;
 import seedu.address.storage.HouseStorage;
 
 /**
