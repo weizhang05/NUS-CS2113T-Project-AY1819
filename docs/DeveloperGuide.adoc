@@ -315,23 +315,29 @@ image::UndoRedoActivityDiagram.png[width="800"]
 
 // tag::dataencryption[]
 === [Proposed] Data Encryption
+==== Planned Implementation
 
-_{Explain here how the data encryption feature will be implemented}_
+The data encryption feature will make use of the Java `Cipher` class that provides the functionality of a cryptographic cipher for encryption and decryption.
+
+All participants' private contact details are saved in the JSON file `addressbook.json` when the user exits the application. The data from this file is retrieved when the user starts the application. The data encryption feature encrypts the data saved in this JSON file just before the application exits, and decrypts it when the application starts up, such that participants' private details cannot be accessed between these two periods.
+
+==== Design Consideration
+_{to be completed in v1.3}_
 
 // end::dataencryption[]
 
 // tag::statistic[]
 === [Proposed] Statistic feature
-==== Planned implementation
+==== Planned Implementation
 
 The statistic feature is facilitated by `VersionedAddressBook`. It extends `AddressBook` with two Hashtables, one containing the number of male and female participants, and the other one contains the number of participants in each major. These
 variables will be updated after each `add`, `edit` or `delete` command.
 
-The following sequence diagram show hows the Hashtable is updated after a an `add` command:
+The following sequence diagram show hows the Hashtable is updated after an `add` command:
 
 image::StatisticUpdateSequenceDiagram.png[width="800"]
 
-==== Design consideration
+==== Design Consideration
 
 ===== Aspect: Data structure to get the data from the AddressBook
 
