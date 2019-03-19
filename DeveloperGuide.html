@@ -360,7 +360,7 @@
                                 </td>
                                 <td class="content">
                                     Coverage reporting could be useful for a team repository that hosts the final
-                                    version but it is not that useful for your participantal fork.
+                                    version but it is not that useful for your personal fork.
                                 </td>
                             </tr>
                         </table>
@@ -519,7 +519,7 @@
                 </div>
                 <div class="imageblock">
                     <div class="content">
-                        <img src="images/SDforDeleteparticipant.png" alt="SDforDeleteparticipant" width="800">
+                        <img src="images/SDforDeletePerson.png" alt="SDforDeletePerson" width="800">
                     </div>
                     <div class="title">Figure 3. Component interactions for <code>delete 1</code> command</div>
                 </div>
@@ -612,7 +612,7 @@
                 </div>
                 <div class="imageblock">
                     <div class="content">
-                        <img src="images/DeleteparticipantSdForLogic.png" alt="DeleteparticipantSdForLogic" width="800">
+                        <img src="images/DeletePersonSdForLogic.png" alt="DeletePersonSdForLogic" width="800">
                     </div>
                     <div class="title">Figure 6. Interactions Inside the Logic Component for the <code>delete 1</code>
                         Command
@@ -1703,11 +1703,11 @@
                                                             <p>Find out which of the existing API methods in <a
                                                                     href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a>
                                                                 and
-                                                                <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/participant/participant.java"><code>participant</code></a>
+                                                                <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/person.java"><code>participant</code></a>
                                                                 classes can be used to implement the tag removal logic.
                                                                 <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a>
                                                                 allows you to update a participant, and <a
-                                                                        href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/participant/participant.java"><code>participant</code></a>
+                                                                        href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/person.java"><code>participant</code></a>
                                                                 allows you to update the tags.</p>
                                                         </li>
                                                     </ul>
@@ -1807,7 +1807,7 @@
                                                     <ul>
                                                         <li>
                                                             <p>The tag labels are created inside <a
-                                                                    href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/participantCard.java">the
+                                                                    href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java">the
                                                                 <code>participantCard</code> constructor</a> (<code>new
                                                                 Label(tag.tagName)</code>). <a
                                                                     href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html">JavaFX&#8217;s
@@ -2274,7 +2274,7 @@
                             3] Ui: Add a placeholder for remark in <code>participantCard</code></a></h5>
                         <div class="paragraph">
                             <p>Let&#8217;s add a placeholder on all our <a
-                                    href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/participantCard.java"><code>participantCard</code></a>
+                                    href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>participantCard</code></a>
                                 s to display a remark for each participant later.</p>
                         </div>
                         <div class="paragraph">
@@ -2284,12 +2284,12 @@
                             <ol class="arabic">
                                 <li>
                                     <p>Add a <code>Label</code> with any random text inside <a
-                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/resources/view/participantListCard.fxml"><code>participantListCard.fxml</code></a>.
+                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/resources/view/PersonListCard.fxml"><code>participantListCard.fxml</code></a>.
                                     </p>
                                 </li>
                                 <li>
                                     <p>Add FXML annotation in <a
-                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/participantCard.java"><code>participantCard</code></a>
+                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>participantCard</code></a>
                                         to tie the variable to the actual label.</p>
                                 </li>
                             </ol>
@@ -2301,7 +2301,7 @@
                             <ol class="arabic">
                                 <li>
                                     <p>Modify <a
-                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/guitests/guihandles/participantCardHandle.java"><code>participantCardHandle</code></a>
+                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/guitests/guihandles/PersonCardHandle.java"><code>participantCardHandle</code></a>
                                         so that future tests can read the contents of the remark label.</p>
                                 </li>
                             </ol>
@@ -2313,7 +2313,7 @@
                             4] Model: Add <code>Remark</code> class</a></h5>
                         <div class="paragraph">
                             <p>We have to properly encapsulate the remark in our <a
-                                    href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/participant/participant.java"><code>participant</code></a>
+                                    href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>participant</code></a>
                                 class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional
                                 class structure that the codebase already uses by adding a <code>Remark</code> class.
                             </p>
@@ -2325,7 +2325,7 @@
                             <ol class="arabic">
                                 <li>
                                     <p>Add <code>Remark</code> to model component (you can copy from <a
-                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/participant/Address.java"><code>Address</code></a>,
+                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Address.java"><code>Address</code></a>,
                                         remove the regex and change the names accordingly).</p>
                                 </li>
                                 <li>
@@ -2353,7 +2353,7 @@
                             5] Model: Modify <code>participant</code> to support a <code>Remark</code> field</a></h5>
                         <div class="paragraph">
                             <p>Now we have the <code>Remark</code> class, we need to actually use it inside <a
-                                    href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/participant/participant.java"><code>participant</code></a>.
+                                    href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>participant</code></a>.
                             </p>
                         </div>
                         <div class="paragraph">
@@ -2363,7 +2363,7 @@
                             <ol class="arabic">
                                 <li>
                                     <p>Add <code>getRemark()</code> in <a
-                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/participant/participant.java"><code>participant</code></a>.
+                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>participant</code></a>.
                                     </p>
                                 </li>
                                 <li>
@@ -2385,11 +2385,11 @@
                         <h5 id="step-6-storage-add-code-remark-code-field-to-code-jsonadaptedparticipant-code-class"><a
                                 class="link"
                                 href="#step-6-storage-add-code-remark-code-field-to-code-jsonadaptedparticipant-code-class">[Step
-                            6] Storage: Add <code>Remark</code> field to <code>JsonAdaptedparticipant</code> class</a></h5>
+                            6] Storage: Add <code>Remark</code> field to <code>JsonAdaptedParticipant</code> class</a></h5>
                         <div class="paragraph">
                             <p>We now have <code>Remark</code> s for <code>participant</code> s, but they will be gone when
                                 we exit the application. Let&#8217;s modify <a
-                                        href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/storage/JsonAdaptedparticipant.java"><code>JsonAdaptedparticipant</code></a>
+                                        href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/storage/JsonAdaptedPerson.java"><code>JsonAdaptedPerson</code></a>
                                 to include a <code>Remark</code> field so that it will be saved.</p>
                         </div>
                         <div class="paragraph">
@@ -2408,7 +2408,7 @@
                         <div class="olist arabic">
                             <ol class="arabic">
                                 <li>
-                                    <p>Fix <code>invalidAndValidparticipantAddressBook.json</code>, <code>typicalparticipantsAddressBook.json</code>,
+                                    <p>Fix <code>invalidAndValidPersonAddressBook.json</code>, <code>typicalparticipantsAddressBook.json</code>,
                                         <code>validAddressBook.json</code> etc., such that the JSON tests will not fail
                                         due to a missing <code>remark</code> field.</p>
                                 </li>
@@ -2418,13 +2418,13 @@
                     <div class="sect4">
                         <h5 id="step-6b-test-add-withremark-for-code-participantbuilder-code"><a class="link"
                                                                                             href="#step-6b-test-add-withremark-for-code-participantbuilder-code">[Step
-                            6b] Test: Add withRemark() for <code>participantBuilder</code></a></h5>
+                            6b] Test: Add withRemark() for <code>ParticipantBuilder</code></a></h5>
                         <div class="paragraph">
                             <p>Since <code>participant</code> can now have a <code>Remark</code>, we should add a helper
                                 method to <a
-                                        href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/testutil/participantBuilder.java"><code>participantBuilder</code></a>,
+                                        href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/testutil/PersonBuilder.java"><code>ParticipantBuilder</code></a>,
                                 so that users are able to create remarks when building a <a
-                                        href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/participant/participant.java"><code>participant</code></a>.
+                                        href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>participant</code></a>.
                             </p>
                         </div>
                         <div class="paragraph">
@@ -2434,13 +2434,13 @@
                             <ol class="arabic">
                                 <li>
                                     <p>Add a new method <code>withRemark()</code> for <a
-                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/testutil/participantBuilder.java"><code>participantBuilder</code></a>.
+                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/testutil/PersonBuilder.java"><code>PersonBuilder</code></a>.
                                         This method will create a new <code>Remark</code> for the participant that it is
                                         currently building.</p>
                                 </li>
                                 <li>
                                     <p>Try and use the method on any sample <code>participant</code> in <a
-                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/testutil/Typicalparticipants.java"><code>Typicalparticipants</code></a>.
+                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/testutil/Typicalparticipants.java"><code>TypicalPerson</code></a>.
                                     </p>
                                 </li>
                             </ol>
@@ -2449,10 +2449,10 @@
                     <div class="sect4">
                         <h5 id="step-7-ui-connect-code-remark-code-field-to-code-participantcard-code"><a class="link"
                                                                                                      href="#step-7-ui-connect-code-remark-code-field-to-code-participantcard-code">[Step
-                            7] Ui: Connect <code>Remark</code> field to <code>participantCard</code></a></h5>
+                            7] Ui: Connect <code>Remark</code> field to <code>PersonCard</code></a></h5>
                         <div class="paragraph">
                             <p>Our remark label in <a
-                                    href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/participantCard.java"><code>participantCard</code></a>
+                                    href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>ParticipantCard</code></a>
                                 is still a placeholder. Let&#8217;s bring it to life by binding it with the actual
                                 <code>remark</code> field.</p>
                         </div>
@@ -2463,7 +2463,7 @@
                             <ol class="arabic">
                                 <li>
                                     <p>Modify <a
-                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/participantCard.java"><code>participantCard</code></a>'s
+                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a>'s
                                         constructor to bind the <code>Remark</code> field to the <code>participant</code> 's
                                         remark.</p>
                                 </li>
@@ -2476,7 +2476,7 @@
                             <ol class="arabic">
                                 <li>
                                     <p>Modify <a
-                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/ui/testutil/GuiTestAssert.java"><code>GuiTestAssert#assertCardDisplaysparticipant(&#8230;&#8203;)</code></a>
+                                            href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/ui/testutil/GuiTestAssert.java"><code>GuiTestAssert#assertCardDisplaysPerson(&#8230;&#8203;)</code></a>
                                         so that it will compare the now-functioning remark label.</p>
                                 </li>
                             </ol>
