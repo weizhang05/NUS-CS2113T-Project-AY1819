@@ -377,7 +377,7 @@
                         </div>
                     </div>
                     <div class="paragraph">
-                        <p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the
+                        <p>Step 2. The user executes <code>delete 5</code> command to delete the 5th participant in the
                             address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>,
                             causing the modified state of the address book after the <code>delete 5</code> command
                             executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code>
@@ -390,7 +390,7 @@
                         </div>
                     </div>
                     <div class="paragraph">
-                        <p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The
+                        <p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new participant. The
                             <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another
                             modified address book state to be saved into the <code>addressBookStateList</code>.</p>
                     </div>
@@ -415,7 +415,7 @@
                         </table>
                     </div>
                     <div class="paragraph">
-                        <p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that
+                        <p>Step 4. The user now decides that adding the participant was a mistake, and decides to undo that
                             action by executing the <code>undo</code> command. The <code>undo</code> command will call
                             <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code>
                             once to the left, pointing it to the previous address book state, and restores the address
@@ -537,7 +537,7 @@
                                         <ul>
                                             <li>
                                                 <p>Pros: Will use less memory (e.g. for <code>delete</code>, just save
-                                                    the person being deleted).</p>
+                                                    the participant being deleted).</p>
                                             </li>
                                             <li>
                                                 <p>Cons: We must ensure that the implementation of each individual

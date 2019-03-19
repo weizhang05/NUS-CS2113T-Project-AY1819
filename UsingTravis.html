@@ -192,7 +192,7 @@
                     <li>
                         <p>On GitHub, create a new user account and give this account collaborator and admin access to
                             the repo.<br>
-                            Using this account, generate a personal access token <a
+                            Using this account, generate a participantal access token <a
                                     href="https://github.com/settings/tokens/new">here</a>.</p>
                         <div class="admonitionblock note">
                             <table>
@@ -201,8 +201,8 @@
                                         <i class="fa icon-note" title="Note"></i>
                                     </td>
                                     <td class="content">
-                                        Personal access tokens are like passwords so make sure you keep them secret! If
-                                        the personal access token is leaked, please delete it and generate a new one.
+                                        participantal access tokens are like passwords so make sure you keep them secret! If
+                                        the participantal access token is leaked, please delete it and generate a new one.
                                     </td>
                                 </tr>
                             </table>
@@ -234,7 +234,7 @@
                                             <p>Check the <code>public_repo</code> checkbox.</p>
                                         </li>
                                         <li>
-                                            <p>Click <code>Generate Token</code> and copy your new personal access
+                                            <p>Click <code>Generate Token</code> and copy your new participantal access
                                                 token.</p>
                                         </li>
                                     </ul>
@@ -267,7 +267,7 @@
                                             <p>name: <code>GITHUB_TOKEN</code></p>
                                         </li>
                                         <li>
-                                            <p>value: personal access token copied in step 1</p>
+                                            <p>value: participantal access token copied in step 1</p>
                                         </li>
                                         <li>
                                             <p>Display value in build log: <code>OFF</code></p>
@@ -289,7 +289,7 @@
                                     <td class="content">
                                         <strong>Make sure you set <code>Display value in build log</code> to
                                             <code>OFF</code>.</strong><br>
-                                        Otherwise, other people will be able to see the personal access token and thus
+                                        Otherwise, other people will be able to see the participantal access token and thus
                                         have access this repo.<br>
                                         Similarly, make sure you <strong>do not print <code>$GITHUB_TOKEN</code> to the
                                         logs</strong> in Travis scripts as the logs are viewable by the public.
