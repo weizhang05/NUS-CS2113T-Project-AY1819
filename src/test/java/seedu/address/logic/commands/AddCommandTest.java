@@ -24,7 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.grouping.House;
-import seedu.address.model.person.Person;
+import seedu.address.model.participant.Person;
 import seedu.address.model.role.Participant;
 import seedu.address.testutil.PersonBuilder;
 

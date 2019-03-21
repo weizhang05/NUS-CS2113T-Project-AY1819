@@ -13,34 +13,34 @@ import seedu.address.model.participant.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A participant is considered unique by comparing using {@code Participant#isSamePerson(Participant)}. As such, adding and updating of
- * persons uses Participant#isSamePerson(Participant) for equality so as to ensure that the participant being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a participant uses Participant#equals(Object) so
- * as to ensure that the participant with exactly the same fields will be removed.
+ * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
+ * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
+ * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
+ * as to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Participant#isSamePerson(Participant)
+ * @see Person#isSamePerson(Person)
  */
-public class UniquePersonList implements Iterable<Participant> {
+public class UniquePersonList implements Iterable<Person> {
 
-    private final ObservableList<Participant> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Participant> internalUnmodifiableList =
+    private final ObservableList<Person> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent participant as the given argument.
+     * Returns true if the list contains an equivalent person as the given argument.
      */
-    public boolean contains(Participant toCheck) {
+    public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
     /**
-     * Adds a participant to the list.
-     * The participant must not already exist in the list.
+     * Adds a person to the list.
+     * The person must not already exist in the list.
      */
-    public void add(Participant toAdd) {
+    public void add(Person toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
@@ -49,30 +49,30 @@ public class UniquePersonList implements Iterable<Participant> {
     }
 
     /**
-     * Replaces the participant {@code target} in the list with {@code editedParticipant}.
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
-     * The participant identity of {@code editedParticipant} must not be the same as another existing participant in the list.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void setPerson(Participant target, Participant editedParticipant) {
-        requireAllNonNull(target, editedParticipant);
+    public void setPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedParticipant) && contains(editedParticipant)) {
+        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
             throw new DuplicatePersonException();
         }
 
-        internalList.set(index, editedParticipant);
+        internalList.set(index, editedPerson);
     }
 
     /**
-     * Removes the equivalent participant from the list.
-     * The participant must exist in the list.
+     * Removes the equivalent person from the list.
+     * The person must exist in the list.
      */
-    public void remove(Participant toRemove) {
+    public void remove(Person toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
@@ -85,27 +85,27 @@ public class UniquePersonList implements Iterable<Participant> {
     }
 
     /**
-     * Replaces the contents of this list with {@code participants}.
-     * {@code participants} must not contain duplicate participants.
+     * Replaces the contents of this list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Participant> participants) {
-        requireAllNonNull(participants);
-        if (!personsAreUnique(participants)) {
+    public void setPersons(List<Person> persons) {
+        requireAllNonNull(persons);
+        if (!personsAreUnique(persons)) {
             throw new DuplicatePersonException();
         }
 
-        internalList.setAll(participants);
+        internalList.setAll(persons);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Participant> asUnmodifiableObservableList() {
+    public ObservableList<Person> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Participant> iterator() {
+    public Iterator<Person> iterator() {
         return internalList.iterator();
     }
 
@@ -122,12 +122,12 @@ public class UniquePersonList implements Iterable<Participant> {
     }
 
     /**
-     * Returns true if {@code participants} contains only unique participants.
+     * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean personsAreUnique(List<Participant> participants) {
-        for (int i = 0; i < participants.size() - 1; i++) {
-            for (int j = i + 1; j < participants.size(); j++) {
-                if (participants.get(i).isSamePerson(participants.get(j))) {
+    private boolean personsAreUnique(List<Person> persons) {
+        for (int i = 0; i < persons.size() - 1; i++) {
+            for (int j = i + 1; j < persons.size(); j++) {
+                if (persons.get(i).isSamePerson(persons.get(j))) {
                     return false;
                 }
             }

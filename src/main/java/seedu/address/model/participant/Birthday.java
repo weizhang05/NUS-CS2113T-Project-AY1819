@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Participant's birthday in the address book
+ * Represents a Person's birthday in the address book
  */
 public class Birthday {
 

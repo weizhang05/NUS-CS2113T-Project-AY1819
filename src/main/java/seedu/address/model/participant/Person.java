@@ -8,14 +8,13 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.grouping.Group;
-import seedu.address.model.privilege.Privilege;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Participant in the address book.
+ * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Participant {
+public class Person {
 
     // Identity fields
     private final Name name;
@@ -29,14 +28,11 @@ public class Participant {
     private final Group group;
     private final Set<Tag> tags = new HashSet<>();
 
-    // Privilege roles
-    private Privilege privilege;
-
     /**
      * Every field must be present and not null.
      */
-    public Participant(Name name, Sex sex, Birthday birthday, Phone phone, Email email,
-                       Major major, Group group, Set<Tag> tags) {
+    public Person(Name name, Sex sex, Birthday birthday, Phone phone, Email email,
+                  Major major, Group group, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, major, tags);
         this.name = name;
         this.sex = sex;
@@ -46,7 +42,6 @@ public class Participant {
         this.major = major;
         this.group = group;
         this.tags.addAll(tags);
-        this.privilege = Privilege.PARTICIPANTS;
     }
 
     public Name getName() {
@@ -89,16 +84,16 @@ public class Participant {
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Participant otherParticipant) {
-        if (otherParticipant == this) {
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
             return true;
         }
 
-        return otherParticipant != null
-                && otherParticipant.getName().equals(getName())
-                && (otherParticipant.getPhone().equals(getPhone())
-                || otherParticipant.getEmail().equals(getEmail())
-                || otherParticipant.getBirthday().equals(getBirthday()));
+        return otherPerson != null
+                && otherPerson.getName().equals(getName())
+                && (otherPerson.getPhone().equals(getPhone())
+                || otherPerson.getEmail().equals(getEmail())
+                || otherPerson.getBirthday().equals(getBirthday()));
     }
 
     /**
@@ -111,19 +106,19 @@ public class Participant {
             return true;
         }
 
-        if (!(other instanceof Participant)) {
+        if (!(other instanceof Person)) {
             return false;
         }
 
-        Participant otherParticipant = (Participant) other;
-        return otherParticipant.getName().equals(getName())
-                && otherParticipant.getSex().equals(getSex())
-                && otherParticipant.getBirthday().equals((getBirthday()))
-                && otherParticipant.getPhone().equals(getPhone())
-                && otherParticipant.getEmail().equals(getEmail())
-                && otherParticipant.getMajor().equals(getMajor())
-                && otherParticipant.getGroup().equals(getGroup())
-                && otherParticipant.getTags().equals(getTags());
+        Person otherPerson = (Person) other;
+        return otherPerson.getName().equals(getName())
+                && otherPerson.getSex().equals(getSex())
+                && otherPerson.getBirthday().equals((getBirthday()))
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getMajor().equals(getMajor())
+                && otherPerson.getGroup().equals(getGroup())
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
@@ -153,11 +148,4 @@ public class Participant {
         return builder.toString();
     }
 
-    public Privilege getPrivilege() {
-        return privilege;
-    }
-
-    public void setPrivilege(Privilege privilege) {
-        this.privilege = privilege;
-    }
 }
