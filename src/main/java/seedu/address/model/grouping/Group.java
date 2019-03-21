@@ -42,8 +42,7 @@ public class Group {
         }
 
         return otherGroup != null
-                && otherGroup.getGroupName().equals(getGroupName())
-                && (otherGroup.getHouseName().equals(getHouseName()));
+                && otherGroup.getGroupName().equals(getGroupName());
     }
 
     @Override
