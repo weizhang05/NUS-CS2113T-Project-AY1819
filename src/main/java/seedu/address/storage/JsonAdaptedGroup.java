@@ -1,10 +1,10 @@
 package seedu.address.storage;
 
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+
 import seedu.address.model.grouping.Group;
 import seedu.address.model.participant.Name;
 
