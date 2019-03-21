@@ -14,17 +14,17 @@ public class Group {
     private String groupName;
     private String houseName;
 
-    public Group (String groupName) {
+    public Group(String groupName) {
         this.groupName = groupName;
     }
 
 
-    public Group (String groupName, String houseName) {
+    public Group(String groupName, String houseName) {
         this.houseName = houseName;
         this.groupName = groupName;
     }
 
-    public String getGroupName () {
+    public String getGroupName() {
         return groupName;
     }
 
@@ -34,6 +34,16 @@ public class Group {
 
     public static boolean isValidGroup(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public boolean isSameGroup(Group otherGroup) {
+        if (otherGroup == this) {
+            return true;
+        }
+
+        return otherGroup != null
+                && otherGroup.getGroupName().equals(getGroupName())
+                && (otherGroup.getHouseName().equals(getHouseName()));
     }
 
     @Override
