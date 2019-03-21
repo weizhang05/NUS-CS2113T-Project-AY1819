@@ -12,7 +12,7 @@ import seedu.address.model.participant.Person;
 import seedu.address.model.participant.Phone;
 import seedu.address.model.participant.Sex;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.util.SampleParticipantsUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -90,7 +90,7 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.tags = SampleParticipantsUtil.getTagSet(tags);
         return this;
     }
 
