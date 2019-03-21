@@ -19,8 +19,8 @@ import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Person;
 import seedu.address.model.participant.exceptions.PersonNotFoundException;
 import seedu.address.model.role.Participant;
-import seedu.address.storage.ParticipantList;
 import seedu.address.storage.HouseStorage;
+import seedu.address.storage.ParticipantList;
 
 /**
  * Represents the in-memory model of the address book data.
