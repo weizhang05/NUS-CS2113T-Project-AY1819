@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.InvalidationListenerManager;
+import seedu.address.model.grouping.Group;
+import seedu.address.model.grouping.UniqueGroupList;
 import seedu.address.model.participant.Person;
 import seedu.address.model.participant.UniqueParticipantList;
 
@@ -17,6 +19,7 @@ import seedu.address.model.participant.UniqueParticipantList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueParticipantList persons;
+    private final UniqueGroupList groups;
     private final InvalidationListenerManager invalidationListenerManager = new InvalidationListenerManager();
 
     /*
@@ -25,12 +28,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         persons = new UniqueParticipantList();
+        groups = new UniqueGroupList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -128,6 +132,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Group> getGroupList() {
+        return groups.asUnmodifiableObservableList();
     }
 
     @Override
