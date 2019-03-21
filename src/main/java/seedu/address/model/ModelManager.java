@@ -19,7 +19,7 @@ import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Person;
 import seedu.address.model.participant.exceptions.PersonNotFoundException;
 import seedu.address.model.role.Participant;
-import seedu.address.storage.FreshmanList;
+import seedu.address.storage.ParticipantList;
 import seedu.address.storage.HouseStorage;
 
 /**
@@ -109,8 +109,8 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
-        if (FreshmanList.hasFreshman(target.toString())) {
-            FreshmanList.deleteFreshman(target.toString());
+        if (ParticipantList.hasFreshman(target.toString())) {
+            ParticipantList.deleteFreshman(target.toString());
         }
     }
 
@@ -122,7 +122,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addFreshman(Participant person) {
-        FreshmanList.addFreshman(person.toString());
+        ParticipantList.addFreshman(person.toString());
     }
 
     @Override

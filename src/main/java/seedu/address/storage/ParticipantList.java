@@ -7,14 +7,14 @@ import seedu.address.model.role.Participant;
 /**
  * Adds Freshmen Names to the list
  */
-public class FreshmanList {
+public class ParticipantList {
     private static ArrayList<String> freshmenNames = new ArrayList<>();
     private static ArrayList<Participant> freshmen = new ArrayList<>();
 
     /**
      * Constructs a List for storing freshmen.
      */
-    public FreshmanList() {
+    public ParticipantList() {
     }
 
     public static ArrayList<Participant> getFreshmen() {
