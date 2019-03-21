@@ -14,7 +14,7 @@ public class SampleGroupsUtil {
             new Group("R1", "Red"),
             new Group("R2", "Red"),
             new Group("B1", "Blue"),
-            new Group("B1", "Blue"),
+            new Group("B2", "Blue"),
         };
     }
 
