@@ -156,6 +156,15 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
+    public ObservableList<String> getUndoList() {
+        return versionedAddressBook.u;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Undoable Command} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }

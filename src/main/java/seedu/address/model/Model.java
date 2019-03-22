@@ -81,6 +81,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<String> getUndoList();
+
     /**
      * Returns true if a House with the same name as {@code House} exists in the address book.
      */
