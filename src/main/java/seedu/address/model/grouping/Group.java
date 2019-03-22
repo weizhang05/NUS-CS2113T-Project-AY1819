@@ -31,6 +31,11 @@ public class Group {
         return houseName;
     }
 
+    /**
+     * Returns true if it's a valid group.
+     * @param test
+     * @return
+     */
     public static boolean isValidGroup(String test) {
         return test.matches(VALIDATION_REGEX);
     }

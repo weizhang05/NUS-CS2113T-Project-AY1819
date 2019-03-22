@@ -11,6 +11,19 @@ import javafx.collections.ObservableList;
 import seedu.address.model.participant.exceptions.DuplicatePersonException;
 import seedu.address.model.participant.exceptions.PersonNotFoundException;
 
+/**
+ * A list of groups that enforces uniqueness between its elements and does not allow nulls.
+ * A group is considered unique by comparing using {@code Group#isSameGroup(Group)}.
+ * As such, adding and updating of
+ * groups uses Group#isSameGroup(Group) for equality so as to ensure that the Group being added or updated is
+ * unique in terms of identity in the UniqueGroupList.
+ * However, the removal of a group uses Group#equals(Object) so
+ * as to ensure that the group with exactly the same fields will be removed.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Group#isSameGroup(Group)
+ */
 public class UniqueGroupList implements Iterable<Group> {
 
     private final ObservableList<Group> internalList = FXCollections.observableArrayList();
@@ -72,7 +85,6 @@ public class UniqueGroupList implements Iterable<Group> {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
-
     /**
      * Replaces the contents of this list with {@code groups}.
      * {@code groups} must not contain duplicate groups.
