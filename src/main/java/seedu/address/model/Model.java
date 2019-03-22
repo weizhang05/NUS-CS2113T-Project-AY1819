@@ -81,10 +81,10 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the undo list */
     ObservableList<String> getUndoList();
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the redo list */
     ObservableList<String> getRedoList();
 
     /**
