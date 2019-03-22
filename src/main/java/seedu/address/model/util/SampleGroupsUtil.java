@@ -1,8 +1,8 @@
 package seedu.address.model.util;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.grouping.Group;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.grouping.Group;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

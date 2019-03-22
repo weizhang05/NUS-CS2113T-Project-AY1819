@@ -4,7 +4,6 @@ package seedu.address.model.grouping;
  * Represents a person's camp grouping
  * Can only be created within a house that has already been created.
  */
-
 public class Group {
 
     public static final String MESSAGE_CONSTRAINTS =

@@ -8,12 +8,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.participant.Name;
 
-import static seedu.address.storage.JsonAdaptedParticipant.MISSING_FIELD_MESSAGE_FORMAT;
-
 /**
  * Jackson-friendly version of {@link Group}.
  */
 public class JsonAdaptedGroup {
+
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Group's %s field is missing!";
 
     private final String groupName;
     private final String houseName;
