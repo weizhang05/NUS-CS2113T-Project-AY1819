@@ -37,6 +37,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the list of undoable commands */
     ObservableList<String> getUndoList();
 
+    /** Returns an unmodifiable view of the list of redoable commands */
+    ObservableList<String> getRedoList();
+
     /**
      * Returns an unmodifiable view of the list of commands entered by the user.
      * The list is ordered from the least recent command to the most recent command.

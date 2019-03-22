@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -110,7 +111,7 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
-        undoableCommand = "delete" + target.getName().fullName;
+        undoableCommand = "Delete" + target.getName().fullName;
 
     }
 
@@ -118,7 +119,7 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         versionedAddressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        undoableCommand = "add " + person.getName().fullName;
+        undoableCommand = "Add " + person.getName().fullName;
     }
 
     @Override
@@ -126,7 +127,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         versionedAddressBook.setPerson(target, editedPerson);
-        undoableCommand = "edit " + editedPerson.getName().fullName;
+        undoableCommand = "Edit " + editedPerson.getName().fullName;
     }
 
     @Override
@@ -159,12 +160,21 @@ public class ModelManager implements Model {
     //=========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Undoable Command} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
     public ObservableList<String> getUndoList() {
-        return versionedAddressBook.u;
+        return FXCollections.observableArrayList(versionedAddressBook.getUndoList());
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Redoable Command} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<String> getRedoList() {
+        return FXCollections.observableArrayList(versionedAddressBook.getRedoList());
     }
 
     /**

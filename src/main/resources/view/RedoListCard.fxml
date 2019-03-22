@@ -19,7 +19,7 @@
                 </padding>
                 <HBox>
                     <Label fx:id="id" styleClass="cell_small_label" />
-                    <Label fx:id="undoableCommand" styleClass="cell_small_label" />
+                    <Label fx:id="redoableCommand" styleClass="cell_small_label" />
                 </HBox>
             </VBox>
         </HBox>

@@ -1,10 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.logging.Logger;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -16,7 +13,7 @@ import seedu.address.commons.core.LogsCenter;
  * Panel containing the list of undoable command
  */
 public class UndoListPanel extends UiPart<Region> {
-    private static String FXML = "UndoListPanle.fxml";
+    private static String FXML = "UndoListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(UndoListPanel.class);
 
     @FXML
@@ -24,6 +21,12 @@ public class UndoListPanel extends UiPart<Region> {
 
     public UndoListPanel(ObservableList<String> undoList) {
         super(FXML);
+        undoListView.setItems(undoList);
+        undoListView.setCellFactory(listView -> new UndoListViewCell());
+        //undoListView.getSelectionModel().getSelectedItems().addListener(observable -> {updateUndoList(undoList);});
+    }
+
+    public void updateUndoList(ObservableList<String> undoList) {
         undoListView.setItems(undoList);
         undoListView.setCellFactory(listView -> new UndoListViewCell());
     }

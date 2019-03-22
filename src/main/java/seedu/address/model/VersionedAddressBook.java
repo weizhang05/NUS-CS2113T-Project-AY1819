@@ -24,7 +24,7 @@ public class VersionedAddressBook extends AddressBook {
     }
 
     public void addUndoableCommand (String undoableCommand) {
-        undoList.add(undoableCommand);
+        undoList.add(0, undoableCommand);
     }
     /**
      * Saves a copy of the current {@code AddressBook} state at the end of the state list.
@@ -50,11 +50,15 @@ public class VersionedAddressBook extends AddressBook {
             throw new NoUndoableStateException();
         }
         if (undoList.size() > 0) {
-            redoList.add(undoList.get(undoList.size() - 1));
-            undoList.remove(undoList.size() - 1);
+            redoList.add(0, undoList.get(0));
+            undoList.remove(0);
         }
         currentStatePointer--;
         resetData(addressBookStateList.get(currentStatePointer));
+    }
+
+    public ArrayList<String> getUndoList() {
+        return undoList;
     }
 
     /**
@@ -65,12 +69,17 @@ public class VersionedAddressBook extends AddressBook {
             throw new NoRedoableStateException();
         }
         if (redoList.size() > 0) {
-            undoList.add(redoList.get(redoList.size() - 1));
-            redoList.remove(redoList.size() - 1);
+            undoList.add(0, redoList.get(0));
+            redoList.remove(0);
         }
         currentStatePointer++;
         resetData(addressBookStateList.get(currentStatePointer));
     }
+
+    public ArrayList<String> getRedoList() {
+        return redoList;
+    }
+
 
     /**
      * Returns true if {@code undo()} has address book states to undo.

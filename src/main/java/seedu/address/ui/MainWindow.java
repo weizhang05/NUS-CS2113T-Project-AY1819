@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private BrowserPanel browserPanel;
     private PersonListPanel personListPanel;
     private UndoListPanel undoListPanel;
+    private RedoListPanel redoListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane undoListPanelPlaceholder;
+
+    @FXML
+    private StackPane redoListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -115,8 +119,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        browserPanel = new BrowserPanel(logic.selectedPersonProperty());
-        browserPlaceholder.getChildren().add(browserPanel.getRoot());
+        //browserPanel = new BrowserPanel(logic.selectedPersonProperty());
+        //browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.selectedPersonProperty(),
                 logic::setSelectedPerson);
@@ -124,6 +128,9 @@ public class MainWindow extends UiPart<Stage> {
 
         undoListPanel = new UndoListPanel(logic.getUndoList());
         undoListPanelPlaceholder.getChildren().add(undoListPanel.getRoot());
+
+        redoListPanel = new RedoListPanel(logic.getRedoList());
+        redoListPanelPlaceholder.getChildren().add(redoListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -189,6 +196,9 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            undoListPanel.updateUndoList(logic.getUndoList());
+            redoListPanel.updateRedoList(logic.getRedoList());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
