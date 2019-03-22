@@ -19,6 +19,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.grouping.House;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.role.Participant;
+import seedu.address.storage.FreshmanList;
 import seedu.address.storage.HouseStorage;
 
 /**
@@ -113,6 +115,9 @@ public class ModelManager implements Model {
         versionedAddressBook.removePerson(target);
         undoableCommand = "Delete" + target.getName().fullName;
 
+        if (FreshmanList.hasFreshman(target.toString())) {
+            FreshmanList.deleteFreshman(target.toString());
+        }
     }
 
     @Override
@@ -120,6 +125,11 @@ public class ModelManager implements Model {
         versionedAddressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         undoableCommand = "Add " + person.getName().fullName;
+    }
+
+    @Override
+    public void addFreshman(Participant person) {
+        FreshmanList.addFreshman(person.toString());
     }
 
     @Override
