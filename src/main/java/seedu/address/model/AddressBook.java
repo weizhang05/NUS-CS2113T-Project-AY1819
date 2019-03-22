@@ -58,7 +58,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code persons} must not contain duplicate persons.
      */
     public void setGroups(List<Group> groups) {
-        this.groups.setPersons(groups);
+        this.groups.setGroups(groups);
         indicateModified();
     }
 

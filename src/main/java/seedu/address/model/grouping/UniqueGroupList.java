@@ -69,6 +69,11 @@ public class UniqueGroupList implements Iterable<Group> {
 
         internalList.set(index, editedPerson);
     }
+    
+    public void setGroup(UniqueGroupList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
 
     /**
      * Removes the equivalent group from the list.
@@ -81,15 +86,11 @@ public class UniqueGroupList implements Iterable<Group> {
         }
     }
 
-    public void setGroup(UniqueGroupList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
     /**
      * Replaces the contents of this list with {@code groups}.
      * {@code groups} must not contain duplicate groups.
      */
-    public void setPersons(List<Group> groups) {
+    public void setGroups(List<Group> groups) {
         requireAllNonNull(groups);
         if (!groupsAreUnique(groups)) {
             throw new DuplicatePersonException();

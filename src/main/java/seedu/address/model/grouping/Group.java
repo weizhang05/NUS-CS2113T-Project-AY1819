@@ -40,6 +40,10 @@ public class Group {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if both groups of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two groups.
+     */
     public boolean isSameGroup(Group otherGroup) {
         if (otherGroup == this) {
             return true;
