@@ -69,7 +69,7 @@ public class UniqueGroupList implements Iterable<Group> {
 
         internalList.set(index, editedPerson);
     }
-    
+
     public void setGroup(UniqueGroupList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
