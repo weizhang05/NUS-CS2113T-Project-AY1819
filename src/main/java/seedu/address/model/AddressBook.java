@@ -93,6 +93,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         indicateModified();
     }
 
+    //// group-level operations
+
     /**
      * Returns true if a group with the same identity as {@code group} exists in the address book.
      */
