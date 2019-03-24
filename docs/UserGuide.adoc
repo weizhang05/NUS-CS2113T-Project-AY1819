@@ -91,10 +91,12 @@ e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 ====
 
+[[ViewHelp]]
 === Viewing help : `help`
 
 Format: `help`
 
+[[AddFresh]]
 === Adding a freshman : `add_f`
 
 Adds a participant to the freshman list +
@@ -116,6 +118,7 @@ Examples:
 * `add_f n/John Doe s/M b/27071999 p/98765432 e/johnd@example.com m/Information Systems g/`
 * `add_f n/Jane Doe s/F e/betsycrowe@example.com m/CS g/ p/1234567 t/househead`
 
+[[AddOrg]]
 === Adding an organizer : `add_o`
 
 Adds a participant to the organizers list +
@@ -130,6 +133,7 @@ Example:
 
 * `add_f n/James Boe s/M b/27071999 p/13579753 e/jamesd@example.com m/CEG g/`
 
+[[AddHouse]]
 === Adding a house : `add_h`
 
 Adds a house that can contain different groups +
@@ -142,6 +146,7 @@ Example:
 
 * `add_h blue`
 
+[[AddGroup]]
 === Adding a group : `add_g`
 
 Adds a group to a house +
@@ -157,11 +162,13 @@ Example:
 
 * `add_g b1 blue`
 
+[[List]]
 === Listing all participants : `list`
 
 Shows a list of all camp participants in your contact list. +
 Format: `list`
 
+[[Edit]]
 === Editing a participant : `edit`
 
 Edits an existing participant in your contact list. +
@@ -190,6 +197,7 @@ Edits the phone number and group of the participant at index 1 to be `91234567` 
 * `edit 2 n/John Koe t/` +
 Edits the name of the participant at index 2 to be `John Koe` and clears all existing tags.
 
+[[Find]]
 === Locating participants by name: `find`
 
 Finds participants whose names contain any of the given keywords. +
@@ -210,6 +218,7 @@ Returns `john` and `John Goe`
 * `find Betsy Tim John` +
 Returns any participant having names `Betsy`, `Tim`, or `John`
 
+[[Delete]]
 === Deleting a participant : `delete`
 
 Deletes the specified participant from your contact list. +
@@ -232,6 +241,7 @@ Deletes the participant at index 2.
 `delete 1` +
 Deletes the participant at index 2 in the results of the `find` command.
 
+[[Select]]
 === Selecting a participant : `select`
 
 Selects the participant identified by the index number used in the displayed participant list. +
@@ -252,6 +262,7 @@ Selects the participant at index 2 in your contact list.
 `select 1` +
 Selects the participant at index 1 in the results of the `find` command.
 
+[[History]]
 === Listing entered commands : `history`
 
 Lists all the commands that you have entered in reverse chronological order. +
@@ -263,6 +274,7 @@ Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and 
 ====
 
 // tag::undoredo[]
+[[Undo]]
 === Undoing previous command : `undo`
 
 Restores your contact list to the state before the previous _undoable_ command was executed. +
@@ -287,6 +299,7 @@ The `undo` command fails as there are no undoable commands executed previously.
 `undo` (reverses the `clear` command) +
 `undo` (reverses the `delete 1` command) +
 
+[[Redo]]
 === Redoing previously undone command : `redo`
 
 Reverses the most recent `undo` command. +
@@ -310,11 +323,13 @@ The `redo` command fails as there are no `undo` commands executed previously.
 `redo` (reapplies the `clear` command) +
 // end::undoredo[]
 
+[[Clear]]
 === Clearing all entries : `clear`
 
 Clears all entries from your contact list. +
 Format: `clear`
 
+[[Exit]]
 === Exiting the program : `exit`
 
 Exits the program. +
@@ -346,19 +361,19 @@ Below is a summary of all commands available in FOP Manager:
 |============================================================
 |Command |Purpose |Example |Reference
 
-|`help` |Views help |`help` |<<Features,Viewing help>>
-|`add_f` |Adds a freshman |`add_f n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...` |<<Features,Adding a freshman>>
-|`add_o` |Adds an organizer |`add_o n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...` |<<Features,Adding an organizer>>
-|`add_h` |Adds a house |`add_h HOUSENAME` |<<Features,Adding a house>>
-|`add_g` |Adds a group |`add_g GROUPNAME HOUSENAME`|<<Features,Adding a group>>
-|`list` |Lists all participants in contact list |`list` |<<Features,Listing all participants>>
-|`edit` |Edits participant at `INDEX` |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR] [g/GROUP] [t/TAG]...` |<<Features,Editing a Participant>>
-|`find` |Finds participants by name |`find KEYWORD [MORE_KEYWORDS]` |<<Features,Locating participants by name>>
-|`delete` |Deletes participant at `INDEX` |`delete INDEX` |<<Features,Deleting a participant>>
-|`select` |Selects participant at `INDEX` |`select INDEX` |<<Features,Selecting a participant>>
-|`history` |Lists all previously entered commands |`history` |<<Features,Listing entered comamnds>>
-|`undo` |Undoes previous command |`undo` |<<Features,Undoing previous command>>
-|`redo` |Redoes previously undone command |`redo` |<<Features,Redoing previously undone command>>
-|`clear` |Clears contact list |`clear` |<<Features,Clearing all entries>>
-|`exit` |Exits program |`exit` |<<Features,Exiting the program>>
+|`help` |Views help |`help` |<<ViewHelp,Viewing help>>
+|`add_f` |Adds a freshman |`add_f n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...` |<<AddFresh,Adding a freshman>>
+|`add_o` |Adds an organizer |`add_o n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...` |<<AddOrg,Adding an organizer>>
+|`add_h` |Adds a house |`add_h HOUSENAME` |<<AddHouse,Adding a house>>
+|`add_g` |Adds a group |`add_g GROUPNAME HOUSENAME`|<<AddGroup,Adding a group>>
+|`list` |Lists all participants in contact list |`list` |<<List,Listing all participants>>
+|`edit` |Edits participant at `INDEX` |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR] [g/GROUP] [t/TAG]...` |<<Edit,Editing a Participant>>
+|`find` |Finds participants by name |`find KEYWORD [MORE_KEYWORDS]` |<<Find,Locating participants by name>>
+|`delete` |Deletes participant at `INDEX` |`delete INDEX` |<<Delete,Deleting a participant>>
+|`select` |Selects participant at `INDEX` |`select INDEX` |<<Select,Selecting a participant>>
+|`history` |Lists all previously entered commands |`history` |<<History,Listing entered comamnds>>
+|`undo` |Undoes previous command |`undo` |<<Undo,Undoing previous command>>
+|`redo` |Redoes previously undone command |`redo` |<<Redo, Redoing previously undone command>>
+|`clear` |Clears contact list |`clear` |<<Clear, Clearing all entries>>
+|`exit` |Exits program |`exit` |<<Exit, Exiting the program>>
 |=============================================================
