@@ -18,8 +18,7 @@ By: `Team T08-4`      Since: `Jan 2019`      Licence: `MIT`
 
 == Introduction
 
-FOP Manager is a desktop Graphical User Interface (GUI) 
-book app, specifically designed for *NUS Freshman Orientation Camp Organizers* to manage the contact information of camp participants. It is optimized for those who prefer to work with a *Command Line Interface* (CLI). If you can type fast, FOP Manager can get your contact management tasks done faster than traditional GUI apps.
+FOP Manager is a desktop Graphical User Interface (GUI) address book app, specifically designed for *NUS Freshman Orientation Camp Organizers* to manage the contact information of camp participants. It is optimized for those who prefer to work with a *Command Line Interface* (CLI). If you can type fast, FOP Manager can get your contact management tasks done faster than traditional GUI apps.
 
 Interested? Hurry, jump to <<Quick Start>> to get started!
 
