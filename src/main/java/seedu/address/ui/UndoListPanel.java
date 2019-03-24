@@ -26,11 +26,17 @@ public class UndoListPanel extends UiPart<Region> {
         //undoListView.getSelectionModel().getSelectedItems().addListener(observable -> {updateUndoList(undoList);});
     }
 
+    /**
+     * Update the undo list after a command is executed because I don't know how Observable List works
+     */
     public void updateUndoList(ObservableList<String> undoList) {
         undoListView.setItems(undoList);
         undoListView.setCellFactory(listView -> new UndoListViewCell());
     }
 
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Undoable Command} using a {@code UndoCard}.
+     */
     class UndoListViewCell extends ListCell<String> {
         @Override
         protected void updateItem(String newUndoableCommand, boolean empty) {

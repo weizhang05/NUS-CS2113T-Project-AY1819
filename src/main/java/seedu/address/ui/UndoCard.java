@@ -13,7 +13,7 @@ public class UndoCard extends UiPart<Region> {
     private static final String FXML = "UndoListCard.fxml";
 
     @FXML
-    private HBox cardPane;
+    private HBox undoCardPane;
     @FXML
     private Label undoableCommand;
     @FXML

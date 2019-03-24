@@ -32,6 +32,9 @@ public class RedoListPanel extends UiPart<Region> {
         redoListView.setCellFactory(listView -> new RedoListViewCell());
     }
 
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Redoable Command} using a {@code RedoCard}.
+     */
     class RedoListViewCell extends ListCell<String> {
         @Override
         protected void updateItem(String newRedoableCommand, boolean empty) {

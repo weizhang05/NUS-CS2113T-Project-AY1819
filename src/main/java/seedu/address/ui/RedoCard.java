@@ -13,7 +13,7 @@ public class RedoCard extends UiPart<Region> {
     private static final String FXML = "RedoListCard.fxml";
 
     @FXML
-    private HBox cardPane;
+    private HBox redoCardPane;
     @FXML
     private Label redoableCommand;
     @FXML
