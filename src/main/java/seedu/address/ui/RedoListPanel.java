@@ -13,7 +13,7 @@ import seedu.address.commons.core.LogsCenter;
  * Panel containing the list of redoable command
  */
 public class RedoListPanel extends UiPart<Region> {
-    private static String FXML = "RedoListPanel.fxml";
+    private static final String FXML = "RedoListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(RedoListPanel.class);
 
     @FXML

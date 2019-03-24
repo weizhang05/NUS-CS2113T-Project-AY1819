@@ -13,7 +13,7 @@ import seedu.address.commons.core.LogsCenter;
  * Panel containing the list of undoable command
  */
 public class UndoListPanel extends UiPart<Region> {
-    private static String FXML = "UndoListPanel.fxml";
+    private static final String FXML = "UndoListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(UndoListPanel.class);
 
     @FXML
