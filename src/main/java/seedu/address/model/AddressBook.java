@@ -71,7 +71,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code persons} must not contain duplicate persons.
      */
     public void setHouses(List<House> houses) {
-        this.houses.setHouse(houses);
+        this.houses.setHouses(houses);
         indicateModified();
     }
 
