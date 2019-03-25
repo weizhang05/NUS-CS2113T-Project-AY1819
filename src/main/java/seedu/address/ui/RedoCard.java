@@ -6,23 +6,23 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 /**
- * An UI component that displays information of a {@code Undoable Command}.
+ * An UI component that displays information of a {@code Redoable Command}.
  */
-public class UndoCard extends UiPart<Region> {
+public class RedoCard extends UiPart<Region> {
 
-    private static final String FXML = "UndoListCard.fxml";
+    private static final String FXML = "RedoListCard.fxml";
 
     @FXML
-    private HBox undoCardPane;
+    private HBox redoCardPane;
     @FXML
-    private Label undoableCommand;
+    private Label redoableCommand;
     @FXML
     private Label id;
 
-    public UndoCard(String undoableCommand, int displayedIndex) {
+    public RedoCard(String redoableCommand, int displayedIndex) {
         super(FXML);
         id.setText(displayedIndex + ". ");
-        this.undoableCommand.setText(undoableCommand);
+        this.redoableCommand.setText(redoableCommand);
     }
 
     @Override
@@ -33,13 +33,13 @@ public class UndoCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UndoCard)) {
+        if (!(other instanceof RedoCard)) {
             return false;
         }
 
         // state check
-        UndoCard card = (UndoCard) other;
+        RedoCard card = (RedoCard) other;
         return id.getText().equals(card.id.getText())
-                && undoableCommand.equals(card.undoableCommand);
+                && redoableCommand.equals(card.redoableCommand);
     }
 }

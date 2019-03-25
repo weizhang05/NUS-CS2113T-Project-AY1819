@@ -33,6 +33,9 @@
         <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
       </VBox>
       <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <padding>
+          <Insets top="5" right="5" bottom="5" left="15" />
+        </padding>
         <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
         <Label fx:id="major" styleClass="cell_small_label" text="\$major" />
         <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
