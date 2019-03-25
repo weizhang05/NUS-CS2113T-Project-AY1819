@@ -11,8 +11,12 @@ import javafx.collections.ObservableMap;
  */
 public class VersionedAddressBook extends AddressBook {
 
+    private ArrayList<String> redoList = new ArrayList<>();
+    private ArrayList<String> undoList = new ArrayList<>();
+
     private final List<ReadOnlyAddressBook> addressBookStateList;
     private int currentStatePointer;
+
 
     public VersionedAddressBook(ReadOnlyAddressBook initialState) {
         super(initialState);
@@ -38,11 +42,15 @@ public class VersionedAddressBook extends AddressBook {
         return addressBookStateList.get(currentStatePointer).getSexData();
     }
 
+    public void addUndoableCommand (String undoableCommand) {
+        undoList.add(0, undoableCommand);
+    }
     /**
      * Saves a copy of the current {@code AddressBook} state at the end of the state list.
      * Undone states are removed from the state list.
      */
     public void commit() {
+        redoList.clear();
         removeStatesAfterCurrentPointer();
         addressBookStateList.add(new AddressBook(this));
         currentStatePointer++;
@@ -60,8 +68,16 @@ public class VersionedAddressBook extends AddressBook {
         if (!canUndo()) {
             throw new NoUndoableStateException();
         }
+        if (undoList.size() > 0) {
+            redoList.add(0, undoList.get(0));
+            undoList.remove(0);
+        }
         currentStatePointer--;
         resetData(addressBookStateList.get(currentStatePointer));
+    }
+
+    public ArrayList<String> getUndoList() {
+        return undoList;
     }
 
     /**
@@ -71,9 +87,18 @@ public class VersionedAddressBook extends AddressBook {
         if (!canRedo()) {
             throw new NoRedoableStateException();
         }
+        if (redoList.size() > 0) {
+            undoList.add(0, redoList.get(0));
+            redoList.remove(0);
+        }
         currentStatePointer++;
         resetData(addressBookStateList.get(currentStatePointer));
     }
+
+    public ArrayList<String> getRedoList() {
+        return redoList;
+    }
+
 
     /**
      * Returns true if {@code undo()} has address book states to undo.
