@@ -22,6 +22,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.grouping.Group;
+import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Person;
 import seedu.address.model.participant.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -132,6 +133,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Group> getGroupList() {
             return groups;
+        }
+
+        @Override
+        public ObservableList<House> getHouseList() {
+            return null;
         }
 
         @Override
