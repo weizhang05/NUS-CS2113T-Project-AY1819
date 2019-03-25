@@ -22,6 +22,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RandomizeCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.StatCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -99,6 +100,9 @@ public class AddressBookParser {
 
         case RandomizeCommand.COMMAND_WORD:
             return new RandomizeCommand();
+
+        case StatCommand.COMMAND_WORD:
+            return new StatCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
