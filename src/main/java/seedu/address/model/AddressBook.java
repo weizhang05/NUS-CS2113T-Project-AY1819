@@ -8,7 +8,9 @@ import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.grouping.Group;
+import seedu.address.model.grouping.House;
 import seedu.address.model.grouping.UniqueGroupList;
+import seedu.address.model.grouping.UniqueHouseList;
 import seedu.address.model.participant.Person;
 import seedu.address.model.participant.UniqueParticipantList;
 
@@ -20,6 +22,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueParticipantList persons;
     private final UniqueGroupList groups;
+    private final UniqueHouseList houses;
     private final InvalidationListenerManager invalidationListenerManager = new InvalidationListenerManager();
 
     /*
@@ -31,6 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     */ {
         persons = new UniqueParticipantList();
         groups = new UniqueGroupList();
+        houses = new UniqueHouseList();
     }
 
     public AddressBook() {
@@ -63,6 +67,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setHouses(List<House> houses) {
+        this.houses.setHouse(houses);
+        indicateModified();
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -70,6 +83,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setGroups(newData.getGroupList());
+        setHouses(newData.getHouseList());
     }
 
     //// person-level operations
@@ -88,25 +102,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
-        indicateModified();
-    }
-
-    //// group-level operations
-
-    /**
-     * Returns true if a group with the same identity as {@code group} exists in the address book.
-     */
-    public boolean hasGroup(Group group) {
-        requireNonNull(group);
-        return groups.contains(group);
-    }
-
-    /**
-     * Adds a group to the address book.
-     * The group must not already exist in the address book.
-     */
-    public void addGroup(Group g) {
-        groups.add(g);
         indicateModified();
     }
 
@@ -131,6 +126,25 @@ public class AddressBook implements ReadOnlyAddressBook {
         indicateModified();
     }
 
+    //// group-level operations
+
+    /**
+     * Returns true if a group with the same identity as {@code group} exists in the address book.
+     */
+    public boolean hasGroup(Group group) {
+        requireNonNull(group);
+        return groups.contains(group);
+    }
+
+    /**
+     * Adds a group to the address book.
+     * The group must not already exist in the address book.
+     */
+    public void addGroup(Group g) {
+        groups.add(g);
+        indicateModified();
+    }
+
     /**
      * Replaces the given group {@code target} in the list with {@code editedGroup}.
      * {@code target} must exist in the address book.
@@ -149,6 +163,46 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeGroup(Group key) {
         groups.remove(key);
+        indicateModified();
+    }
+
+    //// house-level operations
+
+    /**
+     * Returns true if a house with the same identity as {@code house} exists in the address book.
+     */
+    public boolean hasHouse(House house) {
+        requireNonNull(house);
+        return houses.contains(house);
+    }
+
+    /**
+     * Adds a house to the address book.
+     * The house must not already exist in the address book.
+     */
+    public void addGroup(House house) {
+        houses.add(house);
+        indicateModified();
+    }
+
+    /**
+     * Replaces the given house {@code target} in the list with {@code editedHouse}.
+     * {@code target} must exist in the address book.
+     * The house identity of {@code editedHouse} must not be the same as another existing house in the address book.
+     */
+    public void setHouse(House target, House editedHouse) {
+        requireNonNull(editedHouse);
+
+        houses.setHouse(target, editedHouse);
+        indicateModified();
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeHouse(House key) {
+        houses.remove(key);
         indicateModified();
     }
 
@@ -185,6 +239,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Group> getGroupList() {
         return groups.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<House> getHouseList() {
+        return houses.asUnmodifiableObservableList();
     }
 
     @Override
