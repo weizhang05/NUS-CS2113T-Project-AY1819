@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -69,4 +70,19 @@ public interface Logic {
      * @see seedu.address.model.Model#setSelectedPerson(Person)
      */
     void setSelectedPerson(Person person);
+
+    /**
+     * Returns the number of persons by age
+     */
+    ObservableMap<String, Integer> getAgeData();
+
+    /**
+     * Returns the number of persons by sex
+     */
+    ObservableMap<String, Integer> getSexData();
+
+    /**
+     * Returns the number of persons by major
+     */
+    ObservableMap<String, Integer> getMajorData();
 }

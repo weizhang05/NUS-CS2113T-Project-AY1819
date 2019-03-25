@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import javafx.collections.ObservableMap;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -121,6 +122,18 @@ public class AddressBookTest {
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
+
+//        public ObservableMap<String, Integer> getAgeData() {
+//            return FXCollections.unmodifiableObservableMap(ageData);
+//        }
+//
+//        public ObservableMap<String, Integer> getMajorData() {
+//            return FXCollections.unmodifiableObservableMap(majorData);
+//        }
+//
+//        public ObservableMap<String, Integer> getSexData() {
+//            return FXCollections.unmodifiableObservableMap(sexData);
+//        }
 
         @Override
         public ObservableList<Person> getPersonList() {
