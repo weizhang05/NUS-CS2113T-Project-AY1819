@@ -26,7 +26,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Person;
-import seedu.address.model.role.Participant;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
