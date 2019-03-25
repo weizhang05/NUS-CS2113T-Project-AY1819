@@ -1,8 +1,8 @@
 package seedu.address.model.grouping;
 
-import seedu.address.model.participant.Person;
-
 import java.util.ArrayList;
+
+import seedu.address.model.participant.Person;
 
 /**
  * Represents a person's camp grouping

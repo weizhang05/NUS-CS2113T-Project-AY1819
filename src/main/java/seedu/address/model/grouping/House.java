@@ -38,7 +38,7 @@ public class House {
      * Adds a new group to the house
      */
     public void addGroup (String groupName) {
-        if(hasGroup(groupName)) {
+        if (hasGroup(groupName)) {
             return;
         }
         groups.add(new Group(groupName, getHouseName()));

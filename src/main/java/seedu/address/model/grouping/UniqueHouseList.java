@@ -70,11 +70,6 @@ public class UniqueHouseList implements Iterable<House> {
         internalList.set(index, editedHouse);
     }
 
-    public void setHouse(UniqueHouseList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
     /**
      * Removes the equivalent house from the list.
      * The house must exist in the list.
@@ -90,13 +85,18 @@ public class UniqueHouseList implements Iterable<House> {
      * Replaces the contents of this list with {@code houses}.
      * {@code houses} must not contain duplicate houses.
      */
-    public void setHouse(List<House> houses) {
+    public void setHouses(List<House> houses) {
         requireAllNonNull(houses);
         if (!housesAreUnique(houses)) {
             throw new DuplicatePersonException();
         }
 
         internalList.setAll(houses);
+    }
+
+    public void setHouses(UniqueHouseList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
     }
 
     /**

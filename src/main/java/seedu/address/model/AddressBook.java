@@ -180,7 +180,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a house to the address book.
      * The house must not already exist in the address book.
      */
-    public void addGroup(House house) {
+    public void addHouse(House house) {
         houses.add(house);
         indicateModified();
     }
