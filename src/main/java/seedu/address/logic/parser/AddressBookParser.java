@@ -26,7 +26,6 @@ import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-//Checkstyle Corrected
 /**
  * Parses user input.
  */
