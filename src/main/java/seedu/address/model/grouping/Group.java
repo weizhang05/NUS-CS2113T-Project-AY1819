@@ -15,6 +15,7 @@ public class Group {
 
     public Group(String groupName) {
         this.groupName = groupName;
+        this.houseName = null;
     }
 
 
