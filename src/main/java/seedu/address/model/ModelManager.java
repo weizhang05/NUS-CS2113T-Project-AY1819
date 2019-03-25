@@ -10,16 +10,17 @@ import java.util.logging.Logger;
 
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Person;
 import seedu.address.model.participant.exceptions.PersonNotFoundException;
-import seedu.address.storage.ParticipantList;
+import seedu.address.model.role.Participant;
+import seedu.address.storage.HouseStorage;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -31,8 +32,9 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
-    private final FilteredList<Group> filteredGroups;
-    private final SimpleObjectProperty<Group> selectedGroup = new SimpleObjectProperty<>();
+
+    private final HouseStorage houseStorage = new HouseStorage();
+    private String undoableCommand;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -47,8 +49,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
         filteredPersons.addListener(this::ensureSelectedPersonIsValid);
-        filteredGroups = new FilteredList<>(versionedAddressBook.getGroupList());
-        filteredGroups.addListener(this::ensureSelectedGroupIsValid);
     }
 
     public ModelManager() {
@@ -95,6 +95,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         versionedAddressBook.resetData(addressBook);
+        undoableCommand = "clear";
     }
 
     @Override
@@ -111,8 +112,10 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
-        if (ParticipantList.hasFreshman(target.toString())) {
-            ParticipantList.deleteFreshman(target.toString());
+        undoableCommand = "Delete" + target.getName().fullName;
+
+        if (FreshmanList.hasFreshman(target.toString())) {
+            FreshmanList.deleteFreshman(target.toString());
         }
     }
 
@@ -120,6 +123,12 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         versionedAddressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        undoableCommand = "Add " + person.getName().fullName;
+    }
+
+    @Override
+    public void addFreshman(Participant person) {
+        FreshmanList.addFreshman(person.toString());
     }
 
     @Override
@@ -127,12 +136,58 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         versionedAddressBook.setPerson(target, editedPerson);
+        undoableCommand = "Edit " + editedPerson.getName().fullName;
     }
 
+    @Override
+    public boolean hasHouse(String house) {
+        requireAllNonNull(house);
+
+        return houseStorage.hasHouse(house);
+    };
+
+    @Override
+    public void addHouse(String house) {
+        requireAllNonNull(house);
+
+        houseStorage.addHouse(house);
+    };
+
+    @Override
+    public House getHouse(String house) {
+        requireAllNonNull(house);
+
+        return houseStorage.getHouse(house);
+    }
+
+    @Override
+    public void addGroup(String groupName, String houseName) {
+        requireAllNonNull(groupName, houseName);
+
+        houseStorage.addGroup(groupName, houseName);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Undoable Command} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<String> getUndoList() {
+        return FXCollections.observableArrayList(versionedAddressBook.getUndoList());
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Redoable Command} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<String> getRedoList() {
+        return FXCollections.observableArrayList(versionedAddressBook.getRedoList());
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Undoable Command} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -171,6 +226,7 @@ public class ModelManager implements Model {
     @Override
     public void commitAddressBook() {
         versionedAddressBook.commit();
+        versionedAddressBook.addUndoableCommand(undoableCommand);
     }
 
     //=========== Selected person ===========================================================================
@@ -191,70 +247,6 @@ public class ModelManager implements Model {
             throw new PersonNotFoundException();
         }
         selectedPerson.setValue(person);
-    }
-
-    // ============== Group ================
-    @Override
-    public boolean hasGroup(Group group) {
-        requireNonNull(group);
-        return versionedAddressBook.hasGroup(group);
-    }
-
-    @Override
-    public void deleteGroup(Group target) {
-
-    }
-
-    @Override
-    public void addGroup(Group group) {
-
-    }
-
-    @Override
-    public void setGroup(Group target, Group editedGroup) {
-
-    }
-
-    @Override
-    public ObservableList<Group> getFilteredGroupList() {
-        return null;
-    }
-
-    @Override
-    public void updateFilteredGroupList(Predicate<Group> predicate) {
-
-    }
-
-    // ============== House ================
-
-    @Override
-    public boolean hasHouse(House house) {
-        return false;
-    }
-
-    @Override
-    public void deleteHouse(House target) {
-
-    }
-
-    @Override
-    public void addHouse(House house) {
-
-    }
-
-    @Override
-    public void setHouse(House target, House editedHouse) {
-
-    }
-
-    @Override
-    public ObservableList<Group> getFilteredHouseList() {
-        return null;
-    }
-
-    @Override
-    public void updateFilteredHouseList(Predicate<House> predicate) {
-
     }
 
     /**
@@ -282,35 +274,6 @@ public class ModelManager implements Model {
                 // Select the person that came before it in the list,
                 // or clear the selection if there is no such person.
                 selectedPerson.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
-            }
-        }
-    }
-
-    /**
-     * Ensures {@code selectedGroup} is a valid group in {@code filteredGroup}.
-     */
-    private void ensureSelectedGroupIsValid(ListChangeListener.Change<? extends Group> change) {
-        while (change.next()) {
-            if (selectedGroup.getValue() == null) {
-                // null is always a valid selected group, so we do not need to check that it is valid anymore.
-                return;
-            }
-
-            boolean wasSelectedGroupReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedGroup.getValue());
-            if (wasSelectedGroupReplaced) {
-                // Update selectedGroup to its new value.
-                int index = change.getRemoved().indexOf(selectedGroup.getValue());
-                selectedGroup.setValue(change.getAddedSubList().get(index));
-                continue;
-            }
-
-            boolean wasSelectedGroupRemoved = change.getRemoved().stream()
-                    .anyMatch(removedGroup -> selectedGroup.getValue().isSameGroup(removedGroup));
-            if (wasSelectedGroupRemoved) {
-                // Select the person that came before it in the list,
-                // or clear the selection if there is no such person.
-                selectedGroup.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
             }
         }
     }
