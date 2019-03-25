@@ -166,7 +166,7 @@ public abstract class AddressBookSystemTest {
     }
 
     /**
-     * Asserts that the {@code CommandBox} displays {@code expectedCommandInput}, the {@code ResultDisplay} displays
+     * Asserts that the {@code CommandBox} displays {@code expectedCommandInput}, the {@code TextResultDisplay} displays
      * {@code expectedResultMessage}, the storage contains the same person objects as {@code expectedModel}
      * and the person list panel displays the persons in the model correctly.
      */

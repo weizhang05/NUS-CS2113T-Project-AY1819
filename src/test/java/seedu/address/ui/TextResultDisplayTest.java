@@ -7,17 +7,17 @@ import org.junit.Test;
 
 import guitests.guihandles.ResultDisplayHandle;
 
-public class ResultDisplayTest extends GuiUnitTest {
+public class TextResultDisplayTest extends GuiUnitTest {
 
-    private ResultDisplay resultDisplay;
+    private TextResultDisplay textResultDisplay;
     private ResultDisplayHandle resultDisplayHandle;
 
     @Before
     public void setUp() {
-        resultDisplay = new ResultDisplay();
-        uiPartRule.setUiPart(resultDisplay);
+        textResultDisplay = new TextResultDisplay();
+        uiPartRule.setUiPart(textResultDisplay);
 
-        resultDisplayHandle = new ResultDisplayHandle(getChildNode(resultDisplay.getRoot(),
+        resultDisplayHandle = new ResultDisplayHandle(getChildNode(textResultDisplay.getRoot(),
                 ResultDisplayHandle.RESULT_DISPLAY_ID));
     }
 
@@ -28,7 +28,7 @@ public class ResultDisplayTest extends GuiUnitTest {
         assertEquals("", resultDisplayHandle.getText());
 
         // new result received
-        guiRobot.interact(() -> resultDisplay.setFeedbackToUser("Dummy feedback to user"));
+        guiRobot.interact(() -> textResultDisplay.setFeedbackToUser("Dummy feedback to user"));
         guiRobot.pauseForHuman();
         assertEquals("Dummy feedback to user", resultDisplayHandle.getText());
     }

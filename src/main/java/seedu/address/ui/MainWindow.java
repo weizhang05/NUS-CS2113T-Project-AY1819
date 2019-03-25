@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -32,12 +33,16 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
+    private ChartPanel chartPanel;
     private PersonListPanel personListPanel;
-    private ResultDisplay resultDisplay;
+    private TextResultDisplay textResultDisplay;
     private HelpWindow helpWindow;
 
     @FXML
     private StackPane browserPlaceholder;
+
+    @FXML
+    private PieChart chartPlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -46,10 +51,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane mainResultPlaceHolder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane textResultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -91,13 +96,13 @@ public class MainWindow extends UiPart<Stage> {
          *
          * According to the bug report, TextInputControl (TextField, TextArea) will
          * consume function-key events. Because CommandBox contains a TextField, and
-         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will
+         * TextResultDisplay contains a TextArea, thus some accelerators (e.g F1) will
          * not work when the focus is in them because the key event is consumed by
          * the TextInputControl(s).
          *
          * For now, we add following event filter to capture such key events and open
          * help window purposely so to support accelerators even when focus is
-         * in CommandBox or ResultDisplay.
+         * in CommandBox or TextResultDisplay.
          */
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
@@ -116,10 +121,11 @@ public class MainWindow extends UiPart<Stage> {
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.selectedPersonProperty(),
                 logic::setSelectedPerson);
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        chartPanel = new ChartPanel(logic.getAgeData(), logic.getMajorData(), logic.getSexData());
+        mainResultPlaceHolder.getChildren().add(personListPanel.getRoot());
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        textResultDisplay = new TextResultDisplay();
+        textResultDisplayPlaceholder.getChildren().add(textResultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath(), logic.getAddressBook());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -181,7 +187,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            textResultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -191,10 +197,18 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandText.equalsIgnoreCase("stat")) {
+                mainResultPlaceHolder.getChildren().clear();
+                mainResultPlaceHolder.getChildren().add(chartPanel.getRoot());
+            } else {
+                mainResultPlaceHolder.getChildren().clear();
+                mainResultPlaceHolder.getChildren().add(personListPanel.getRoot());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            textResultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }
