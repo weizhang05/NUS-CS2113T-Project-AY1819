@@ -81,8 +81,8 @@ public class Person {
     }
 
     public String getStringTags() {
-        return getTags().toString().replace("[" ,"").replace("]" ,"")
-                .replace("," ,"");
+        return getTags().toString().replace("[" , "").replace("]" , "")
+                .replace("," , "");
     }
 
     /**
