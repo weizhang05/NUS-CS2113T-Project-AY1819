@@ -21,7 +21,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.role.Ogl;
 import seedu.address.model.role.Participant;
-import seedu.address.storage.FreshmanList;
 import seedu.address.storage.HouseStorage;
 import seedu.address.storage.OglList;
 

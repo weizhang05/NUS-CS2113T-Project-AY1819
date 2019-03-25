@@ -3,8 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.CommandHistory;
+
+import seedu.address.model.FreshmanList;
 import seedu.address.model.Model;
-import seedu.address.storage.FreshmanList;
 
 /**
  * Lists all persons in the address book to the user.
