@@ -13,13 +13,12 @@ public class FindingParticipantPredicate implements Predicate<Person> {
 
     public FindingParticipantPredicate(List<String> keywords) {
         this.keywords = keywords;
-        //keywords.add("[Participant]");
     }
 
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .allMatch(keyword-> StringUtil.containsWordIgnoreCase(person.getStringTags(),keyword));
+                .allMatch(keyword-> StringUtil.containsWordIgnoreCase(person.getStringTags(), keyword));
     }
 
     @Override

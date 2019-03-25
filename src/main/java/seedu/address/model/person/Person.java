@@ -80,9 +80,9 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public String getStringTags(){
-        return getTags().toString().replace("[","").replace("]","")
-                .replace(",","");
+    public String getStringTags() {
+        return getTags().toString().replace("[" ,"").replace("]" ,"")
+                .replace("," ,"");
     }
 
     /**
