@@ -44,7 +44,7 @@ public class AddOglCommand extends AddCommand {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New ogl added: %1$s";
-    private static final String MESSAGE_DUPLICATE_FRESHMAN = "This ogl already exists in the address book";
+    private static final String MESSAGE_DUPLICATE_OGL = "This ogl already exists in the address book";
 
     private final Ogl toAdd;
 
@@ -62,7 +62,7 @@ public class AddOglCommand extends AddCommand {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_FRESHMAN);
+            throw new CommandException(MESSAGE_DUPLICATE_OGL);
         }
 
         model.addPerson(toAdd);
