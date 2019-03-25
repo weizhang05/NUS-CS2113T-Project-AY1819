@@ -11,12 +11,20 @@ public class Sex {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Sex should be either M or F, which stands for Male or Female";
-    public static final String VALIDATION_REGEX = "[MF]";
+    public static final String VALIDATION_REGEX = "[MFO]";
     public final String value;
 
     public Sex(String sex) {
         requireNonNull(sex);
         checkArgument(isValidSex(sex), MESSAGE_CONSTRAINTS);
+        if (sex.equalsIgnoreCase("F")) {
+            sex = "Female";
+        } else if (sex.equalsIgnoreCase("M")) {
+            sex = "Male";
+        } else {
+            sex = "Other";
+        }
+
         value = sex;
     }
 
