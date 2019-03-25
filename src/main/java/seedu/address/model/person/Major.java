@@ -41,18 +41,20 @@ public class Major {
     public Major(String major) {
         requireNonNull(major);
         checkArgument(isValidMajor(major), MESSAGE_CONSTRAINTS);
-        if (validMajorBA.contains(major)) {
-            major = "BA";
-        } else if (validMajorCS.contains(major)) {
-            major = "CS";
-        } else if (validMajorCEG.contains(major)) {
-            major = "CEG";
-        } else if (validMajorIS.contains(major)) {
-            major = "IS";
-        } else if (validMajorISC.contains(major)) {
-            major = "ISC";
+        String cleanMajor = "";
+        if (validMajorBA.contains(major.toUpperCase())) {
+            cleanMajor = "BA";
+        } else if (validMajorCS.contains(major.toUpperCase())) {
+            cleanMajor = "CS";
+        } else if (validMajorCEG.contains(major.toUpperCase())) {
+            cleanMajor = "CEG";
+        } else if (validMajorIS.contains(major.toUpperCase())) {
+            cleanMajor = "IS";
+        } else if (validMajorISC.contains(major.toUpperCase())) {
+            cleanMajor = "ISC";
         }
-        value = major;
+
+        value = cleanMajor;
     }
 
     /**

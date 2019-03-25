@@ -199,6 +199,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandText.equalsIgnoreCase("stat")) {
                 mainResultPlaceHolder.getChildren().clear();
+                chartPanel.updateChartPanel(logic.getAgeData(), logic.getMajorData(), logic.getSexData());
                 mainResultPlaceHolder.getChildren().add(chartPanel.getRoot());
             } else {
                 mainResultPlaceHolder.getChildren().clear();

@@ -48,4 +48,25 @@ public class ChartPanel extends UiPart<Region> {
         }
         sexPieChart.setData(sexPieChartData);
     }
+
+    public void updateChartPanel(ObservableMap<String, Integer> ageData, ObservableMap<String, Integer> majorData,
+                                 ObservableMap<String, Integer> sexData) {
+        ObservableList<PieChart.Data> agePieChartData = FXCollections.observableArrayList();
+        for (String key : ageData.keySet()) {
+            agePieChartData.add(new PieChart.Data(key, ageData.get(key)));
+        }
+        agePieChart.setData(agePieChartData);
+
+        ObservableList<PieChart.Data> majorPieChartData = FXCollections.observableArrayList();
+        for (String key : majorData.keySet()) {
+            majorPieChartData.add(new PieChart.Data(key, majorData.get(key)));
+        }
+        majorPieChart.setData(majorPieChartData);
+
+        ObservableList<PieChart.Data> sexPieChartData = FXCollections.observableArrayList();
+        for (String key : sexData.keySet()) {
+            sexPieChartData.add(new PieChart.Data(key, sexData.get(key)));
+        }
+        sexPieChart.setData(sexPieChartData);
+    }
 }

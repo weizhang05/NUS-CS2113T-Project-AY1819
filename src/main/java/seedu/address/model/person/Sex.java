@@ -17,15 +17,16 @@ public class Sex {
     public Sex(String sex) {
         requireNonNull(sex);
         checkArgument(isValidSex(sex), MESSAGE_CONSTRAINTS);
+        String cleanSex = "";
         if (sex.equalsIgnoreCase("F")) {
-            sex = "Female";
+            cleanSex =     "Female";
         } else if (sex.equalsIgnoreCase("M")) {
-            sex = "Male";
+            cleanSex =  "Male";
         } else {
-            sex = "Other";
+            cleanSex =  "Other";
         }
 
-        value = sex;
+        value = cleanSex;
     }
 
     /**
