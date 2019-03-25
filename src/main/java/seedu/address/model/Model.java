@@ -9,7 +9,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Person;
-import seedu.address.model.role.Participant;
 
 /**
  * The API of the Model component.
@@ -188,5 +187,39 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredGroupList(Predicate<Group> predicate);
+
+    // ================ House ======================
+    /**
+     * Returns true if a house with the same identity as {@code house} exists in the address book.
+     */
+    boolean hasHouse(House house);
+
+    /**
+     * Deletes the given house.
+     * The house must exist in the address book.
+     */
+    void deleteHouse(House target);
+
+    /**
+     * Adds the given house.
+     * {@code house} must not already exist in the address book.
+     */
+    void addHouse(House house);
+
+    /**
+     * Replaces the given house {@code target} with {@code editedHouse}.
+     * {@code target} must exist in the address book.
+     * The house identity of {@code editedHouse} must not be the same as another existing house in the address book.
+     */
+    void setHouse(House target, House editedHouse);
+
+    /** Returns an unmodifiable view of the filtered house list */
+    ObservableList<Group> getFilteredHouseList();
+
+    /**
+     * Updates the filter of the filtered house list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredHouseList(Predicate<House> predicate);
 
 }
