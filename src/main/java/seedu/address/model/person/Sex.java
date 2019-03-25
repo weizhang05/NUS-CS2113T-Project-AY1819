@@ -1,10 +1,10 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Represents a Person's sex in the address book
@@ -15,7 +15,7 @@ public class Sex {
     public static final String MESSAGE_CONSTRAINTS =
             "Sex should be either M, F or O, which stands for Male, Female, and Other";
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    public static final ArrayList<String> validSex = new ArrayList<>(Arrays.asList("MALE", "FEMALE", "OTHER",
+    private static final ArrayList<String> validSex = new ArrayList<>(Arrays.asList("MALE", "FEMALE", "OTHER",
             "M", "F", "O"));
     public final String value;
 
