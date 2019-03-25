@@ -202,10 +202,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteGroup(Group target) {
-        versionedAddressBook.removeGroup(target);
-        if (ParticipantList.hasFreshman(target.toString())) {
-            ParticipantList.deleteFreshman(target.toString());
-        }
+
     }
 
     @Override
