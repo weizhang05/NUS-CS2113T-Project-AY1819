@@ -173,6 +173,11 @@ public interface Model {
 
     // ================ House ======================
     /**
+     * Returns a house if it exists
+     */
+    House getHouse(House house);
+
+    /**
      * Returns true if a house with the same identity as {@code house} exists in the address book.
      */
     boolean hasHouse(House house);

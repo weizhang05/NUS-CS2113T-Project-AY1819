@@ -36,6 +36,9 @@ public class ModelManager implements Model {
     private final FilteredList<Group> filteredGroups;
     private final SimpleObjectProperty<Group> selectedGroups = new SimpleObjectProperty<>();
 
+    //private final FilteredList<House> filteredHouses;
+    //private final SimpleObjectProperty<House> selectedHouses = new SimpleObjectProperty<>();
+
     private String undoableCommand;
 
     /**
@@ -54,6 +57,9 @@ public class ModelManager implements Model {
 
         filteredGroups = new FilteredList<>(versionedAddressBook.getGroupList());
         filteredGroups.addListener(this::ensureSelectedGroupIsValid);
+
+        // filteredHouses = new FilteredList<>(versionedAddressBook.getHouseList());
+        // filteredHouses.addListener(this::ensureSelectedHouseIsValid);
     }
 
     public ModelManager() {
@@ -222,7 +228,7 @@ public class ModelManager implements Model {
         selectedPerson.setValue(person);
     }
 
-    // ================ Group ======================
+    // ================ Group Operations ======================
     @Override
     public boolean hasGroup(Group group) {
         requireNonNull(group);
@@ -265,7 +271,12 @@ public class ModelManager implements Model {
         filteredGroups.setPredicate(predicate);
     }
 
-    // ================ House ======================
+    // ================ House Operations ======================
+    @Override
+    public House getHouse(House house) {
+        return null;
+    }
+
     @Override
     public boolean hasHouse(House house) {
         return false;
@@ -353,6 +364,35 @@ public class ModelManager implements Model {
             }
         }
     }
+
+    /**
+     * Ensures {@code selectedHouse} is a valid house in {@code filteredHouses}.
+     */
+    /*private void ensureSelectedHouseIsValid(ListChangeListener.Change<? extends House> change) {
+        while (change.next()) {
+            if (selectedHouses.getValue() == null) {
+                // null is always a valid selected house, so we do not need to check that it is valid anymore.
+                return;
+            }
+
+            boolean wasSelectedHouseReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
+                    && change.getRemoved().contains(selectedHouses.getValue());
+            if (wasSelectedHouseReplaced) {
+                // Update selectedHouses to its new value.
+                int index = change.getRemoved().indexOf(selectedHouses.getValue());
+                selectedHouses.setValue(change.getAddedSubList().get(index));
+                continue;
+            }
+
+            boolean wasSelectedHouseRemoved = change.getRemoved().stream()
+                    .anyMatch(removedHouse -> selectedHouses.getValue().isSameHouse(removedHouse));
+            if (wasSelectedHouseRemoved) {
+                // Select the house that came before it in the list,
+                // or clear the selection if there is no such house.
+                selectedHouses.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
+            }
+        }
+    }*/
 
     @Override
     public boolean equals(Object obj) {
