@@ -2,9 +2,10 @@ package seedu.address.ui;
 
 import static org.junit.Assert.assertEquals;
 
-import guitests.guihandles.TextResultDisplayHandle;
 import org.junit.Before;
 import org.junit.Test;
+
+import guitests.guihandles.TextResultDisplayHandle;
 
 public class TextResultDisplayTest extends GuiUnitTest {
 
