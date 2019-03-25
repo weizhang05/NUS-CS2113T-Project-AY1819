@@ -5,12 +5,12 @@ import javafx.scene.control.TextArea;
 /**
  * A handler for the {@code TextResultDisplay} of the UI
  */
-public class ResultDisplayHandle extends NodeHandle<TextArea> {
+public class TextResultDisplayHandle extends NodeHandle<TextArea> {
 
-    public static final String RESULT_DISPLAY_ID = "#resultDisplay";
+    public static final String TEXT_RESULT_DISPLAY = "#textResultDisplay";
 
-    public ResultDisplayHandle(TextArea resultDisplayNode) {
-        super(resultDisplayNode);
+    public TextResultDisplayHandle(TextArea textResultDisplayNode) {
+        super(textResultDisplayNode);
     }
 
     /**

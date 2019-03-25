@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import guitests.guihandles.PersonCardHandle;
 import guitests.guihandles.PersonListPanelHandle;
-import guitests.guihandles.ResultDisplayHandle;
+import guitests.guihandles.TextResultDisplayHandle;
 import seedu.address.model.person.Person;
 
 /**
@@ -66,9 +66,9 @@ public class GuiTestAssert {
     }
 
     /**
-     * Asserts the message shown in {@code resultDisplayHandle} equals to {@code expected}.
+     * Asserts the message shown in {@code textResultDisplayHandle} equals to {@code expected}.
      */
-    public static void assertResultMessage(ResultDisplayHandle resultDisplayHandle, String expected) {
-        assertEquals(expected, resultDisplayHandle.getText());
+    public static void assertResultMessage(TextResultDisplayHandle textResultDisplayHandle, String expected) {
+        assertEquals(expected, textResultDisplayHandle.getText());
     }
 }

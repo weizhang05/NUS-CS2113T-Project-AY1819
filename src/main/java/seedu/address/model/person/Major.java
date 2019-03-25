@@ -22,7 +22,7 @@ public class Major {
     public static final String VALIDATION_REGEX = "[^\\s].*";
     private static final ArrayList<String> validCSMajor = new ArrayList<>(Arrays.asList("COMPUTER SCIENCE",
             "INFORMATION SYSTEM", "INFORMATION SYSTEMS", "COMPUTER ENGINEERING", "BUSINESS ANALYTICS",
-            "INFORMATION SECURITY", "CS", "IS", "CEG", "BZA", "BA", "ISC"));
+            "BUSINESS ANALYTIC", "INFORMATION SECURITY", "CS", "IS", "CEG", "BZA", "BA", "ISC"));
     public final String value;
 
     /**

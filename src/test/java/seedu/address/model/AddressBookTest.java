@@ -123,17 +123,17 @@ public class AddressBookTest {
             this.persons.setAll(persons);
         }
 
-//        public ObservableMap<String, Integer> getAgeData() {
-//            return FXCollections.unmodifiableObservableMap(ageData);
-//        }
-//
-//        public ObservableMap<String, Integer> getMajorData() {
-//            return FXCollections.unmodifiableObservableMap(majorData);
-//        }
-//
-//        public ObservableMap<String, Integer> getSexData() {
-//            return FXCollections.unmodifiableObservableMap(sexData);
-//        }
+        public ObservableMap<String, Integer> getAgeData() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public ObservableMap<String, Integer> getMajorData() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public ObservableMap<String, Integer> getSexData() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public ObservableList<Person> getPersonList() {
