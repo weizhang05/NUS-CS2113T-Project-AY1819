@@ -1,5 +1,9 @@
 package seedu.address.model.grouping;
 
+import seedu.address.model.participant.Person;
+
+import java.util.ArrayList;
+
 /**
  * Represents a person's camp grouping
  * Can only be created within a house that has already been created.
@@ -12,24 +16,24 @@ public class Group {
 
     private String groupName;
     private String houseName;
+    private ArrayList<Person> persons;
 
     public Group(String groupName) {
-        this.groupName = groupName;
-        this.houseName = null;
+        this(groupName, null);
     }
-
 
     public Group(String groupName, String houseName) {
         this.houseName = houseName;
         this.groupName = groupName;
+        persons = new ArrayList<>();
     }
 
     public String getGroupName() {
         return groupName;
     }
 
-    public String getHouseName() {
-        return houseName;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     /**
@@ -46,12 +50,25 @@ public class Group {
      * This defines a weaker notion of equality between two groups.
      */
     public boolean isSameGroup(Group otherGroup) {
-        if (otherGroup == this) {
-            return true;
-        }
+        return this.equals(otherGroup);
+    }
 
-        return otherGroup != null
-                && otherGroup.getGroupName().equals(getGroupName());
+    // ========= House Operations =========
+    public String getHouseName() {
+        return houseName;
+    }
+
+    public void setHouseName(String houseName) {
+        this.houseName = houseName;
+    }
+
+    // ========= Participants Operations =========
+    public ArrayList<Person> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(ArrayList<Person> persons) {
+        this.persons = persons;
     }
 
     @Override
@@ -63,6 +80,6 @@ public class Group {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Group // instanceof handles nulls
-                && groupName.equals(((Group) other).groupName)); // state check
+                && this.getGroupName().equals(((Group) other).getGroupName())); // state check
     }
 }
