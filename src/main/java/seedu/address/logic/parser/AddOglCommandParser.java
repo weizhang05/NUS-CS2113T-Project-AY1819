@@ -53,7 +53,7 @@ public class AddOglCommandParser extends AddCommandParser {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Major major = ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).get());
         Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).get());
-        Set<Tag> tagList = ParserUtil.parseTagsOGL(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = ParserUtil.parseTagsOgl(argMultimap.getAllValues(PREFIX_TAG));
 
         Ogl person = new Ogl(name, sex, birthday, phone, email, major, group, tagList);
         return new AddOglCommand(person);

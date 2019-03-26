@@ -171,7 +171,10 @@ public class ParserUtil {
         return tagSet;
     }
 
-    public static Set<Tag> parseTagsOGL(Collection<String> tags) throws ParseException {
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTagsOgl(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
