@@ -279,21 +279,33 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasHouse(House house) {
-        return false;
+        requireNonNull(house);
+        return versionedAddressBook.hasHouse(house);
     }
 
     @Override
     public void deleteHouse(House target) {
+        versionedAddressBook.removeHouse(target);
+        undoableCommand = "Delete" + target.getHouseName();
 
+        if (HouseList.hasHouse(target.toString())) {
+            HouseList.deleteHouse(target.toString());
+        }
     }
 
     @Override
     public void addHouse(House house) {
-
+        versionedAddressBook.addHouse(house);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        undoableCommand = "Add " + house.getHouseName();
     }
 
     @Override
     public void setHouse(House target, House editedHouse) {
+        requireAllNonNull(target, editedHouse);
+
+        versionedAddressBook.setHouse(target, editedHouse);
+        undoableCommand = "Edit " + editedHouse.getHouseName();
 
     }
 
