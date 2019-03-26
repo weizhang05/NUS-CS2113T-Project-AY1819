@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.grouping.Group;
+import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Person;
 
 /**
@@ -55,6 +57,7 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+
         for (JsonAdaptedParticipant jsonAdaptedParticipant : persons) {
             Person person = jsonAdaptedParticipant.toModelType();
             if (addressBook.hasPerson(person)) {
@@ -62,6 +65,23 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+
+        for (JsonAdaptedGroup jsonAdaptedGroup : groups) {
+            Group group = jsonAdaptedGroup.toModelType();
+            if (addressBook.hasGroup(group)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
+            addressBook.addGroup(group);
+        }
+
+        for (JsonAdaptedHouse jsonAdaptedHouse : houses) {
+            House house = jsonAdaptedHouse.toModelType();
+            if (addressBook.hasHouse(house)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
+            addressBook.addHouse(house);
+        }
+
         return addressBook;
     }
 
