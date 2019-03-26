@@ -18,7 +18,7 @@ public class FindingOglPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .allMatch(keyword-> StringUtil.containsWordIgnoreCase(person.getStringTags(),keyword));
+                .allMatch(keyword-> StringUtil.containsWordIgnoreCase(person.getStringTags(), keyword));
     }
 
     @Override
