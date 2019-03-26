@@ -23,15 +23,18 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedParticipant> persons = new ArrayList<>();
     private final List<JsonAdaptedGroup> groups = new ArrayList<>();
+    private final List<JsonAdaptedHouse> houses = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons, groups and houses.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedParticipant> persons,
-                                       @JsonProperty("groups") List<JsonAdaptedGroup> groups) {
+                                       @JsonProperty("groups") List<JsonAdaptedGroup> groups,
+                                       @JsonProperty("houses") List<JsonAdaptedHouse> houses) {
         this.persons.addAll(persons);
         this.groups.addAll(groups);
+        this.houses.addAll(houses);
     }
 
     /**
@@ -42,6 +45,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedParticipant::new).collect(Collectors.toList()));
         groups.addAll(source.getGroupList().stream().map(JsonAdaptedGroup::new).collect(Collectors.toList()));
+        houses.addAll(source.getHouseList().stream().map(JsonAdaptedHouse::new).collect(Collectors.toList()));
     }
 
     /**
