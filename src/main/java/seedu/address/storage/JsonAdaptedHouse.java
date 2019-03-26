@@ -8,6 +8,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Name;
 
+/**
+ * Jackson-friendly version of {@link House}.
+ */
 public class JsonAdaptedHouse {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "House's %s field is missing!";
