@@ -71,8 +71,7 @@ public class Group {
 
     @Override
     public String toString() {
-        String result = "(" + this.groupName + ", " + this.houseName + ")";
-        return result;
+        return this.groupName;
     }
 
     @Override
