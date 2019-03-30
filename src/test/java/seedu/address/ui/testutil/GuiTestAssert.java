@@ -31,9 +31,11 @@ public class GuiTestAssert {
      */
     public static void assertCardDisplaysPerson(Person expectedPerson, PersonCardHandle actualCard) {
         assertEquals(expectedPerson.getName().fullName, actualCard.getName());
-        assertEquals(expectedPerson.getPhone().value, actualCard.getPhone());
-        assertEquals(expectedPerson.getEmail().value, actualCard.getEmail());
-        assertEquals(expectedPerson.getMajor().value, actualCard.getMajor());
+        assertEquals("Sex: " + expectedPerson.getSex().value, actualCard.getSex());
+        assertEquals("Birthday: " + expectedPerson.getBirthday().getFormattedBirthday(), actualCard.getBirthday());
+        assertEquals("Phone Number: " + expectedPerson.getPhone().value, actualCard.getPhone());
+        assertEquals("Email: " + expectedPerson.getEmail().value, actualCard.getEmail());
+        assertEquals("Major: " + expectedPerson.getMajor().getFullMajor(), actualCard.getMajor());
         assertEquals(expectedPerson.getTags().stream().map(tag -> tag.tagName).collect(Collectors.toList()),
                 actualCard.getTags());
     }
