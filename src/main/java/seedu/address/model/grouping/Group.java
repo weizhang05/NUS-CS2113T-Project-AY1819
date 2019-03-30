@@ -10,8 +10,7 @@ import seedu.address.model.participant.Person;
  */
 public class Group {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Group can take any value";
+    public static final String MESSAGE_CONSTRAINTS = "Group can take any value";
 
     private String groupName;
     private String houseName;
