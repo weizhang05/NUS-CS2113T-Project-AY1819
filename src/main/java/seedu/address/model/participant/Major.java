@@ -66,6 +66,26 @@ public class Major {
                 || validMajorCEG.contains(test.toUpperCase()) || validMajorBA.contains(test.toUpperCase()));
     }
 
+    /**
+     * Return full major name
+     */
+    public String getFullMajor() {
+        switch (value) {
+        case "IS":
+            return "Information System";
+        case "CS":
+            return "Computer Science";
+        case "ISC":
+            return "Information Security";
+        case "CEG":
+            return "Computer Engineering";
+        case "BA":
+            return "Business Analytics";
+        default:
+            return "";
+        }
+    }
+
     @Override
     public String toString() {
         return value;

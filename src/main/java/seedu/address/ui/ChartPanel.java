@@ -28,11 +28,16 @@ public class ChartPanel extends UiPart<Region> {
 
     public ChartPanel() {
         super(FXML);
-
+        agePieChart.setStartAngle(90);
+        agePieChart.setClockwise(true);
+        sexPieChart.setStartAngle(90);
+        sexPieChart.setClockwise(true);
+        majorPieChart.setStartAngle(90);
+        majorPieChart.setClockwise(true);
     }
 
     /**
-     * Update data
+     * Update chart's data
      */
     public void updateChartPanel(ObservableMap<String, Integer> ageData, ObservableMap<String, Integer> majorData,
                                  ObservableMap<String, Integer> sexData) {

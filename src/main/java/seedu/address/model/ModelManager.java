@@ -127,7 +127,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         versionedAddressBook.resetData(addressBook);
-        undoableCommand = "clear";
+        undoableCommand = "Clear all persons";
     }
 
     @Override
@@ -144,7 +144,7 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
-        undoableCommand = "Delete" + target.getName().fullName;
+        undoableCommand = "Delete " + target.getName().fullName;
 
         if (FreshmanList.hasFreshman(target.toString())) {
             FreshmanList.deleteFreshman(target.toString());

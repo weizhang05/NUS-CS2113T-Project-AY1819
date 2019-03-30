@@ -34,6 +34,10 @@ public class Birthday {
         return Integer.toString(Calendar.getInstance().get(Calendar.YEAR) - yearOfBirth);
     }
 
+    public String getFormattedBirthday () {
+        return value.substring(0, 2) + "/" + value.substring(2, 4) + "/" + value.substring(4, 8);
+    }
+
     @Override
     public String toString() {
         return value;

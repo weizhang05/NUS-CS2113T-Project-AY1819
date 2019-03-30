@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.SplitPane?>
-
-<SplitPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <PieChart fx:id="agePieChart" VBox.vgrow="ALWAYS" />
-    <PieChart fx:id="majorPieChart" VBox.vgrow="ALWAYS" />
-    <PieChart fx:id="sexPieChart" VBox.vgrow="ALWAYS" />
-    <!--<PieChart fx:id="customPieChart" VBox.vgrow="ALWAYS" />-->
-</SplitPane>
+<VBox spacing="20" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="560.0" prefHeight="21.0" prefWidth="1800.0" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Statistic" textAlignment="CENTER" textFill="WHITE" wrapText="true" VBox.vgrow="ALWAYS" />
+    <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <VBox>
+            <PieChart fx:id="agePieChart" stylesheets="DarkTheme.css" HBox.hgrow="ALWAYS" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="1800" styleClass="label-bright" text="Age" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
+        </VBox>
+        <VBox>
+            <PieChart fx:id="majorPieChart" stylesheets="DarkTheme.css" HBox.hgrow="ALWAYS" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="1800" styleClass="label-bright" text="Major" VBox.vgrow="ALWAYS" />
+        </VBox>
+        <VBox>
+            <PieChart fx:id="sexPieChart" stylesheets="DarkTheme.css" HBox.hgrow="ALWAYS" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="1800" styleClass="label-bright" text="Sex" VBox.vgrow="ALWAYS" />
+        </VBox>
+    </HBox>
+</VBox>
