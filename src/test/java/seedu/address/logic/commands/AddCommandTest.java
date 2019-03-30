@@ -23,8 +23,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
-import seedu.address.model.person.Person;
+import seedu.address.model.participant.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -154,29 +155,20 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasHouse(String house) {
-            throw new AssertionError("This method should not be called.");
-        };
-
-        @Override
-        public void addHouse(String house) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public House getHouse(String house) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addGroup(String groupName, String houseName) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<String> getUndoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<String> getRedoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
@@ -220,6 +212,71 @@ public class AddCommandTest {
 
         @Override
         public void setSelectedPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasGroup(Group group) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteGroup(Group target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addGroup(Group group) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGroup(Group target, Group editedGroup) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Group> getFilteredGroupList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredGroupList(Predicate<Group> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public House getHouse(House house) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasHouse(House house) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteHouse(House target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addHouse(House house) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setHouse(House target, House editedHouse) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Group> getFilteredHouseList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredHouseList(Predicate<House> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

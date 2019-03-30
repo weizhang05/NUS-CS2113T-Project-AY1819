@@ -9,7 +9,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.participant.Person;
 
 /**
  * API of the Logic component
@@ -33,6 +33,12 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the list of undoable commands */
+    ObservableList<String> getUndoList();
+
+    /** Returns an unmodifiable view of the list of redoable commands */
+    ObservableList<String> getRedoList();
 
     /**
      * Returns an unmodifiable view of the list of commands entered by the user.
