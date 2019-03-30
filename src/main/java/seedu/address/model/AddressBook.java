@@ -84,26 +84,27 @@ public class AddressBook implements ReadOnlyAddressBook {
         ageData.put(toDelete.getBirthday().getAge(), ageData.get(toDelete.getBirthday().getAge()) - 1);
         majorData.put(toDelete.getMajor().value, majorData.get(toDelete.getMajor().value) - 1);
         sexData.put(toDelete.getSex().value, sexData.get(toDelete.getSex().value) - 1);
+    }
 
     /**
     * Resets the existing data of this {@code AddressBook} with {@code newData}.
     */
-        public void resetData(ReadOnlyAddressBook newData) {
-            requireNonNull(newData);
+    public void resetData(ReadOnlyAddressBook newData) {
+        requireNonNull(newData);
 
-            setPersons(newData.getPersonList());
-            setGroups(newData.getGroupList());
-            setHouses(newData.getHouseList());
+        setPersons(newData.getPersonList());
+        setGroups(newData.getGroupList());
+        setHouses(newData.getHouseList());
 
-            ageData.putAll(newData.getAgeData());
-            majorData.putAll(newData.getMajorData());
-            sexData.putAll(newData.getSexData());
-        }
+        ageData.putAll(newData.getAgeData());
+        majorData.putAll(newData.getMajorData());
+        sexData.putAll(newData.getSexData());
+    }
 
-     /**
-      * Replaces the contents of the person list with {@code persons}.
-      * {@code persons} must not contain duplicate persons.
-      */
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
     public void setGroups(List<Group> groups) {
         this.groups.setGroups(groups);
         indicateModified();
