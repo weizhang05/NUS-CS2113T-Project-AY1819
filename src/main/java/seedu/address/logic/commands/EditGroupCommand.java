@@ -8,6 +8,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
 
+/**
+ * Edits the name of a group.
+ * Old group must exist, new group must not, the old and new group must not have the same name.
+ * Updates each person in the address book in the old group to the new group.
+ */
 public class EditGroupCommand extends Command {
     public static final String COMMAND_WORD = "edit_g";
 
@@ -49,7 +54,7 @@ public class EditGroupCommand extends Command {
 
         boolean nonexistent = true;
 
-        for(Group toList : groupList) {
+        for (Group toList : groupList) {
             if (toList.getGroupName().equals(oldGroupName)) {
                 oldGroup.setHouseName(toList.getHouseName());
                 newGroup.setHouseName(toList.getHouseName());

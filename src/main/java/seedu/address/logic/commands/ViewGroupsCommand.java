@@ -26,8 +26,8 @@ public class ViewGroupsCommand extends Command {
 
         ArrayList<String> groupArrayList = new ArrayList<String>();
 
-        for(Group toList : groupList) {
-            String groupHouse= "(" + toList.getGroupName() + ", " + toList.getHouseName() + ")";
+        for (Group toList : groupList) {
+            String groupHouse = "(" + toList.getGroupName() + ", " + toList.getHouseName() + ")";
             groupArrayList.add(groupHouse);
         }
 
