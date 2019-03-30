@@ -26,27 +26,9 @@ public class ChartPanel extends UiPart<Region> {
     @FXML
     private PieChart sexPieChart;
 
-    public ChartPanel(ObservableMap<String, Integer> ageData, ObservableMap<String, Integer> majorData,
-                      ObservableMap<String, Integer> sexData) {
+    public ChartPanel() {
         super(FXML);
 
-        ObservableList<PieChart.Data> agePieChartData = FXCollections.observableArrayList();
-        for (String key : ageData.keySet()) {
-            agePieChartData.add(new PieChart.Data(key, ageData.get(key)));
-        }
-        agePieChart.setData(agePieChartData);
-
-        ObservableList<PieChart.Data> majorPieChartData = FXCollections.observableArrayList();
-        for (String key : majorData.keySet()) {
-            majorPieChartData.add(new PieChart.Data(key, majorData.get(key)));
-        }
-        majorPieChart.setData(majorPieChartData);
-
-        ObservableList<PieChart.Data> sexPieChartData = FXCollections.observableArrayList();
-        for (String key : sexData.keySet()) {
-            sexPieChartData.add(new PieChart.Data(key, sexData.get(key)));
-        }
-        sexPieChart.setData(sexPieChartData);
     }
 
     /**
@@ -54,22 +36,21 @@ public class ChartPanel extends UiPart<Region> {
      */
     public void updateChartPanel(ObservableMap<String, Integer> ageData, ObservableMap<String, Integer> majorData,
                                  ObservableMap<String, Integer> sexData) {
-        ObservableList<PieChart.Data> agePieChartData = FXCollections.observableArrayList();
-        for (String key : ageData.keySet()) {
-            agePieChartData.add(new PieChart.Data(key, ageData.get(key)));
-        }
-        agePieChart.setData(agePieChartData);
+        agePieChart.setData(processedData(ageData));
 
-        ObservableList<PieChart.Data> majorPieChartData = FXCollections.observableArrayList();
-        for (String key : majorData.keySet()) {
-            majorPieChartData.add(new PieChart.Data(key, majorData.get(key)));
-        }
-        majorPieChart.setData(majorPieChartData);
+        sexPieChart.setData(processedData(sexData));
 
-        ObservableList<PieChart.Data> sexPieChartData = FXCollections.observableArrayList();
-        for (String key : sexData.keySet()) {
-            sexPieChartData.add(new PieChart.Data(key, sexData.get(key)));
+        majorPieChart.setData(processedData(majorData));
+    }
+
+    /**
+     * Update individual chart data
+     */
+    public ObservableList<PieChart.Data> processedData (ObservableMap<String, Integer> data) {
+        ObservableList<PieChart.Data> chartData = FXCollections.observableArrayList();
+        for (String key : data.keySet()) {
+            chartData.add(new PieChart.Data(key, data.get(key)));
         }
-        sexPieChart.setData(sexPieChartData);
+        return chartData;
     }
 }

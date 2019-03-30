@@ -131,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.selectedPersonProperty(),
                 logic::setSelectedPerson);
-        chartPanel = new ChartPanel(logic.getAgeData(), logic.getMajorData(), logic.getSexData());
+        chartPanel = new ChartPanel();
         mainResultPlaceHolder.getChildren().add(personListPanel.getRoot());
 
         textResultDisplay = new TextResultDisplay();
