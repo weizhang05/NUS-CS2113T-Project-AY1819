@@ -44,10 +44,8 @@ public class CustomPieChart extends PieChart {
      */
     public void updateData (ObservableMap<String, Integer> data) {
         ObservableList<PieChart.Data> chartData = FXCollections.observableArrayList();
-        System.out.println("Data: ");
         for (String key : data.keySet()) {
             chartData.add(new PieChart.Data(key, data.get(key)));
-            System.out.println(key + " " + data.get(key));
         }
         this.setData(chartData);
     }
