@@ -24,7 +24,8 @@ public class AddGroupCommandParser implements Parser<AddGroupCommand> {
         }
 
         String groupName = splitArg[0].toUpperCase();
-        String houseName = splitArg[1].toUpperCase();
+        String houseName = splitArg[1];
+        houseName = houseName.substring(0, 1).toUpperCase() + houseName.substring(1).toLowerCase();
 
         return new AddGroupCommand(groupName, houseName);
     };
