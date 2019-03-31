@@ -276,7 +276,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return FXCollections.observableMap(ageData);
     }
 
-    public ObservableMap<String, Integer> getMajorData() { 
+    public ObservableMap<String, Integer> getMajorData() {
         majorData.clear();
         for (Person p : persons) {
             String key = p.getMajor().value;
