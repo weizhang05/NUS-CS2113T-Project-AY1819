@@ -102,6 +102,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getChartStoragePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isEmpty() {
             throw new AssertionError("This method should not be called.");
         }
