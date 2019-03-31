@@ -1,17 +1,12 @@
 package seedu.address.ui;
 
-import java.io.File;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.PieChart;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 
@@ -48,10 +43,13 @@ public class ChartPanel extends UiPart<Region> {
      */
     public void updateChartPanel(ObservableMap<String, Integer> ageData, ObservableMap<String, Integer> majorData,
                                  ObservableMap<String, Integer> sexData) {
+        agePieChart.clearData();
         agePieChart.updateData(ageData);
 
+        majorPieChart.clearData();
         majorPieChart.updateData(majorData);
 
+        sexPieChart.clearData();
         sexPieChart.updateData(sexData);
     }
 

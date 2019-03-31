@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.PieChart;
 import javafx.scene.image.WritableImage;
@@ -24,6 +25,7 @@ public class CustomPieChart extends PieChart {
      * @param fileName
      * @param path
      */
+    @FXML
     public void saveChart (String fileName, String path) {
         changeStyleSheet("DarkTheme", "Print");
         WritableImage image = this.snapshot(new SnapshotParameters(), null);
@@ -42,10 +44,19 @@ public class CustomPieChart extends PieChart {
      */
     public void updateData (ObservableMap<String, Integer> data) {
         ObservableList<PieChart.Data> chartData = FXCollections.observableArrayList();
+        System.out.println("Data: ");
         for (String key : data.keySet()) {
             chartData.add(new PieChart.Data(key, data.get(key)));
+            System.out.println(key + " " + data.get(key));
         }
         this.setData(chartData);
+    }
+
+    /**
+     * Clear chart data
+     */
+    public void clearData() {
+        this.getData().clear();
     }
 
     /**

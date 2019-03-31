@@ -132,9 +132,11 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.selectedPersonProperty(),
                 logic::setSelectedPerson);
         chartPanel = new ChartPanel();
+
         mainResultPlaceHolder.getChildren().add(personListPanel.getRoot());
         mainResultPlaceHolder.getChildren().add(chartPanel.getRoot());
         chartPanel.getRoot().setVisible(false);
+
 
         textResultDisplay = new TextResultDisplay();
         textResultDisplayPlaceholder.getChildren().add(textResultDisplay.getRoot());
@@ -219,12 +221,10 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandText.equalsIgnoreCase("stat")) {
+                personListPanel.getRoot().setVisible(false);
+                chartPanel.getRoot().setVisible(true);
+
                 chartPanel.updateChartPanel(logic.getAgeData(), logic.getMajorData(), logic.getSexData());
-                if (!chartPanel.getRoot().isVisible()) {
-                    personListPanel.getRoot().setVisible(false);
-                    chartPanel.getRoot().setVisible(true);
-                }
-                chartPanel.saveChart("For ABC", logic.getChartStoragePath().toString());
             } else {
                 chartPanel.getRoot().setVisible(false);
                 personListPanel.getRoot().setVisible(true);
