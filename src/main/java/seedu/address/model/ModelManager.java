@@ -36,8 +36,8 @@ public class ModelManager implements Model {
     private final FilteredList<Group> filteredGroups;
     private final SimpleObjectProperty<Group> selectedGroups = new SimpleObjectProperty<>();
 
-    //private final FilteredList<House> filteredHouses;
-    //private final SimpleObjectProperty<House> selectedHouses = new SimpleObjectProperty<>();
+    private final FilteredList<House> filteredHouses;
+    private final SimpleObjectProperty<House> selectedHouses = new SimpleObjectProperty<>();
 
     private String undoableCommand;
 
@@ -58,8 +58,8 @@ public class ModelManager implements Model {
         filteredGroups = new FilteredList<>(versionedAddressBook.getGroupList());
         filteredGroups.addListener(this::ensureSelectedGroupIsValid);
 
-        // filteredHouses = new FilteredList<>(versionedAddressBook.getHouseList());
-        // filteredHouses.addListener(this::ensureSelectedHouseIsValid);
+        filteredHouses = new FilteredList<>(versionedAddressBook.getHouseList());
+        filteredHouses.addListener(this::ensureSelectedHouseIsValid);
     }
 
     public ModelManager() {
@@ -310,13 +310,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Group> getFilteredHouseList() {
-        return null;
+    public ObservableList<House> getFilteredHouseList() {
+        return filteredHouses;
     }
 
     @Override
     public void updateFilteredHouseList(Predicate<House> predicate) {
-
+        requireNonNull(predicate);
+        filteredHouses.setPredicate(predicate);
     }
 
     /**
@@ -380,7 +381,7 @@ public class ModelManager implements Model {
     /**
      * Ensures {@code selectedHouse} is a valid house in {@code filteredHouses}.
      */
-    /*private void ensureSelectedHouseIsValid(ListChangeListener.Change<? extends House> change) {
+    private void ensureSelectedHouseIsValid(ListChangeListener.Change<? extends House> change) {
         while (change.next()) {
             if (selectedHouses.getValue() == null) {
                 // null is always a valid selected house, so we do not need to check that it is valid anymore.
@@ -404,7 +405,7 @@ public class ModelManager implements Model {
                 selectedHouses.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
             }
         }
-    }*/
+    }
 
     @Override
     public boolean equals(Object obj) {

@@ -202,7 +202,7 @@ public interface Model {
     void setHouse(House target, House editedHouse);
 
     /** Returns an unmodifiable view of the filtered house list */
-    ObservableList<Group> getFilteredHouseList();
+    ObservableList<House> getFilteredHouseList();
 
     /**
      * Updates the filter of the filtered house list to filter by the given {@code predicate}.

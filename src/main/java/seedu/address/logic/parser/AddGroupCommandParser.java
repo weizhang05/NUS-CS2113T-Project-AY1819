@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.AddGroupCommand;
@@ -17,6 +18,7 @@ public class AddGroupCommandParser implements Parser<AddGroupCommand> {
      */
 
     public AddGroupCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         String[] splitArg = args.trim().split(" ");
 
         if (splitArg.length != 2) {

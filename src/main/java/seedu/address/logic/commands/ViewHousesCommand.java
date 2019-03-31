@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.grouping.Group;
+import seedu.address.model.grouping.House;
 
 /**
  * Views all Houses added to the address book.
@@ -22,11 +22,11 @@ public class ViewHousesCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        ObservableList<Group> groupList = model.getFilteredGroupList();
+        ObservableList<House> houseList = model.getFilteredHouseList();
 
         ArrayList<String> houseArrayList = new ArrayList<String>();
 
-        for (Group toList : groupList) {
+        for (House toList : houseList) {
             String house = toList.getHouseName();
             houseArrayList.add(house);
         }
