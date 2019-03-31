@@ -33,26 +33,26 @@ public class TypicalPersons {
             .withSex("F").withBirthday("07081994")
             .withMajor("CS").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withGroup("G").withTags("friends").build();
+            .withGroup("").withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier").withSex("M")
             .withBirthday("08071993").withMajor("IS")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withGroup("G").withTags("owesMoney", "friends").build();
+            .withGroup("").withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withSex("M").withBirthday("01023456")
-            .withPhone("95352563").withEmail("heinz@example.com").withMajor("CS").withGroup("G").build();
+            .withPhone("95352563").withEmail("heinz@example.com").withMajor("CS").withGroup("").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withSex("M")
             .withBirthday("01023456").withPhone("87652533")
             .withEmail("cornelia@example.com").withMajor("BZA")
-            .withGroup("G").withTags("friends").build();
+            .withGroup("").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withSex("M").withBirthday("01023456").withMajor("CS")
-            .withGroup("G").build();
+            .withGroup("").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withSex("M").withBirthday("01023456").withMajor("ISC")
-            .withGroup("G").build();
+            .withGroup("").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withSex("F").withBirthday("01023456").withMajor("CS")
-            .withGroup("G").build();
+            .withGroup("").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
