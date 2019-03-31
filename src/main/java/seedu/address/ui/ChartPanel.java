@@ -1,30 +1,37 @@
 package seedu.address.ui;
 
+import java.io.File;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.PieChart;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+
 
 /**
  *  Controller for a pie chart
  */
 public class ChartPanel extends UiPart<Region> {
     private static final String FXML = "ChartPanel.fxml";
+    private static final ObservableList<PieChart.Data> emptyData = FXCollections.observableArrayList();
     private final Logger logger = LogsCenter.getLogger(ChartPanel.class);
 
     @FXML
-    private PieChart agePieChart;
+    private CustomPieChart agePieChart;
 
     @FXML
-    private PieChart majorPieChart;
+    private CustomPieChart majorPieChart;
 
     @FXML
-    private PieChart sexPieChart;
+    private CustomPieChart sexPieChart;
 
     public ChartPanel() {
         super(FXML);
@@ -41,21 +48,21 @@ public class ChartPanel extends UiPart<Region> {
      */
     public void updateChartPanel(ObservableMap<String, Integer> ageData, ObservableMap<String, Integer> majorData,
                                  ObservableMap<String, Integer> sexData) {
-        agePieChart.setData(processedData(ageData));
+        agePieChart.updateData(ageData);
 
-        sexPieChart.setData(processedData(sexData));
+        majorPieChart.updateData(majorData);
 
-        majorPieChart.setData(processedData(majorData));
+        sexPieChart.updateData(sexData);
     }
 
     /**
-     * Update individual chart data
+     * Save charts to images
      */
-    public ObservableList<PieChart.Data> processedData (ObservableMap<String, Integer> data) {
-        ObservableList<PieChart.Data> chartData = FXCollections.observableArrayList();
-        for (String key : data.keySet()) {
-            chartData.add(new PieChart.Data(key, data.get(key)));
-        }
-        return chartData;
+    public void saveChart(String fileName, String path) {
+        agePieChart.saveChart(fileName + "_age", path);
+
+        majorPieChart.saveChart(fileName + "_major", path);
+
+        sexPieChart.saveChart(fileName + "_sex", path);
     }
 }

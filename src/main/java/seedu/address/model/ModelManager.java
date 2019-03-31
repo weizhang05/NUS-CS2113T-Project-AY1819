@@ -92,6 +92,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getChartStoragePath() {
+        return userPrefs.getChartStoragePath();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
     }

@@ -48,6 +48,11 @@ public interface Logic {
     ObservableList<String> getHistory();
 
     /**
+     * Returns the user prefs' chart storage path.
+     */
+    Path getChartStoragePath();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();

@@ -93,6 +93,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Path getChartStoragePath() {
+        return model.getChartStoragePath();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }

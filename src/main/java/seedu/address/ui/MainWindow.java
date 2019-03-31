@@ -133,6 +133,8 @@ public class MainWindow extends UiPart<Stage> {
                 logic::setSelectedPerson);
         chartPanel = new ChartPanel();
         mainResultPlaceHolder.getChildren().add(personListPanel.getRoot());
+        mainResultPlaceHolder.getChildren().add(chartPanel.getRoot());
+        chartPanel.getRoot().setVisible(false);
 
         textResultDisplay = new TextResultDisplay();
         textResultDisplayPlaceholder.getChildren().add(textResultDisplay.getRoot());
@@ -217,12 +219,15 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandText.equalsIgnoreCase("stat")) {
-                mainResultPlaceHolder.getChildren().clear();
                 chartPanel.updateChartPanel(logic.getAgeData(), logic.getMajorData(), logic.getSexData());
-                mainResultPlaceHolder.getChildren().add(chartPanel.getRoot());
+                if (!chartPanel.getRoot().isVisible()) {
+                    personListPanel.getRoot().setVisible(false);
+                    chartPanel.getRoot().setVisible(true);
+                }
+                chartPanel.saveChart("For ABC", logic.getChartStoragePath().toString());
             } else {
-                mainResultPlaceHolder.getChildren().clear();
-                mainResultPlaceHolder.getChildren().add(personListPanel.getRoot());
+                chartPanel.getRoot().setVisible(false);
+                personListPanel.getRoot().setVisible(true);
             }
 
             return commandResult;

@@ -22,9 +22,9 @@ import seedu.address.model.participant.UniqueParticipantList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private static ObservableMap<String, Integer> ageData = FXCollections.observableHashMap();
-    private static ObservableMap<String, Integer> majorData = FXCollections.observableHashMap();
-    private static ObservableMap<String, Integer> sexData = FXCollections.observableHashMap();
+    private final ObservableMap<String, Integer> ageData = FXCollections.observableHashMap();
+    private final ObservableMap<String, Integer> majorData = FXCollections.observableHashMap();
+    private final ObservableMap<String, Integer> sexData = FXCollections.observableHashMap();
 
     private final UniqueParticipantList persons;
     private final UniqueGroupList groups;
@@ -96,8 +96,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         setGroups(newData.getGroupList());
         setHouses(newData.getHouseList());
 
+        //ageData.clear();
         ageData.putAll(newData.getAgeData());
+        //majorData.clear();
         majorData.putAll(newData.getMajorData());
+        //sexData.clear();
         sexData.putAll(newData.getSexData());
     }
 
@@ -135,7 +138,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
-        addData(p);
+        //addData(p);
         indicateModified();
     }
 
@@ -147,8 +150,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
-        addData(editedPerson);
-        deleteData(target);
+        //addData(editedPerson);
+        //deleteData(target);
 
         persons.setPerson(target, editedPerson);
         indicateModified();
@@ -160,7 +163,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
-        deleteData(key);
+        //deleteData(key);
         indicateModified();
     }
 
@@ -264,14 +267,32 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// util methods
 
     public ObservableMap<String, Integer> getAgeData() {
-        return FXCollections.unmodifiableObservableMap(ageData);
+        ageData.clear();
+        for (Person p : persons) {
+            String key = p.getBirthday().getAge();
+            Integer value = (ageData.containsKey(key)) ? (ageData.get(key) + 1) : (1);
+            ageData.put(key, value);
+        }
+        return FXCollections.observableMap(ageData);
     }
 
-    public ObservableMap<String, Integer> getMajorData() {
+    public ObservableMap<String, Integer> getMajorData() { 
+        majorData.clear();
+        for (Person p : persons) {
+            String key = p.getMajor().value;
+            Integer value = (majorData.containsKey(key)) ? (majorData.get(key) + 1) : (1);
+            majorData.put(key, value);
+        }
         return FXCollections.unmodifiableObservableMap(majorData);
     }
 
     public ObservableMap<String, Integer> getSexData() {
+        sexData.clear();
+        for (Person p : persons) {
+            String key = p.getSex().value;
+            Integer value = (sexData.containsKey(key)) ? (sexData.get(key) + 1) : (1);
+            sexData.put(key, value);
+        }
         return FXCollections.unmodifiableObservableMap(sexData);
     }
 
