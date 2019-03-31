@@ -15,8 +15,8 @@ public class AddHouseCommand extends Command {
 
     public static final String COMMAND_WORD = "add_h";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new House. Parameters: houseName. " +
-            "Note: houseName must be one word";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new House. Parameters: houseName. "
+            + "Note: houseName must be one word";
 
     public static final String MESSAGE_SUCCESS = "New House added: %1$s";
     public static final String MESSAGE_DUPLICATE_HOUSE = "This House already exists";
