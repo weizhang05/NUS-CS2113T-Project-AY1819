@@ -33,7 +33,7 @@ public class JsonAdaptedGroup {
      */
     public JsonAdaptedGroup(Group source) {
         groupName = source.getGroupName();
-        houseName = source.getGroupName();
+        houseName = source.getHouseName();
     }
 
     /**

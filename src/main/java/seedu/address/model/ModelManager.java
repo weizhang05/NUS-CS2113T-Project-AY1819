@@ -37,8 +37,8 @@ public class ModelManager implements Model {
     private final FilteredList<Group> filteredGroups;
     private final SimpleObjectProperty<Group> selectedGroups = new SimpleObjectProperty<>();
 
-    //private final FilteredList<House> filteredHouses;
-    //private final SimpleObjectProperty<House> selectedHouses = new SimpleObjectProperty<>();
+    private final FilteredList<House> filteredHouses;
+    private final SimpleObjectProperty<House> selectedHouses = new SimpleObjectProperty<>();
 
     private String undoableCommand;
 
@@ -59,8 +59,8 @@ public class ModelManager implements Model {
         filteredGroups = new FilteredList<>(versionedAddressBook.getGroupList());
         filteredGroups.addListener(this::ensureSelectedGroupIsValid);
 
-        // filteredHouses = new FilteredList<>(versionedAddressBook.getHouseList());
-        // filteredHouses.addListener(this::ensureSelectedHouseIsValid);
+        filteredHouses = new FilteredList<>(versionedAddressBook.getHouseList());
+        filteredHouses.addListener(this::ensureSelectedHouseIsValid);
     }
 
     public ModelManager() {
@@ -264,7 +264,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteGroup(Group target) {
         versionedAddressBook.removeGroup(target);
-        undoableCommand = "Delete" + target.getGroupName();
+        undoableCommand = "Delete Group " + target.getGroupName();
 
         if (GroupList.hasGroup(target.toString())) {
             GroupList.deleteGroup(target.toString());
@@ -275,7 +275,7 @@ public class ModelManager implements Model {
     public void addGroup(Group group) {
         versionedAddressBook.addGroup(group);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        undoableCommand = "Add " + group.getGroupName();
+        undoableCommand = "Add Group " + group.getGroupName();
     }
 
     @Override
@@ -283,7 +283,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedGroup);
 
         versionedAddressBook.setGroup(target, editedGroup);
-        undoableCommand = "Edit " + editedGroup.getGroupName();
+        undoableCommand = "Edit Group " + editedGroup.getGroupName();
     }
 
     @Override
@@ -312,7 +312,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteHouse(House target) {
         versionedAddressBook.removeHouse(target);
-        undoableCommand = "Delete" + target.getHouseName();
+        undoableCommand = "Delete House " + target.getHouseName();
 
         if (HouseList.hasHouse(target.toString())) {
             HouseList.deleteHouse(target.toString());
@@ -323,7 +323,7 @@ public class ModelManager implements Model {
     public void addHouse(House house) {
         versionedAddressBook.addHouse(house);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        undoableCommand = "Add " + house.getHouseName();
+        undoableCommand = "Add House " + house.getHouseName();
     }
 
     @Override
@@ -331,18 +331,19 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedHouse);
 
         versionedAddressBook.setHouse(target, editedHouse);
-        undoableCommand = "Edit " + editedHouse.getHouseName();
+        undoableCommand = "Edit House " + editedHouse.getHouseName();
 
     }
 
     @Override
-    public ObservableList<Group> getFilteredHouseList() {
-        return null;
+    public ObservableList<House> getFilteredHouseList() {
+        return filteredHouses;
     }
 
     @Override
     public void updateFilteredHouseList(Predicate<House> predicate) {
-
+        requireNonNull(predicate);
+        filteredHouses.setPredicate(predicate);
     }
 
     /**
@@ -406,7 +407,7 @@ public class ModelManager implements Model {
     /**
      * Ensures {@code selectedHouse} is a valid house in {@code filteredHouses}.
      */
-    /*private void ensureSelectedHouseIsValid(ListChangeListener.Change<? extends House> change) {
+    private void ensureSelectedHouseIsValid(ListChangeListener.Change<? extends House> change) {
         while (change.next()) {
             if (selectedHouses.getValue() == null) {
                 // null is always a valid selected house, so we do not need to check that it is valid anymore.
@@ -430,7 +431,7 @@ public class ModelManager implements Model {
                 selectedHouses.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
             }
         }
-    }*/
+    }
 
     @Override
     public boolean equals(Object obj) {
