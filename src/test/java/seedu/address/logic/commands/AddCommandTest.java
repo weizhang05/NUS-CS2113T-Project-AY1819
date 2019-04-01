@@ -273,6 +273,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public int sizeGroupList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public House getHouse(House house) {
             throw new AssertionError("This method should not be called.");
         }
@@ -304,6 +309,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredHouseList(Predicate<House> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int sizeHouseList() {
             throw new AssertionError("This method should not be called.");
         }
     }
