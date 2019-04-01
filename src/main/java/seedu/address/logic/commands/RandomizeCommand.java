@@ -1,8 +1,12 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.grouping.Group;
+import seedu.address.model.participant.Person;
 
 /**
  * Randomly assigns all participants to all available groups.
@@ -19,14 +23,18 @@ public class RandomizeCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        /*if(false){
-            throw new CommandException((MESSAGE_FAILURE));
-        }*/
+        List<Person> participants = model.getFilteredPersonList();
+        List<Group> groups = model.getFilteredGroupList();
+
+        /**
+         * Exception is thrown where there is less than 2 groups or 2 people in the system.
+         */
+        if (participants.size() < 2 || groups.size() < 2) {
+            throw new CommandException(MESSAGE_FAILURE + ":" +
+                    "\nNum participants: " + participants.size() +
+                    "\nNum groups: " + groups.size());
+        }
+
         return new CommandResult(MESSAGE_SUCCESS);
-    }
-
-    // Temporary function to be integrated
-    public void testRandomize() {
-
     }
 }
