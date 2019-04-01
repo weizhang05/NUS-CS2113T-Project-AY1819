@@ -49,7 +49,7 @@ public class AddOglCommand extends AddCommand {
     private final Ogl toAdd;
 
     /**
-     * Creates an AddFreshmanCommand to add the specified {@code Participant}
+     * Creates an AddOglCommand to add the specified {@code Participant}
      */
 
     public AddOglCommand(Ogl person) {

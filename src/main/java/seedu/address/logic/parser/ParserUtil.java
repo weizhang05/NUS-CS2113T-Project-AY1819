@@ -179,7 +179,7 @@ public class ParserUtil {
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
-        tagSet.add(parseTag("Participant"));
+        tagSet.add(parseTag("Freshman"));
         return tagSet;
     }
     /**
