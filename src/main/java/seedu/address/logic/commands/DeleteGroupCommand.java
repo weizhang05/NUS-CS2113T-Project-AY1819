@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -11,12 +9,16 @@ import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.participant.Person;
 
+/**
+ * Deletes a group identified by the group name.
+ * Does not allow groups with participants in it to be deleted.
+ */
 public class DeleteGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_g";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a group by groupName.\n"
+            + ": Deletes a group by group name.\n"
             + "Parameters: groupName\n";
 
     public static final String MESSAGE_DELETE_GROUP_SUCCESS = "Deleted Group: %1$s";
