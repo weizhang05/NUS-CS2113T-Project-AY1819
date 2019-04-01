@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import java.security.SecureRandom;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.address.logic.CommandHistory;
@@ -30,10 +32,13 @@ public class RandomizeCommand extends Command {
          * Exception is thrown where there is less than 2 groups or 2 people in the system.
          */
         if (participants.size() < 2 || groups.size() < 2) {
-            throw new CommandException(MESSAGE_FAILURE + ":" +
-                    "\nNum participants: " + participants.size() +
-                    "\nNum groups: " + groups.size());
+            throw new CommandException(MESSAGE_FAILURE + ":"
+                    + "\nNum participants: " + participants.size()
+                    + "\nNum groups: " + groups.size());
         }
+
+        Collections.shuffle(groups, new SecureRandom());
+
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
