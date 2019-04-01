@@ -297,6 +297,11 @@ public class ModelManager implements Model {
         filteredGroups.setPredicate(predicate);
     }
 
+    @Override
+    public int sizeGroupList () {
+        return filteredGroups.size();
+    }
+
     // ================ House Operations ======================
     @Override
     public House getHouse(House house) {
@@ -344,6 +349,11 @@ public class ModelManager implements Model {
     public void updateFilteredHouseList(Predicate<House> predicate) {
         requireNonNull(predicate);
         filteredHouses.setPredicate(predicate);
+    }
+
+    @Override
+    public int sizeHouseList() {
+        return filteredHouses.size();
     }
 
     /**
