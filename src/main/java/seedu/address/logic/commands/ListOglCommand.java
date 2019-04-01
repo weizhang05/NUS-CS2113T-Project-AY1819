@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.FindingOglPredicate;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all ogl in the address book to the user.
  */
 public class ListOglCommand extends Command {
 

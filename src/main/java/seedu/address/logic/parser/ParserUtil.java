@@ -137,7 +137,7 @@ public class ParserUtil {
      */
     public static Group parseGroup(String group) throws ParseException {
         requireNonNull(group);
-        String trimmedGroup = group.trim();
+        String trimmedGroup = group.trim().toUpperCase();
         if (!Group.isValidGroup(trimmedGroup)) {
             throw new ParseException(Group.MESSAGE_CONSTRAINTS);
         }
@@ -179,7 +179,7 @@ public class ParserUtil {
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
-        tagSet.add(parseTag("Participant"));
+        tagSet.add(parseTag("Freshman"));
         return tagSet;
     }
     /**

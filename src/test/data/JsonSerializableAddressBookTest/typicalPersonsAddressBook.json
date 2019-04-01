@@ -8,7 +8,7 @@
     "birthday": "07081994",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "major" : "123, Jurong West Ave 6, #08-111",
+    "major" : "CS",
     "group" : "",
     "tagged" : [ "friends" ]
   }, {
@@ -17,7 +17,7 @@
     "birthday": "08071993",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "major" : "311, Clementi Ave 2, #02-25",
+    "major" : "IS",
     "group" : "",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
@@ -26,7 +26,7 @@
     "birthday": "01023456",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "major" : "wall street",
+    "major" : "CS",
     "group" : "",
     "tagged" : [ ]
   }, {
@@ -35,7 +35,7 @@
     "birthday": "01023456",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "major" : "10th street",
+    "major" : "BZA",
     "group" : "",
     "tagged" : [ "friends" ]
   }, {
@@ -44,7 +44,7 @@
     "birthday": "01023456",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "major" : "michegan ave",
+    "major" : "CS",
     "group" : "",
     "tagged" : [ ]
   }, {
@@ -53,7 +53,7 @@
     "birthday": "01023456",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "major" : "little tokyo",
+    "major" : "ISC",
     "group" : "",
     "tagged" : [ ]
   }, {
@@ -62,7 +62,7 @@
     "birthday": "01023456",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "major" : "4th street",
+    "major" : "CS",
     "group" : "",
     "tagged" : [ ]
   } ]

@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.AddHouseCommand;
@@ -18,12 +19,21 @@ public class AddHouseCommandParser implements Parser<AddHouseCommand> {
 
     @Override
     public AddHouseCommand parse(String args) throws ParseException {
-        String houseName = args.trim();
+        requireNonNull(args);
 
-        if (houseName.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddHouseCommand.MESSAGE_USAGE));
+        if (args.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddHouseCommand.MESSAGE_USAGE));
         }
+
+        String[] splitArg = args.trim().split(" ");
+
+        if (splitArg.length != 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddHouseCommand.MESSAGE_USAGE));
+        }
+        String houseName = splitArg[0].trim();
+        houseName = houseName.substring(0, 1).toUpperCase() + houseName.substring(1).toLowerCase();
+
+
 
         return new AddHouseCommand(houseName);
     }
