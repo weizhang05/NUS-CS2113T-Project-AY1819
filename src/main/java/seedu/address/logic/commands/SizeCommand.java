@@ -8,6 +8,9 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.participant.Person;
 
+/**
+ * Displays the size of all lists (Participant, OGL, Freshman, Group and House) in the Command result box.
+ */
 public class SizeCommand extends Command {
     public static final String COMMAND_WORD = "size";
 
