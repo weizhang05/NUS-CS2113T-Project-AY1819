@@ -49,7 +49,7 @@ public class AddOglCommand extends AddCommand {
     private final Ogl toAdd;
 
     /**
-     * Creates an AddFreshmanCommand to add the specified {@code Participant}
+     * Creates an AddOglCommand to add the specified {@code Participant}
      */
 
     public AddOglCommand(Ogl person) {
@@ -63,6 +63,9 @@ public class AddOglCommand extends AddCommand {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_OGL);
+        }
+        if (!toAdd.getGroup().getGroupName().equals("") && !model.hasGroup(toAdd.getGroup())) {
+            throw new CommandException(MESSAGE_NONEXISTENT_GROUP);
         }
 
         model.addPerson(toAdd);

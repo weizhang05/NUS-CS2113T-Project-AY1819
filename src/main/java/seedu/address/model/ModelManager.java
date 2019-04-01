@@ -13,6 +13,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -36,8 +37,8 @@ public class ModelManager implements Model {
     private final FilteredList<Group> filteredGroups;
     private final SimpleObjectProperty<Group> selectedGroups = new SimpleObjectProperty<>();
 
-    //private final FilteredList<House> filteredHouses;
-    //private final SimpleObjectProperty<House> selectedHouses = new SimpleObjectProperty<>();
+    private final FilteredList<House> filteredHouses;
+    private final SimpleObjectProperty<House> selectedHouses = new SimpleObjectProperty<>();
 
     private String undoableCommand;
 
@@ -58,8 +59,8 @@ public class ModelManager implements Model {
         filteredGroups = new FilteredList<>(versionedAddressBook.getGroupList());
         filteredGroups.addListener(this::ensureSelectedGroupIsValid);
 
-        // filteredHouses = new FilteredList<>(versionedAddressBook.getHouseList());
-        // filteredHouses.addListener(this::ensureSelectedHouseIsValid);
+        filteredHouses = new FilteredList<>(versionedAddressBook.getHouseList());
+        filteredHouses.addListener(this::ensureSelectedHouseIsValid);
     }
 
     public ModelManager() {
@@ -91,6 +92,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getChartStoragePath() {
+        return userPrefs.getChartStoragePath();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
@@ -104,9 +110,29 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
+    public boolean isEmpty() {
+        return versionedAddressBook.isEmpty();
+    }
+
+    @Override
+    public ObservableMap<String, Integer> getAgeData() {
+        return versionedAddressBook.getAgeData();
+    }
+
+    @Override
+    public ObservableMap<String, Integer> getMajorData() {
+        return versionedAddressBook.getMajorData();
+    }
+
+    @Override
+    public ObservableMap<String, Integer> getSexData() {
+        return versionedAddressBook.getSexData();
+    }
+
+    @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         versionedAddressBook.resetData(addressBook);
-        undoableCommand = "clear";
+        undoableCommand = "Clear all persons";
     }
 
     @Override
@@ -123,7 +149,7 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
-        undoableCommand = "Delete" + target.getName().fullName;
+        undoableCommand = "Delete " + target.getName().fullName;
 
         if (FreshmanList.hasFreshman(target.toString())) {
             FreshmanList.deleteFreshman(target.toString());
@@ -238,7 +264,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteGroup(Group target) {
         versionedAddressBook.removeGroup(target);
-        undoableCommand = "Delete" + target.getGroupName();
+        undoableCommand = "Delete Group " + target.getGroupName();
 
         if (GroupList.hasGroup(target.toString())) {
             GroupList.deleteGroup(target.toString());
@@ -249,7 +275,7 @@ public class ModelManager implements Model {
     public void addGroup(Group group) {
         versionedAddressBook.addGroup(group);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        undoableCommand = "Add " + group.getGroupName();
+        undoableCommand = "Add Group " + group.getGroupName();
     }
 
     @Override
@@ -257,7 +283,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedGroup);
 
         versionedAddressBook.setGroup(target, editedGroup);
-        undoableCommand = "Edit " + editedGroup.getGroupName();
+        undoableCommand = "Edit Group " + editedGroup.getGroupName();
     }
 
     @Override
@@ -286,7 +312,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteHouse(House target) {
         versionedAddressBook.removeHouse(target);
-        undoableCommand = "Delete" + target.getHouseName();
+        undoableCommand = "Delete House " + target.getHouseName();
 
         if (HouseList.hasHouse(target.toString())) {
             HouseList.deleteHouse(target.toString());
@@ -297,7 +323,7 @@ public class ModelManager implements Model {
     public void addHouse(House house) {
         versionedAddressBook.addHouse(house);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        undoableCommand = "Add " + house.getHouseName();
+        undoableCommand = "Add House " + house.getHouseName();
     }
 
     @Override
@@ -305,18 +331,19 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedHouse);
 
         versionedAddressBook.setHouse(target, editedHouse);
-        undoableCommand = "Edit " + editedHouse.getHouseName();
+        undoableCommand = "Edit House " + editedHouse.getHouseName();
 
     }
 
     @Override
-    public ObservableList<Group> getFilteredHouseList() {
-        return null;
+    public ObservableList<House> getFilteredHouseList() {
+        return filteredHouses;
     }
 
     @Override
     public void updateFilteredHouseList(Predicate<House> predicate) {
-
+        requireNonNull(predicate);
+        filteredHouses.setPredicate(predicate);
     }
 
     /**
@@ -380,7 +407,7 @@ public class ModelManager implements Model {
     /**
      * Ensures {@code selectedHouse} is a valid house in {@code filteredHouses}.
      */
-    /*private void ensureSelectedHouseIsValid(ListChangeListener.Change<? extends House> change) {
+    private void ensureSelectedHouseIsValid(ListChangeListener.Change<? extends House> change) {
         while (change.next()) {
             if (selectedHouses.getValue() == null) {
                 // null is always a valid selected house, so we do not need to check that it is valid anymore.
@@ -404,7 +431,7 @@ public class ModelManager implements Model {
                 selectedHouses.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
             }
         }
-    }*/
+    }
 
     @Override
     public boolean equals(Object obj) {

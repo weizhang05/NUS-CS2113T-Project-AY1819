@@ -10,13 +10,13 @@ import seedu.address.model.person.FindingOglPredicate;
 
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new ListOglCommand object
  */
 public class ListOglCommandParser implements Parser<ListOglCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns an FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ListOglCommand
+     * and returns an ListOglCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListOglCommand parse(String args) throws ParseException {

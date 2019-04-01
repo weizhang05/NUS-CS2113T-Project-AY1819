@@ -10,17 +10,17 @@ import seedu.address.model.person.FindingParticipantPredicate;
 
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new ListParticipantCommand object
  */
 public class ListParticipantCommandParser implements Parser<ListParticipantCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns an FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ListParticipantCommand
+     * and returns an ListParticipantCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListParticipantCommand parse(String args) throws ParseException {
-        String trimmedArgs = "Participant";
+        String trimmedArgs = "Freshman";
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListParticipantCommand.MESSAGE_USAGE));
