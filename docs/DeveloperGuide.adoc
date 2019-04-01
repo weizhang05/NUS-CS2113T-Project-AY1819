@@ -350,6 +350,7 @@ The 'List Freshmen' and 'List Orientation Group Leader (OGL)' commands use the k
 * **Alternative 2**: Add a `tag` to the Freshmen and OGL when they are added by their respective Add commands
 ** Pros: Able to use a Predicate search for the keyword. Easy to implement and fewer lines of code. In the implementation of the Export feature, Excel spreadsheet will contain the "Freshmen" and "OGL" tags that will aid in the easy filtering on Excel spreadsheet as well.
 ** Cons: Too many tags to the participant added.
+
 // end:: listF/O[]
 
 // tag::export[]
