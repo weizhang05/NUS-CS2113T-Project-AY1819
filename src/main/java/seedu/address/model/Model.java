@@ -200,7 +200,7 @@ public interface Model {
     /**
      * @return number of groups in group list
      */
-    int sizeGroupList ();
+    int sizeGroupList();
 
     // ================ House ======================
     /**
