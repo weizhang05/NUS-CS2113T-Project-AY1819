@@ -338,7 +338,7 @@ image::StatisticUpdateSequenceDiagram.png[width="800"]
 
 // tag::listF/O[]
 === List Freshmen / OGL feature
-The inidividual list commands to list freshmen, OGLs and all the participants in the contact list will allow for easy filtering through the list for the FOP Organizers. 
+The inidividual list commands to list freshmen, OGLs and all the participants in the contact list will allow for easy filtering through the list for the FOP Organizers.
 
 ==== Current Implementation
 The 'List Freshmen' and 'List Orientation Group Leader (OGL)' commands use the keywords (predicates) "Freshman" and "OGL" to parse through the all the tags of all the participants in the FOP Manager's contact list. All the participants with the respective matches will be added into the filtered participant list, enabling the user to view all the freshmen and all the OGLs respectively in the contact list.
