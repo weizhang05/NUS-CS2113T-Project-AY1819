@@ -313,7 +313,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public int sizeHouseList(){
+        public int sizeHouseList() {
             throw new AssertionError("This method should not be called.");
         }
     }
