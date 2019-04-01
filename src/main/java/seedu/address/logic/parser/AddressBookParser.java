@@ -29,6 +29,7 @@ import seedu.address.logic.commands.ListParticipantCommand;
 import seedu.address.logic.commands.RandomizeCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.SizeCommand;
 import seedu.address.logic.commands.StatCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewGroupsCommand;
@@ -130,6 +131,9 @@ public class AddressBookParser {
 
         case RandomizeCommand.COMMAND_WORD:
             return new RandomizeCommand();
+
+        case SizeCommand.COMMAND_WORD:
+            return new SizeCommand();
 
         case ViewGroupsCommand.COMMAND_WORD:
             return new ViewGroupsCommand();
