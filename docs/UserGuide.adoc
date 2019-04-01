@@ -367,6 +367,13 @@ The `redo` command fails as there are no `undo` commands executed previously.
 Clears all entries from your contact list. +
 Format: `clear`
 
+[[Export]]
+=== Exporting contact list : `export`
+
+Exports all entries from your contact list to Excel Spreadsheet. +
+Excel Spreadsheet will be saved in the current User Directory. +
+Format: `export`
+
 [[Exit]]
 === Exiting the program : `exit`
 
@@ -416,5 +423,6 @@ Below is a summary of all commands available in FOP Manager:
 |`undo` |Undoes previous command |`undo` |<<Undo,Undoing previous command>>
 |`redo` |Redoes previously undone command |`redo` |<<Redo, Redoing previously undone command>>
 |`clear` |Clears contact list |`clear` |<<Clear, Clearing all entries>>
+|`export` |Exports contact list |`export` |<<Export, Exporting all entries>>
 |`exit` |Exits program |`exit` |<<Exit, Exiting the program>>
 |=============================================================
