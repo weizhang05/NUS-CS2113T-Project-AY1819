@@ -295,17 +295,21 @@ This section describes how the 3 types of participants are managed.
 In *FOP Manager*, participants can be added, edited and deleted.
 
 Add
+
 * `add_o`: Adds an OGL type participant
 * `add_f`: Adds a Freshman type participant
 * `add`: Adds a participant who is neither OGL nor Freshman
 
 Edit
+
 * `edit INDEX`: Edits the participant at the current `INDEX` of the list showing
 
 Delete
+
 * `delete INDEX`: Deletes the participant at the current `INDEX` of the list showing
 
 Participant contact details can be viewed in different manners:
+
 * `list`: Lists all participants in the camp
 * `list_o`: Lists all OGLs
 * `list_f`: Lists all Freshmen
@@ -346,15 +350,18 @@ The list commands, 'list_o' and 'list_f`, use the keywords/predicates "Freshman"
 
 In *FOP Manager*, groups and houses can be added, edited and deleted.
 
-Add:
+Add
+
 * `add_h` creates a new house and adds it to the `UniqueHouseList` in the `AddressBook` object.
 * `add_g` adds a new group with its corresponding house name to the `UniqueGroupList` in the `AddressBook` object.
 
-Edit:
+Edit
+
 * `edit_h` edits the name of a house in `UniqueHouseList`, as well as changes the house name of all groups within the house in `UniqueGroupList`.
 * `edit_g` edits the name of a group in `UniqueGroupList`, as well as changes the group name of all participants with that group name in `UniqueParticipantList`.
 
-Delete:
+Delete
+
 * Deleting of house objects require there to be no groups within that house.
 * Deleting of group objects require there to be no participants within that group.
 
@@ -516,8 +523,11 @@ _{Coming in: v1.4}_
 
 // end::autocompletion[]
 
+// tag::dataencryption[]
 === [Proposed] Data Encryption
 _{Coming in: v2.0}_
+
+// end::dataencryption[]
 
 === Logging
 
@@ -1032,13 +1042,35 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |see the number of participants |know how many people are involved in the camp
 
+|`* * *` |user |edit a participants details |correct any details I may have keyed in wrongly
+
 |`* * *` |user |delete participants wrongly added |have error-free data
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`* * *` |user |find a participant by name |locate details of persons without having to go through the entire list
 
-|`* * *` |user |create Houses and Groups |allocate students to their groupings
+|`* * *` |user |list only the OGLs |see the details of only the OGLs in the camp for planning purposes
 
-|`* * *` |user |change the name of a House or Group |give my groups and houses names later into the camp planning
+|`* * *` |user |list only the Freshmen |see the details of only the Freshmen in the camp for planning purposes
+
+|`* * *` |user |create Houses |group Groups together in Houses, just like I can do in a camp
+
+|`* * *` |user |create Groups |allocate students to their groupings
+
+|`* * *` |user |edit the name of a House or Group |give my groups and houses proper names later into the camp planning
+
+|`* * *` |user |delete a House or Group |give my groups and houses names later into the camp planning
+
+|`* * *` |user |view the Houses I have added |see which houses I have added so far
+
+|`* * *` |user |view the Groups I have added |see the groups I have added, and which groups belong to which houses
+
+|`* * *` |user |see the size of my contact list |see the number of participants in the camp
+
+|`* * *` |user |see the number of Freshmen in the camp |see the number of sign-ups the camp has so far
+
+|`* * *` |user |see the number of OGLs in the camp |see if the camp has sufficient OGLs to for the planned number of Groups
+
+|`* * *` |user |see the number of houses and groups |know if I have a sufficient number of groups and houses
 
 |`* * *` |user |randomly divide freshmen into different houses and groups |do not have to manually assign them
 
