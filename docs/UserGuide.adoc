@@ -43,7 +43,7 @@ This section serves as a tutorial for a new user to FOP Manager.
 === Installation
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
+.  Download the latest `FOPManager.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for FOP Manager.
 .  Double-click the file to start the app. The GUI should appear in a few seconds and will look like this:
 +
@@ -74,7 +74,7 @@ Some example commands you can try:
 * `delete  3` : deletes the 3rd contact shown in the current list
 * `exit` : exits the app
 
-Refer to <<Features>> for details of each command.
+Refer to <<Features,Features>> for details of each command.
 
 [[Features]]
 == Features
@@ -207,7 +207,7 @@ Edits an existing participant in your contact list. +
 Format: `edit INDEX [n/NAME] [p/PHONE] [m/MAJOR] [g/GROUP] [t/TAG] ...`
 
 ****
-* Edits the participant at `INDEX`.
+* Edits the participant currently shown at `INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the participant will be removed i.e adding of tags is not cumulative.
@@ -216,10 +216,14 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [m/MAJOR] [g/GROUP] [t/TAG] ...`
 `INDEX` must be a *positive integer*: 1, 2, 3, ...
 
 [TIP]
-Edit a participant's `GROUP` after adding them, instead of choosing a group for them from the start
+To edit a particular participant by name, first <<Find,find>> the participant by name, then edit by index
 
 [TIP]
 Remove all the participant's tags by typing `t/` without specifying any tags after it
+
+[TIP]
+Edit a participant's `GROUP` after adding them, instead of choosing a group for them from the start
+
 ****
 
 Examples:
@@ -233,17 +237,17 @@ Edits the name of the participant at index 2 to be `John Koe` and clears all exi
 ==== Editing a house : `edit_h`
 
 Edits a house name. +
-Format: `edit_h oldHouseName newHouseName`
+Format: `edit_h OLDHOUSENAME NEWHOUSENAME`
 
 ****
-* Edits the house named `oldHouseName` to `newHouseName`
+* Edits the house named `OLDHOUSENAME` to `NEWHOUSENAME`
 * All groups under the old house name remain in the new house.
 
 [WARNING]
-`oldHouseName` must exist in the current list of houses
+`OLDHOUSENAME` must exist in the current list of houses
 
 [WARNING]
-`newGroupName` must not exist in the current list of houses
+`NEWHOUSENAME` must not exist in the current list of houses
 
 [TIP]
 House names are not case-sensitive
@@ -259,19 +263,19 @@ Edits the house named `Red` to `Green`.
 ==== Editing a group : `edit_g`
 
 Edits a group name. +
-Format: `edit_g oldGroupName newGroupName`
+Format: `edit_g OLDGROUPNAME NEWGROUPNAME`
 
 ****
-* Edits the group named `oldGroupName` to `newGroupName`
+* Edits the group named `OLDGROUPNAME` to `NEWGROUPNAME`
 * The `GROUP` of all participants within the old group is automatically updated.
 
 [WARNING]
-`oldGroupName` must exist in the current list of groups
+`OLDGROUPNAME` must exist in the current list of groups
 
 [WARNING]
-`newGroupName` must not exist in the current list of groups
+`NEWGROUPNAME` must not exist in the current list of groups
 
-[TIP]
+[NOTE]
 Group names are not case-sensitive
 
 ****
@@ -354,11 +358,11 @@ Deletes the participant at index 2 in the results of the `find` command.
 ==== Deleting a group : `delete_g`
 
 Deletes the specified group from the list of groups. +
-Format: `delete_g groupName`
+Format: `delete_g GROUPNAME`
 
 ****
-* Deletes the group matching the specified `groupName`.
-* `groupName` must exist in the list of groups.
+* Deletes the group matching the specified `GROUPNAME`.
+* `GROUPNAME` must exist in the list of groups.
 
 [WARNING]
 The group *must contain no participants* before it can be deleted.
@@ -367,11 +371,11 @@ The group *must contain no participants* before it can be deleted.
 ==== Deleting a house : `delete_h`
 
 Deletes the specified house from the list of houses. +
-Format: `delete_h houseName`
+Format: `delete_h HOUSENAME`
 
 ****
-* Deletes the house matching the specified `houseName`.
-* `houseName` must exist in the list of hosues.
+* Deletes the house matching the specified `HOUSENAME`.
+* `HOUSENAME` must exist in the list of hosues.
 
 [WARNING]
 The house *must contain no groups* before it can be deleted.
