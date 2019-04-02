@@ -92,7 +92,7 @@ e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 ====
 
-[[ViewHelp]]
+[[Help]]
 === Viewing help : `help`
 
 Opens a window with a list of all the commands available on FOP Manager +
@@ -203,7 +203,7 @@ Example:
 [[EditPart]]
 ==== Editing a participant : `edit`
 
-Edits an existing participant in your contact list. +
+Edits an existing participant in the contact list. +
 Format: `edit INDEX [n/NAME] [p/PHONE] [m/MAJOR] [g/GROUP] [t/TAG] ...`
 
 ****
@@ -290,19 +290,19 @@ Edits the group named `RED1` to `RED2`. All participants in RED1 are now in RED2
 [[ListFresh]]
 ==== Listing all freshmen : `list_f`
 
-Shows a list of all the freshmen in your Freshman list. +
+Shows a list of all the freshmen in the freshmen list. +
 Format: `list_f`
 
 [[ListOGL]]
 ==== Listing all OGLs : `list_o`
 
-Shows a list of all the OGLs in your OGL list. +
+Shows a list of all the OGLs in the OGL list. +
 Format: `list_o`
 
 [[ListALL]]
 ==== Listing all the participants : `list`
 
-Shows a list of all the participants involved in the camp, including freshmen and OGL, in your contact list. +
+Shows a list of all the participants involved in the camp in your contact list. +
 Format: `list`
 
 === View Commands
@@ -321,7 +321,7 @@ Example:
 [[ViewGroup]]
 ==== Viewing all groups : `view_g`
 
-Views the list of all groups added so far, including the house they have been added to. +
+Views the list of all groups added so far, along with the house they belong to. +
 Format: `view_g`
 
 Example:
@@ -347,12 +347,10 @@ The index *must be a positive integer*: 1, 2, 3, ...
 
 Examples:
 
-* `list` +
-`delete 2` +
-Deletes the participant at index 2.
-* `find Betsy` +
-`delete 1` +
-Deletes the participant at index 2 in the results of the `find` command.
+* `list` has just been entered. +
+`delete 2` deletes the participant at index 2.
+* `find Betsy` has just been entered. +
+`delete 1` deletes the participant at index 2 in the results of the `find` command.
 
 [[DeleteGroup]]
 ==== Deleting a group : `delete_g`
@@ -383,7 +381,7 @@ The house *must contain no groups* before it can be deleted.
 ****
 
 [[Find]]
-=== Locating participants by name: `find`
+=== Finding participants by name: `find`
 
 Finds participants whose names contain any of the given keywords. +
 Format: `find KEYWORD [MORE_KEYWORDS]`
@@ -398,10 +396,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-* `find John` +
-Returns `john` and `John Goe`
-* `find Betsy Tim John` +
-Returns any participant having names `Betsy`, `Tim`, or `John`
+* `find John` returns `john` and `John Goe`
+* `find Betsy Tim John` returns any participant having names `Betsy`, `Tim`, or `John`
 
 [[Select]]
 === Selecting a participant : `select`
@@ -417,12 +413,10 @@ Format: `select INDEX`
 
 Examples:
 
-* `list` +
-`select 2` +
-Selects the participant at index 2 in your contact list.
-* `find Betsy` +
-`select 1` +
-Selects the participant at index 1 in the results of the `find` command.
+* `list` has just been entered. +
+`select 2` selects the participant at index 2 in your contact list.
+* `find Betsy` has just been entered. +
+`select 1` selects the participant at index 1 in the results of the `find` command.
 
 [[History]]
 === Listing entered commands : `history`
@@ -444,22 +438,20 @@ Format: `undo`
 
 [NOTE]
 Undoable commands are commands that modify your contact list's content (`add`, `delete`, `edit` and `clear`).
+[TIP]
+Undoable commands are shown in the undo list.
 
 Examples:
 
-* `delete 1` +
-`list` +
-`undo` (reverses the `delete 1` command) +
+* `delete 1` has just been entered. +
+`undo` reverses the `delete 1` command
 
-* `select 1` +
-`list` +
-`undo` +
-The `undo` command fails as there are no undoable commands executed previously.
+* Only `select 1` has been entered. +
+`undo` fails as there are no undoable commands executed previously.
 
-* `delete 1` +
-`clear` +
-`undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
+* `delete 1` and `clear` have been entered. +
+`undo` reverses the `clear` command. +
+`undo` reverses the `delete 1` command. +
 
 [[Redo]]
 === Redoing previously undone command : `redo`
@@ -467,15 +459,17 @@ The `undo` command fails as there are no undoable commands executed previously.
 Reverses the most recent `undo` command. +
 Format: `redo`
 
+[TIP]
+Redoable commands are shown in the redo list.
+
 Examples:
 
-* `delete 1` +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
+* `delete 1` has just been entered. +
+`undo` reverses the `delete 1` command. +
+`redo` reapplies the `delete 1` command. +
 
-* `delete 1` +
-`redo` +
-The `redo` command fails as there are no `undo` commands executed previously.
+* Only `delete 1` has been entered. +
+`redo` fails as there are no `undo` commands executed previously.
 
 * `delete 1` +
 `clear` +
@@ -547,7 +541,7 @@ Below is a summary of all commands available in FOP Manager:
 |`delete` |Deletes participant at `INDEX` |`delete INDEX` |<<DeletePart,Deleting a participant>>
 |`delete_g` |Deletes group with `GROUPNAME` |`delete_g GROUPNAME` |<<DeleteGroup,Deleting a group>>
 |`delete_h` |Deletes house with `HOUSENAME` |`delete_h HOUSENAME` |<<DeleteHouse,Deleting a participant>>
-|`find` |Finds participants by name |`find KEYWORD [MORE_KEYWORDS]` |<<Find,Locating participants by name>>
+|`find` |Finds participants by name |`find KEYWORD [MORE_KEYWORDS]` |<<Find,Finding participants by name>>
 |`select` |Selects participant at `INDEX` |`select INDEX` |<<Select,Selecting a participant>>
 |`history` |Lists all previously entered commands |`history` |<<History,Listing entered comamnds>>
 |`undo` |Undoes previous command |`undo` |<<Undo,Undoing previous command>>
