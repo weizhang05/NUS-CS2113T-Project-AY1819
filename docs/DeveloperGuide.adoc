@@ -483,7 +483,7 @@ image::UndoRedoActivityDiagram.png[width="800"]
 //tag::randomize[]
 === Randomized Group Allocation
 
-*FOP Manager* has a `randomize` command, which allows the Project Director to automatically assign all participants to a group. 
+*FOP Manager* has a `randomize` command, which allows the Project Director to automatically assign all participants to a group.
 
 ==== Current Implementation
 
@@ -505,7 +505,7 @@ The `randomize` is achieved by coding a sequence of steps to achieve the allocat
 
 ===== Aspect: Shuffling of participants
 
-* *Alternative 1:* Shuffling the actual 
+* *Alternative 1:* Shuffling the actual
 ** Pros: Unidentifiable
 ** Cons: Uses even more computational resource and more complex coding as the current list of participant is unmodifiable.
 * *Alternative 2 (current choice):* Creating a list of integer based index to simulate participants

@@ -9,9 +9,7 @@
 
 == Overview
 
-FOP Manager is a desktop application for NUS undergradaute students who are Project Directors of Freshmen Orientation Programs 
-to manage both participants and committee members of the program. The user interacts with it using a CLI, and it has a GUI created with JavaFX. 
-It is written in Java, and has about 10 kLoC. The development of this application is to teach Principles of Software Engineering.
+FOP Manager is a desktop application for NUS undergradaute students who are Project Directors of Freshmen Orientation Programs to manage both participants and committee members of the program. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC. The development of this application is to teach Principles of Software Engineering.
 
 == Summary of contributions
 
