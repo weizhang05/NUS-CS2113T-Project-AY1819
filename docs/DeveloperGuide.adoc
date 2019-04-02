@@ -17,7 +17,31 @@ endif::[]
 
 By: `Team T08`
 
+== Introduction
+Welcome to the *FOP Manager* Developer Guide!
+
+*FOP Manager* was created for the purpose of easing the management of camp participants' contact information, where participants include Orientation Group Leaders (OGLs), Freshmen and other participants such as admin in the camp. As a text-based (Command Line Interface) address book application, *FOP Manager* is optimized for users who type fast and/or are learning to work efficiently with CLI tools. Despite being a text-based application, *FOP Manager* has a developed Graphical User Interface (GUI) that allows users to view contact details in an appealing, well-organized format.
+
+== About the Developer Guide
+
+This developer guide provides detailed documentation on the implementation of all the various features *FOP Manager* offers. It also suggests methods for you to modify and build upon it, should you see fit.
+
+See the table of contents above to navigate between different sections easily.
+
+Throughout this developer guide, there will be various icons used, as shown below:
+
+[TIP]
+This is a tip. Follow these tips to aid your development of *FOP Manager*.
+
+[NOTE]
+This is a note. Read these for additional information.
+
+[WARNING]
+This is a warning. Heed these warnings to avoid making mistakes that will hamper your development efforts.
+
 == Setting up
+
+This section shows how to set up *FOP Manager* on your desktop and begin your development journey.
 
 === Prerequisites
 
@@ -372,6 +396,9 @@ The Export feature will allow the FOC Project Director to export the data into e
 _{Coming in: v1.4}_
 
 // end::autocompletion[]
+
+=== [Proposed] Data Encryption
+_{Coming in: v2.0}_
 
 === Logging
 
