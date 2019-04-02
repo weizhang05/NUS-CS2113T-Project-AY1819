@@ -47,49 +47,40 @@ This section shows a summary of my coding, documentation, and other helpful cont
 *** Gave consistent feedback to team members to improve their implemented features
 *** Gave suggestions for other teams in the class of their User Guide and Developer Guide
 
-_{you can add/remove categories in the list above}_
 
 == Contributions to the User Guide
 
-Our team also updated the original addressbook User Guide with instructions for the enhancements that we had added. The following is an excerpt from our FOP Manager User Guide to show additions I made for managing `_House_` and `_Group_` objects:
+Our team updated the original addressbook User Guide with instructions for the enhancements that we had added. The following is an excerpt from our FOP Manager User Guide to show additions I made for managing `_House_` and `_Group_` objects:
 
-=== Edit Group
-*`edit_g OLDGROUPNAME NEWGROUPNAME: Edits a group name.*
+=== Edit Group: `edit_g`
 
-****
-* Edits the group named `OLDGROUPNAME` to `NEWGROUPNAME`
+This commmand edits the name of a group from `OLDGROUPNAME` to `NEWGROUPNAME`.
 * The `GROUP` of all participants within the old group is automatically updated.
+* `OLDGROUPNAME` must exist in the current list of groups
+* `NEWGROUPNAME` must not exist in the current list of groups
+* Note: Group names are not case-sensitive
 
-[WARNING]
-`OLDGROUPNAME` must exist in the current list of groups
+=== View Group: `view_g`
 
-[WARNING]
-`NEWGROUPNAME` must not exist in the current list of groups
-
-[NOTE]
-Group names are not case-sensitive
-
-=== View Group
-*`view_g`: Views the list of all groups added so far, along with the house they belong to*
+This command Views the list of all groups added so far, along with the house they belong to.
 
 Example:
 
-* Groups `R1` and `R2` have been added under the house `Red`. +
+Groups `R1` and `R2` have been added under the house `Red`. +
 `view_g` returns `[(R1, Red), (R2, Red)]`.
 
-include::https://github.com/cs2113-ay1819s2-t08-4/main/blob/master/docs/UserGuide.adoc[tag=ViewHouse]
+include::https://github.com/cs2113-ay1819s2-t08-4/main/blob/master/docs/UserGuide.adoc
+
 
 == Contributions to the Developer Guide
 
 Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.
 
-==== Group and House Management
+* Group and House Management *
 
 *FOP Manager* supports group and house commands, to reflect the structure of an actual Freshmen Orientation camp. Group and house management refer to how groups and houses are created and modified, as well as viewed, and how they support the addition of participants.
 
-==== Current Implementation
-
-In *FOP Manager*, groups and houses can be added, edited and deleted.
+In the current implementation of *FOP Manager*, groups and houses can be added, edited and deleted.
 
 Add
 
@@ -106,9 +97,11 @@ Delete
 * Deleting of house objects require there to be no groups within that house.
 * Deleting of group objects require there to be no participants within that group.
 
-==== Design Considerations
+=== Design Considerations
 
-===== Aspect: Storage of group and house lists
+When designing `_House_` and `_Group_` classes, I had to make decisions on how best to store the lists and what requirements commands should have. The following is a brief summary of my analysis and decisions.
+
+==== Aspect: Storage of group and house lists
 
 * *Alternative 1:* Storing groups and houses within a single list of houses that contain differing number of groups
 ** Pros: Easy management of data
