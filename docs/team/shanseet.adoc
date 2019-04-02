@@ -28,24 +28,25 @@ In this document, the following styles and formatting have been used:
 This section shows a summary of my coding, documentation, and other helpful contributions to the team project.
 
 *Enhancement Added*: I added the ability to create and modify `_House_` and `_Group_` objects
+
 * What it does: It allows users to add, edit and delete houses and groups to their camp, which in turn allows them to group participants, as is done in camps.
 * Justification: This is a core feature of our *FOP Manager* application. Being tailored to manage participant details in Freshmen Orientation Programmes, having groups and houses are essential to organising participants as camp organisers would usually do when planning camps.
 * Highlights: This feature is one of the core components that other enhancements build upon. An in-depth analysis of design alternatives was necessary to determine the storage of `_House_` and `_Group_` objects as it affected how efficiently data could be extracted and used. The implementation was also challenging as it required the addition of a group attribute to the `_Participant_` (previously named `_Person_`) class, as well as required changes to existing basic commands such as adding and editing a `_Participant_`.
 
-* *Minor enhancement*: Added a size command that allows the user to view the sizing details of the camp.
+*Minor enhancement*: Added a size command that allows the user to view the sizing details of the camp.
 
-* *Code contributed*: Click these links to see a sample of my code: https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/EditGroupCommand.java[Edit Group Command], https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/SizeCommand.java[Size Command]
+*Code contributed*: Click these links to see a sample of my code: https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/EditGroupCommand.java[Edit Group Command], https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/SizeCommand.java[Size Command]
 
-* *Other contributions*:
+*Other contributions*:
 
-** Project Management:
-*** Created labels and issues and assigned them to team members to keep track of team progress
-*** Managed milestones v1.2 to v1.4
-** Documentation:
-*** Made major changes to reformat and update User Guide and Developer Guide to include new features, as well as make it more reader-friendly: https://github.com/cs2113-ay1819s2-t08-4/main/pull/74[#74], https://github.com/cs2113-ay1819s2-t08-4/main/pull/102[#102]
-** Community:
-*** Gave consistent feedback to team members to improve their implemented features
-*** Gave suggestions for other teams in the class of their User Guide and Developer Guide
+* Project Management:
+** Created labels and issues and assigned them to team members to keep track of team progress
+** Managed milestones v1.2 to v1.4
+* Documentation:
+** Made major changes to reformat and update User Guide and Developer Guide to include new features, as well as make it more reader-friendly: https://github.com/cs2113-ay1819s2-t08-4/main/pull/74[#74], https://github.com/cs2113-ay1819s2-t08-4/main/pull/102[#102]
+* Community:
+** Gave consistent feedback to team members to improve their implemented features
+** Gave suggestions for other teams in the class of their User Guide and Developer Guide
 
 
 == Contributions to the User Guide
@@ -55,10 +56,13 @@ Our team updated the original addressbook User Guide with instructions for the e
 === Edit Group: `edit_g`
 
 This commmand edits the name of a group from `OLDGROUPNAME` to `NEWGROUPNAME`.
+
 * The `GROUP` of all participants within the old group is automatically updated.
 * `OLDGROUPNAME` must exist in the current list of groups
 * `NEWGROUPNAME` must not exist in the current list of groups
-* Note: Group names are not case-sensitive
+
+[IMPORTANT]
+Group names are not case-sensitive
 
 === View Group: `view_g`
 
@@ -76,7 +80,7 @@ include::https://github.com/cs2113-ay1819s2-t08-4/main/blob/master/docs/UserGuid
 
 Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.
 
-* Group and House Management *
+=== Group and House Management
 
 *FOP Manager* supports group and house commands, to reflect the structure of an actual Freshmen Orientation camp. Group and house management refer to how groups and houses are created and modified, as well as viewed, and how they support the addition of participants.
 
@@ -97,11 +101,11 @@ Delete
 * Deleting of house objects require there to be no groups within that house.
 * Deleting of group objects require there to be no participants within that group.
 
-=== Design Considerations
+== Design Considerations
 
 When designing `_House_` and `_Group_` classes, I had to make decisions on how best to store the lists and what requirements commands should have. The following is a brief summary of my analysis and decisions.
 
-==== Aspect: Storage of group and house lists
+=== Aspect: Storage of group and house lists
 
 * *Alternative 1:* Storing groups and houses within a single list of houses that contain differing number of groups
 ** Pros: Easy management of data
@@ -110,7 +114,7 @@ When designing `_House_` and `_Group_` classes, I had to make decisions on how b
 ** Pros: House objects are not affected by the operations done to the groups stored within it
 ** Cons: More computationally expensive to identify the groups within a house.
 
-===== Aspect: Deleting a group object requirements
+=== Aspect: Deleting a group object requirements
 
 * *Alternative 1:* No requirements when groups are deleted.
 ** Pros: User can delete a group much more easily
@@ -122,7 +126,7 @@ When designing `_House_` and `_Group_` classes, I had to make decisions on how b
 [NOTE]
 Camp organizers rarely intend to remove a filled group. Requiring a group to be empty before being deleted acts as a fail-safe to ensure that filled groups are not accidentally removed, resulting in participants having to be manually added back to the group.
 
-===== Aspect: Duplicate group names under different houses
+=== Aspect: Duplicate group names under different houses
 
 * *Alternative 1 (current choice):* Duplicate group names are not allowed.
 ** Pros: Groups can be searched for by name without specifying its house
