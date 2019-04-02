@@ -537,16 +537,16 @@ Below is a summary of all commands available in FOP Manager:
 |`add_h` |Adds a house |`add_h HOUSENAME` |<<AddHouse,Adding a house>>
 |`add_g` |Adds a group |`add_g GROUPNAME HOUSENAME`|<<AddGroup,Adding a group>>
 |`edit` |Edits participant at `INDEX` |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR] [g/GROUP] [t/TAG]...` |<<EditPart,Editing a Participant>>
-|`edit_h` |Edits house with `oldHouseName` |`edit_h oldHouseName newHouseName` |<<EditHouse,Editing a House>>
-|`edit_g` |Edits group with `oldGroupName` |`edit_g oldGroupName newGroupName` |<<EditGroup,Editing a Group>>
+|`edit_h` |Edits house with `OLDHOUSENAME` |`edit_h OLDHOUSENAME NEWHOUSENAME` |<<EditHouse,Editing a house>>
+|`edit_g` |Edits group with `OLDGROUPNAME` |`edit_g OLDGROUPNAME NEWGROUPNAME` |<<EditGroup,Editing a group>>
 |`list_f` |Lists all freshmen in contact list |`list_f` |<<ListFresh,Listing all freshmen>>
 |`list_o` |Lists all OGLs in contact list |`list_o` |<<ListOGL,Listing all OGLs>>
 |`list` |Lists all participants in contact list |`list` |<<ListALL,Listing all participants>>
 |`view_h` |Views all houses in house list |`view_h` |<<ViewHouse,Viewing all houses>>
 |`view_g` |Views all groups in group list |`view_g` |<<ViewGroup,Viewing all groups>>
 |`delete` |Deletes participant at `INDEX` |`delete INDEX` |<<DeletePart,Deleting a participant>>
-|`delete_g` |Deletes group with groupName |`delete_g groupName` |<<DeleteGroup,Deleting a group>>
-|`delete_h` |Deletes house with houseName |`delete_h houseName` |<<DeleteHouse,Deleting a participant>>
+|`delete_g` |Deletes group with `GROUPNAME` |`delete_g GROUPNAME` |<<DeleteGroup,Deleting a group>>
+|`delete_h` |Deletes house with `HOUSENAME` |`delete_h HOUSENAME` |<<DeleteHouse,Deleting a participant>>
 |`find` |Finds participants by name |`find KEYWORD [MORE_KEYWORDS]` |<<Find,Locating participants by name>>
 |`select` |Selects participant at `INDEX` |`select INDEX` |<<Select,Selecting a participant>>
 |`history` |Lists all previously entered commands |`history` |<<History,Listing entered comamnds>>
