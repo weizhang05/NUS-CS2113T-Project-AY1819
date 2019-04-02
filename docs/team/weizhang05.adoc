@@ -16,33 +16,33 @@ It is written in Java, and has about 10 kLoC. The development of this applicatio
 == Summary of contributions
 
 * .*Major enhancement*:
-[options="header"]
-|=======================
-|Feature			|Description      																			|Justification 																						| Highlights
-|Randomize Command	|Allows the Project Director to automatically assign all participants to created groups		|The command prevents the Project Director from assigning the participants to the group manually.	|
-|=======================
+  [options="header"]
+  |=======================
+  |Feature			|Description      																			|Justification 																						| Highlights
+  |Randomize Command	|Allows the Project Director to automatically assign all participants to created groups		|The command prevents the Project Director from assigning the participants to the group manually.	|
+  |=======================
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+* .*Minor enhancement*:
+  [options="header"]
+  |=======================
+  |Feature			|Description      																			|Justification 																						| Highlights
+  |Randomize Command	|Allows the Project Director to automatically assign all participants to created groups		|The command prevents the Project Director from assigning the participants to the group manually.	|
+  |=======================
 
 * *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
 
 * *Other contributions*:
 
 ** Project management:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+*** <insert here>
 ** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+*** <insert here>
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+*** <insert here>
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
+*** <insert here>
 ** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
+*** <insert here>
 
 _{you can add/remove categories in the list above}_
 
