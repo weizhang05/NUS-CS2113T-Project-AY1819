@@ -471,12 +471,11 @@ Examples:
 * Only `delete 1` has been entered. +
 `redo` fails as there are no `undo` commands executed previously.
 
-* `delete 1` +
-`clear` +
-`undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
-`redo` (reapplies the `clear` command) +
+* `delete 1` and `clear` have just been entered. +
+`undo` reverses the `clear` command. +
+`undo` reverses the `delete 1` command. +
+`redo` reapplies the `delete 1` command. +
+`redo` reapplies the `clear` command. +
 // end::undoredo[]
 
 [[Clear]]
