@@ -25,13 +25,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 import seedu.address.model.grouping.Group;
-import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Major;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Sex;
+import seedu.address.model.participant.Birthday;
+import seedu.address.model.participant.Email;
+import seedu.address.model.participant.Major;
+import seedu.address.model.participant.Name;
+import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Phone;
+import seedu.address.model.participant.Sex;
 import seedu.address.model.tag.Tag;
 
 
@@ -61,6 +61,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_NONEXISTENT_GROUP = "This group does not exist. "
+            + "A person must be added to an existent group!";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -91,6 +93,10 @@ public class EditCommand extends Command {
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        if (!editedPerson.getGroup().getGroupName().equals("") && !model.hasGroup(editedPerson.getGroup())) {
+            throw new CommandException(MESSAGE_NONEXISTENT_GROUP);
         }
 
         model.setPerson(personToEdit, editedPerson);
@@ -172,7 +178,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, major, tags);
+            return CollectionUtil.isAnyNonNull(name, sex, phone, birthday, email, major, group, tags);
         }
 
         public void setName(Name name) {

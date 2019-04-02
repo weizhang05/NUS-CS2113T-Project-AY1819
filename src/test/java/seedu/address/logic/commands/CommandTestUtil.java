@@ -20,8 +20,8 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.participant.NameContainsKeywordsPredicate;
+import seedu.address.model.participant.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -41,8 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_MAJOR_AMY = "Computer Science";
     public static final String VALID_MAJOR_BOB = "Information System";
-    public static final String VALID_GROUP_AMY = "G1";
-    public static final String VALID_GROUP_BOB = "G2";
+    public static final String VALID_GROUP_AMY = "";
+    public static final String VALID_GROUP_BOB = "";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 

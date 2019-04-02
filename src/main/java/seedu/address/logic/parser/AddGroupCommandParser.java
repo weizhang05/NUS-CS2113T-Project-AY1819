@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.AddGroupCommand;
@@ -17,14 +18,16 @@ public class AddGroupCommandParser implements Parser<AddGroupCommand> {
      */
 
     public AddGroupCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         String[] splitArg = args.trim().split(" ");
 
         if (splitArg.length != 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupCommand.MESSAGE_USAGE));
         }
 
-        String groupName = splitArg[0];
+        String groupName = splitArg[0].toUpperCase();
         String houseName = splitArg[1];
+        houseName = houseName.substring(0, 1).toUpperCase() + houseName.substring(1).toLowerCase();
 
         return new AddGroupCommand(groupName, houseName);
     };

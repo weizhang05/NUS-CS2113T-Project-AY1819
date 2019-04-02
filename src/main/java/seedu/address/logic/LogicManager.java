@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -15,7 +16,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.participant.Person;
 import seedu.address.storage.Storage;
 
 /**
@@ -92,6 +93,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Path getChartStoragePath() {
+        return model.getChartStoragePath();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
@@ -114,5 +120,20 @@ public class LogicManager implements Logic {
     @Override
     public void setSelectedPerson(Person person) {
         model.setSelectedPerson(person);
+    }
+
+    @Override
+    public ObservableMap<String, Integer> getAgeData() {
+        return model.getAgeData();
+    }
+
+    @Override
+    public ObservableMap<String, Integer> getMajorData() {
+        return model.getMajorData();
+    }
+
+    @Override
+    public ObservableMap<String, Integer> getSexData() {
+        return model.getSexData();
     }
 }

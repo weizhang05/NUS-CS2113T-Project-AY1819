@@ -11,12 +11,12 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 import seedu.address.model.grouping.Group;
-import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Major;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Sex;
+import seedu.address.model.participant.Birthday;
+import seedu.address.model.participant.Email;
+import seedu.address.model.participant.Major;
+import seedu.address.model.participant.Name;
+import seedu.address.model.participant.Phone;
+import seedu.address.model.participant.Sex;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -137,7 +137,7 @@ public class ParserUtil {
      */
     public static Group parseGroup(String group) throws ParseException {
         requireNonNull(group);
-        String trimmedGroup = group.trim();
+        String trimmedGroup = group.trim().toUpperCase();
         if (!Group.isValidGroup(trimmedGroup)) {
             throw new ParseException(Group.MESSAGE_CONSTRAINTS);
         }
@@ -168,6 +168,30 @@ public class ParserUtil {
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
+        return tagSet;
+    }
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTagsParticipant(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        tagSet.add(parseTag("Freshman"));
+        return tagSet;
+    }
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTagsOgl(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        tagSet.add(parseTag("OGL"));
         return tagSet;
     }
 }

@@ -17,12 +17,12 @@ import seedu.address.logic.commands.AddParticipantCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 import seedu.address.model.grouping.Group;
-import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Major;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Sex;
+import seedu.address.model.participant.Birthday;
+import seedu.address.model.participant.Email;
+import seedu.address.model.participant.Major;
+import seedu.address.model.participant.Name;
+import seedu.address.model.participant.Phone;
+import seedu.address.model.participant.Sex;
 import seedu.address.model.role.Participant;
 import seedu.address.model.tag.Tag;
 
@@ -54,7 +54,7 @@ public class AddParticipantCommandParser extends AddCommandParser {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Major major = ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).get());
         Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = ParserUtil.parseTagsParticipant(argMultimap.getAllValues(PREFIX_TAG));
 
         Participant person = new Participant(name, sex, birthday, phone, email, major, group, tagList);
         return new AddParticipantCommand(person);

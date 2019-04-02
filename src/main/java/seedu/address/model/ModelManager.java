@@ -13,14 +13,14 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.role.Participant;
-import seedu.address.storage.HouseStorage;
+import seedu.address.model.participant.Person;
+import seedu.address.model.participant.exceptions.PersonNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -30,10 +30,16 @@ public class ModelManager implements Model {
 
     private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
+
     private final FilteredList<Person> filteredPersons;
     private final SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
 
-    private final HouseStorage houseStorage = new HouseStorage();
+    private final FilteredList<Group> filteredGroups;
+    private final SimpleObjectProperty<Group> selectedGroups = new SimpleObjectProperty<>();
+
+    private final FilteredList<House> filteredHouses;
+    private final SimpleObjectProperty<House> selectedHouses = new SimpleObjectProperty<>();
+
     private String undoableCommand;
 
     /**
@@ -49,6 +55,12 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
         filteredPersons.addListener(this::ensureSelectedPersonIsValid);
+
+        filteredGroups = new FilteredList<>(versionedAddressBook.getGroupList());
+        filteredGroups.addListener(this::ensureSelectedGroupIsValid);
+
+        filteredHouses = new FilteredList<>(versionedAddressBook.getHouseList());
+        filteredHouses.addListener(this::ensureSelectedHouseIsValid);
     }
 
     public ModelManager() {
@@ -80,6 +92,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getChartStoragePath() {
+        return userPrefs.getChartStoragePath();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
@@ -93,9 +110,29 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
+    public boolean isEmpty() {
+        return versionedAddressBook.isEmpty();
+    }
+
+    @Override
+    public ObservableMap<String, Integer> getAgeData() {
+        return versionedAddressBook.getAgeData();
+    }
+
+    @Override
+    public ObservableMap<String, Integer> getMajorData() {
+        return versionedAddressBook.getMajorData();
+    }
+
+    @Override
+    public ObservableMap<String, Integer> getSexData() {
+        return versionedAddressBook.getSexData();
+    }
+
+    @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         versionedAddressBook.resetData(addressBook);
-        undoableCommand = "clear";
+        undoableCommand = "Clear all persons";
     }
 
     @Override
@@ -112,7 +149,7 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
-        undoableCommand = "Delete" + target.getName().fullName;
+        undoableCommand = "Delete " + target.getName().fullName;
 
         if (FreshmanList.hasFreshman(target.toString())) {
             FreshmanList.deleteFreshman(target.toString());
@@ -127,11 +164,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addFreshman(Participant person) {
-        FreshmanList.addFreshman(person.toString());
-    }
-
-    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
@@ -139,33 +171,6 @@ public class ModelManager implements Model {
         undoableCommand = "Edit " + editedPerson.getName().fullName;
     }
 
-    @Override
-    public boolean hasHouse(String house) {
-        requireAllNonNull(house);
-
-        return houseStorage.hasHouse(house);
-    };
-
-    @Override
-    public void addHouse(String house) {
-        requireAllNonNull(house);
-
-        houseStorage.addHouse(house);
-    };
-
-    @Override
-    public House getHouse(String house) {
-        requireAllNonNull(house);
-
-        return houseStorage.getHouse(house);
-    }
-
-    @Override
-    public void addGroup(String groupName, String houseName) {
-        requireAllNonNull(groupName, houseName);
-
-        houseStorage.addGroup(groupName, houseName);
-    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -249,6 +254,108 @@ public class ModelManager implements Model {
         selectedPerson.setValue(person);
     }
 
+    // ================ Group Operations ======================
+    @Override
+    public boolean hasGroup(Group group) {
+        requireNonNull(group);
+        return versionedAddressBook.hasGroup(group);
+    }
+
+    @Override
+    public void deleteGroup(Group target) {
+        versionedAddressBook.removeGroup(target);
+        undoableCommand = "Delete Group " + target.getGroupName();
+
+        if (GroupList.hasGroup(target.toString())) {
+            GroupList.deleteGroup(target.toString());
+        }
+    }
+
+    @Override
+    public void addGroup(Group group) {
+        versionedAddressBook.addGroup(group);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        undoableCommand = "Add Group " + group.getGroupName();
+    }
+
+    @Override
+    public void setGroup(Group target, Group editedGroup) {
+        requireAllNonNull(target, editedGroup);
+
+        versionedAddressBook.setGroup(target, editedGroup);
+        undoableCommand = "Edit Group " + editedGroup.getGroupName();
+    }
+
+    @Override
+    public ObservableList<Group> getFilteredGroupList() {
+        return filteredGroups;
+    }
+
+    @Override
+    public void updateFilteredGroupList(Predicate<Group> predicate) {
+        requireNonNull(predicate);
+        filteredGroups.setPredicate(predicate);
+    }
+
+    @Override
+    public int sizeGroupList () {
+        return filteredGroups.size();
+    }
+
+    // ================ House Operations ======================
+    @Override
+    public House getHouse(House house) {
+        return null;
+    }
+
+    @Override
+    public boolean hasHouse(House house) {
+        requireNonNull(house);
+        return versionedAddressBook.hasHouse(house);
+    }
+
+    @Override
+    public void deleteHouse(House target) {
+        versionedAddressBook.removeHouse(target);
+        undoableCommand = "Delete House " + target.getHouseName();
+
+        if (HouseList.hasHouse(target.toString())) {
+            HouseList.deleteHouse(target.toString());
+        }
+    }
+
+    @Override
+    public void addHouse(House house) {
+        versionedAddressBook.addHouse(house);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        undoableCommand = "Add House " + house.getHouseName();
+    }
+
+    @Override
+    public void setHouse(House target, House editedHouse) {
+        requireAllNonNull(target, editedHouse);
+
+        versionedAddressBook.setHouse(target, editedHouse);
+        undoableCommand = "Edit House " + editedHouse.getHouseName();
+
+    }
+
+    @Override
+    public ObservableList<House> getFilteredHouseList() {
+        return filteredHouses;
+    }
+
+    @Override
+    public void updateFilteredHouseList(Predicate<House> predicate) {
+        requireNonNull(predicate);
+        filteredHouses.setPredicate(predicate);
+    }
+
+    @Override
+    public int sizeHouseList() {
+        return filteredHouses.size();
+    }
+
     /**
      * Ensures {@code selectedPerson} is a valid person in {@code filteredPersons}.
      */
@@ -274,6 +381,64 @@ public class ModelManager implements Model {
                 // Select the person that came before it in the list,
                 // or clear the selection if there is no such person.
                 selectedPerson.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
+            }
+        }
+    }
+
+    /**
+     * Ensures {@code selectedGroup} is a valid group in {@code filteredGroups}.
+     */
+    private void ensureSelectedGroupIsValid(ListChangeListener.Change<? extends Group> change) {
+        while (change.next()) {
+            if (selectedGroups.getValue() == null) {
+                // null is always a valid selected group, so we do not need to check that it is valid anymore.
+                return;
+            }
+
+            boolean wasSelectedGroupReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
+                    && change.getRemoved().contains(selectedGroups.getValue());
+            if (wasSelectedGroupReplaced) {
+                // Update selectedGroups to its new value.
+                int index = change.getRemoved().indexOf(selectedGroups.getValue());
+                selectedGroups.setValue(change.getAddedSubList().get(index));
+                continue;
+            }
+
+            boolean wasSelectedGroupRemoved = change.getRemoved().stream()
+                    .anyMatch(removedGroup -> selectedGroups.getValue().isSameGroup(removedGroup));
+            if (wasSelectedGroupRemoved) {
+                // Select the group that came before it in the list,
+                // or clear the selection if there is no such group.
+                selectedGroups.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
+            }
+        }
+    }
+
+    /**
+     * Ensures {@code selectedHouse} is a valid house in {@code filteredHouses}.
+     */
+    private void ensureSelectedHouseIsValid(ListChangeListener.Change<? extends House> change) {
+        while (change.next()) {
+            if (selectedHouses.getValue() == null) {
+                // null is always a valid selected house, so we do not need to check that it is valid anymore.
+                return;
+            }
+
+            boolean wasSelectedHouseReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
+                    && change.getRemoved().contains(selectedHouses.getValue());
+            if (wasSelectedHouseReplaced) {
+                // Update selectedHouses to its new value.
+                int index = change.getRemoved().indexOf(selectedHouses.getValue());
+                selectedHouses.setValue(change.getAddedSubList().get(index));
+                continue;
+            }
+
+            boolean wasSelectedHouseRemoved = change.getRemoved().stream()
+                    .anyMatch(removedHouse -> selectedHouses.getValue().isSameHouse(removedHouse));
+            if (wasSelectedHouseRemoved) {
+                // Select the house that came before it in the list,
+                // or clear the selection if there is no such house.
+                selectedHouses.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
             }
         }
     }

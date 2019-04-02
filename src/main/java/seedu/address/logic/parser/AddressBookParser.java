@@ -9,21 +9,31 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.commands.AddHouseCommand;
+import seedu.address.logic.commands.AddOglCommand;
 import seedu.address.logic.commands.AddParticipantCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteGroupCommand;
+import seedu.address.logic.commands.DeleteHouseCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditGroupCommand;
+import seedu.address.logic.commands.EditHouseCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListOglCommand;
 import seedu.address.logic.commands.ListParticipantCommand;
 import seedu.address.logic.commands.RandomizeCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.SizeCommand;
+import seedu.address.logic.commands.StatCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.ViewGroupsCommand;
+import seedu.address.logic.commands.ViewHousesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -62,17 +72,32 @@ public class AddressBookParser {
         case AddHouseCommand.COMMAND_WORD:
             return new AddHouseCommandParser().parse(arguments);
 
+        case AddOglCommand.COMMAND_WORD:
+            return new AddOglCommandParser().parse(arguments);
+
         case AddParticipantCommand.COMMAND_WORD:
             return new AddParticipantCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
+        case EditGroupCommand.COMMAND_WORD:
+            return new EditGroupCommandParser().parse(arguments);
+
+        case EditHouseCommand.COMMAND_WORD:
+            return new EditHouseCommandParser().parse(arguments);
+
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DeleteGroupCommand.COMMAND_WORD:
+            return new DeleteGroupCommandParser().parse(arguments);
+
+        case DeleteHouseCommand.COMMAND_WORD:
+            return new DeleteHouseCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -83,8 +108,11 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+        case ListOglCommand.COMMAND_WORD:
+            return new ListOglCommandParser().parse(arguments);
+
         case ListParticipantCommand.COMMAND_WORD:
-            return new ListParticipantCommand();
+            return new ListParticipantCommandParser().parse(arguments);
 
         case HistoryCommand.COMMAND_WORD:
             return new HistoryCommand();
@@ -103,6 +131,18 @@ public class AddressBookParser {
 
         case RandomizeCommand.COMMAND_WORD:
             return new RandomizeCommand();
+
+        case SizeCommand.COMMAND_WORD:
+            return new SizeCommand();
+
+        case ViewGroupsCommand.COMMAND_WORD:
+            return new ViewGroupsCommand();
+
+        case ViewHousesCommand.COMMAND_WORD:
+            return new ViewHousesCommand();
+
+        case StatCommand.COMMAND_WORD:
+            return new StatCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

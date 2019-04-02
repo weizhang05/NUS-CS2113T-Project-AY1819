@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import seedu.address.model.participant.Major;
 import seedu.address.testutil.Assert;
 
 public class MajorTest {
@@ -30,8 +31,8 @@ public class MajorTest {
         assertFalse(Major.isValidMajor(" ")); // spaces only
 
         // valid addresses
-        assertTrue(Major.isValidMajor("Blk 456, Den Road, #01-355"));
-        assertTrue(Major.isValidMajor("-")); // one character
-        assertTrue(Major.isValidMajor("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Major.isValidMajor("CS"));
+        assertTrue(Major.isValidMajor("cs")); // one character
+        assertTrue(Major.isValidMajor("cOmputer SCience")); // long address
     }
 }
