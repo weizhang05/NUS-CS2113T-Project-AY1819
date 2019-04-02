@@ -16,18 +16,18 @@ It is written in Java, and has about 10 kLoC. The development of this applicatio
 == Summary of contributions
 
 * .*Major enhancement*:
-  [options="header"]
-  |=======================
-  |Feature			|Description      																			|Justification 																						| Highlights
-  |Randomize Command	|Allows the Project Director to automatically assign all participants to created groups		|The command prevents the Project Director from assigning the participants to the group manually.	|
-  |=======================
+[options="header"]
+|=======================
+|Feature			|Description      																			|Justification 																						| Highlights
+|Randomize Command	|Allows the Project Director to automatically assign all participants to created groups		|The command prevents the Project Director from assigning the participants to the group manually.	|
+|=======================
 
 * .*Minor enhancement*:
-  [options="header"]
-  |=======================
-  |Feature			|Description      																			|Justification 																						| Highlights
-  |Randomize Command	|Allows the Project Director to automatically assign all participants to created groups		|The command prevents the Project Director from assigning the participants to the group manually.	|
-  |=======================
+[options="header"]
+|=======================
+|Feature			|Description      																			|Justification 																						| Highlights
+|Randomize Command	|Allows the Project Director to automatically assign all participants to created groups		|The command prevents the Project Director from assigning the participants to the group manually.	|
+|=======================
 
 * *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
 
