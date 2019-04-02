@@ -1,0 +1,31 @@
+{
+  "persons" : [ {
+    "name" : "Clyde",
+    "sex" : "Male",
+    "birthday" : "27071999",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "major" : "IS",
+    "group" : "R2",
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "Mabel",
+    "sex" : "Female",
+    "birthday" : "27071999",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "major" : "IS",
+    "group" : "R1",
+    "tagged" : [ "owesMoney", "friends" ]
+  } ],
+  "groups" : [ {
+    "groupName" : "R1",
+    "houseName" : "Red"
+  }, {
+    "groupName" : "R2",
+    "houseName" : "Red"
+  } ],
+  "houses" : [ {
+    "houseName" : "Red"
+  } ]
+}
