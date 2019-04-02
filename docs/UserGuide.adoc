@@ -367,6 +367,13 @@ The `redo` command fails as there are no `undo` commands executed previously.
 Clears all entries from your contact list. +
 Format: `clear`
 
+[[Export]]
+=== Exporting contact list : `export`
+
+Exports all entries from your contact list to Excel Spreadsheet. +
+Excel Spreadsheet will be saved in the current User Directory. +
+Format: `export`
+
 [[Exit]]
 === Exiting the program : `exit`
 
@@ -405,8 +412,8 @@ Below is a summary of all commands available in FOP Manager:
 |`add` |Adds a participant |`add n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...` |<<AddOther,Adding a participant>>
 |`add_h` |Adds a house |`add_h HOUSENAME` |<<AddHouse,Adding a house>>
 |`add_g` |Adds a group |`add_g GROUPNAME HOUSENAME`|<<AddGroup,Adding a group>>
-|`list_f` |Lists all freshmen in contact list |`list` |<<ListFresh,Listing all participants>>
-|`list_o` |Lists all participants in contact list |`list` |<<ListOGL,Listing all participants>>
+|`list_f` |Lists all freshmen in contact list |`list_f` |<<ListFresh,Listing all freshmen>>
+|`list_o` |Lists all OGLs in contact list |`list_o` |<<ListOGL,Listing all OGLs>>
 |`list` |Lists all participants in contact list |`list` |<<ListALL,Listing all participants>>
 |`edit` |Edits participant at `INDEX` |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR] [g/GROUP] [t/TAG]...` |<<Edit,Editing a Participant>>
 |`find` |Finds participants by name |`find KEYWORD [MORE_KEYWORDS]` |<<Find,Locating participants by name>>
@@ -416,5 +423,6 @@ Below is a summary of all commands available in FOP Manager:
 |`undo` |Undoes previous command |`undo` |<<Undo,Undoing previous command>>
 |`redo` |Redoes previously undone command |`redo` |<<Redo, Redoing previously undone command>>
 |`clear` |Clears contact list |`clear` |<<Clear, Clearing all entries>>
+|`export` |Exports contact list |`export` |<<Export, Exporting all entries>>
 |`exit` |Exits program |`exit` |<<Exit, Exiting the program>>
 |=============================================================
