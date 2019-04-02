@@ -480,6 +480,40 @@ image::UndoRedoActivityDiagram.png[width="800"]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
+//tag::randomize[]
+=== Randomized Group Allocation
+
+*FOP Manager* has a `randomize` command, which allows the Project Director to automatically assign all participants to a group.
+
+==== Current Implementation
+
+The `randomize` is achieved by coding a sequence of steps to achieve the allocation of groups to participants:
+* Creates a list of integer based index. This is to simulate the participants.
+* Shuffles the list of index using a seed generated from SecureRandom. This is to ensure the result is to avoid possible similar results for every reshuffle.
+* Simulate the edit command to update the group details of all participants. This is done by programmatically executing the `edit` command, but only for the group attributes of the participants.
+
+==== Design Considerations
+
+===== Aspect: Updating group attribute of participants
+
+* *Alternative 1:* Use the same way as how the `edit` command works
+** Pros: No internal coupling
+** Cons: Unnecessary recoding
+* *Alternative 2 (current choice):* Programmatically simulate the `edit` command
+** Pros: Lesser code and better maintainance of the editing feature
+** Cons: Internal coupling within the component
+
+===== Aspect: Shuffling of participants
+
+* *Alternative 1:* Shuffling the actual
+** Pros: Unidentifiable
+** Cons: Uses even more computational resource and more complex coding as the current list of participant is unmodifiable.
+* *Alternative 2 (current choice):* Creating a list of integer based index to simulate participants
+** Pros: Less computational intensive as dealing with native data type
+** Cons: Uses slightly more memory at that point of time
+
+//end::randomize[]
+
 // tag::statistic[]
 === [Proposed] Statistic feature
 ==== Planned Implementation

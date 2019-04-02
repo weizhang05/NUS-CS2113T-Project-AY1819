@@ -478,6 +478,26 @@ Examples:
 `redo` reapplies the `clear` command. +
 // end::undoredo[]
 
+// tag::randomize[]
+[[Undo]]
+=== Randomize command : `randomize`
+
+Randomize group allocation of all registered participants. +
+Format: `randomize`
+
+[NOTE]
+Command will only work when there is at least 2 registered participants and 2 created groups.
+
+Examples:
+
+* `randomize` has just been entered (successful). +
+Output: Participants are evenly distributed
+
+* `randomize` has just been entered (error). +
+Output: Unable to distribute participants (min 2 groups and 2 participants)
+
+// end::randomize[]
+
 [[Clear]]
 === Clearing all entries : `clear`
 
