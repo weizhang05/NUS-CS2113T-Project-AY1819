@@ -1,7 +1,17 @@
-= Chan Wei Zhang - Project Portfolio
+= Chan Wei Zhang (Clyde) - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
+
+== INTRODUCTION: Student/Software Engineer
+
+---
+
+Clyde is a second year student in NUS School of Computing who is currently pursuing a Bachelor of Computing in Information Security at the time he is taking CS2113T. +
+ +
+Clyde works on both frontend and backend development, specializes in *UI/UX*, *System Design* and Application Development. +
+ +
+In terms of programming languages, Clyde is experience in *Java*, *Python 2/3*, *SQL*, *PHP*, and *Javascript* and is also familiar with web technologies like *Bootstrap* and *NodeJS*.
 
 == PROJECT: FOP Manager
 
@@ -44,9 +54,7 @@ FOP Manager is a desktop application for NUS undergraduate students who are Proj
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=undoredo]
-
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=randomize]
 
 == Contributions to the Developer Guide
 
@@ -54,13 +62,4 @@ include::../UserGuide.adoc[tag=dataencryption]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=undoredo]
-
-include::../DeveloperGuide.adoc[tag=dataencryption]
-
-
-== PROJECT: PowerPointLabs
-
----
-
-_{Optionally, you may include other projects in your portfolio.}_
+include::../DeveloperGuide.adoc[tag=randomize]
