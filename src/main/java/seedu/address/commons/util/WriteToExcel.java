@@ -1,8 +1,8 @@
 package seedu.address.commons.util;
 
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import seedu.address.model.participant.Person;
 import seedu.address.model.tag.Tag;
 
@@ -39,10 +39,10 @@ public class WriteToExcel {
         try{
             String excelFileName = WORKING_DIRECTORY_STRING
                     +System.getProperty("file.separator")+
-                    "FOP_MANAGER_LIST.xlsx";
-            XSSFWorkbook wb = new XSSFWorkbook();
+                    "FOP_MANAGER_LIST.xls";
+            HSSFWorkbook wb = new HSSFWorkbook();
             String sheetName = "FOP_CONTACTS";
-            XSSFSheet sheet = wb.createSheet(sheetName);
+            HSSFSheet sheet = wb.createSheet(sheetName);
             writeDataIntoExcelSheet(persons,sheet);
 
             FileOutputStream out= new FileOutputStream(excelFileName);
@@ -57,7 +57,7 @@ public class WriteToExcel {
 /**
  *Write data into ExcelSheet.
  */
-     private static void writeDataIntoExcelSheet(List<Person>persons,XSSFSheet sheet){
+     private static void writeDataIntoExcelSheet(List<Person>persons,HSSFSheet sheet){
 
         int rowNum=STARTING_INDEX;
         Row startingRow = sheet.createRow(rowNum);
