@@ -2,7 +2,7 @@
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
-:important-caption: :exclamation:
+:note-caption: :note:
 
 == PROJECT: FOP Manager
 
@@ -16,8 +16,10 @@ In this project, I was in charge of creating the commands to support the additio
 
 In this document, the following styles and formatting have been used:
 
+[NOTE]
+This symbol indicates important information.
+
 |============================================================
-| :exclamation: |This symbol indicates important information.
 |`add_g` |A grey highlight indicates that this is a command that can be inputted into the command line and executed by the application.
 |`_Group_` |Italicised words in grey highlight indicate the name of a class or object used in the application.
 |============================================================
@@ -35,7 +37,7 @@ This section shows a summary of my coding, documentation, and other helpful cont
 
 *Minor enhancement*: Added a size command that allows the user to view the sizing details of the camp.
 
-*Code contributed*: Click these links to see a sample of my code: https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/EditGroupCommand.java[Edit Group Command], https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/SizeCommand.java[Size Command]
+*Code contributed*: Click these links to see a sample of my code: https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/EditGroupCommand.java[Edit Group Command], https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/AddGroupCommand.java[Add Group Command]
 
 *Other contributions*:
 
@@ -61,7 +63,7 @@ This commmand edits the name of a group from `OLDGROUPNAME` to `NEWGROUPNAME`.
 * `OLDGROUPNAME` must exist in the current list of groups
 * `NEWGROUPNAME` must not exist in the current list of groups
 
-[IMPORTANT]
+[NOTE]
 Group names are not case-sensitive
 
 === View Group: `view_g`
@@ -73,7 +75,7 @@ Example:
 Groups `R1` and `R2` have been added under the house `Red`. +
 `view_g` returns `[(R1, Red), (R2, Red)]`.
 
-include::https://github.com/cs2113-ay1819s2-t08-4/main/blob/master/docs/UserGuide.adoc
+include::https://github.com/cs2113-ay1819s2-t08-4/main/blob/master/docs/UserGuide.adoc[See User Guide here]
 
 
 == Contributions to the Developer Guide
@@ -100,6 +102,8 @@ Delete
 
 * Deleting of house objects require there to be no groups within that house.
 * Deleting of group objects require there to be no participants within that group.
+
+https://github.com/shanseet/T08-Fork/blob/master/docs/DeveloperGuide.adoc[See Developer Guide here]
 
 == Design Considerations
 
