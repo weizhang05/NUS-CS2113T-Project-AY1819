@@ -9,22 +9,23 @@
 
 == Overview
 
-FOP Manager is a desktop application for NUS undergradaute students who are Project Directors of Freshmen Orientation Programs to manage both participants and committee members of the program. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC. The development of this application is to teach Principles of Software Engineering.
+FOP Manager is a desktop application for NUS undergraduate students who are Project Directors of Freshmen Orientation Programs to manage both participants and committee members of the program. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC. The development of this application is to teach Principles of Software Engineering.
 
 == Summary of contributions
 
 * .*Major enhancement*:
 [options="header"]
 |=======================
-|Feature			|Description      																			|Justification 																						|Highlights
-|Randomize Command	|Allows the Project Director to automatically assign all participants to created groups		|The command prevents the Project Director from assigning the participants to the group manually.	|
+|					                    |Description      																			|Justification 																						|Highlights
+|Randomize Command	                    |Allows the Project Director to automatically assign all participants to created groups.	|The command prevents the Project Director from assigning the participants to the group manually.	|
+|Redesign current Model and Storage		|Changing the current format of Model and Storage.                                       	|Supports the storing of house and groups on top of the current participants. 						|
 |=======================
 
 * .*Minor enhancement*:
 [options="header"]
 |=======================
-|Feature |Description |Justification |Highlights
-|Feature |Description |Justification |Highlights
+| 													|Description 																						|Justification 												|Highlights
+|Input box is clear after every command execution 	|Simulate a Terminal/CMD interface which refreshes the command after every entering of commands.    |Improves the user friendliness of using the command line.  |
 |=======================
 
 * *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
@@ -32,17 +33,9 @@ FOP Manager is a desktop application for NUS undergradaute students who are Proj
 * *Other contributions*:
 
 ** Project management:
-*** <insert here>
-** Enhancements to existing features:
-*** <insert here>
+*** Reviewing of codes before officially merging and integrating
 ** Documentation:
-*** <insert here>
-** Community:
-*** <insert here>
-** Tools:
-*** <insert here>
-
-_{you can add/remove categories in the list above}_
+*** Updating of both UG and DG
 
 == Contributions to the User Guide
 
