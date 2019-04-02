@@ -313,7 +313,7 @@ Format: `list`
 Views the list of all houses added so far. +
 Format: `view_h`
 
-Example: 
+Example:
 
 * Houses `Orange` and `Blue` have been added. +
 `view_h` returns `[Orange, Blue]`.
