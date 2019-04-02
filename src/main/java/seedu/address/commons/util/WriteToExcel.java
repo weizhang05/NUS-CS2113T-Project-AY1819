@@ -55,7 +55,7 @@ public class WriteToExcel {
             wb.write(out);
             out.close();
         } catch (Exception e) {
-         e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -93,17 +93,17 @@ public class WriteToExcel {
                 }
                 writeDataIntoCell(row, EIGHTH_COLUMN, stringBuilder.toString()
                         .substring(STARTING_INDEX, stringBuilder.toString().length() - LEFT_OUT_CHARACTER));
-                }
+            }
         }
-     }
+    }
     /**
     * Write data into cell.
     */
     private static void writeDataIntoCell(Row row, int colNum, Object object) {
-        if(object instanceof String) {
-            row.createCell(colNum).setCellValue((String)object);
+        if (object instanceof String) {
+            row.createCell(colNum).setCellValue((String) object);
         } else {
-            row.createCell(colNum).setCellValue((Double)object);
+            row.createCell(colNum).setCellValue((Double) object);
         }
     }
 }

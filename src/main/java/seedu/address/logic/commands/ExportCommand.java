@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.WriteToExcel;
@@ -18,8 +18,8 @@ public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports the contacts into Excel file.\n";
 
-        @Override
-        public CommandResult execute (Model model, CommandHistory commandHistory) {
+    @Override
+    public CommandResult execute (Model model, CommandHistory commandHistory) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         List<Person>personList = model.getFilteredPersonList();
@@ -31,7 +31,7 @@ public class ExportCommand extends Command {
             message = Messages.MESSAGE_EXPORT_COMMAND_ERRORS;
         }
         return new CommandResult(message);
-        }
+    }
     /**
     * Export the contacts into Excel File.
     */
@@ -42,5 +42,5 @@ public class ExportCommand extends Command {
         } else {
             return false;
         }
-     }
+    }
 }
