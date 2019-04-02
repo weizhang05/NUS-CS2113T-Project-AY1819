@@ -15,7 +15,7 @@ endif::[]
 * It is a Java application targeted at *Project Directors* organizing the *School of Computing Freshman Orientation Camp*.
 * This application is a useful tool to manage the contacts of participating freshmen and OGLs. Its features include:
 ** An easy to use GUI with a list panel displaying participant details
-** Data encryption to ensure security of data
+** Grouping of participants into groups, stored within houses
 ** Viewing graphs of the statistics of the camp participants
 ** Random shuffling of freshman grouping
 ** Exporting participant information from the application to a readable format
