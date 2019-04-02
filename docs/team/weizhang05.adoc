@@ -16,15 +16,15 @@ FOP Manager is a desktop application for NUS undergradaute students who are Proj
 * .*Major enhancement*:
 [options="header"]
 |=======================
-|Feature			|Description      																			|Justification 																						| Highlights
+|Feature			|Description      																			|Justification 																						|Highlights
 |Randomize Command	|Allows the Project Director to automatically assign all participants to created groups		|The command prevents the Project Director from assigning the participants to the group manually.	|
 |=======================
 
 * .*Minor enhancement*:
 [options="header"]
 |=======================
-|Feature			|Description      																			|Justification 																						| Highlights
-|Randomize Command	|Allows the Project Director to automatically assign all participants to created groups		|The command prevents the Project Director from assigning the participants to the group manually.	|
+|Feature |Description |Justification |Highlights
+|Feature |Description |Justification |Highlights
 |=======================
 
 * *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
