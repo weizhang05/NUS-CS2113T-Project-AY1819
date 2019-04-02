@@ -197,6 +197,11 @@ public interface Model {
      */
     void updateFilteredGroupList(Predicate<Group> predicate);
 
+    /**
+     * @return number of groups in group list
+     */
+    int sizeGroupList();
+
     // ================ House ======================
     /**
      * Returns a house if it exists
@@ -235,5 +240,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredHouseList(Predicate<House> predicate);
+
+    int sizeHouseList();
 
 }

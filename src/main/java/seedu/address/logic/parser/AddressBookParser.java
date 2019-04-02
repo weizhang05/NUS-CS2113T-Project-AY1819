@@ -14,6 +14,8 @@ import seedu.address.logic.commands.AddParticipantCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteGroupCommand;
+import seedu.address.logic.commands.DeleteHouseCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditGroupCommand;
 import seedu.address.logic.commands.EditHouseCommand;
@@ -28,6 +30,7 @@ import seedu.address.logic.commands.ListParticipantCommand;
 import seedu.address.logic.commands.RandomizeCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.SizeCommand;
 import seedu.address.logic.commands.StatCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewGroupsCommand;
@@ -94,6 +97,12 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        case DeleteGroupCommand.COMMAND_WORD:
+            return new DeleteGroupCommandParser().parse(arguments);
+
+        case DeleteHouseCommand.COMMAND_WORD:
+            return new DeleteHouseCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -126,6 +135,9 @@ public class AddressBookParser {
 
         case RandomizeCommand.COMMAND_WORD:
             return new RandomizeCommand();
+
+        case SizeCommand.COMMAND_WORD:
+            return new SizeCommand();
 
         case ViewGroupsCommand.COMMAND_WORD:
             return new ViewGroupsCommand();
