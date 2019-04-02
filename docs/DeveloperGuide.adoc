@@ -257,8 +257,144 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+//tag::commandStructure[]
+=== Command Structure
+
+To support multiple commands while ensuring separation of concerns, commands entered into the command box are handled by multiple classes that allow the code to be easily extended to support more commands.
+
+==== Current Implementation
+
+When each command is entered into the command box, the command word gets sent to the `AddressBookParser` to be identified. If the command word is valid, arguments are sent to the corresponding command parser, that parses the arguments and creates a corresponding command object to then implement the commands.
+
+In the current implementation of *FOP Manager*, some commands are create from a parser while some are created directly when then command word is identified.
+
+==== Design Considerations
+
+===== Aspect: Handling unneccesary parameters
+
+* *Alternative 1:* Ignore all unnecessary parameters and pass as arguments to the command object the number of parameters required for the command.
+** Pros: Less computationaly expensive, and allows the user to make mistakes
+** Cons: User's intentions may be misinterpreted and wrong commands may be executed
+* *Alternative 2:* Only accept the number of parameters the command requires, nothing more and nothing less.
+** Pros: Command carried out will always be the user's exact intention
+** Cons: More computationally expensive, and leaves no room for user mistakes or typos
+* *Alternative 3 (current choice):* Combination of Alternative 1 and Alternative 2.
+** Commands that do not require parameters and do not modify data (such as list and view) ignore unnecessary parameters. Commands that require specific instructions to identify particular participants, groups or houses only accept the required number of parameters.
+
+//end::commandStructure[]
+
+//tag:: PartManagement[]
+=== Participant Management
+
+Participant management refers to how users manipulate and view the data of camp participants. Participants are categorised into 3 types: OGL, Freshman or other.
+
+This section describes how the 3 types of participants are managed.
+
+==== Current Implementation
+
+In *FOP Manager*, participants can be added, edited and deleted.
+
+Add
+* `add_o`: Adds an OGL type participant
+* `add_f`: Adds a Freshman type participant
+* `add`: Adds a participant who is neither OGL nor Freshman
+
+Edit
+* `edit INDEX`: Edits the participant at the current `INDEX` of the list showing
+
+Delete
+* `delete INDEX`: Deletes the participant at the current `INDEX` of the list showing
+
+Participant contact details can be viewed in different manners:
+* `list`: Lists all participants in the camp
+* `list_o`: Lists all OGLs
+* `list_f`: Lists all Freshmen
+
+All participants are stored in the same contact list as a `UniqueParticipantList` in an AddressBook object. Participants created as OGLs or Freshmen differ only in the tags added to them.
+
+The list commands, 'list_o' and 'list_f`, use the keywords/predicates "Freshman" and "OGL" to search through the tags of all participants in the contact list. All participants with matching tags of "Freshman" or "OGL" will be added into the filtered participant list, enabling the user to view all freshmen or OGLs in the contact list.
+
+==== Design Considerations
+
+===== Aspect: Separate management of freshmen and OGLs
+
+* *Alternative 1:* Create 2 separate lists containing freshmen and OGLs separately, in addition to a full list containing all participants.
+* Pros: Less computationally expensive to obtain separate lists of freshmen and OGLs
+* Cons: Involves greater code complexity to update any contact details, with greater room for error, and requires more memory and storage
+* *Alternative 2 (current choice):* Store all participants in the same list.
+* Pros: Smaller code base needed, and allows for participants who are neither OGLs nor Freshmen (such as camp directors or camp commandants) to be added
+* Cons: More computationally expensive to access lists of freshmen and lists of OGLs
+
+===== Aspect: Editing or deleting participants
+
+* *Alternative 1:* Editing and deleting by name.
+* Pros: More intuitive for the user to edit and delete a participant by name
+* Cons: Greater complexity required to handle multiple participants who have the same partial name, or user must specify participant's full name
+
+* *Alternative 2 (current choice):* Editing and deleting by index.
+* Pros: Specifies the exact participant to be edited or deleted
+* Cons: Must be used with other commands such as `find` to obtain the index of the desired participant
+
+//end::PartManagement[]
+
+//tag::GroupHouseManagement[]
+=== Group and House Management
+
+*FOP Manager* supports group and house commands, to reflect the structure of an actual Freshmen Orientation camp. Group and house management refer to how groups and houses are created and modified, as well as viewed, and how they support the addition of participants.
+
+==== Current Implementation
+
+In *FOP Manager*, groups and houses can be added, edited and deleted.
+
+Add:
+* `add_h` creates a new house and adds it to the `UniqueHouseList` in the `AddressBook` object.
+* `add_g` adds a new group with its corresponding house name to the `UniqueGroupList` in the `AddressBook` object.
+
+Edit:
+* `edit_h` edits the name of a house in `UniqueHouseList`, as well as changes the house name of all groups within the house in `UniqueGroupList`.
+* `edit_g` edits the name of a group in `UniqueGroupList`, as well as changes the group name of all participants with that group name in `UniqueParticipantList`.
+
+Delete:
+* Deleting of house objects require there to be no groups within that house.
+* Deleting of group objects require there to be no participants within that group.
+
+==== Design Considerations
+
+===== Aspect: Storage of group and house lists
+
+* *Alternative 1:* Storing groups and houses within a single list of houses that contain differing number of groups
+** Pros: Easy management of data
+** Cons: Violates separation of concerns principle by requiring access and modification made to houses, whenever only group level data is required
+* *Alternative 2 (current choice):* Storing groups and houses in 2 separate lists
+** Pros: House objects are not affected by the operations done to the groups stored within it
+** Cons: More computationally expensive to identify the groups within a house.
+
+===== Aspect: Deleting a group object requirements
+
+* *Alternative 1:* No requirements when groups are deleted.
+** Pros: User can delete a group much more easily
+** Cons: Participants in the deleted group will belong to no group
+* *Alternative 2 (current choice):* Requires a group to contain no participants before it can be deleted.
+** Pros: User can be sure to not delete a group with participants in it accidentally
+** Cons: Participants must be manually removed from the group before being deleted
+
+[NOTE]
+Camp organizers rarely intend to remove a filled group. Requiring a group to be empty before being deleted acts as a fail-safe to ensure that filled groups are not accidentally removed, resulting in participants having to be manually added back to the group.
+
+===== Aspect: Duplicate group names under different houses
+
+* *Alternative 1 (current choice):* Duplicate group names are not allowed.
+** Pros: Groups can be searched for by name without specifying its house
+** Cons: Simple names such as 1 and 2 cannot be used for different houses at initial planning stage
+* *Alternative 2:* Duplicate group names under different houses are allowed.
+** Pros: User can easily name groups without too much thought
+** Cons: User must always specify house name when searching for a specific group
+
+//end::GroupHouseManagement[]
+
 // tag::undoredo[]
 === Undo/Redo feature
+
 ==== Current Implementation
 
 The undo/redo mechanism is facilitated by `VersionedAddressBook`.
@@ -359,23 +495,6 @@ image::StatisticUpdateSequenceDiagram.png[width="800"]
 ** Pros: Easy to implement, guaranteed to get the correct data every time.
 ** Cons: Takes longer time to get the result, especially if there are many person in the `UniquePersonList`.
 // end:: statistic[]
-
-// tag::listF/O[]
-=== List Freshmen / OGL feature
-The inidividual list commands to list freshmen, OGLs and all the participants in the contact list will allow for easy filtering through the list for the FOP Organizers.
-
-==== Current Implementation
-The 'List Freshmen' and 'List Orientation Group Leader (OGL)' commands use the keywords (predicates) "Freshman" and "OGL" to parse through the all the tags of all the participants in the FOP Manager's contact list. All the participants with the respective matches will be added into the filtered participant list, enabling the user to view all the freshmen and all the OGLs respectively in the contact list.
-
-==== Design Considerations
-* **Alternative 1**: Create separate lists for the Freshmen, OGLs and all participants.
-** Pros: Easy to call out the list.
-** Cons: Need to create switch cases for `UI` to display the respective lists. Unnecessarily long codes to filter out freshmen and OGLs from the participant list.
-* **Alternative 2**: Add a `tag` to the Freshmen and OGL when they are added by their respective Add commands
-** Pros: Able to use a Predicate search for the keyword. Easy to implement and fewer lines of code. In the implementation of the Export feature, Excel spreadsheet will contain the "Freshmen" and "OGL" tags that will aid in the easy filtering on Excel spreadsheet as well.
-** Cons: Too many tags to the participant added.
-
-// end:: listF/O[]
 
 // tag::export[]
 === [Proposed] Export Feature
