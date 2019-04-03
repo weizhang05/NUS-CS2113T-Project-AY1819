@@ -10,7 +10,7 @@
 Hello! My name is Wei Zhang but you may call me Clyde for short. I'm currently a second year student in NUS School of Computing, pursuing a Bachelor of Computing in Information Security at the time he is working on this project for a module *Software Engineering & Object-Oriented Programming (CS2113T)*. +
  +
 I held various roles in the development of this project which includes *desiging the application architecture*, *developing core features*, *code integration* and *testing*. +
- + 
+ +
 Aside from this project, I'm also a *Software Engineer* where my main interests are *System Design* and *Software Development*.
 
 == ABOUT:
