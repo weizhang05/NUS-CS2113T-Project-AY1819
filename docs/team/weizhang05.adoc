@@ -3,19 +3,28 @@
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== INTRODUCTION: Student/Software Engineer
+== INTRODUCTION:
 
 ---
 
-Clyde is a second year student in NUS School of Computing who is currently pursuing a Bachelor of Computing in Information Security at the time he is taking CS2113T. +
+Hello! My name is Wei Zhang but you may call me Clyde for short. I'm currently a second year student in NUS School of Computing, pursuing a Bachelor of Computing in Information Security at the time he is working on this project for a module *Software Engineering & Object-Oriented Programming (CS2113T)*. +
  +
-Clyde works on both frontend and backend development, specializes in *UI/UX*, *System Design* and Application Development. +
+I held various roles in the development of this project which includes *desiging the application architecture*, *developing core features*, *code integration* and *testing*. +
  +
-In terms of programming languages, Clyde is experience in *Java*, *Python 2/3*, *SQL*, *PHP*, and *Javascript* and is also familiar with web technologies like *Bootstrap* and *NodeJS*.
+Aside from this project, I'm also a *Software Engineer* where my main interests are *System Design* and *Software Development*.
+
+== ABOUT:
+
+---
+
+The purpose of this document is to showcase the contribution of my work towards this project as part of the context of learning in this module. +
+ +
+The outline of this document will be listed as follows, mainly describing the work I have done in both technical and non-technical aspect:
+* *Summary of Contributions*: Describes mainly the technical aspect of work I have contributing in the development of the project. It also includes any other possible contributions I have done that may not be technical.
+* *Contributions to User Guide*: Showcases my ability in writing a guide for user of the application that was developed for.
+* *Contributions to Developer Guide*: Showcases my ability in writing a guide for developers who may continue to work on the development and maintainance of the application in the future.
 
 == PROJECT: FOP Manager
-
----
 
 == Overview
 
@@ -23,7 +32,7 @@ FOP Manager is a desktop application for NUS undergraduate students who are Proj
 
 == Summary of contributions
 
-* .*Major enhancement*:
+* *Major enhancement*:
 [options="header"]
 |=======================
 |					                    |Description      																			|Justification 																						|Highlights
@@ -31,7 +40,7 @@ FOP Manager is a desktop application for NUS undergraduate students who are Proj
 |Redesign current Model and Storage		|Changing the current format of Model and Storage.                                       	|Supports the storing of house and groups on top of the current participants. 						|
 |=======================
 
-* .*Minor enhancement*:
+* *Minor enhancement*:
 [options="header"]
 |=======================
 | 													|Description 																						|Justification 												|Highlights
@@ -51,7 +60,7 @@ FOP Manager is a desktop application for NUS undergraduate students who are Proj
 
 
 |===
-|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|_This segment showcases my ability to write documents for end users based on the work that I have contributed._
 |===
 
 include::../UserGuide.adoc[tag=randomize]
@@ -59,7 +68,7 @@ include::../UserGuide.adoc[tag=randomize]
 == Contributions to the Developer Guide
 
 |===
-|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|_This segment showcases my ability to write technical documents explaining the underlying technicalities for developers based on the work that I have contributed._
 |===
 
 include::../DeveloperGuide.adoc[tag=randomize]
