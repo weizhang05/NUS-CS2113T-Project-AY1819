@@ -8,6 +8,9 @@ import seedu.address.logic.commands.ListGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.grouping.FindGroupPredicate;
 
+/**
+ * Parses input arguments and creates a new ListGroupCommand object
+ */
 public class ListGroupCommandParser implements Parser<ListGroupCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ListGroupCommand

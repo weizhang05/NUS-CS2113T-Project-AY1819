@@ -10,6 +10,9 @@ import seedu.address.model.Model;
 import seedu.address.model.grouping.FindGroupPredicate;
 import seedu.address.model.grouping.Group;
 
+/**
+ * Lists all participants belonging to a group to the user.
+ */
 public class ListGroupCommand extends Command {
     public static final String COMMAND_WORD = "list_g";
 
