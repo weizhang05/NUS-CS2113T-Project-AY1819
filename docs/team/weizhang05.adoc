@@ -60,7 +60,7 @@ FOP Manager is a desktop application for NUS undergraduate students who are Proj
 
 
 |===
-|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|_This segment showcases my ability to write documents for end users based on the work that I have contributed._
 |===
 
 include::../UserGuide.adoc[tag=randomize]
@@ -68,7 +68,7 @@ include::../UserGuide.adoc[tag=randomize]
 == Contributions to the Developer Guide
 
 |===
-|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|_This segment showcases my ability to write technical documents explaining the underlying technicalities for developers based on the work that I have contributed._
 |===
 
 include::../DeveloperGuide.adoc[tag=randomize]
