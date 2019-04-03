@@ -2,10 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grouping.FindGroupPredicate;
+import seedu.address.model.grouping.Group;
 
 public class ListGroupCommand extends Command {
     public static final String COMMAND_WORD = "list_g";
@@ -14,16 +17,33 @@ public class ListGroupCommand extends Command {
             + "Parameters: groupName";
 
     public static final String MESSAGE_SUCCESS = "Listed all participants in group $1%s";
+    public static final String MESSAGE_NONEXISTENT_GROUP = "Group does not exist.";
 
+    private final String groupName;
     private final FindGroupPredicate predicate;
 
-    public ListGroupCommand(FindGroupPredicate predicate) {
+    public ListGroupCommand(FindGroupPredicate predicate, String groupName) {
         this.predicate = predicate;
+        this.groupName = groupName;
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+
+        ObservableList<Group> groupList = model.getFilteredGroupList();
+        boolean contains = false;
+
+        for (Group group : groupList) {
+            if (group.getGroupName().equals(groupName)) {
+                contains = true;
+            }
+        }
+
+        if (!contains) {
+            throw new CommandException(MESSAGE_NONEXISTENT_GROUP);
+        }
+
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));

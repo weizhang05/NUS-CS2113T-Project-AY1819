@@ -16,13 +16,13 @@ public class ListGroupCommandParser implements Parser<ListGroupCommand> {
      */
     public ListGroupCommand parse(String args) throws ParseException {
         String[] splitArgs = args.trim().split(" ");
-        if (splitArgs.length != 1) {
+        if (splitArgs.length != 1 || args.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListGroupCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = splitArgs[0].split("\\s+");
+        splitArgs[0] = splitArgs[0].toUpperCase();
 
-        return new ListGroupCommand(new FindGroupPredicate(Arrays.asList(nameKeywords)));
+        return new ListGroupCommand(new FindGroupPredicate(Arrays.asList(splitArgs[0])), splitArgs[0]);
     }
 }
