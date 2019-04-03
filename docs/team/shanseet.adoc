@@ -1,72 +1,162 @@
-= John Doe - Project Portfolio
+= Shanon Seet - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
+:note-caption: :note:
 
-== PROJECT: AddressBook - Level 4
+Hello! I am a Year 2 Computer Engineering student. Computer Engineering a combined major under both School of Computing and the Faculty Engineering. As someone rather new to the industry, I am always excited to learn and experience new things. I have done both hardware and software projects in my last 2 years in university, and in this document I will be showing you more of my contributions to my team's Software Engineering project this semester.
+
+= PROJECT: FOP Manager
 
 ---
 
-== Overview
+== About The Project
 
-AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+My team and I were tasked with developing an existing Command Line Interface addressbook application. We decided to enhance it to an application that manages camp participants' information for NUS Freshmen Orientation Camp Project Directors, and hence the birth of *FOP Manager*. This enhanced application allows Project Directors to view and modify participants' contact details with ease, and also supports: the separation of Freshmen participants from Orientation Group Leader (OGL) participants, the arrangement of participants into groups and houses, and a Graphic User Interface that displays contact details and command results in an appealing format.
 
-== Summary of contributions
+In this project, I was in charge of creating the commands that support the addition and modification of groups and houses.
 
-* *Major enhancement*: added *the ability to undo/redo previous commands*
-** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+== About This Document
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+This document showcases the features I did, samples of my code, as well as the relevant sections I added to the User and Developer Guides.
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+In this document, the following styles and formatting have been used:
 
-* *Other contributions*:
+[NOTE]
+This symbol indicates important information.
 
-** Project management:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
-** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
-** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
+[cols="15%,<80%"]
+|============================================================
+| #`add_g`# |Grey highlight indicates that this is a command that can be inputted into the command line and executed by the application.
+| `[green]#Group#` |Green words in grey highlight indicate the name of a class or object used in the application.
+|============================================================
 
-_{you can add/remove categories in the list above}_
+
+== Summary of Contributions
+
+This section shows a summary of my coding, documentation, and other helpful contributions to the team project.
+
+*Enhancement Added*: I added the ability to create and modify `[green]#House#` and `[green]#Group#` objects
+
+* _What it does_: This feature allows users to add, edit and delete `[green]#House#` and `[green]#Group#` objects, enabling them to group participants, as is done in camps.
+* _Justification_: Being tailored to manage participant details in Freshmen Orientation camps, having groups and houses are essential to organising participants as camp organisers normally do when planning camps.
+* _Highlights_: This feature is one of the core components that other enhancements build upon. In depth analyses of design alternatives had to be carried out when storing and implementing commands for `[green]#House#` and `[green]#Group#` objects (more details can be found below in <<DesignConsiderations>>) as I had to consider how effectively it was in meeting users' needs, as well as how efficiently data could be extracted and used. Implementing commands was also challenging as it required changes to the other basic commands such as `[green]#Add#`, to `[green]#Model Manager#`, and the `[green]#Participant#` class (previously known as `[green]#Person#`).
+
+*Minor enhancement*: I added a size command that allows the user to view the sizing details of the camp.
+
+*Code contributed*: Click these links to see a sample of my code: https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/EditGroupCommand.java[Edit Group Command], https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/AddGroupCommand.java[Add Group Command]
+
+*Other contributions*:
+
+* Project Management:
+** Created labels and issues and assigned them to team members to keep track of team progress
+** Managed milestones v1.2 to v1.4
+* Documentation:
+** Made major changes to reformat and update User Guide and Developer Guide to include new features, as well as make it more reader-friendly: https://github.com/cs2113-ay1819s2-t08-4/main/pull/74[#74], https://github.com/cs2113-ay1819s2-t08-4/main/pull/102[#102]
+* Community:
+** Gave consistent feedback to team members to improve their implemented features
+** Gave suggestions for other teams in the class of their User Guide and Developer Guide
+
 
 == Contributions to the User Guide
 
+Our team updated the original addressbook User Guide with instructions for the enhancements that we had added. The following is an excerpt from our FOP Manager User Guide to show additions I made for managing `_House_` and `_Group_` objects:
 
-|===
-|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
-|===
+=== Editing a group: `edit_g`
 
-include::../UserGuide.adoc[tag=undoredo]
+Edits a group name. +
+Format: `edit_g OLDGROUPNAME NEWGROUPNAME`
 
-include::../UserGuide.adoc[tag=dataencryption]
+****
+* Edits the group named `OLDGROUPNAME` to `NEWGROUPNAME`
+* The `GROUP` of all participants within the old group is automatically updated.
+* `OLDGROUPNAME` must exist in the current list of groups
+*`NEWGROUPNAME` must not exist in the current list of groups
+
+[NOTE]
+Group names are not case-sensitive
+
+****
+
+=== Adding a house : `add_h`
+
+Adds a house that can contain different groups +
+Format: `add_h HOUSENAME`
+
+****
+[NOTE]
+House names are always saved with first letter in Uppercase, the rest in lowercase
+
+[NOTE]
+House names cannot contain spaces
+
+Example:
+
+* `add_h blue` saves a house named `Blue` to the house list.
+
+****
+
+Check out the User Guide https://github.com/shanseet/T08-Fork/blob/master/docs/UserGuide.adoc[here]!
+
 
 == Contributions to the Developer Guide
 
-|===
-|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
-|===
+Shown below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+=== Group and House Management
 
-include::../DeveloperGuide.adoc[tag=dataencryption]
+*FOP Manager* supports group and house commands, to reflect the structure of an actual Freshmen Orientation camp. Group and house management refer to how groups and houses are created and modified, as well as viewed, and how they support the addition of participants.
 
+In the current implementation of *FOP Manager*, groups and houses can be added, edited and deleted.
 
-== PROJECT: PowerPointLabs
+Add
 
----
+* `add_h` creates a new house and adds it to the `UniqueHouseList` in the `AddressBook` object.
+* `add_g` adds a new group with its corresponding house name to the `UniqueGroupList` in the `AddressBook` object.
 
-_{Optionally, you may include other projects in your portfolio.}_
+Edit
+
+* `edit_h` edits the name of a house in `UniqueHouseList`, as well as changes the house name of all groups within the house in `UniqueGroupList`.
+* `edit_g` edits the name of a group in `UniqueGroupList`, as well as changes the group name of all participants with that group name in `UniqueParticipantList`.
+
+Delete
+
+* Deleting of house objects require there to be no groups within that house.
+* Deleting of group objects require there to be no participants within that group.
+
+[[DesignConsiderations]]
+=== Design Considerations
+
+When designing `_House_` and `_Group_` classes, I had to make decisions on how best to store the lists and what requirements commands should have. The following is a brief summary of my analysis and decisions.
+
+==== Aspect 1: Storage of group and house lists
+
+* *Alternative 1:* Storing groups and houses within a single list of houses that contain differing number of groups
+** Pros: Easy management of data
+** Cons: Violates separation of concerns principle by requiring access and modification made to houses, whenever only group level data is required
+* *Alternative 2 (current choice):* Storing groups and houses in 2 separate lists
+** Pros: House objects are not affected by the operations done to the groups stored within it
+** Cons: More computationally expensive to identify the groups within a house.
+** Justification: Maintains SoC principle.
+
+==== Aspect 2: Deleting a group object requirements
+
+* *Alternative 1:* No requirements when groups are deleted.
+** Pros: User can delete a group much more easily
+** Cons: Participants in the deleted group will belong to no group
+* *Alternative 2 (current choice):* Requires a group to contain no participants before it can be deleted.
+** Pros: User can be sure to not delete a group with participants in it accidentally
+** Cons: Participants must be manually removed from the group before being deleted
+** Justification: Camp organizers rarely intend to remove a filled group. Requiring a group to be empty before being deleted acts as a fail-safe to ensure that filled groups are not accidentally removed, resulting in participants having to be manually added back to the group.
+
+==== Aspect 3: Duplicate group names under different houses
+
+* *Alternative 1 (current choice):* Duplicate group names are not allowed.
+** Pros: Groups can be searched for by name without specifying its house
+** Cons: Simple names such as 1 and 2 cannot be used for different houses at initial planning stage
+** Justification: Greatly decreases code complexity, and does not greatly affect user's experience as camp group names are normally unique.
+* *Alternative 2:* Duplicate group names under different houses are allowed.
+** Pros: User can easily name groups without too much thought
+** Cons: User must always specify house name when searching for a specific group
+
+Check out the Developer Guide https://github.com/shanseet/T08-Fork/blob/master/docs/DeveloperGuide.adoc[here]!
