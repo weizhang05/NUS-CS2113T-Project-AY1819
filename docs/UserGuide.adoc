@@ -479,7 +479,7 @@ Examples:
 // end::undoredo[]
 
 // tag::randomize[]
-[[Undo]]
+[[Randomize]]
 === Randomize command : `randomize`
 
 Randomize group allocation of all registered participants. +
