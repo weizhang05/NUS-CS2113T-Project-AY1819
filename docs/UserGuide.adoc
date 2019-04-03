@@ -3,6 +3,7 @@
 :toc:
 :toc-title:
 :toc-placement: preamble
+:toclevels: 3
 :sectnums:
 :imagesDir: images
 :stylesDir: stylesheets
@@ -11,6 +12,7 @@
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
+:warning-caption: :warning:
 endif::[]
 :repoURL: https://github.com/cs2113-ay1819s2-t08-4/main
 
@@ -18,9 +20,9 @@ By: `Team T08-4`      Since: `Jan 2019`      Licence: `MIT`
 
 == Introduction
 
-FOP Manager is a desktop Graphical User Interface (GUI) address book app, specifically designed for *NUS Freshman Orientation Camp Organizers* to manage the contact information of camp participants. It is optimized for those who prefer to work with a *Command Line Interface* (CLI). If you can type fast, FOP Manager can get your contact management tasks done faster than traditional GUI apps.
+FOP Manager is a desktop Graphical User Interface (GUI) address book app, specifically designed for *NUS Freshman Orientation Camp Organizers* to manage the contact information of camp participants: both Orientation Group Leaders (OGLs) and Freshmen. It is optimized for those who prefer to work with a *Command Line Interface* (CLI). If you can type fast, FOP Manager can get your contact management tasks done faster than traditional GUI apps.
 
-Interested? Hurry, jump to <<Quick Start>> to get started!
+Interested? Hurry, jump to <<Quick Start, Quick Start>> to get started!
 
 == About User Guide
 
@@ -41,7 +43,7 @@ This section serves as a tutorial for a new user to FOP Manager.
 === Installation
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
+.  Download the latest `FOPManager.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for FOP Manager.
 .  Double-click the file to start the app. The GUI should appear in a few seconds and will look like this:
 +
@@ -72,7 +74,7 @@ Some example commands you can try:
 * `delete  3` : deletes the 3rd contact shown in the current list
 * `exit` : exits the app
 
-Refer to <<Features>> for details of each command.
+Refer to <<Features,Features>> for details of each command.
 
 [[Features]]
 == Features
@@ -90,14 +92,16 @@ e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 ====
 
-[[ViewHelp]]
+[[Help]]
 === Viewing help : `help`
 
 Opens a window with a list of all the commands available on FOP Manager +
 Format: `help`
 
+=== Add Commands
+
 [[AddFresh]]
-=== Adding a freshman : `add_f`
+==== Adding a freshman : `add_f`
 
 Adds a freshman to the Freshman list +
 Format: `add_f n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...`
@@ -119,7 +123,7 @@ Examples:
 * `add_f n/Jane Doe s/F e/betsycrowe@example.com m/CS g/ p/1234567 t/vegetarian`
 
 [[AddOGL]]
-=== Adding an Orientation Group Leader (OGL) : `add_o`
+==== Adding an OGL : `add_o`
 
 Adds an OGL to the OGL list +
 Format: `add_o n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...`
@@ -141,9 +145,9 @@ Example:
 * `add_o n/Jane Doe s/F e/betsycrowe@example.com m/CS g/ p/1234567 t/vegetarian`
 
 [[AddOther]]
-=== Adding other participants such as organizers : `add_o`
+==== Adding other participants : `add`
 
-Adds other participants involved in the camp such as organizers to the contact list +
+Adds other participants involved in the camp that are neither Freshmen nor OGLs to the contact list +
 Format: `add n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...`
 
 ****
@@ -151,29 +155,32 @@ Format: `add n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...`
 * An entered person can have any number of tags (including 0).
 
 [TIP]
-`GROUP` is left blank i.e. `g/` since there is no group allocation for this person that is added
+Leave `GROUP` blank i.e. `g/` since there is no group allocation for this participant!
 
 ****
 
 Example:
 
-* `add n/James Boe s/M b/27071999 p/13579753 e/jamesd@example.com m/CEG g/`t/Voucher Sponsor
+* `add n/James Boe s/M b/27071999 p/13579753 e/jamesd@example.com m/CEG g/ t/Camp Commandant`
 
 [[AddHouse]]
-=== Adding a house : `add_h`
+==== Adding a house : `add_h`
 
 Adds a house that can contain different groups +
 Format: `add_h HOUSENAME`
 
 [NOTE]
-House names are always saved in all-caps
+House names are always saved with first letter in Uppercase, the rest in lowercase
+
+[NOTE]
+House names cannot contain spaces
 
 Example:
 
-* `add_h blue`
+* `add_h blue` saves a house named `Blue` to the house list.
 
 [[AddGroup]]
-=== Adding a group : `add_g`
+==== Adding a group : `add_g`
 
 Adds a group to a house +
 Format: `add_g GROUPNAME HOUSENAME`
@@ -181,39 +188,26 @@ Format: `add_g GROUPNAME HOUSENAME`
 [NOTE]
 Group names are always saved in all-caps
 
+[NOTE]
+Group names cannot contain spaces
+
 [WARNING]
 Groups can only be added to houses that already exist
 
 Example:
 
-* `add_g b1 blue`
+* `add_g b1 blue` saves a group named `B1` in house `Blue` to the group list.
 
-[[ListFresh]]
-=== Listing all freshmen : `list_f`
+=== Edit Commands
 
-Shows a list of all the freshmen in your Freshman list. +
-Format: `list_f`
+[[EditPart]]
+==== Editing a participant : `edit`
 
-[[ListOGL]]
-=== Listing all OGLs : `list_o`
-
-Shows a list of all the OGLs in your OGL list. +
-Format: `list_o`
-
-[[ListALL]]
-=== Listing all the participants : `list`
-
-Shows a list of all the participants involved in the camp, including freshmen and OGL, in your contact list. +
-Format: `list`
-
-[[Edit]]
-=== Editing a participant : `edit`
-
-Edits an existing participant in your contact list. +
+Edits an existing participant in the contact list. +
 Format: `edit INDEX [n/NAME] [p/PHONE] [m/MAJOR] [g/GROUP] [t/TAG] ...`
 
 ****
-* Edits the participant at `INDEX`.
+* Edits the participant currently shown at `INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the participant will be removed i.e adding of tags is not cumulative.
@@ -222,10 +216,14 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [m/MAJOR] [g/GROUP] [t/TAG] ...`
 `INDEX` must be a *positive integer*: 1, 2, 3, ...
 
 [TIP]
-Edit a participant's `GROUP` after adding them, instead of choosing a group for them from the start
+To edit a particular participant by name, first <<Find,find>> the participant by name, then edit by index
 
 [TIP]
 Remove all the participant's tags by typing `t/` without specifying any tags after it
+
+[TIP]
+Edit a participant's `GROUP` after adding them, instead of choosing a group for them from the start
+
 ****
 
 Examples:
@@ -235,29 +233,106 @@ Edits the phone number and group of the participant at index 1 to be `91234567` 
 * `edit 2 n/John Koe t/` +
 Edits the name of the participant at index 2 to be `John Koe` and clears all existing tags.
 
-[[Find]]
-=== Locating participants by name: `find`
+[[EditHouse]]
+==== Editing a house : `edit_h`
 
-Finds participants whose names contain any of the given keywords. +
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Edits a house name. +
+Format: `edit_h OLDHOUSENAME NEWHOUSENAME`
 
 ****
-* The search is case insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `John Poe` will match `Poe John`
-* Only name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Participants matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Edits the house named `OLDHOUSENAME` to `NEWHOUSENAME`
+* All groups under the old house name remain in the new house.
+
+[WARNING]
+`OLDHOUSENAME` must exist in the current list of houses
+
+[WARNING]
+`NEWHOUSENAME` must not exist in the current list of houses
+
+[TIP]
+House names are not case-sensitive
+
 ****
 
-Examples:
+Example:
 
-* `find John` +
-Returns `john` and `John Goe`
-* `find Betsy Tim John` +
-Returns any participant having names `Betsy`, `Tim`, or `John`
+* `edit_h Red green` +
+Edits the house named `Red` to `Green`.
 
-[[Delete]]
-=== Deleting a participant : `delete`
+[[EditGroup]]
+==== Editing a group : `edit_g`
+
+Edits a group name. +
+Format: `edit_g OLDGROUPNAME NEWGROUPNAME`
+
+****
+* Edits the group named `OLDGROUPNAME` to `NEWGROUPNAME`
+* The `GROUP` of all participants within the old group is automatically updated.
+
+[WARNING]
+`OLDGROUPNAME` must exist in the current list of groups
+
+[WARNING]
+`NEWGROUPNAME` must not exist in the current list of groups
+
+[NOTE]
+Group names are not case-sensitive
+
+****
+
+Example:
+
+* `edit_g red1 red2` +
+Edits the group named `RED1` to `RED2`. All participants in RED1 are now in RED2.
+
+=== List Commands
+
+[[ListFresh]]
+==== Listing all freshmen : `list_f`
+
+Shows a list of all the freshmen in the freshmen list. +
+Format: `list_f`
+
+[[ListOGL]]
+==== Listing all OGLs : `list_o`
+
+Shows a list of all the OGLs in the OGL list. +
+Format: `list_o`
+
+[[ListALL]]
+==== Listing all the participants : `list`
+
+Shows a list of all the participants involved in the camp in your contact list. +
+Format: `list`
+
+=== View Commands
+
+[[ViewHouse]]
+==== Viewing all houses : `view_h`
+
+Views the list of all houses added so far. +
+Format: `view_h`
+
+Example:
+
+* Houses `Orange` and `Blue` have been added. +
+`view_h` returns `[Orange, Blue]`.
+
+[[ViewGroup]]
+==== Viewing all groups : `view_g`
+
+Views the list of all groups added so far, along with the house they belong to. +
+Format: `view_g`
+
+Example:
+
+* Groups `R1` and `R2` have been added under the house `Red`. +
+`view_g` returns `[(R1, Red), (R2, Red)]`.
+
+=== Delete Commands
+
+[[DeletePart]]
+==== Deleting a participant : `delete`
 
 Deletes the specified participant from your contact list. +
 Format: `delete INDEX`
@@ -272,12 +347,57 @@ The index *must be a positive integer*: 1, 2, 3, ...
 
 Examples:
 
-* `list` +
-`delete 2` +
-Deletes the participant at index 2.
-* `find Betsy` +
-`delete 1` +
-Deletes the participant at index 2 in the results of the `find` command.
+* `list` has just been entered. +
+`delete 2` deletes the participant at index 2.
+* `find Betsy` has just been entered. +
+`delete 1` deletes the participant at index 2 in the results of the `find` command.
+
+[[DeleteGroup]]
+==== Deleting a group : `delete_g`
+
+Deletes the specified group from the list of groups. +
+Format: `delete_g GROUPNAME`
+
+****
+* Deletes the group matching the specified `GROUPNAME`.
+* `GROUPNAME` must exist in the list of groups.
+
+[WARNING]
+The group *must contain no participants* before it can be deleted.
+****
+
+[[DeleteHouse]]
+==== Deleting a house : `delete_h`
+
+Deletes the specified house from the list of houses. +
+Format: `delete_h HOUSENAME`
+
+****
+* Deletes the house matching the specified `HOUSENAME`.
+* `HOUSENAME` must exist in the list of hosues.
+
+[WARNING]
+The house *must contain no groups* before it can be deleted.
+****
+
+[[Find]]
+=== Finding participants by name: `find`
+
+Finds participants whose names contain any of the given keywords. +
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+****
+* The search is case insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `John Poe` will match `Poe John`
+* Only name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Participants matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+****
+
+Examples:
+
+* `find John` returns `john` and `John Goe`
+* `find Betsy Tim John` returns any participant having names `Betsy`, `Tim`, or `John`
 
 [[Select]]
 === Selecting a participant : `select`
@@ -293,12 +413,10 @@ Format: `select INDEX`
 
 Examples:
 
-* `list` +
-`select 2` +
-Selects the participant at index 2 in your contact list.
-* `find Betsy` +
-`select 1` +
-Selects the participant at index 1 in the results of the `find` command.
+* `list` has just been entered. +
+`select 2` selects the participant at index 2 in your contact list.
+* `find Betsy` has just been entered. +
+`select 1` selects the participant at index 1 in the results of the `find` command.
 
 [[History]]
 === Listing entered commands : `history`
@@ -320,22 +438,20 @@ Format: `undo`
 
 [NOTE]
 Undoable commands are commands that modify your contact list's content (`add`, `delete`, `edit` and `clear`).
+[TIP]
+Undoable commands are shown in the undo list.
 
 Examples:
 
-* `delete 1` +
-`list` +
-`undo` (reverses the `delete 1` command) +
+* `delete 1` has just been entered. +
+`undo` reverses the `delete 1` command
 
-* `select 1` +
-`list` +
-`undo` +
-The `undo` command fails as there are no undoable commands executed previously.
+* Only `select 1` has been entered. +
+`undo` fails as there are no undoable commands executed previously.
 
-* `delete 1` +
-`clear` +
-`undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
+* `delete 1` and `clear` have been entered. +
+`undo` reverses the `clear` command. +
+`undo` reverses the `delete 1` command. +
 
 [[Redo]]
 === Redoing previously undone command : `redo`
@@ -343,29 +459,57 @@ The `undo` command fails as there are no undoable commands executed previously.
 Reverses the most recent `undo` command. +
 Format: `redo`
 
+[TIP]
+Redoable commands are shown in the redo list.
+
 Examples:
 
-* `delete 1` +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
+* `delete 1` has just been entered. +
+`undo` reverses the `delete 1` command. +
+`redo` reapplies the `delete 1` command. +
 
-* `delete 1` +
-`redo` +
-The `redo` command fails as there are no `undo` commands executed previously.
+* Only `delete 1` has been entered. +
+`redo` fails as there are no `undo` commands executed previously.
 
-* `delete 1` +
-`clear` +
-`undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
-`redo` (reapplies the `clear` command) +
+* `delete 1` and `clear` have just been entered. +
+`undo` reverses the `clear` command. +
+`undo` reverses the `delete 1` command. +
+`redo` reapplies the `delete 1` command. +
+`redo` reapplies the `clear` command. +
 // end::undoredo[]
+
+// tag::randomize[]
+[[Randomize]]
+=== Randomize command : `randomize`
+
+Randomize group allocation of all registered participants. +
+Format: `randomize`
+
+[NOTE]
+Command will only work when there is at least 2 registered participants and 2 created groups.
+
+Examples:
+
+* `randomize` has just been entered (successful). +
+Output: Participants are evenly distributed
+
+* `randomize` has just been entered (error). +
+Output: Unable to distribute participants (min 2 groups and 2 participants)
+
+// end::randomize[]
 
 [[Clear]]
 === Clearing all entries : `clear`
 
 Clears all entries from your contact list. +
 Format: `clear`
+
+[[Export]]
+=== Exporting contact list : `export`
+
+Exports all entries from your contact list to Excel Spreadsheet. +
+Excel Spreadsheet will be saved in the current User Directory. +
+Format: `export`
 
 [[Exit]]
 === Exiting the program : `exit`
@@ -405,16 +549,23 @@ Below is a summary of all commands available in FOP Manager:
 |`add` |Adds a participant |`add n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...` |<<AddOther,Adding a participant>>
 |`add_h` |Adds a house |`add_h HOUSENAME` |<<AddHouse,Adding a house>>
 |`add_g` |Adds a group |`add_g GROUPNAME HOUSENAME`|<<AddGroup,Adding a group>>
-|`list_f` |Lists all freshmen in contact list |`list` |<<ListFresh,Listing all participants>>
-|`list_o` |Lists all participants in contact list |`list` |<<ListOGL,Listing all participants>>
+|`edit` |Edits participant at `INDEX` |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR] [g/GROUP] [t/TAG]...` |<<EditPart,Editing a Participant>>
+|`edit_h` |Edits house with `OLDHOUSENAME` |`edit_h OLDHOUSENAME NEWHOUSENAME` |<<EditHouse,Editing a house>>
+|`edit_g` |Edits group with `OLDGROUPNAME` |`edit_g OLDGROUPNAME NEWGROUPNAME` |<<EditGroup,Editing a group>>
+|`list_f` |Lists all freshmen in contact list |`list_f` |<<ListFresh,Listing all freshmen>>
+|`list_o` |Lists all OGLs in contact list |`list_o` |<<ListOGL,Listing all OGLs>>
 |`list` |Lists all participants in contact list |`list` |<<ListALL,Listing all participants>>
-|`edit` |Edits participant at `INDEX` |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR] [g/GROUP] [t/TAG]...` |<<Edit,Editing a Participant>>
-|`find` |Finds participants by name |`find KEYWORD [MORE_KEYWORDS]` |<<Find,Locating participants by name>>
-|`delete` |Deletes participant at `INDEX` |`delete INDEX` |<<Delete,Deleting a participant>>
+|`view_h` |Views all houses in house list |`view_h` |<<ViewHouse,Viewing all houses>>
+|`view_g` |Views all groups in group list |`view_g` |<<ViewGroup,Viewing all groups>>
+|`delete` |Deletes participant at `INDEX` |`delete INDEX` |<<DeletePart,Deleting a participant>>
+|`delete_g` |Deletes group with `GROUPNAME` |`delete_g GROUPNAME` |<<DeleteGroup,Deleting a group>>
+|`delete_h` |Deletes house with `HOUSENAME` |`delete_h HOUSENAME` |<<DeleteHouse,Deleting a participant>>
+|`find` |Finds participants by name |`find KEYWORD [MORE_KEYWORDS]` |<<Find,Finding participants by name>>
 |`select` |Selects participant at `INDEX` |`select INDEX` |<<Select,Selecting a participant>>
 |`history` |Lists all previously entered commands |`history` |<<History,Listing entered comamnds>>
 |`undo` |Undoes previous command |`undo` |<<Undo,Undoing previous command>>
 |`redo` |Redoes previously undone command |`redo` |<<Redo, Redoing previously undone command>>
 |`clear` |Clears contact list |`clear` |<<Clear, Clearing all entries>>
+|`export` |Exports contact list |`export` |<<Export, Exporting all entries>>
 |`exit` |Exits program |`exit` |<<Exit, Exiting the program>>
 |=============================================================

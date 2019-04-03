@@ -10,14 +10,6 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 
 == Project Team
 
-=== John Doe
-image::damithc.jpg[width="150", align="left"]
-{empty}[http://www.comp.nus.edu.sg/~damithch[homepage]] [https://github.com/damithc[github]] [<<johndoe#, portfolio>>]
-
-Role: Project Advisor
-
-'''
-
 === Chan Wei Zhang
 image::weizhang05.png[width="150", align="left"]
 {empty}[http://github.com/weizhang05[github]] [<<weizhang05#, portfolio>>]
@@ -41,7 +33,7 @@ image::shanseet.png[width="150", align="left"]
 {empty}[http://github.com/shanseet[github]] [<<shanseet#, portfolio>>]
 
 Role: Developer +
-Responsibilities: +
+Responsibilities: Documentation
 
 '''
 
