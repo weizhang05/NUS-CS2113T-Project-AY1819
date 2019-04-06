@@ -51,12 +51,13 @@ image::Ui.png[width="790"]
 
 === Introducing the Interface
 
-NOTE: Figure to be inserted by v1.3
+image::UiLabelledParts.png[width="790"]
 
-*  Undo Redo List: This list displays all undo and redo commands executed since the app was started. [v1.3]
-*  Panel List: This panel shows a list of the contacts you have stored so far.
-*  Result Box: The result box displays the result to the commands you input.
-*  Command Box: The command box is where all commands should be typed in.
+. [lime]#Undo List#: This list displays all undoable commands executed since the app was started.
+. [blue]#Redo List#: This list displays all redoable commands executed since the app was started.
+. [red]#Participant List#: This panel shows a list of all the participants and their information you have stored so far.
+. [yellow]#Result Box#: The result box displays the result to the commands you input.
+. [fuchsia]#Command Box#: The command box is where all commands should be typed in.
 
 === Try It Out!
 
@@ -69,8 +70,8 @@ Some example commands you can try:
 
 * `list` : lists all contacts
 * `add_o  n/John Doe s/M b/27071999 p/98765432 e/johnd@example.com m/Information Systems g/` : adds an OGL named `John Doe` to your contact list
-* `add_h  Red` : adds a House named `RED`
-* `add_g  R1 Red` : adds a Group named `R1` to the House `RED`
+* `add_h  Red` : adds a House named `Red`
+* `add_g  R1 Red` : adds a Group named `R1` to the House `Red`
 * `delete  3` : deletes the 3rd contact shown in the current list
 * `exit` : exits the app
 
