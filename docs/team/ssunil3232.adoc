@@ -101,14 +101,14 @@ This section elaborates on the possible ways for implementation that were consid
 
 [options="header"]
 |=======================
-| 													|Pros 																						|Cons 												
-|*Alternative 1*: Create 2 separate lists containing freshmen and OGLs separately, in addition to a full list containing all participants.	|Less computationally expensive to obtain separate lists of freshmen and OGLs.    |Involves greater code complexity to update any contact details, with greater room for error, and requires more memory and storage. 
+| 													|Pros 																						|Cons
+|*Alternative 1*: Create 2 separate lists containing freshmen and OGLs separately, in addition to a full list containing all participants.	|Less computationally expensive to obtain separate lists of freshmen and OGLs.    |Involves greater code complexity to update any contact details, with greater room for error, and requires more memory and storage.
 |*Alternative 2* __(current choice)__: Store all participants in the same list.	|Smaller code base needed, and allows for participants who are neither OGLs nor Freshmen (such as camp directors or camp commandants) to be added.    |More computationally expensive to access lists of freshmen and lists of OGLs.  |
 |=======================
 
 We decided to go ahead with *Alternative 1* as it was easier to implement. It would not require creation of switch cases for the UI to display the respective lists and would not require unnecessarily long codes to filter out freshmen and OGLs from the participant list. The pros of doing *Alternative 1* outweighs the pros of doing *Alternative 2* hence the decision to implement the latter.
 
-Link to view the *Sequence Diagram* and further explanations: 
+Link to view the *Sequence Diagram* and further explanations:
 include::../DeveloperGuide.adoc[tag=PartManagement]
 
 === Export feature
@@ -118,11 +118,11 @@ The Export feature will allow the FOP Manager user to export the data into an ex
 The following section will elaborate on the implementation method.
 
 ==== Current Implementation
-* A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook. 
-* The `export` command will call a function from a class `WriteToExcel` to start the creation of the HSSF Workbook and the addition of all the participants found on the participant list to the Workbook, with the respective objects to the participant class added to the correct column. The system will get the current directory path and add the path name to the proposed file name that end with ".xls". The file will thus be successfully saved in the current user directory. 
+* A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
+* The `export` command will call a function from a class `WriteToExcel` to start the creation of the HSSF Workbook and the addition of all the participants found on the participant list to the Workbook, with the respective objects to the participant class added to the correct column. The system will get the current directory path and add the path name to the proposed file name that end with ".xls". The file will thus be successfully saved in the current user directory.
 
 ==== Design Considerations
 Only one way of implementation was considered for this feature, which involved importing the third-party library.
 
-Link to view the *Sequence Diagram* and further explanations: 
+Link to view the *Sequence Diagram* and further explanations:
 include::../DeveloperGuide.adoc[tag=export]
