@@ -26,14 +26,14 @@ This section shows a summary of my coding, documentation and other contributions
 *** *Purpose*: To distinguish among the freshmen, the OGLs and other participants involved in the camp from the full contact list.
 *** *Justification*: This command will help the FOP Manager user to clearly see the participants in the list of freshmen involved, the list of OGLs involved and the list of other participants involved. It will also display the number of participants in each list to give the user an idea of the expected camp size and accordingly manage the logistics.
 *** *Highlights*: This enhancement is a good to have feature for future enhancements where we need to pull out separate lists. The implementation tactfully used the understanding and flow of the Addressbook commands, reducing need for extensive lines of code.
-*** *Code contributed*: [LINK]
+*** *Code contributed*: [LINK of Pull Requests: https://github.com/cs2113-ay1819s2-t08-4/main/pull[#83], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#81], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#80], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#55]]
 
 ** *Feature 2*: __Exporting of data to an Excel file__
 *** *Format*: `export`
 *** *Purpose*: To export the data in the contact list to Excel spreadsheets, a form shareable with other organisers involved in the camp and others without access to FOP Manager.
 *** *Justification*: This command is necessary for other organizers and non-organisers to be able to view the full contact list, without altering the data stored in the FOP Manager. It will also allow the FOP Organizer to share the contact list information to others without access to the FOP Manager.
 *** *Highlights*: This enhancement required the integration of a third-party library. Basic understanding of the usage of the library was sufficient for the implementation of this feature.
-*** *Code contributed*: [LINK]
+*** *Code contributed*: [LINK of Pull Requests: https://github.com/cs2113-ay1819s2-t08-4/main/pull[#97]]
 
 * *Minor enhancement*:
 ** *Feature*: __Adding of freshmen and Orientation Group Leaders(OGLs)__
@@ -41,18 +41,18 @@ This section shows a summary of my coding, documentation and other contributions
 *** *Purpose*: To add a freshman and an OGL, respectively to the contact list.
 *** *Justification*: This command will help the FOP Manager user to add a tag to the freshmen and the OGLs respectively, without the need to type out the tag "Freshman" or "OGL". The feature will automatically save the Freshman and OGL added with their respective tags.
 *** *Highlights*: It was a necessary enhancement to implement for the various listing commands to work the way they were implemented.
-*** *Code contributed*: [LINK]
+*** *Code contributed*: [LINK of Pull Requests: https://github.com/cs2113-ay1819s2-t08-4/main/pull[#89], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#56]]
 
 * *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
 
 * *Other contributions*:
 
-** I contributed to the User Guide and Developer Guide to update it with features that were added by the team (LINK)
-** I approved of Pull Requests made by other members of the team (LINK) (Pull requests https://github.com[#33], https://github.com[#34])
-** I integrated a third-party library (Apache) to the project (Pull requests https://github.com[#36], https://github.com[#38])
+** I contributed to the User Guide and Developer Guide to update it with features that were added by the team (Pull requests https://github.com/cs2113-ay1819s2-t08-4/main/pull[#100], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#99], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#98], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#87], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#63], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#51])
+
+** I approved of Pull Requests made by other members of the team (Pull requests https://github.com/cs2113-ay1819s2-t08-4/main/pull[#95], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#64], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#21])
+** I integrated a third-party library (Apache) to the project (Pull requests https://github.com/cs2113-ay1819s2-t08-4/main/pull[#97])
 
 == Contributions to the User Guide
-
 
 |===
 |_We updated the given User Guide with instructions on how to use the features that we added to the morphed Address book. The following section will show the additions made to the FOP Manager User Guide for the features implemented by me._
@@ -137,7 +137,7 @@ Format: `list_o`
 Shows a list of all the participants involved in the camp in your contact list. +
 Format: `list`
 
-=== *Export Command* 
+=== *Export Command*
 ==== *Exporting contact list* : `export`
 
 Exports all entries from your contact list to Excel Spreadsheet. +
