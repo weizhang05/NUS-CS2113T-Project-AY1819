@@ -340,7 +340,7 @@ We decided to go ahead with *Alternative 2* as it was easier to implement. It wo
 * *Alternative 2(current choice):* Editing and deleting by index.
 * Pros: Specifies the exact participant to be edited or deleted
 * Cons: Must be used with other commands such as `find` to obtain the index of the desired participant
- 
+
 We decided to go with *Alternative 2* as it meant there was no need to check for the full name of the participant and so fewer complications as in indexing, each participant has a unique index.
 //end::PartManagement[]
 
@@ -546,8 +546,8 @@ image::StatisticUpdateSequenceDiagram.png[width="800"]
 The Export feature will allow the FOP Manager user to export the data into an excel file and distribute to other relevant people involved in the FOP. This way, data can be distributed and raw data untouched except by the Project Director or other camp organisers who are given the access to the raw data.
 
 ==== Current Implementation
-* A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook. 
-* The `export` command will call a function from a class `WriteToExcel` to start the creation of the HSSF Workbook and the addition of all the participants found on the participant list to the Workbook, with the respective objects to the participant class added to the correct column. The system will get the current directory path and add the path name to the proposed file name that end with ".xls". The file will thus be successfully saved in the current user directory. 
+* A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
+* The `export` command will call a function from a class `WriteToExcel` to start the creation of the HSSF Workbook and the addition of all the participants found on the participant list to the Workbook, with the respective objects to the participant class added to the correct column. The system will get the current directory path and add the path name to the proposed file name that end with ".xls". The file will thus be successfully saved in the current user directory.
 
 ==== Design Consideration
 Only one way was considered for the implementation of Export feature, which involved importing the third-party library.
