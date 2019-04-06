@@ -3,6 +3,7 @@ package seedu.address.model.participant;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.Year;
 import java.util.Calendar;
 
 
@@ -12,7 +13,7 @@ import java.util.Calendar;
 public class Birthday {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Birthday should contain eight numbers in the format of DDMMYYYY";
+            "Birthday should contain eight numbers in the format of DDMMYYYY and must be a valid date.";
     public static final String VALIDATION_REGEX = "\\d{8,}";
     public final String value;
 
@@ -26,7 +27,19 @@ public class Birthday {
      * Return true if a given string is a valid sex
      */
     public static boolean isValidBirthday(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        if(Integer.parseInt(test.substring(0,2)) > 31) { //invalid date
+            return false;
+        }
+        if(Integer.parseInt(test.substring(2,4)) > 12) {//invalid month
+            return false;
+        }
+        if(Integer.parseInt(test.substring(4)) > Year.now().getValue()) { //invalid year
+            return false;
+        }
+        return true;
     }
 
     public String getAge() {
