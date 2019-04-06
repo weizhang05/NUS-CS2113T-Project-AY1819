@@ -58,9 +58,95 @@ This section shows a summary of my coding, documentation and other contributions
 |_We updated the given User Guide with instructions on how to use the features that we added to the morphed Address book. The following section will show the additions made to the FOP Manager User Guide for the features implemented by me._
 |===
 
-include::../UserGuide.adoc[tag=undoredo]
+=== *Add Commands*
 
-include::../UserGuide.adoc[tag=dataencryption]
+==== *Adding a freshman* : `add_f`
+
+Adds a freshman to the Freshman list +
+Format: `add_f n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...`
+
+****
+* Parameters can be accepted in any order.
+* A freshman can have any number of tags (including 0).
+
+[TIP]
+`GROUP` can be left blank i.e. `g/`
+
+[WARNING]
+If not blank, the `GROUP` must exist before a freshman can be added to it
+****
+
+Examples:
+
+* `add_f n/John Doe s/M b/27071999 p/98765432 e/johnd@example.com m/Information Systems g/`
+* `add_f n/Jane Doe s/F e/betsycrowe@example.com m/CS g/ p/1234567 t/vegetarian`
+
+==== *Adding an OGL* : `add_o`
+
+Adds an OGL to the OGL list +
+Format: `add_o n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...`
+
+****
+* Parameters can be accepted in any order.
+* An OGL can have any number of tags (including 0).
+
+[TIP]
+`GROUP` can be left blank i.e. `g/`
+
+[WARNING]
+If not blank, the `GROUP` must exist before an OGL can be added to it
+****
+
+Example:
+
+* `add_o n/James Boe s/M b/27071999 p/13579753 e/jamesd@example.com m/CEG g/`
+* `add_o n/Jane Doe s/F e/betsycrowe@example.com m/CS g/ p/1234567 t/vegetarian`
+
+==== *Adding other participants* : `add`
+
+Adds other participants involved in the camp that are neither Freshmen nor OGLs to the contact list +
+Format: `add n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...`
+
+****
+* Parameters can be accepted in any order.
+* An entered person can have any number of tags (including 0).
+
+[TIP]
+Leave `GROUP` blank i.e. `g/` since there is no group allocation for this participant!
+
+****
+
+Example:
+
+* `add n/James Boe s/M b/27071999 p/13579753 e/jamesd@example.com m/CEG g/ t/Camp Commandant`
+
+=== *List Commands*
+
+==== *Listing all freshmen* : `list_f`
+
+Shows a list of all the freshmen in the freshmen list. +
+Format: `list_f`
+
+==== *Listing all OGLs* : `list_o`
+
+Shows a list of all the OGLs in the OGL list. +
+Format: `list_o`
+
+==== *Listing all the participants* : `list`
+
+Shows a list of all the participants involved in the camp in your contact list. +
+Format: `list`
+
+=== *Export Command* 
+==== *Exporting contact list* : `export`
+
+Exports all entries from your contact list to Excel Spreadsheet. +
+Excel Spreadsheet will be saved in the current User Directory. +
+Format: `export`
+
+
+Link to view the User Guide:
+include::../UserGuide.adoc[tag=Add]
 
 == Contributions to the Developer Guide
 
@@ -108,6 +194,7 @@ This section elaborates on the possible ways for implementation that were consid
 
 We decided to go ahead with *Alternative 1* as it was easier to implement. It would not require creation of switch cases for the UI to display the respective lists and would not require unnecessarily long codes to filter out freshmen and OGLs from the participant list. The pros of doing *Alternative 1* outweighs the pros of doing *Alternative 2* hence the decision to implement the latter.
 
+
 Link to view the *Sequence Diagram* and further explanations:
 include::../DeveloperGuide.adoc[tag=PartManagement]
 
@@ -123,6 +210,7 @@ The following section will elaborate on the implementation method.
 
 ==== Design Considerations
 Only one way of implementation was considered for this feature, which involved importing the third-party library.
+
 
 Link to view the *Sequence Diagram* and further explanations:
 include::../DeveloperGuide.adoc[tag=export]
