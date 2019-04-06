@@ -65,9 +65,64 @@ include::../UserGuide.adoc[tag=dataencryption]
 == Contributions to the Developer Guide
 
 |===
-|_The following section shows the additions I made to the FOP Manager Developer Guide for the features implemented by me._
+|_The following section shows the additions I made to the FOP Manager Developer Guide._
 |===
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+=== Participant Management
 
-include::../DeveloperGuide.adoc[tag=dataencryption]
+Participant management refers to how users manipulate and view the data of camp participants. Participants are categorised into 3 types: OGL, Freshman or other.
+
+This section describes how the 3 types of participants are managed.
+
+==== Current Implementation
+
+In *FOP Manager*, participants can be added, edited, deleted and listed.
+
+Add
+
+* `add_o`: Adds an OGL type participant
+* `add_f`: Adds a Freshman type participant
+* `add`: Adds a participant who is neither OGL nor Freshman
+
+Participant contact details can be viewed in different manners:
+
+* `list`: Lists all participants in the camp
+* `list_o`: Lists all OGLs
+* `list_f`: Lists all Freshmen
+
+All participants are stored in the same contact list as a `UniqueParticipantList` in an AddressBook object. Participants created as OGLs or Freshmen differ only in the tags added to them.
+
+The list commands, 'list_o' and 'list_f`, use the keywords/predicates "Freshman" and "OGL" to search through the tags of all participants in the contact list. All participants with matching tags of "Freshman" or "OGL" will be added into the filtered participant list, enabling the user to view all freshmen or OGLs in the contact list.
+
+==== Design Considerations
+This section elaborates on the possible ways for implementation that were considered and explains the analysis process of finally choosing the method of implementation.
+
+===== Aspect: Separate management of freshmen and OGLs
+
+[options="header"]
+|=======================
+| 													|Pros 																						|Cons 												
+|*Alternative 1*: Create 2 separate lists containing freshmen and OGLs separately, in addition to a full list containing all participants.	|Less computationally expensive to obtain separate lists of freshmen and OGLs.    |Involves greater code complexity to update any contact details, with greater room for error, and requires more memory and storage. 
+|*Alternative 2* __(current choice)__: Store all participants in the same list.	|Smaller code base needed, and allows for participants who are neither OGLs nor Freshmen (such as camp directors or camp commandants) to be added.    |More computationally expensive to access lists of freshmen and lists of OGLs.  |
+|=======================
+
+We decided to go ahead with *Alternative 1* as it was easier to implement. It would not require creation of switch cases for the UI to display the respective lists and would not require unnecessarily long codes to filter out freshmen and OGLs from the participant list. The pros of doing *Alternative 1* outweighs the pros of doing *Alternative 2* hence the decision to implement the latter.
+
+Link to view the *Sequence Diagram* and further explanations: 
+include::../DeveloperGuide.adoc[tag=PartManagement]
+
+=== Export feature
+
+The Export feature will allow the FOP Manager user to export the data into an excel file and distribute to other relevant people involved in the FOP. This way, data can be distributed and raw data untouched except by the Project Director or other camp organisers who are given the access to the raw data.
+
+The following section will elaborate on the implementation method.
+
+==== Current Implementation
+* A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook. 
+* The `export` command will call a function from a class `WriteToExcel` to start the creation of the HSSF Workbook and the addition of all the participants found on the participant list to the Workbook, with the respective objects to the participant class added to the correct column. The system will get the current directory path and add the path name to the proposed file name that end with ".xls". The file will thus be successfully saved in the current user directory. 
+
+==== Design Considerations
+Only one way of implementation was considered for this feature, which involved importing the third-party library.
+
+Link to view the *Sequence Diagram* and further explanations: 
+include::../DeveloperGuide.adoc[tag=export]
