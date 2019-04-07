@@ -28,7 +28,8 @@ public class EditHouseCommand extends Command {
     private static String newHouseName;
 
     public EditHouseCommand(String oldHouseName, String newHouseName) {
-        requireNonNull(oldHouseName, newHouseName);
+        requireNonNull(oldHouseName);
+        requireNonNull(newHouseName);
         this.oldHouseName = oldHouseName;
         this.newHouseName = newHouseName;
     }

@@ -13,12 +13,10 @@ import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
 
 public class AddGroupCommandTest {
-
-    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
-
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
+    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
