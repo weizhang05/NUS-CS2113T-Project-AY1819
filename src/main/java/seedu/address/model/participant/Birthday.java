@@ -30,13 +30,13 @@ public class Birthday {
         if (!test.matches(VALIDATION_REGEX)) {
             return false;
         }
-        if(Integer.parseInt(test.substring(0,2)) > 31) { //invalid date
+        if (Integer.parseInt(test.substring(0, 2)) > 31) { //invalid date
             return false;
         }
-        if(Integer.parseInt(test.substring(2,4)) > 12) {//invalid month
+        if (Integer.parseInt(test.substring(2, 4)) > 12) { //invalid month
             return false;
         }
-        if(Integer.parseInt(test.substring(4)) > Year.now().getValue()) { //invalid year
+        if (Integer.parseInt(test.substring(4)) > Year.now().getValue()) { //invalid year
             return false;
         }
         return true;
