@@ -31,7 +31,8 @@ public class EditGroupCommand extends Command {
     private static String newGroupName;
 
     public EditGroupCommand(String oldGroupName, String newGroupName) {
-        requireNonNull(oldGroupName, newGroupName);
+        requireNonNull(oldGroupName);
+        requireNonNull(newGroupName);
         this.oldGroupName = oldGroupName;
         this.newGroupName = newGroupName;
     }
