@@ -29,6 +29,7 @@ public class BirthdayTest {
         assertFalse(Birthday.isValidBirthday("")); // empty string
         assertFalse(Birthday.isValidBirthday(" ")); // spaces only
         assertFalse(Birthday.isValidBirthday("120198")); // less than 8 numbers
+        assertFalse(Birthday.isValidBirthday("120199898")); // more than 8 numbers
         assertFalse(Birthday.isValidBirthday("firstmay")); // non-numeric
         assertFalse(Birthday.isValidBirthday("12Jan98")); // alphabets within digits
         assertFalse(Birthday.isValidBirthday("1201 1998")); // spaces within digits
