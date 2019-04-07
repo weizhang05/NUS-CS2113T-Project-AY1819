@@ -21,7 +21,7 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Alicia Pauline";
     public static final String DEFAULT_SEX = "F";
-    public static final String DEFAULT_BIRTHDAY = "12345679";
+    public static final String DEFAULT_BIRTHDAY = "07081994";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_MAJOR = "Computer Science";
