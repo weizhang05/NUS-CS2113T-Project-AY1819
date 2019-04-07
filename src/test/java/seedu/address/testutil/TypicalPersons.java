@@ -55,10 +55,10 @@ public class TypicalPersons {
             .withGroup("").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withSex("F").withBirthday("01023456").withMajor("CEG").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withSex("F").withBirthday("01023456").withMajor("cEG").build();
+    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("84824243")
+            .withEmail("stefan@example.com").withSex("F").withBirthday("01021999").withMajor("CEG").build();
+    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("84821311")
+            .withEmail("hans@example.com").withSex("F").withBirthday("01021999").withMajor("cEG").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
