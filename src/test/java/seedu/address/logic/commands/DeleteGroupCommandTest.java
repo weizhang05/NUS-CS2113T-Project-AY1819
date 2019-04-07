@@ -15,12 +15,13 @@ import seedu.address.model.grouping.House;
 import seedu.address.testutil.PersonBuilder;
 
 public class DeleteGroupCommandTest {
+    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     private Model model = new ModelManager();
     private CommandHistory commandHistory = new CommandHistory();
-    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
 
     @Test
     public void constructor_nullGroup_throwsNullPointerException() {

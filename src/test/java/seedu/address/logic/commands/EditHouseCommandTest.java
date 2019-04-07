@@ -9,14 +9,15 @@ import org.junit.rules.ExpectedException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
-import seedu.address.model.grouping.House;
 import seedu.address.model.grouping.Group;
+import seedu.address.model.grouping.House;
 
 public class EditHouseCommandTest {
+    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -64,7 +65,7 @@ public class EditHouseCommandTest {
     }
 
     @Test
-    public void execute_editHouseWithGroup() throws Exception {
+    public void execute_editHouseWithGroupSuccess() throws Exception {
         ModelManager modelManager = new ModelManager();
 
         modelManager.addHouse(new House("Red"));
@@ -75,7 +76,7 @@ public class EditHouseCommandTest {
 
         assertEquals(String.format(EditHouseCommand.MESSAGE_SUCCESS, "Red", "Green"),
                 commandResult.getFeedbackToUser());
-        assertEquals("Green",modelManager.getFilteredGroupList().get(0).getHouseName());
+        assertEquals("Green", modelManager.getFilteredGroupList().get(0).getHouseName());
         assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
     }
 }

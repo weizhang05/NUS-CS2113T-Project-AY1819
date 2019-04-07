@@ -15,10 +15,11 @@ import seedu.address.model.participant.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class EditGroupCommandTest {
+    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -31,6 +32,24 @@ public class EditGroupCommandTest {
     public void constructor_nullNewGroup_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         new EditGroupCommand("R1", null);
+    }
+
+    @Test
+    public void execute_editGroupWithPersonSuccessful() throws Exception {
+        ModelManager modelManager = new ModelManager();
+        Person validPersonWithGroup = new PersonBuilder().withGroup("G1").build();
+
+        modelManager.addHouse(new House("Green"));
+        modelManager.addGroup(new Group("G1", "Green"));
+        modelManager.addPerson(validPersonWithGroup);
+
+        CommandResult commandResult =
+                new EditGroupCommand("G1", "G2").execute(modelManager, commandHistory);
+
+        assertEquals(String.format(EditGroupCommand.MESSAGE_SUCCESS, "G1", "G2"), commandResult.getFeedbackToUser());
+        assertEquals(new Group("G2", "Green"), modelManager.getFilteredGroupList().get(0));
+        assertEquals("G2", modelManager.getFilteredPersonList().get(0).getGroup().getGroupName());
+        assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
     }
 
     @Test
@@ -65,23 +84,5 @@ public class EditGroupCommandTest {
         thrown.expect(CommandException.class);
         thrown.expectMessage(EditGroupCommand.MESSAGE_EXISTENT_NEW_GROUP);
         editGroupCommand.execute(modelManager, commandHistory);
-    }
-
-    @Test
-    public void execute_editGroupWithPersonSuccessful() throws Exception {
-        ModelManager modelManager = new ModelManager();
-        Person validPersonWithGroup = new PersonBuilder().withGroup("G1").build();
-
-        modelManager.addHouse(new House("Green"));
-        modelManager.addGroup(new Group("G1", "Green"));
-        modelManager.addPerson(validPersonWithGroup);
-
-        CommandResult commandResult =
-                new EditGroupCommand("G1", "G2").execute(modelManager, commandHistory);
-
-        assertEquals(String.format(EditGroupCommand.MESSAGE_SUCCESS, "G1", "G2"), commandResult.getFeedbackToUser());
-        assertEquals(new Group("G2", "Green"), modelManager.getFilteredGroupList().get(0));
-        assertEquals("G2", modelManager.getFilteredPersonList().get(0).getGroup().getGroupName());
-        assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
     }
 }
