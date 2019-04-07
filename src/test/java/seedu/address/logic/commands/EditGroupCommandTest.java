@@ -24,13 +24,13 @@ public class EditGroupCommandTest {
     @Test
     public void constructor_nullOldGroup_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        new EditGroupCommand(null, "Red");
+        new EditGroupCommand(null, "R1");
     }
 
     @Test
     public void constructor_nullNewGroup_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        new EditGroupCommand("Green", null);
+        new EditGroupCommand("R1", null);
     }
 
     @Test
