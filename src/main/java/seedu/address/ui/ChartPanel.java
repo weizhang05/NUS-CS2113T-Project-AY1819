@@ -57,10 +57,9 @@ public class ChartPanel extends UiPart<Region> {
      * Save charts to images
      */
     public void saveChart(String fileName, String path) {
+
         agePieChart.saveChart(fileName + "_age", path);
-
         majorPieChart.saveChart(fileName + "_major", path);
-
         sexPieChart.saveChart(fileName + "_sex", path);
     }
 }
