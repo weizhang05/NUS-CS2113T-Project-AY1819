@@ -26,14 +26,14 @@ This section shows a summary of my coding, documentation and other contributions
 *** *Purpose*: To distinguish among the freshmen, the OGLs and other participants involved in the camp from the full contact list.
 *** *Justification*: This command will help the FOP Manager user to clearly see the participants in the list of freshmen involved, the list of OGLs involved and the list of other participants involved. It will also display the number of participants in each list to give the user an idea of the expected camp size and accordingly manage the logistics.
 *** *Highlights*: This enhancement is a good to have feature for future enhancements where we need to pull out separate lists. The implementation tactfully used the understanding and flow of the Addressbook commands, reducing need for extensive lines of code.
-*** *Code contributed*: [LINK]
+*** *Code contributed*: [LINK of Pull Requests: https://github.com/cs2113-ay1819s2-t08-4/main/pull[#83], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#81], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#80], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#55]]
 
 ** *Feature 2*: __Exporting of data to an Excel file__
 *** *Format*: `export`
 *** *Purpose*: To export the data in the contact list to Excel spreadsheets, a form shareable with other organisers involved in the camp and others without access to FOP Manager.
 *** *Justification*: This command is necessary for other organizers and non-organisers to be able to view the full contact list, without altering the data stored in the FOP Manager. It will also allow the FOP Organizer to share the contact list information to others without access to the FOP Manager.
 *** *Highlights*: This enhancement required the integration of a third-party library. Basic understanding of the usage of the library was sufficient for the implementation of this feature.
-*** *Code contributed*: [LINK]
+*** *Code contributed*: [LINK of Pull Requests: https://github.com/cs2113-ay1819s2-t08-4/main/pull[#97]]
 
 * *Minor enhancement*:
 ** *Feature*: __Adding of freshmen and Orientation Group Leaders(OGLs)__
@@ -41,33 +41,176 @@ This section shows a summary of my coding, documentation and other contributions
 *** *Purpose*: To add a freshman and an OGL, respectively to the contact list.
 *** *Justification*: This command will help the FOP Manager user to add a tag to the freshmen and the OGLs respectively, without the need to type out the tag "Freshman" or "OGL". The feature will automatically save the Freshman and OGL added with their respective tags.
 *** *Highlights*: It was a necessary enhancement to implement for the various listing commands to work the way they were implemented.
-*** *Code contributed*: [LINK]
+*** *Code contributed*: [LINK of Pull Requests: https://github.com/cs2113-ay1819s2-t08-4/main/pull[#89], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#56]]
 
 * *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
 
 * *Other contributions*:
 
-** I contributed to the User Guide and Developer Guide to update it with features that were added by the team (LINK)
-** I approved of Pull Requests made by other members of the team (LINK) (Pull requests https://github.com[#33], https://github.com[#34])
-** I integrated a third-party library (Apache) to the project (Pull requests https://github.com[#36], https://github.com[#38])
+** I contributed to the User Guide and Developer Guide to update it with features that were added by the team (Pull requests https://github.com/cs2113-ay1819s2-t08-4/main/pull[#100], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#99], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#98], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#87], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#63], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#51])
+
+** I approved of Pull Requests made by other members of the team (Pull requests https://github.com/cs2113-ay1819s2-t08-4/main/pull[#95], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#64], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#21])
+** I integrated a third-party library (Apache) to the project (Pull requests https://github.com/cs2113-ay1819s2-t08-4/main/pull[#97])
 
 == Contributions to the User Guide
-
 
 |===
 |_We updated the given User Guide with instructions on how to use the features that we added to the morphed Address book. The following section will show the additions made to the FOP Manager User Guide for the features implemented by me._
 |===
 
-include::../UserGuide.adoc[tag=undoredo]
+=== *Add Commands*
 
-include::../UserGuide.adoc[tag=dataencryption]
+==== *Adding a freshman* : `add_f`
+
+Adds a freshman to the Freshman list +
+Format: `add_f n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...`
+
+****
+* Parameters can be accepted in any order.
+* A freshman can have any number of tags (including 0).
+
+[TIP]
+`GROUP` can be left blank i.e. `g/`
+
+[WARNING]
+If not blank, the `GROUP` must exist before a freshman can be added to it
+****
+
+Examples:
+
+* `add_f n/John Doe s/M b/27071999 p/98765432 e/johnd@example.com m/Information Systems g/`
+* `add_f n/Jane Doe s/F e/betsycrowe@example.com m/CS g/ p/1234567 t/vegetarian`
+
+==== *Adding an OGL* : `add_o`
+
+Adds an OGL to the OGL list +
+Format: `add_o n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...`
+
+****
+* Parameters can be accepted in any order.
+* An OGL can have any number of tags (including 0).
+
+[TIP]
+`GROUP` can be left blank i.e. `g/`
+
+[WARNING]
+If not blank, the `GROUP` must exist before an OGL can be added to it
+****
+
+Example:
+
+* `add_o n/James Boe s/M b/27071999 p/13579753 e/jamesd@example.com m/CEG g/`
+* `add_o n/Jane Doe s/F e/betsycrowe@example.com m/CS g/ p/1234567 t/vegetarian`
+
+==== *Adding other participants* : `add`
+
+Adds other participants involved in the camp that are neither Freshmen nor OGLs to the contact list +
+Format: `add n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...`
+
+****
+* Parameters can be accepted in any order.
+* An entered person can have any number of tags (including 0).
+
+[TIP]
+Leave `GROUP` blank i.e. `g/` since there is no group allocation for this participant!
+
+****
+
+Example:
+
+* `add n/James Boe s/M b/27071999 p/13579753 e/jamesd@example.com m/CEG g/ t/Camp Commandant`
+
+=== *List Commands*
+
+==== *Listing all freshmen* : `list_f`
+
+Shows a list of all the freshmen in the freshmen list. +
+Format: `list_f`
+
+==== *Listing all OGLs* : `list_o`
+
+Shows a list of all the OGLs in the OGL list. +
+Format: `list_o`
+
+==== *Listing all the participants* : `list`
+
+Shows a list of all the participants involved in the camp in your contact list. +
+Format: `list`
+
+=== *Export Command*
+==== *Exporting contact list* : `export`
+
+Exports all entries from your contact list to Excel Spreadsheet. +
+Excel Spreadsheet will be saved in the current User Directory. +
+Format: `export`
+
+
+Link to view the User Guide:
+include::../UserGuide.adoc[tag=Add]
 
 == Contributions to the Developer Guide
 
 |===
-|_The following section shows the additions I made to the FOP Manager Developer Guide for the features implemented by me._
+|_The following section shows the additions I made to the FOP Manager Developer Guide._
 |===
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+=== Participant Management
 
-include::../DeveloperGuide.adoc[tag=dataencryption]
+Participant management refers to how users manipulate and view the data of camp participants. Participants are categorised into 3 types: OGL, Freshman or other.
+
+This section describes how the 3 types of participants are managed.
+
+==== Current Implementation
+
+In *FOP Manager*, participants can be added, edited, deleted and listed.
+
+Add
+
+* `add_o`: Adds an OGL type participant
+* `add_f`: Adds a Freshman type participant
+* `add`: Adds a participant who is neither OGL nor Freshman
+
+Participant contact details can be viewed in different manners:
+
+* `list`: Lists all participants in the camp
+* `list_o`: Lists all OGLs
+* `list_f`: Lists all Freshmen
+
+All participants are stored in the same contact list as a `UniqueParticipantList` in an AddressBook object. Participants created as OGLs or Freshmen differ only in the tags added to them.
+
+The list commands, 'list_o' and 'list_f`, use the keywords/predicates "Freshman" and "OGL" to search through the tags of all participants in the contact list. All participants with matching tags of "Freshman" or "OGL" will be added into the filtered participant list, enabling the user to view all freshmen or OGLs in the contact list.
+
+==== Design Considerations
+This section elaborates on the possible ways for implementation that were considered and explains the analysis process of finally choosing the method of implementation.
+
+===== Aspect: Separate management of freshmen and OGLs
+
+[options="header"]
+|=======================
+| 													|Pros 																						|Cons
+|*Alternative 1*: Create 2 separate lists containing freshmen and OGLs separately, in addition to a full list containing all participants.	|Less computationally expensive to obtain separate lists of freshmen and OGLs.    |Involves greater code complexity to update any contact details, with greater room for error, and requires more memory and storage.
+|*Alternative 2* __(current choice)__: Store all participants in the same list.	|Smaller code base needed, and allows for participants who are neither OGLs nor Freshmen (such as camp directors or camp commandants) to be added.    |More computationally expensive to access lists of freshmen and lists of OGLs.  |
+|=======================
+
+We decided to go ahead with *Alternative 1* as it was easier to implement. It would not require creation of switch cases for the UI to display the respective lists and would not require unnecessarily long codes to filter out freshmen and OGLs from the participant list. The pros of doing *Alternative 1* outweighs the pros of doing *Alternative 2* hence the decision to implement the latter.
+
+
+Link to view the *Sequence Diagram* and further explanations:
+include::../DeveloperGuide.adoc[tag=PartManagement]
+
+=== Export feature
+
+The Export feature will allow the FOP Manager user to export the data into an excel file and distribute to other relevant people involved in the FOP. This way, data can be distributed and raw data untouched except by the Project Director or other camp organisers who are given the access to the raw data.
+
+The following section will elaborate on the implementation method.
+
+==== Current Implementation
+* A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
+* The `export` command will call a function from a class `WriteToExcel` to start the creation of the HSSF Workbook and the addition of all the participants found on the participant list to the Workbook, with the respective objects to the participant class added to the correct column. The system will get the current directory path and add the path name to the proposed file name that end with ".xls". The file will thus be successfully saved in the current user directory.
+
+==== Design Considerations
+Only one way of implementation was considered for this feature, which involved importing the third-party library.
+
+
+Link to view the *Sequence Diagram* and further explanations:
+include::../DeveloperGuide.adoc[tag=export]
