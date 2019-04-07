@@ -1,13 +1,19 @@
 {
   "persons": [ {
     "name": "Valid Person",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "sex" : "Female",
+    "birthday" : "24041999",
+    "phone" : "92314523",
+    "email" : "valid@example.com",
+    "major" : "CEG",
+    "group" : ""
   }, {
     "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "sex" : "Female",
+    "birthday" : "24041999",
+    "phone" : "923affd3",
+    "email" : "janet@example.com",
+    "major" : "CEG",
+    "group" : ""
   } ]
 }
