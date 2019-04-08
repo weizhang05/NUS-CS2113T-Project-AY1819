@@ -17,13 +17,21 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Pie charts should be shown to the user. */
+    private final boolean showChart;
+
+    /** Save pie charts to image files. */
+    private final boolean saveChart;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showChart, boolean saveChart) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showChart = showChart;
+        this.saveChart = saveChart;
     }
 
     /**
@@ -31,7 +39,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +52,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowChart() {
+        return showChart;
+    }
+
+    public boolean isSaveChart() {
+        return saveChart;
     }
 
     @Override
@@ -60,12 +76,14 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && showChart == otherCommandResult.showChart
+                && saveChart == otherCommandResult.saveChart;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, showChart, saveChart);
     }
 
 }

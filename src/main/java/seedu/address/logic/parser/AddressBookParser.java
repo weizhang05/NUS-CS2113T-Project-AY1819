@@ -30,6 +30,7 @@ import seedu.address.logic.commands.ListOglCommand;
 import seedu.address.logic.commands.ListParticipantCommand;
 import seedu.address.logic.commands.RandomizeCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.SaveChartCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SizeCommand;
 import seedu.address.logic.commands.StatCommand;
@@ -151,6 +152,9 @@ public class AddressBookParser {
 
         case StatCommand.COMMAND_WORD:
             return new StatCommand();
+
+        case SaveChartCommand.COMMAND_WORD:
+            return new SaveChartCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

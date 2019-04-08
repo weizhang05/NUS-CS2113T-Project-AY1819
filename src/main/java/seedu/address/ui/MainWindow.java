@@ -220,7 +220,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandText.equalsIgnoreCase("stat")) {
+            if (commandResult.isShowChart()) {
                 personListPanel.getRoot().setVisible(false);
                 chartPanel.getRoot().setVisible(true);
 
@@ -228,6 +228,12 @@ public class MainWindow extends UiPart<Stage> {
             } else {
                 chartPanel.getRoot().setVisible(false);
                 personListPanel.getRoot().setVisible(true);
+            }
+
+            if (commandResult.isSaveChart()) {
+                chartPanel.getRoot().setVisible(true);
+                chartPanel.saveChart(logic.getFileName(), logic.getChartStoragePath().toString());
+                chartPanel.getRoot().setVisible(false);
             }
 
             return commandResult;
