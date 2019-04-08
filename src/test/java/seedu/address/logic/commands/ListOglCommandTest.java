@@ -1,20 +1,22 @@
 package seedu.address.logic.commands;
 
+import static org.junit.Assert.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.SONIA;
+import static seedu.address.testutil.TypicalPersons.getAddressBookWithOneFreshmanOrOgl;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.Arrays;
+import java.util.Collections;
+
 import org.junit.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.FindingOglPredicate;
-
-import java.util.Arrays;
-import java.util.Collections;
-
-import static org.junit.Assert.assertEquals;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.*;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 public class ListOglCommandTest {
     private Model model = new ModelManager(getAddressBookWithOneFreshmanOrOgl(), new UserPrefs()); //no Freshman
