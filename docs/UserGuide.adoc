@@ -51,12 +51,13 @@ image::Ui.png[width="790"]
 
 === Introducing the Interface
 
-NOTE: Figure to be inserted by v1.3
+image::UiLabelledParts.png[width="790"]
 
-*  Undo Redo List: This list displays all undo and redo commands executed since the app was started. [v1.3]
-*  Panel List: This panel shows a list of the contacts you have stored so far.
-*  Result Box: The result box displays the result to the commands you input.
-*  Command Box: The command box is where all commands should be typed in.
+. [lime]#Undo List#: This list displays all undoable commands executed since the app was started.
+. [blue]#Redo List#: This list displays all redoable commands executed since the app was started.
+. [red]#Participant List#: This panel shows a list of all the participants and their information you have stored so far.
+. [yellow]#Result Box#: The result box displays the result to the commands you input.
+. [fuchsia]#Command Box#: The command box is where all commands should be typed in.
 
 === Try It Out!
 
@@ -69,8 +70,8 @@ Some example commands you can try:
 
 * `list` : lists all contacts
 * `add_o  n/John Doe s/M b/27071999 p/98765432 e/johnd@example.com m/Information Systems g/` : adds an OGL named `John Doe` to your contact list
-* `add_h  Red` : adds a House named `RED`
-* `add_g  R1 Red` : adds a Group named `R1` to the House `RED`
+* `add_h  Red` : adds a House named `Red`
+* `add_g  R1 Red` : adds a Group named `R1` to the House `Red`
 * `delete  3` : deletes the 3rd contact shown in the current list
 * `exit` : exits the app
 
@@ -169,11 +170,13 @@ Example:
 Adds a house that can contain different groups +
 Format: `add_h HOUSENAME`
 
+****
 [NOTE]
 House names are always saved with first letter in Uppercase, the rest in lowercase
 
 [NOTE]
 House names cannot contain spaces
+****
 
 Example:
 
@@ -185,6 +188,7 @@ Example:
 Adds a group to a house +
 Format: `add_g GROUPNAME HOUSENAME`
 
+****
 [NOTE]
 Group names are always saved in all-caps
 
@@ -193,6 +197,7 @@ Group names cannot contain spaces
 
 [WARNING]
 Groups can only be added to houses that already exist
+****
 
 Example:
 
@@ -287,6 +292,12 @@ Edits the group named `RED1` to `RED2`. All participants in RED1 are now in RED2
 
 === List Commands
 
+[[ListALL]]
+==== Listing all the participants : `list`
+
+Shows a list of all the participants involved in the camp in your contact list. +
+Format: `list`
+
 [[ListFresh]]
 ==== Listing all freshmen : `list_f`
 
@@ -299,11 +310,23 @@ Format: `list_f`
 Shows a list of all the OGLs in the OGL list. +
 Format: `list_o`
 
-[[ListALL]]
-==== Listing all the participants : `list`
+[[ListGroup]]
+==== Listing all group participants : `list_g`
 
-Shows a list of all the participants involved in the camp in your contact list. +
-Format: `list`
+Shows a list of all the participants in a group. +
+Format: `list_g GROUPNAME`
+
+****
+[NOTE]
+Group names are not case-sensitive
+
+[WARNING]
+`OLDGROUPNAME` must exist in the current list of groups
+****
+
+Example:
+
+* `list_g g1` lists all participants in Group `G1` if `G1` exists.
 
 === View Commands
 
@@ -352,6 +375,7 @@ Examples:
 * `find Betsy` has just been entered. +
 `delete 1` deletes the participant at index 2 in the results of the `find` command.
 
+//tag::deletegrouphouse[]
 [[DeleteGroup]]
 ==== Deleting a group : `delete_g`
 
@@ -363,8 +387,19 @@ Format: `delete_g GROUPNAME`
 * `GROUPNAME` must exist in the list of groups.
 
 [WARNING]
-The group *must contain no participants* before it can be deleted.
+The group *must contain no participants* before it can be deleted
+
+[NOTE]
+Group names are not case-sensitive
 ****
+Examples:
+
+* Group `G1` has just been added under house `Green`. +
+  `delete_g G1` removes the group `G1` from the list of groups.
+
+* `list_g y1` shows only one participant in Group `Y1`. +
+  `edit 1 g/` removes the participant from the group. +
+  `delete_g Y1` removes the group `Y1` from the list of groups.
 
 [[DeleteHouse]]
 ==== Deleting a house : `delete_h`
@@ -378,7 +413,27 @@ Format: `delete_h HOUSENAME`
 
 [WARNING]
 The house *must contain no groups* before it can be deleted.
+
+[NOTE]
+House names are not case-sensitive
 ****
+
+Examples:
+
+* A house named `Blue` has just been added. +
+  `delete_h blue` deletes the house `Blue`.
+
+* `view_g` shows only 1 group `R1` in the house `Red`. +
+  Group `R1` is deleted by first removing its participants from the group, then entering `delete_g R1`. +
+ `delete_h RED` deletes the house `Red`.
+
+//end::deletegrouphouse[]
+
+[[Size]]
+=== Displaying the camp size: `size`
+
+Displays the total number of participants, the number of OGLs and freshmen, and the number of houses and groups in the command result box. +
+Format: `size`
 
 [[Find]]
 === Finding participants by name: `find`
@@ -424,10 +479,12 @@ Examples:
 Lists all the commands that you have entered in reverse chronological order. +
 Format: `history`
 
+****
 [NOTE]
 ====
 Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
 ====
+****
 
 // tag::undoredo[]
 [[Undo]]
@@ -436,10 +493,12 @@ Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and 
 Restores your contact list to the state before the previous _undoable_ command was executed. +
 Format: `undo`
 
+****
 [NOTE]
 Undoable commands are commands that modify your contact list's content (`add`, `delete`, `edit` and `clear`).
 [TIP]
 Undoable commands are shown in the undo list.
+****
 
 Examples:
 
@@ -459,8 +518,10 @@ Examples:
 Reverses the most recent `undo` command. +
 Format: `redo`
 
+****
 [TIP]
 Redoable commands are shown in the redo list.
+****
 
 Examples:
 
@@ -480,13 +541,15 @@ Examples:
 
 // tag::randomize[]
 [[Randomize]]
-=== Randomize command : `randomize`
+=== Randomizing groupings : `randomize`
 
 Randomize group allocation of all registered participants. +
 Format: `randomize`
 
+****
 [NOTE]
 Command will only work when there is at least 2 registered participants and 2 created groups.
+****
 
 Examples:
 
@@ -498,18 +561,18 @@ Output: Unable to distribute participants (min 2 groups and 2 participants)
 
 // end::randomize[]
 
-[[Clear]]
-=== Clearing all entries : `clear`
-
-Clears all entries from your contact list. +
-Format: `clear`
-
 [[Export]]
 === Exporting contact list : `export`
 
 Exports all entries from your contact list to Excel Spreadsheet. +
 Excel Spreadsheet will be saved in the current User Directory. +
 Format: `export`
+
+[[Clear]]
+=== Clearing all entries : `clear`
+
+Clears all entries from your contact list. +
+Format: `clear`
 
 [[Exit]]
 === Exiting the program : `exit`
@@ -539,7 +602,7 @@ Congratulations, you are now ready to start your journey with FOP Manager!
 
 Below is a summary of all commands available in FOP Manager:
 
-[cols="20%,<30%,<50%, <20%",options="header",]
+[cols="15%,<30%,<50%, <20%",options="header",]
 |============================================================
 |Command |Purpose |Example |Reference
 
@@ -550,21 +613,25 @@ Below is a summary of all commands available in FOP Manager:
 |`add_h` |Adds a house |`add_h HOUSENAME` |<<AddHouse,Adding a house>>
 |`add_g` |Adds a group |`add_g GROUPNAME HOUSENAME`|<<AddGroup,Adding a group>>
 |`edit` |Edits participant at `INDEX` |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR] [g/GROUP] [t/TAG]...` |<<EditPart,Editing a Participant>>
-|`edit_h` |Edits house with `OLDHOUSENAME` |`edit_h OLDHOUSENAME NEWHOUSENAME` |<<EditHouse,Editing a house>>
-|`edit_g` |Edits group with `OLDGROUPNAME` |`edit_g OLDGROUPNAME NEWGROUPNAME` |<<EditGroup,Editing a group>>
+|`edit_h` |Edits an existing house's name |`edit_h OLDHOUSENAME NEWHOUSENAME` |<<EditHouse,Editing a house>>
+|`edit_g` |Edits an existing group's name |`edit_g OLDGROUPNAME NEWGROUPNAME` |<<EditGroup,Editing a group>>
+|`list` |Lists all participants in contact list |`list` |<<ListALL,Listing all participants>>
 |`list_f` |Lists all freshmen in contact list |`list_f` |<<ListFresh,Listing all freshmen>>
 |`list_o` |Lists all OGLs in contact list |`list_o` |<<ListOGL,Listing all OGLs>>
-|`list` |Lists all participants in contact list |`list` |<<ListALL,Listing all participants>>
+|`list_g` |Lists all participants in a particular group |`list_g GROUPNAME` |<<ListGroup,Listing all group participants>>
 |`view_h` |Views all houses in house list |`view_h` |<<ViewHouse,Viewing all houses>>
 |`view_g` |Views all groups in group list |`view_g` |<<ViewGroup,Viewing all groups>>
 |`delete` |Deletes participant at `INDEX` |`delete INDEX` |<<DeletePart,Deleting a participant>>
-|`delete_g` |Deletes group with `GROUPNAME` |`delete_g GROUPNAME` |<<DeleteGroup,Deleting a group>>
-|`delete_h` |Deletes house with `HOUSENAME` |`delete_h HOUSENAME` |<<DeleteHouse,Deleting a participant>>
+|`delete_g` |Deletes a group |`delete_g GROUPNAME` |<<DeleteGroup,Deleting a group>>
+|`delete_h` |Deletes a house |`delete_h HOUSENAME` |<<DeleteHouse,Deleting a participant>>
+|`size` |Displays the number of participants, OGLs, freshmen, houses and groups |`size` |<<Size, Displaying camp size>>
 |`find` |Finds participants by name |`find KEYWORD [MORE_KEYWORDS]` |<<Find,Finding participants by name>>
 |`select` |Selects participant at `INDEX` |`select INDEX` |<<Select,Selecting a participant>>
 |`history` |Lists all previously entered commands |`history` |<<History,Listing entered comamnds>>
 |`undo` |Undoes previous command |`undo` |<<Undo,Undoing previous command>>
 |`redo` |Redoes previously undone command |`redo` |<<Redo, Redoing previously undone command>>
+|`randomize` |Randomizes group allocation |`randomize` |<<Randomize, Randomizing groupings>>
+|`export` |Exports contact list |`export` |<<Export, Exporting contact list>>
 |`clear` |Clears contact list |`clear` |<<Clear, Clearing all entries>>
 |`export` |Exports contact list |`export` |<<Export, Exporting all entries>>
 |`exit` |Exits program |`exit` |<<Exit, Exiting the program>>
