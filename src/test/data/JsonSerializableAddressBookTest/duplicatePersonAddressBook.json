@@ -4,19 +4,19 @@
   "persons": [ {
     "name": "Alice Pauline",
     "sex": "F",
-    "birthday": "01023456",
+    "birthday": "01021993",
     "phone": "94351253",
     "email": "alice@example.com",
     "major": "Computer Science",
-    "group": "G1",
+    "group": "",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "sex": "F",
-    "birthday": "01023456",
+    "birthday": "01021993",
     "phone": "94351253",
     "email": "pauline@example.com",
     "major": "Computer Science",
-    "group": "G1"
+    "group": ""
   } ]
 }

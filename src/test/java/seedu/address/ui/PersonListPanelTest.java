@@ -84,8 +84,8 @@ public class PersonListPanelTest extends GuiUnitTest {
         for (int i = 0; i < personCount; i++) {
             Name name = new Name(i + "a");
             Sex sex = new Sex("F");
-            Birthday birthday = new Birthday("12345678");
-            Phone phone = new Phone("000");
+            Birthday birthday = new Birthday("12122000");
+            Phone phone = new Phone("98765433");
             Email email = new Email("a@aa");
             Major major = new Major("cs");
             Group group = new Group("");
