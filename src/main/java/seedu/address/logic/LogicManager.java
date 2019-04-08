@@ -136,4 +136,9 @@ public class LogicManager implements Logic {
     public ObservableMap<String, Integer> getSexData() {
         return model.getSexData();
     }
+
+    @Override
+    public String getFileName() {
+        return model.getFileName();
+    }
 }

@@ -22,6 +22,6 @@ public class StatCommand extends Command {
         if (model.isEmpty()) {
             throw new CommandException(MESSAGE_NO_PERSON);
         }
-        return new CommandResult(MESSAGE_SUCCESS, false, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
     }
 }
