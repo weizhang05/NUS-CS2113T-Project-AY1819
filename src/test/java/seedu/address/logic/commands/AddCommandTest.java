@@ -127,6 +127,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public String getFileName() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setFileName(String fileName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }

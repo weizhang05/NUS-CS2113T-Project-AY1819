@@ -38,15 +38,4 @@ public class GroupList {
     public static boolean hasGroup (String toFind) {
         return groups.contains(new Group(toFind));
     }
-
-    /**
-     * Prints the list
-     */
-    public static void listGroup() {
-        for (int i = 0; i < groups.size(); i++) {
-            System.out.println(groups.get(i));
-            System.out.println();
-        }
-    }
-
 }
