@@ -27,7 +27,8 @@ public class AddGroupCommand extends Command {
     private static String houseName;
 
     public AddGroupCommand(String groupName, String houseName) {
-        requireNonNull(groupName, houseName);
+        requireNonNull(groupName);
+        requireNonNull(houseName);
         this.groupName = groupName;
         this.houseName = houseName;
     }
