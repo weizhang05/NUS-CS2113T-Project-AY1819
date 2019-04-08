@@ -8,7 +8,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getAddressBookWithOneFreshman;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 public class ExportCommandTest {
