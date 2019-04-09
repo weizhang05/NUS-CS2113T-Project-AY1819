@@ -1,11 +1,10 @@
 package seedu.address.commons.util;
 
-import java.io.*;
-import java.util.*;
-import java.lang.*;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.io.*;
+import java.util.*;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -168,7 +167,7 @@ public class WriteToExcel {
         String excelFileName = WORKING_DIRECTORY_STRING
                 + System.getProperty("file.separator")
                 + "FOP_MANAGER_LIST.xls";
-        List<Person> person = new ArrayList<>( );
+        List<Person> person = new ArrayList<>();
         try {
             FileInputStream file = new FileInputStream(new File(excelFileName));
             HSSFWorkbook wb = new HSSFWorkbook(file);
@@ -177,31 +176,31 @@ public class WriteToExcel {
 
             //check if the cell headings match
             Row row = sheet.getRow(0);
-            int titleCheck=1;
-            System.out.println(row.getCell(1).getStringCellValue( ));
-            System.out.println(row.getCell(2).getStringCellValue( ));
-            System.out.println(row.getCell(3).getStringCellValue( ));
-            System.out.println(row.getCell(4).getStringCellValue( ));
-            System.out.println(row.getCell(5).getStringCellValue( ));
-            System.out.println(row.getCell(6).getStringCellValue( ));
-            System.out.println(row.getCell(7).getStringCellValue( ));
-            if ((row.getCell(0).getStringCellValue( ) == NAME_TITLE)
-                    && (row.getCell(1).getStringCellValue( ) == SEX_TITLE)
-                    && (row.getCell(2).getStringCellValue( ) == BIRTHDAY_TITLE)
-                    && (row.getCell(3).getStringCellValue( ) == PHONE_TITLE)
-                    && (row.getCell(4).getStringCellValue( ) == EMAIL_TITLE)
-                    && (row.getCell(5).getStringCellValue( ) == MAJOR_TITLE)
-                    && (row.getCell(6).getStringCellValue( ) == GROUP_TITLE)
-                    && (row.getCell(7).getStringCellValue( ) == TAG_TITLE)) {
+            int titleCheck = 1;
+            System.out.println(row.getCell(1).getStringCellValue());
+            System.out.println(row.getCell(2).getStringCellValue());
+            System.out.println(row.getCell(3).getStringCellValue());
+            System.out.println(row.getCell(4).getStringCellValue());
+            System.out.println(row.getCell(5).getStringCellValue());
+            System.out.println(row.getCell(6).getStringCellValue());
+            System.out.println(row.getCell(7).getStringCellValue());
+            if ((row.getCell(0).getStringCellValue() == NAME_TITLE)
+                    && (row.getCell(1).getStringCellValue() == SEX_TITLE)
+                    && (row.getCell(2).getStringCellValue() == BIRTHDAY_TITLE)
+                    && (row.getCell(3).getStringCellValue() == PHONE_TITLE)
+                    && (row.getCell(4).getStringCellValue() == EMAIL_TITLE)
+                    && (row.getCell(5).getStringCellValue() == MAJOR_TITLE)
+                    && (row.getCell(6).getStringCellValue() == GROUP_TITLE)
+                    && (row.getCell(7).getStringCellValue() == TAG_TITLE)) {
                 titleCheck = 1;
-            } else{
+            } else {
                 titleCheck = 0;
             }
 
             String nameString;
             String sexString;
             String birthdayString;
-            String phoneString ;
+            String phoneString;
             String emailString;
             String majorString;
             String groupString;
@@ -210,56 +209,52 @@ public class WriteToExcel {
             //System.out.println(titleCheck);
             if (titleCheck == 1) {
                 //continue
-                for(int i=1; i<=sheet.getLastRowNum(); i++){
-                Row rowStart = sheet.getRow(i);
-                //for (int r = rowStart.getFirstCellNum( ); r < rowStart.getLastCellNum( ); r++) {
+                for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                    Row rowStart = sheet.getRow(i);
                     int colNum = 0;
                     Cell cell = rowStart.getCell(0);
-                    nameString = cell.getStringCellValue( );
+                    nameString = cell.getStringCellValue();
                     System.out.println(nameString);
                     cell = rowStart.getCell(1);
-                    sexString = cell.getStringCellValue( );
+                    sexString = cell.getStringCellValue();
                     System.out.println(sexString);
                     cell = rowStart.getCell(2);
                     int birthdayInt = (int)cell.getNumericCellValue();
                     birthdayString = String.valueOf(birthdayInt);
-
                     System.out.println(birthdayString);
                     cell = rowStart.getCell(3);
                     int phoneInt = (int)cell.getNumericCellValue();
                     phoneString = String.valueOf(phoneInt);
-
                     System.out.println(phoneString);
                     cell = rowStart.getCell(4);
-                    emailString = cell.getStringCellValue( );
+                    emailString = cell.getStringCellValue();
                     System.out.println(emailString);
                     cell = rowStart.getCell(5);
-                    majorString = cell.getStringCellValue( );
+                    majorString = cell.getStringCellValue();
                     System.out.println(majorString);
                     cell = rowStart.getCell(6);
-                    if(cell == null) {
+                    if (cell == null) {
                         groupString = " ";
-                    }
-                    else{
-                        groupString = cell.getStringCellValue( );
+                    } else {
+                        groupString = cell.getStringCellValue();
                     }
                     System.out.println(groupString);
                     cell = rowStart.getCell(7);
-                    tagString = cell.getStringCellValue( );
+                    tagString = cell.getStringCellValue();
                     System.out.println(tagString);
-                    if (nameString == null || sexString == null || birthdayString == null || phoneString == null||
-                            emailString == null|| majorString == null) {
+                    if (nameString == null || sexString == null || birthdayString == null || phoneString == null
+                            || emailString == null || majorString == null) {
                         throw new ParseException(Messages.MESSAGE_UNSUCCESSFUL_IMPORT);
-                    }
-                    else{
-                    person.add(createPerson(nameString, sexString, birthdayString, phoneString, emailString, majorString, groupString, tagString));
+                    } else {
+                        person.add(createPerson(nameString, sexString, birthdayString, phoneString, emailString,
+                                majorString, groupString, tagString));
                     }
                 }
 
             }
 
         } catch (Exception e) {
-            e.printStackTrace( );
+            e.printStackTrace();
         }
         System.out.println(person.size());
 
@@ -278,7 +273,7 @@ public class WriteToExcel {
         Major majorParse = ParserUtil.parseMajor(majorString);
         Group groupParse = ParserUtil.parseGroup(groupString);
         Set<Tag> tagList = new HashSet<>();
-        String processedTags = tagString.replace(TAG_SEPARATOR, " "+ PREFIX_TAG);
+        String processedTags = tagString.replace(TAG_SEPARATOR, " " + PREFIX_TAG);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 " " + PREFIX_TAG + processedTags, PREFIX_TAG);
         tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import jdk.nashorn.api.tree.ReturnTree;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.commands.AddHouseCommand;
@@ -105,8 +104,8 @@ public class AddressBookParser {
         case ExportOglCommand.COMMAND_WORD:
             return new ExportOglCommand();
 
-            case ImportCommand.COMMAND_WORD:
-                return new ImportCommand();
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommand();
 
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);

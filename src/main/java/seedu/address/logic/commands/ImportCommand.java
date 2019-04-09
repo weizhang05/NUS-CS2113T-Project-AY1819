@@ -1,16 +1,19 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.WriteToExcel;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.participant.Person;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
-public class ImportCommand extends Command{
+/**
+ * Import different data.
+ */
+public class ImportCommand extends Command {
     public static final String COMMAND_WORD = "import";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Imports contacts from an Excel file.\n"
@@ -19,9 +22,9 @@ public class ImportCommand extends Command{
             + "If you want to update the whole FOP Manager, enter clear and then import.\n"
             + "To keep data safe om case pf accidental overwrite, export the data and copy somewhere else.\n";
 
-    public static final String MESSAGE_SUCCESS = "The new names in the excel file have been imported. Should you " +
-            "wish to update all the participants' particulars in the FOP Manager, enter the clear command followed " +
-            "by import command.";
+    public static final String MESSAGE_SUCCESS = "The new names in the excel file have been imported. Should you "
+            +"wish to update all the participants' particulars in the FOP Manager, enter the clear command followed "
+            +"by import command.";
     @Override
     public CommandResult execute (Model model, CommandHistory commandHistory) {
         requireNonNull(model);
@@ -29,7 +32,7 @@ public class ImportCommand extends Command{
         try {
 
             List<Person> persons = WriteToExcel.readFromExcel();
-            if (persons.size() >=0) {
+            if (persons.size() >= 0) {
 
                 model.addListUniquePerson(persons);
                 model.commitAddressBook();
