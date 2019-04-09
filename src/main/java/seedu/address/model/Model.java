@@ -200,6 +200,8 @@ public interface Model {
      */
     void setGroup(Group target, Group editedGroup);
 
+    Group getGroup(Group toGet);
+
     /** Returns an unmodifiable view of the filtered group list */
     ObservableList<Group> getFilteredGroupList();
 
