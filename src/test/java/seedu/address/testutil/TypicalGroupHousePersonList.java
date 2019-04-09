@@ -18,13 +18,13 @@ public class TypicalGroupHousePersonList {
             .withPhone("94351253").withGroup("R1", "Red").build();
     public static final Person BENEDICT = new PersonBuilder().withName("Benedict Ben").withSex("M")
             .withBirthday("08071993").withMajor("IS").withEmail("benny@example.com").withPhone("98765432")
-            .withGroup("").withTags("owesMoney", "friends").build();
+            .withGroup("").withTags("OGL").build();
     public static final Person COCO = new PersonBuilder().withName("Coco Nut").withSex("F")
             .withBirthday("08081996").withMajor("CEG").withEmail("cocothenut@example.com").withPhone("98765432")
             .withGroup("R2", "Red").withTags("Vegetarian").build();
     public static final Person DODO = new PersonBuilder().withName("Dodo Burt").withSex("M")
             .withBirthday("10081995").withMajor("BA").withEmail("dodoburt@example.com").withPhone("98765432")
-            .withGroup("B1", "Blue").withTags("Vegetarian").build();
+            .withGroup("B1", "Blue").withTags("Freshman").build();
 
     public static final Group R1 = new Group("R1", "Red"); // 1 person in group
     public static final Group R2 = new Group("R2", "Red"); // 1 person in group
