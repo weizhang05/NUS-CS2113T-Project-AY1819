@@ -1,5 +1,6 @@
 package seedu.address.model.grouping;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -17,8 +18,12 @@ public class FindGroupPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
+    private List<String> emptyString = Arrays.asList("EMPTY");
+
     @Override
     public boolean test(Person person) {
+        if (keywords.equals(emptyString))
+            return person.getGroup().getGroupName().isEmpty();
         return keywords.stream()
                 .allMatch(keyword-> StringUtil.containsWordIgnoreCase(person.getGroup().getGroupName(), keyword));
     }

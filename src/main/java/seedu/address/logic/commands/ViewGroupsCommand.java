@@ -16,7 +16,7 @@ import seedu.address.model.grouping.Group;
 public class ViewGroupsCommand extends Command {
     public static final String COMMAND_WORD = "view_g";
 
-    public static final String MESSAGE_SUCCESS = "Groups added: \n%1$s";
+    public static final String MESSAGE_SUCCESS = "Groups: \n%1$s";
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
