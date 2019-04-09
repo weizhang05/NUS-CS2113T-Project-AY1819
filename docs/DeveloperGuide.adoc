@@ -368,6 +368,14 @@ Delete
 * Deleting of house objects require there to be no groups within that house.
 * Deleting of group objects require there to be no participants within that group.
 
+Groups and houses can be viewed in different manners:
+
+* Viewing houses and groups
+** `view_h` and `view_g` simply displays the houses and groups stored in `UniqueHouseList` and `UniqueGroupList` respectively.
+* Listing participants in a group
+** `list_g` uses similar logic to `list_o` and `list_f`, implemented by using an entered group name as a predicate that searches through all the `Group` fields of participants, and updates the `filteredPersons` list with participants with the matching group name.
+** Entering `list_g empty` lists all participants without a group yet by searching for participants with an empty group name.
+
 ==== Design Considerations
 
 ===== Aspect: Storage of group and house lists
