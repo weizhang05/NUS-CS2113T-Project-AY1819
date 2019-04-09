@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -148,6 +149,19 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         undoableCommand = "Add " + person.getName().fullName;
     }
+
+    @Override
+    public void addListUniquePerson(List<Person> persons) {
+        requireNonNull(persons);
+        for (Person person : persons) {
+            if (hasPerson(person)) {
+                continue;
+            }
+            versionedAddressBook.addPerson(person);
+        }
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
 
     @Override
     public void setPerson(Person target, Person editedPerson) {

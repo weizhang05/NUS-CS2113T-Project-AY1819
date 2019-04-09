@@ -1,14 +1,26 @@
 package seedu.address.commons.util;
 
-import java.io.FileOutputStream;
-import java.util.List;
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.*;
 
-import seedu.address.model.participant.Person;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.grouping.Group;
+import seedu.address.model.participant.*;
+import seedu.address.model.participant.Name;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Write the excel sheet.
@@ -148,4 +160,129 @@ public class WriteToExcel {
             row.createCell(colNum).setCellValue((Double) object);
         }
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    /**
+     * Reading Data.
+     */
+    public static List<Person> readFromExcel() {
+        String excelFileName = WORKING_DIRECTORY_STRING
+                + System.getProperty("file.separator")
+                + "FOP_MANAGER_LIST.xls";
+        List<Person> person = new ArrayList<>( );
+        try {
+            FileInputStream file = new FileInputStream(new File(excelFileName));
+            HSSFWorkbook wb = new HSSFWorkbook(file);
+            HSSFSheet sheet = wb.getSheetAt(0);
+
+
+            //check if the cell headings match
+            Row row = sheet.getRow(0);
+            int titleCheck=1;
+            System.out.println(row.getCell(1).getStringCellValue( ));
+            System.out.println(row.getCell(2).getStringCellValue( ));
+            System.out.println(row.getCell(3).getStringCellValue( ));
+            System.out.println(row.getCell(4).getStringCellValue( ));
+            System.out.println(row.getCell(5).getStringCellValue( ));
+            System.out.println(row.getCell(6).getStringCellValue( ));
+            System.out.println(row.getCell(7).getStringCellValue( ));
+            if ((row.getCell(0).getStringCellValue( ) == NAME_TITLE)
+                    && (row.getCell(1).getStringCellValue( ) == SEX_TITLE)
+                    && (row.getCell(2).getStringCellValue( ) == BIRTHDAY_TITLE)
+                    && (row.getCell(3).getStringCellValue( ) == PHONE_TITLE)
+                    && (row.getCell(4).getStringCellValue( ) == EMAIL_TITLE)
+                    && (row.getCell(5).getStringCellValue( ) == MAJOR_TITLE)
+                    && (row.getCell(6).getStringCellValue( ) == GROUP_TITLE)
+                    && (row.getCell(7).getStringCellValue( ) == TAG_TITLE)) {
+                titleCheck = 1;
+            } else{
+                titleCheck = 0;
+            }
+
+            String nameString;
+            String sexString;
+            String birthdayString;
+            String phoneString ;
+            String emailString;
+            String majorString;
+            String groupString;
+            String tagString;
+
+            //System.out.println(titleCheck);
+            if (titleCheck == 1) {
+                //continue
+                for(int i=1; i<=sheet.getLastRowNum(); i++){
+                Row rowStart = sheet.getRow(i);
+                //for (int r = rowStart.getFirstCellNum( ); r < rowStart.getLastCellNum( ); r++) {
+                    int colNum = 0;
+                    Cell cell = rowStart.getCell(0);
+                    nameString = cell.getStringCellValue( );
+                    System.out.println(nameString);
+                    cell = rowStart.getCell(1);
+                    sexString = cell.getStringCellValue( );
+                    System.out.println(sexString);
+                    cell = rowStart.getCell(2);
+                    int birthdayInt = (int)cell.getNumericCellValue();
+                    birthdayString = String.valueOf(birthdayInt);
+
+                    System.out.println(birthdayString);
+                    cell = rowStart.getCell(3);
+                    int phoneInt = (int)cell.getNumericCellValue();
+                    phoneString = String.valueOf(phoneInt);
+
+                    System.out.println(phoneString);
+                    cell = rowStart.getCell(4);
+                    emailString = cell.getStringCellValue( );
+                    System.out.println(emailString);
+                    cell = rowStart.getCell(5);
+                    majorString = cell.getStringCellValue( );
+                    System.out.println(majorString);
+                    cell = rowStart.getCell(6);
+                    if(cell == null) {
+                        groupString = " ";
+                    }
+                    else{
+                        groupString = cell.getStringCellValue( );
+                    }
+                    System.out.println(groupString);
+                    cell = rowStart.getCell(7);
+                    tagString = cell.getStringCellValue( );
+                    System.out.println(tagString);
+                    if (nameString == null || sexString == null || birthdayString == null || phoneString == null||
+                            emailString == null|| majorString == null) {
+                        throw new ParseException(Messages.MESSAGE_UNSUCCESSFUL_IMPORT);
+                    }
+                    else{
+                    person.add(createPerson(nameString, sexString, birthdayString, phoneString, emailString, majorString, groupString, tagString));
+                    }
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace( );
+        }
+        System.out.println(person.size());
+
+        return person;
+    }
+
+    private static Person createPerson(String nameString, String sexString, String birthdayString, String phoneString,
+                                       String emailString, String majorString, String groupString, String tagString)
+            throws ParseException {
+        requireNonNull(nameString);
+        Name nameParse = ParserUtil.parseName(nameString);
+        Sex sexParse = ParserUtil.parseSex(sexString);
+        Birthday birthdayParse = ParserUtil.parseBirthday(birthdayString);
+        Phone phoneParse = ParserUtil.parsePhone(phoneString);
+        Email emailParse = ParserUtil.parseEmail(emailString);
+        Major majorParse = ParserUtil.parseMajor(majorString);
+        Group groupParse = ParserUtil.parseGroup(groupString);
+        Set<Tag> tagList = new HashSet<>();
+        String processedTags = tagString.replace(TAG_SEPARATOR, " "+ PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
+                " " + PREFIX_TAG + processedTags, PREFIX_TAG);
+        tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        return new Person(nameParse, sexParse, birthdayParse, phoneParse, emailParse, majorParse, groupParse, tagList);
+    }
+
 }
