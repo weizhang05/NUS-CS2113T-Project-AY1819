@@ -82,6 +82,7 @@ Refer to <<Features,Features>> for details of each command.
 
 This section tells you about the features available in FOP Manager.
 
+// tag::features[]
 ====
 *Command Format*
 
@@ -592,8 +593,10 @@ There is no need to save manually.
 // tag::dataencryption[]
 === Encrypting data files `[coming in v2.0]`
 
-_{explain how the user can enable/disable data encryption}_
+Participants data will be auto-encrypted when the app closes, so that data files cannot be accessed when the app is not running. +
+Participant data will be decrypted when the app starts up.
 // end::dataencryption[]
+// end::features[]
 
 == FAQ
 
@@ -606,11 +609,12 @@ Congratulations, you are now ready to start your journey with FOP Manager!
 
 Below is a summary of all commands available in FOP Manager:
 
+// tag::commandsummary[]
 [cols="15%,<30%,<50%, <20%",options="header",]
-|============================================================
+|==========
 |Command |Purpose |Example |Reference
 
-|`help` |Views help |`help` |<<ViewHelp,Viewing help>>
+|`help` |Views help |`help` |<<Help,Viewing help>>
 |`add_f` |Adds a freshman |`add_f n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...` |<<AddFresh,Adding a freshman>>
 |`add_o` |Adds an OGL |`add_o n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...` |<<AddOGL,Adding an OGL>>
 |`add` |Adds a participant |`add n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...` |<<AddOther,Adding a participant>>
@@ -639,4 +643,5 @@ Below is a summary of all commands available in FOP Manager:
 |`clear` |Clears contact list |`clear` |<<Clear, Clearing all entries>>
 |`export` |Exports contact list |`export` |<<Export, Exporting all entries>>
 |`exit` |Exits program |`exit` |<<Exit, Exiting the program>>
-|=============================================================
+|==========
+// end::commandsummary[]
