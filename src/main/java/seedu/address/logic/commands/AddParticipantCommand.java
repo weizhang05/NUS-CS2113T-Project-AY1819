@@ -66,13 +66,19 @@ public class AddParticipantCommand extends AddCommand {
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_FRESHMAN);
         }
-        if (!toAdd.getGroup().getGroupName().equals("") && !model.hasGroup(toAdd.getGroup())) {
+        if (toAdd.getGroup().getGroupName().equals("")) {
+            model.addPerson(toAdd);
+            model.commitAddressBook();
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        }
+
+        if (!model.hasGroup(toAdd.getGroup())) {
             throw new CommandException(MESSAGE_NONEXISTENT_GROUP);
         }
+
         Group updatedGroup = model.getGroup(toAdd.getGroup());
         Person toAddUpdated = new Person(toAdd.getName(), toAdd.getSex(), toAdd.getBirthday(), toAdd.getPhone(),
                 toAdd.getEmail(), toAdd.getMajor(), updatedGroup, toAdd.getTags());
-
         model.addPerson(toAddUpdated);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAddUpdated));

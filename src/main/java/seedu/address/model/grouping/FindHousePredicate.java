@@ -19,6 +19,9 @@ public class FindHousePredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        if (person.getGroup().getGroupName().isEmpty()) {
+            return false;
+        }
         return keywords.stream()
                 .allMatch(keyword-> StringUtil.containsWordIgnoreCase(person.getGroup().getHouseName(), keyword));
     }

@@ -89,6 +89,9 @@ public class EditHouseCommand extends Command {
         //updates participants with old house name to new house name
         List<Person> personList = model.getAddressBook().getPersonList();
         for (Person person : personList) {
+            if (person.getGroup().getGroupName().isEmpty()) {
+                continue;
+            }
             if (person.getGroup().getHouseName().equals(oldHouseName)) {
                 Person editedPerson = new Person(person.getName(), person.getSex(), person.getBirthday(),
                         person.getPhone(), person.getEmail(), person.getMajor(),
