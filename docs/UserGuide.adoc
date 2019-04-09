@@ -320,13 +320,17 @@ Format: `list_g GROUPNAME`
 [NOTE]
 Group names are not case-sensitive
 
+[TIP]
+`list_g empty` lists participants with an empty group field
+
 [WARNING]
 `OLDGROUPNAME` must exist in the current list of groups
 ****
 
-Example:
+Examples:
 
 * `list_g g1` lists all participants in Group `G1` if `G1` exists.
+* `list_g empty` lists all participants not in any group yet.
 
 === View Commands
 

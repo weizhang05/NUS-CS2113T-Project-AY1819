@@ -69,6 +69,16 @@ public class TypicalPersons {
             .withMajor(VALID_MAJOR_BOB).withGroup(VALID_GROUP_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
+    public static final Person MARK = new PersonBuilder().withName("Mark Morgan").withSex("M")
+            .withBirthday("11091998").withPhone("91291000")
+            .withEmail("m.morgan@example.com").withMajor("CS")
+            .withGroup("").withTags("Freshman").build();
+
+    public static final Person SONIA = new PersonBuilder().withName("Sonia Sia").withSex("F")
+            .withBirthday("11111998").withPhone("91291234")
+            .withEmail("soniasia@example.com").withMajor("CS")
+            .withGroup("").withTags("OGL").build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
@@ -84,7 +94,19 @@ public class TypicalPersons {
         return ab;
     }
 
+    public static AddressBook getAddressBookWithOneFreshmanAndOgl() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getTypicalPersonsWithOneFreshmanAndOgl()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Person> getTypicalPersonsWithOneFreshmanAndOgl() {
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, MARK, SONIA));
     }
 }

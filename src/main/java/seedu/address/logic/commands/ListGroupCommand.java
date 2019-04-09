@@ -43,7 +43,7 @@ public class ListGroupCommand extends Command {
             }
         }
 
-        if (!contains) {
+        if (!groupName.equals("EMPTY") && !contains) {
             throw new CommandException(MESSAGE_NONEXISTENT_GROUP);
         }
 

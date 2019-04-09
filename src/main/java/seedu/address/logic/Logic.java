@@ -96,4 +96,9 @@ public interface Logic {
      * Returns the number of persons by major
      */
     ObservableMap<String, Integer> getMajorData();
+
+    /**
+     * Returns the image files name
+     */
+    String getFileName();
 }
