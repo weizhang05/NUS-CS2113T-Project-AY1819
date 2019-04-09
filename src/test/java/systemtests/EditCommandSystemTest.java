@@ -251,6 +251,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
      */
     private void assertCommandSuccess(String command, Index toEdit, Person editedPerson,
             Index expectedSelectedCardIndex) {
+
         Model expectedModel = getModel();
         expectedModel.setPerson(expectedModel.getFilteredPersonList().get(toEdit.getZeroBased()), editedPerson);
         expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

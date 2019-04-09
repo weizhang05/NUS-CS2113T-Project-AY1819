@@ -1,9 +1,5 @@
 package seedu.address.model.grouping;
 
-import java.util.ArrayList;
-
-import seedu.address.model.participant.Person;
-
 /**
  * Represents a person's camp grouping
  * Can only be created within a house that has already been created.
@@ -14,7 +10,6 @@ public class Group {
 
     private String groupName;
     private String houseName;
-    private ArrayList<Person> persons;
 
     public Group(String groupName) {
         this(groupName, null);
@@ -23,7 +18,6 @@ public class Group {
     public Group(String groupName, String houseName) {
         this.houseName = houseName;
         this.groupName = groupName;
-        persons = new ArrayList<>();
     }
 
     public String getGroupName() {
@@ -61,14 +55,6 @@ public class Group {
     }
 
     // ========= Participants Operations =========
-    public ArrayList<Person> getPersons() {
-        return persons;
-    }
-
-    public void setPersons(ArrayList<Person> persons) {
-        this.persons = persons;
-    }
-
     @Override
     public String toString() {
         return this.groupName;
