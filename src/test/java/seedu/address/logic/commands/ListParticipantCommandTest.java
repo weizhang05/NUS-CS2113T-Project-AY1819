@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.Assert.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.MARK;
-import static seedu.address.testutil.TypicalPersons.getAddressBookWithOneFreshmanOrOgl;
+import static seedu.address.testutil.TypicalPersons.getAddressBookWithOneFreshmanAndOgl;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -22,8 +22,8 @@ public class ListParticipantCommandTest {
     //private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     //private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs()); //no Freshman
 
-    private Model model = new ModelManager(getAddressBookWithOneFreshmanOrOgl(), new UserPrefs()); //no Freshman
-    private Model expectedModel = new ModelManager(getAddressBookWithOneFreshmanOrOgl(), new UserPrefs()); //no Freshman
+    private Model model = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs()); //no Freshman
+    private Model expectedModel = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs()); //no Freshman
 
     private CommandHistory commandHistory = new CommandHistory();
 
@@ -34,8 +34,8 @@ public class ListParticipantCommandTest {
 
     @Test
     public void execute_listHasOneFreshman() {
-        model = new ModelManager(getAddressBookWithOneFreshmanOrOgl(), new UserPrefs()); //no Freshman
-        expectedModel = new ModelManager(getAddressBookWithOneFreshmanOrOgl(), new UserPrefs()); //no Freshman
+        model = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs()); //no Freshman
+        expectedModel = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs()); //no Freshman
         FindingParticipantPredicate predicate = preparePredicate();
         ListParticipantCommand command = new ListParticipantCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);

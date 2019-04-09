@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.Assert.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.SONIA;
-import static seedu.address.testutil.TypicalPersons.getAddressBookWithOneFreshmanOrOgl;
+import static seedu.address.testutil.TypicalPersons.getAddressBookWithOneFreshmanAndOgl;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -19,8 +19,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.FindingOglPredicate;
 
 public class ListOglCommandTest {
-    private Model model = new ModelManager(getAddressBookWithOneFreshmanOrOgl(), new UserPrefs()); //no Freshman
-    private Model expectedModel = new ModelManager(getAddressBookWithOneFreshmanOrOgl(), new UserPrefs()); //no Freshman
+    private Model model = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs()); //no Freshman
+    private Model expectedModel = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs()); //no Freshman
 
     private CommandHistory commandHistory = new CommandHistory();
 
@@ -31,8 +31,8 @@ public class ListOglCommandTest {
 
     @Test
     public void execute_listHasOneOgl() {
-        model = new ModelManager(getAddressBookWithOneFreshmanOrOgl(), new UserPrefs()); //no Freshman
-        expectedModel = new ModelManager(getAddressBookWithOneFreshmanOrOgl(), new UserPrefs()); //no Freshman
+        model = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs()); //no Freshman
+        expectedModel = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs()); //no Freshman
         FindingOglPredicate predicate = preparePredicate();
         ListOglCommand command = new ListOglCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);

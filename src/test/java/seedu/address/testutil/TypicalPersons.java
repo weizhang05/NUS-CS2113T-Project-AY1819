@@ -94,9 +94,9 @@ public class TypicalPersons {
         return ab;
     }
 
-    public static AddressBook getAddressBookWithOneFreshmanOrOgl() {
+    public static AddressBook getAddressBookWithOneFreshmanAndOgl() {
         AddressBook ab = new AddressBook();
-        for (Person person : getTypicalPersonsWithOneFreshmanOrOgl()) {
+        for (Person person : getTypicalPersonsWithOneFreshmanAndOgl()) {
             ab.addPerson(person);
         }
         return ab;
@@ -106,7 +106,7 @@ public class TypicalPersons {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
-    public static List<Person> getTypicalPersonsWithOneFreshmanOrOgl() {
+    public static List<Person> getTypicalPersonsWithOneFreshmanAndOgl() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, MARK, SONIA));
     }
 }
