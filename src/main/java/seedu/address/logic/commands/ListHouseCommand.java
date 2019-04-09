@@ -10,6 +10,9 @@ import seedu.address.model.Model;
 import seedu.address.model.grouping.FindHousePredicate;
 import seedu.address.model.grouping.House;
 
+/**
+ * Lists all participants belonging to a house to the user.
+ */
 public class ListHouseCommand extends Command {
     public static final String COMMAND_WORD = "list_h";
 

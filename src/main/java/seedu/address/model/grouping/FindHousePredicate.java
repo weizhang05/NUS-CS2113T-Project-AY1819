@@ -6,6 +6,9 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.participant.Person;
 
+/**
+ * Tests that a {@code Participant}'s {@code Group} house name matches the house name given.
+ */
 public class FindHousePredicate implements Predicate<Person> {
 
     private final List<String> keywords;

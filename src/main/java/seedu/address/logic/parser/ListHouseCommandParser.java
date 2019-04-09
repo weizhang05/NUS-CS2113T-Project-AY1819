@@ -8,6 +8,9 @@ import seedu.address.logic.commands.ListHouseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.grouping.FindHousePredicate;
 
+/**
+ * Parses input arguments and creates a new ListHouseCommand object
+ */
 public class ListHouseCommandParser implements Parser<ListHouseCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ListGroupCommand
