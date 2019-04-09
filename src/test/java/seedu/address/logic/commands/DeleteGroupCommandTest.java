@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static org.junit.Assert.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalGroupHousePersonList.getTypicalAddressBookWithGroupHouse;
@@ -49,6 +48,5 @@ public class DeleteGroupCommandTest {
         expectedModel.deleteGroup(new Group("B1", "Blue"));
         expectedModel.commitAddressBook();
         assertCommandSuccess(deleteGroupCommand, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(2, model.sizeGroupList());
     }
 }
