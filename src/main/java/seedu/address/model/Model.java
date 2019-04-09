@@ -82,6 +82,16 @@ public interface Model {
     ObservableMap<String, Integer> getMajorData();
 
     /**
+     * Get the name of image files
+     */
+    String getFileName();
+
+    /**
+     * Set the name of image files
+     */
+    void setFileName(String fileName);
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
