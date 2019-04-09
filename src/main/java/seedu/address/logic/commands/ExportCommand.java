@@ -19,7 +19,7 @@ public class ExportCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports the contacts into Excel file.\n";
 
     @Override
-    public CommandResult execute (Model model, CommandHistory commandHistory) {
+    public CommandResult execute (Model model, CommandHistory history) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         List<Person>personList = model.getFilteredPersonList();
@@ -36,7 +36,7 @@ public class ExportCommand extends Command {
     * Export the contacts into Excel File.
     */
     private static Boolean exportData(List <Person> personList) {
-        if (personList.size() > 0) {
+        if (personList.size() >= 0) {
             WriteToExcel.writeExcelSheet(personList);
             return true;
         } else {
