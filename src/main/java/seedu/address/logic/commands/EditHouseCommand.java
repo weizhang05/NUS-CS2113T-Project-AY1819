@@ -68,7 +68,6 @@ public class EditHouseCommand extends Command {
             }
             if (toList.getHouseName().equals(newHouseName)) {
                 existentNew = true;
-                break;
             }
         }
 
