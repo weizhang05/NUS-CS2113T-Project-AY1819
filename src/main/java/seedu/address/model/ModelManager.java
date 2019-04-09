@@ -41,6 +41,7 @@ public class ModelManager implements Model {
     private final SimpleObjectProperty<House> selectedHouses = new SimpleObjectProperty<>();
 
     private String undoableCommand;
+    private String fileName;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -115,21 +116,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableMap<String, Integer> getAgeData() {
-        return versionedAddressBook.getAgeData();
-    }
-
-    @Override
-    public ObservableMap<String, Integer> getMajorData() {
-        return versionedAddressBook.getMajorData();
-    }
-
-    @Override
-    public ObservableMap<String, Integer> getSexData() {
-        return versionedAddressBook.getSexData();
-    }
-
-    @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         versionedAddressBook.resetData(addressBook);
         undoableCommand = "Clear all persons";
@@ -169,6 +155,33 @@ public class ModelManager implements Model {
 
         versionedAddressBook.setPerson(target, editedPerson);
         undoableCommand = "Edit " + editedPerson.getName().fullName;
+    }
+
+    //=========== Charts Related =============================================================================
+
+    @Override
+    public ObservableMap<String, Integer> getAgeData() {
+        return versionedAddressBook.getAgeData();
+    }
+
+    @Override
+    public ObservableMap<String, Integer> getMajorData() {
+        return versionedAddressBook.getMajorData();
+    }
+
+    @Override
+    public ObservableMap<String, Integer> getSexData() {
+        return versionedAddressBook.getSexData();
+    }
+
+    @Override
+    public String getFileName() {
+        return fileName;
+    }
+
+    @Override
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     //=========== Filtered Person List Accessors =============================================================

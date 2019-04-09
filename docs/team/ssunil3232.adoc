@@ -178,7 +178,7 @@ Participant contact details can be viewed in different manners:
 
 All participants are stored in the same contact list as a `UniqueParticipantList` in an AddressBook object. Participants created as OGLs or Freshmen differ only in the tags added to them.
 
-The list commands, 'list_o' and 'list_f`, use the keywords/predicates "Freshman" and "OGL" to search through the tags of all participants in the contact list. All participants with matching tags of "Freshman" or "OGL" will be added into the filtered participant list, enabling the user to view all freshmen or OGLs in the contact list.
+The list commands, `list_o` and `list_f`, use the keywords/predicates "Freshman" and "OGL" to search through the tags of all participants in the contact list. All participants with matching tags of "Freshman" or "OGL" will be added into the filtered participant list, enabling the user to view all freshmen or OGLs in the contact list.
 
 ==== Design Considerations
 This section elaborates on the possible ways for implementation that were considered and explains the analysis process of finally choosing the method of implementation.
