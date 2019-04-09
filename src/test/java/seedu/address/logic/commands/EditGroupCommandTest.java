@@ -9,12 +9,10 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.grouping.Group;
-import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Person;
 import seedu.address.testutil.PersonBuilder;
 

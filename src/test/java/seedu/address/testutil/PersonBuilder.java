@@ -126,6 +126,11 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withGroup(String group, String house) {
+        this.group = new Group(group, house);
+        return this;
+    }
+
     public Person build() {
         return new Person(name, sex, birthday, phone, email, major, group, tags);
     }

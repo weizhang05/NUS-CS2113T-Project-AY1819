@@ -14,7 +14,7 @@ public class TypicalGroupHousePersonList {
             .withSex("F").withBirthday("07081994")
             .withMajor("CS").withEmail("alicia@example.com")
             .withPhone("94351253")
-            .withGroup("R1").withTags("friends").build();
+            .withGroup("R1", "Red").build();
     public static final Person BENEDICT = new PersonBuilder().withName("Benedict Ben").withSex("M")
             .withBirthday("08071993").withMajor("IS")
             .withEmail("benny@example.com").withPhone("98765432")
