@@ -9,6 +9,9 @@ import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Person;
 
+/**
+ * A utility class containing a list of {@code Person}, {@code Group} and {@House} objects to be used in tests.
+ */
 public class TypicalGroupHousePersonList {
     public static final Person ALICIA = new PersonBuilder().withName("Alicia Alice")
             .withSex("F").withBirthday("07081994").withMajor("CS").withEmail("alicia@example.com")
@@ -28,7 +31,7 @@ public class TypicalGroupHousePersonList {
     public static final Group B1 = new Group("B1", "Blue"); // 1 person in group
     public static final Group B2 = new Group("B2", "Blue"); // empty group
 
-    public static final House RED = new House("Red");  // house with participants in 2 groups
+    public static final House RED = new House("Red"); // house with participants in 2 groups
     public static final House BLUE = new House("Blue"); // house with participants in 1 group
     public static final House YELLOW = new House("Yellow"); // empty house
 

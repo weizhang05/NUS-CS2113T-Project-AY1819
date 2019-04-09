@@ -37,7 +37,7 @@ public class ListGroupHouseCommandTest {
     @Test
     public void execute_noParticipantsInGroup() {
         String toFind = "B2";
-        ModelManager expectedModel =  new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         FindGroupPredicate predicate = prepareGroupPredicate(toFind);
         ListGroupCommand listGroupCommand = new ListGroupCommand(predicate, toFind);
         expectedModel.updateFilteredPersonList(predicate);

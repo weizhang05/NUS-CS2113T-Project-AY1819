@@ -17,11 +17,11 @@ import seedu.address.model.participant.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class EditGroupCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBookWithGroupHouse(), new UserPrefs());
-    private CommandHistory commandHistory = new CommandHistory();
-
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+
+    private Model model = new ModelManager(getTypicalAddressBookWithGroupHouse(), new UserPrefs());
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void constructor_nullOldGroup_throwsNullPointerException() {
