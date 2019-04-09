@@ -23,8 +23,8 @@ public class ImportCommand extends Command {
             + "To keep data safe om case pf accidental overwrite, export the data and copy somewhere else.\n";
 
     public static final String MESSAGE_SUCCESS = "The new names in the excel file have been imported. Should you "
-            +"wish to update all the participants' particulars in the FOP Manager, enter the clear command followed "
-            +"by import command.";
+            + "wish to update all the participants' particulars in the FOP Manager, enter the clear command followed "
+            + "by import command.";
     @Override
     public CommandResult execute (Model model, CommandHistory commandHistory) {
         requireNonNull(model);

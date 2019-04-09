@@ -3,12 +3,18 @@ package seedu.address.commons.util;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -219,11 +225,11 @@ public class WriteToExcel {
                     sexString = cell.getStringCellValue();
                     System.out.println(sexString);
                     cell = rowStart.getCell(2);
-                    int birthdayInt = (int)cell.getNumericCellValue();
+                    int birthdayInt = (int) cell.getNumericCellValue();
                     birthdayString = String.valueOf(birthdayInt);
                     System.out.println(birthdayString);
                     cell = rowStart.getCell(3);
-                    int phoneInt = (int)cell.getNumericCellValue();
+                    int phoneInt = (int) cell.getNumericCellValue();
                     phoneString = String.valueOf(phoneInt);
                     System.out.println(phoneString);
                     cell = rowStart.getCell(4);
@@ -261,6 +267,9 @@ public class WriteToExcel {
         return person;
     }
 
+    /**
+     * Creates a person.
+     */
     private static Person createPerson(String nameString, String sexString, String birthdayString, String phoneString,
                                        String emailString, String majorString, String groupString, String tagString)
             throws ParseException {
