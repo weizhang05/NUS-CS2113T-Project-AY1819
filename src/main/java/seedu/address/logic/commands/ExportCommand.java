@@ -23,8 +23,7 @@ public class ExportCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        List<Person> personList = model.getFilteredPersonList( );
-
+        List<Person> personList = model.getFilteredPersonList();
 
         String message;
         if (exportData(personList)) {
@@ -39,7 +38,7 @@ public class ExportCommand extends Command {
      * Export the contacts into Excel File.
      */
     private static Boolean exportData(List<Person> personList) {
-        if (personList.size( ) >= 0) {
+        if (personList.size() >= 0) {
             WriteToExcel.writeExcelSheet(personList);
             return true;
         } else {

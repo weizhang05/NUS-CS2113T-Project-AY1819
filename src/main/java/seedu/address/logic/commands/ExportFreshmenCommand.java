@@ -18,8 +18,8 @@ import seedu.address.model.person.FindingParticipantPredicate;
  */
 public class ExportFreshmenCommand extends Command {
     public static final String COMMAND_WORD = "export_f";
-    public static final String MESSAGE_USAGE = COMMAND_WORD +
-            ": Exports all the freshmen in the contacts into Excel file.\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Exports all the freshmen in the contacts into Excel file.\n";
 
     private FindingParticipantPredicate preparePredicate() {
         return new FindingParticipantPredicate(Arrays.asList("Freshman".split("\\s+")));
@@ -28,10 +28,9 @@ public class ExportFreshmenCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        FindingParticipantPredicate predicate = preparePredicate( );
+        FindingParticipantPredicate predicate = preparePredicate();
         model.updateFilteredPersonList(predicate);
-        List<Person> personList = model.getFilteredPersonList( );
-       // model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        List<Person> personList = model.getFilteredPersonList();
 
         String message;
         if (exportData(personList)) {
@@ -46,7 +45,7 @@ public class ExportFreshmenCommand extends Command {
      * Export the contacts into Excel File.
      */
     private static Boolean exportData(List<Person> personList) {
-        if (personList.size( ) >= 0) {
+        if (personList.size() >= 0) {
             WriteToExcel.writeExcelSheetFreshmen(personList);
             return true;
         } else {
