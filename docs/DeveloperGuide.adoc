@@ -332,7 +332,7 @@ _Sequence Diagram for listing Freshmen command_
 
 An example usage of the `list_f` command is as follows:
 
-*Step 1:* The user launches the application. The `VersionedAddressBook` will be initialized with the initial address book state. 
+*Step 1:* The user launches the application. The `VersionedAddressBook` will be initialized with the initial address book state.
 
 *Step 2:* The user enters the `list_f` command . The `list_f` command calls the `FindingParticipantPredicate` class and searches all tags of each person for "Freshman".
 
@@ -591,7 +591,7 @@ _Sequence Diagram for exporting command_
 
 An example usage of the command is as follows:
 
-*Step 1:* The user launches the application. The `VersionedAddressBook` will be initialized with the initial address book state. 
+*Step 1:* The user launches the application. The `VersionedAddressBook` will be initialized with the initial address book state.
 
 *Step 2:* The user enters the `export` command . The `export` command updates the filtered list with the predicate to show all persons in the address book.
 
