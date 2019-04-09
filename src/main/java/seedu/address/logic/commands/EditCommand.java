@@ -98,11 +98,15 @@ public class EditCommand extends Command {
         if (!editedPerson.getGroup().getGroupName().equals("") && !model.hasGroup(editedPerson.getGroup())) {
             throw new CommandException(MESSAGE_NONEXISTENT_GROUP);
         }
+        Group updatedGroup = model.getGroup(editedPerson.getGroup());
+        Person editedPersonUpdated = new Person(editedPerson.getName(), editedPerson.getSex(), editedPerson.getBirthday(),
+                editedPerson.getPhone(), editedPerson.getEmail(), editedPerson.getMajor(), updatedGroup,
+                editedPerson.getTags());
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(personToEdit, editedPersonUpdated);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPersonUpdated));
     }
 
     /**

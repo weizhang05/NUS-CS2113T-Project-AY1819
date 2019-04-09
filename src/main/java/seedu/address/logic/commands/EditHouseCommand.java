@@ -2,12 +2,15 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
+import seedu.address.model.participant.Person;
 
 /**
  * Edits the name of a House.
@@ -84,8 +87,19 @@ public class EditHouseCommand extends Command {
                 model.setGroup(group, newGroup);
             }
         }
+        //updates participants with old house name to new house name
+        List<Person> personList = model.getAddressBook().getPersonList();
+        for (Person person : personList) {
+            if (person.getGroup().getHouseName().equals(oldHouseName)) {
+                Person editedPerson = new Person(person.getName(), person.getSex(), person.getBirthday(),
+                        person.getPhone(), person.getEmail(), person.getMajor(),
+                        new Group(person.getGroup().getGroupName(), newHouseName), person.getTags());
+                model.setPerson(person, editedPerson);
+            }
+        }
 
         model.setHouse(oldHouse, newHouse);
+        model.commitAddressBook();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, oldHouseName, newHouseName));
     }
