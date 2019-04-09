@@ -40,7 +40,6 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewGroupsCommand;
 import seedu.address.logic.commands.ViewHousesCommand;
 
-
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

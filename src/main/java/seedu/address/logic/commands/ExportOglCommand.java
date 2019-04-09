@@ -18,8 +18,8 @@ import seedu.address.model.person.FindingOglPredicate;
  */
 public class ExportOglCommand extends Command {
     public static final String COMMAND_WORD = "export_o";
-    public static final String MESSAGE_USAGE = COMMAND_WORD +
-            ": Exports all the ogl in the contacts into Excel file.\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Exports all the ogl in the contacts into Excel file.\n";
 
     private FindingOglPredicate preparePredicate() {
         return new FindingOglPredicate(Arrays.asList("Ogl".split("\\s+")));
@@ -28,11 +28,9 @@ public class ExportOglCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        FindingOglPredicate predicate = preparePredicate( );
+        FindingOglPredicate predicate = preparePredicate();
         model.updateFilteredPersonList(predicate);
-        List<Person> personList = model.getFilteredPersonList( );
-       // model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
+        List<Person> personList = model.getFilteredPersonList();
         String message;
         if (exportData(personList)) {
             message = String.format(Messages.MESSAGE_EXCEL_FILE_WRITTEN_SUCCESSFULLY);
@@ -46,7 +44,7 @@ public class ExportOglCommand extends Command {
      * Export the contacts into Excel File.
      */
     private static Boolean exportData(List<Person> personList) {
-        if (personList.size( ) >= 0) {
+        if (personList.size() >= 0) {
             WriteToExcel.writeExcelSheetOgl(personList);
             return true;
         } else {
