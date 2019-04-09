@@ -20,7 +20,7 @@ import seedu.address.model.person.FindingOglPredicate;
 
 public class ListOglCommandTest {
     private Model model = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs()); //no Freshman
-    private Model expectedModel = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs()); //no Freshman
+    private Model expectedModel = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs());
 
     private CommandHistory commandHistory = new CommandHistory();
 

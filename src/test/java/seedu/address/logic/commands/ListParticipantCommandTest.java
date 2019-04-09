@@ -23,7 +23,7 @@ public class ListParticipantCommandTest {
     //private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs()); //no Freshman
 
     private Model model = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs()); //no Freshman
-    private Model expectedModel = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs()); //no Freshman
+    private Model expectedModel = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs());
 
     private CommandHistory commandHistory = new CommandHistory();
 
