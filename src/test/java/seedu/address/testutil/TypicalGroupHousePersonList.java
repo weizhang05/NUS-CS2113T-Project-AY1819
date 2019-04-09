@@ -28,9 +28,9 @@ public class TypicalGroupHousePersonList {
     public static final Group B1 = new Group("B1", "Blue"); // 1 person in group
     public static final Group B2 = new Group("B2", "Blue"); // empty group
 
-    public static final House Red = new House("Red");  // house with participants in 2 groups
-    public static final House Blue = new House("Blue"); // house with participants in 1 group
-    public static final House Yellow = new House("Yellow"); // empty house
+    public static final House RED = new House("Red");  // house with participants in 2 groups
+    public static final House BLUE = new House("Blue"); // house with participants in 1 group
+    public static final House YELLOW = new House("Yellow"); // empty house
 
     /**
      * Returns an {@code AddressBook} with typical persons, groups and houses.
@@ -58,6 +58,6 @@ public class TypicalGroupHousePersonList {
     }
 
     public static List<House> getTypicalHouses() {
-        return new ArrayList<>(Arrays.asList(Red, Blue, Yellow));
+        return new ArrayList<>(Arrays.asList(RED, BLUE, YELLOW));
     }
 }
