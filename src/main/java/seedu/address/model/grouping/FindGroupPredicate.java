@@ -13,17 +13,17 @@ import seedu.address.model.participant.Person;
 public class FindGroupPredicate implements Predicate<Person> {
 
     private final List<String> keywords;
+    private List<String> emptyString = Arrays.asList("EMPTY");
 
     public FindGroupPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
-    private List<String> emptyString = Arrays.asList("EMPTY");
-
     @Override
     public boolean test(Person person) {
-        if (keywords.equals(emptyString))
+        if (keywords.equals(emptyString)) {
             return person.getGroup().getGroupName().isEmpty();
+        }
         return keywords.stream()
                 .allMatch(keyword-> StringUtil.containsWordIgnoreCase(person.getGroup().getGroupName(), keyword));
     }
