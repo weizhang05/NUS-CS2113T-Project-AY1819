@@ -42,10 +42,10 @@ public class DeleteGroupCommandTest {
     @Test
     public void execute_deleteGroupSuccessful() {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        DeleteGroupCommand deleteGroupCommand = new DeleteGroupCommand("B1");
-        String expectedMessage = String.format(DeleteGroupCommand.MESSAGE_DELETE_GROUP_SUCCESS, "B1");
+        DeleteGroupCommand deleteGroupCommand = new DeleteGroupCommand("B2");
+        String expectedMessage = String.format(DeleteGroupCommand.MESSAGE_DELETE_GROUP_SUCCESS, "B2");
 
-        expectedModel.deleteGroup(new Group("B1", "Blue"));
+        expectedModel.deleteGroup(new Group("B2", "Blue"));
         expectedModel.commitAddressBook();
         assertCommandSuccess(deleteGroupCommand, model, commandHistory, expectedMessage, expectedModel);
     }

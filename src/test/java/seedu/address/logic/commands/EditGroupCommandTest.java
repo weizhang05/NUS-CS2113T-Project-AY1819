@@ -36,14 +36,14 @@ public class EditGroupCommandTest {
     }
 
     @Test
-    public void execute_editGroupWithPersonSuccessful() throws Exception {
+    public void execute_editGroupWithPersonSuccessful() {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         EditGroupCommand editGroupCommand = new EditGroupCommand("R1", "R3");
         String expectedMessage = String.format(EditGroupCommand.MESSAGE_SUCCESS, "R1", "R3");
 
-        Person editedPerson = new PersonBuilder().withName("Alicia Alice").withSex("F").withBirthday("07081994")
-                .withMajor("CS").withEmail("alicia@example.com").withPhone("94351253")
-                .withGroup("R3").withTags("friends").build();
+        Person editedPerson = new PersonBuilder().withName("Alicia Alice")
+                .withSex("F").withBirthday("07081994").withMajor("CS").withEmail("alicia@example.com")
+                .withPhone("94351253").withGroup("R3", "Red").build();
         Person toEdit = model.getFilteredPersonList().get(0);
 
         expectedModel.setGroup(new Group("R1", "Red"),
@@ -54,19 +54,19 @@ public class EditGroupCommandTest {
     }
 
     @Test
-    public void execute_repeatGroup_throwsCommandException() throws Exception {
+    public void execute_repeatGroup_throwsCommandException() {
         EditGroupCommand editGroupCommand = new EditGroupCommand("R1", "R1");
         assertCommandFailure(editGroupCommand, model, commandHistory, EditGroupCommand.MESSAGE_REPEAT_GROUP);
     }
 
     @Test
-    public void execute_nonexistentOldGroup_throwsCommandException() throws Exception {
+    public void execute_nonexistentOldGroup_throwsCommandException() {
         EditGroupCommand editGroupCommand = new EditGroupCommand("G1", "B2");
         assertCommandFailure(editGroupCommand, model, commandHistory, EditGroupCommand.MESSAGE_NONEXISTENT_OLD_GROUP);
     }
 
     @Test
-    public void execute_existentNewGroup_throwsCommandException() throws Exception {
+    public void execute_existentNewGroup_throwsCommandException() {
         EditGroupCommand editGroupCommand = new EditGroupCommand("R1", "B1");
         assertCommandFailure(editGroupCommand, model, commandHistory, EditGroupCommand.MESSAGE_EXISTENT_NEW_GROUP);
     }

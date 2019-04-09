@@ -11,22 +11,26 @@ import seedu.address.model.participant.Person;
 
 public class TypicalGroupHousePersonList {
     public static final Person ALICIA = new PersonBuilder().withName("Alicia Alice")
-            .withSex("F").withBirthday("07081994")
-            .withMajor("CS").withEmail("alicia@example.com")
-            .withPhone("94351253")
-            .withGroup("R1", "Red").build();
+            .withSex("F").withBirthday("07081994").withMajor("CS").withEmail("alicia@example.com")
+            .withPhone("94351253").withGroup("R1", "Red").build();
     public static final Person BENEDICT = new PersonBuilder().withName("Benedict Ben").withSex("M")
-            .withBirthday("08071993").withMajor("IS")
-            .withEmail("benny@example.com").withPhone("98765432")
+            .withBirthday("08071993").withMajor("IS").withEmail("benny@example.com").withPhone("98765432")
             .withGroup("").withTags("owesMoney", "friends").build();
+    public static final Person COCO = new PersonBuilder().withName("Coco Nut").withSex("F")
+            .withBirthday("08081996").withMajor("CEG").withEmail("cocothenut@example.com").withPhone("98765432")
+            .withGroup("R2", "Red").withTags("Vegetarian").build();
+    public static final Person DODO = new PersonBuilder().withName("Dodo Burt").withSex("M")
+            .withBirthday("10081995").withMajor("BA").withEmail("dodoburt@example.com").withPhone("98765432")
+            .withGroup("B1", "Blue").withTags("Vegetarian").build();
 
-    public static final Group R1 = new Group("R1", "Red");
-    public static final Group R2 = new Group("R2", "Red");
-    public static final Group B1 = new Group("B1", "Blue");
+    public static final Group R1 = new Group("R1", "Red"); // 1 person in group
+    public static final Group R2 = new Group("R2", "Red"); // 1 person in group
+    public static final Group B1 = new Group("B1", "Blue"); // 1 person in group
+    public static final Group B2 = new Group("B2", "Blue"); // empty group
 
-    public static final House Red = new House("Red");
-    public static final House Blue = new House("Blue");
-    public static final House Yellow = new House("Yellow");
+    public static final House Red = new House("Red");  // house with participants in 2 groups
+    public static final House Blue = new House("Blue"); // house with participants in 1 group
+    public static final House Yellow = new House("Yellow"); // empty house
 
     /**
      * Returns an {@code AddressBook} with typical persons, groups and houses.
@@ -46,11 +50,11 @@ public class TypicalGroupHousePersonList {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICIA, BENEDICT));
+        return new ArrayList<>(Arrays.asList(ALICIA, BENEDICT, COCO, DODO));
     }
 
     public static List<Group> getTypicalGroups() {
-        return new ArrayList<>(Arrays.asList(R1, R2, B1));
+        return new ArrayList<>(Arrays.asList(R1, R2, B1, B2));
     }
 
     public static List<House> getTypicalHouses() {
