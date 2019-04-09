@@ -22,10 +22,14 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.grouping.Group;
-import seedu.address.model.participant.*;
+import seedu.address.model.participant.Birthday;
+import seedu.address.model.participant.Email;
+import seedu.address.model.participant.Major;
 import seedu.address.model.participant.Name;
+import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Phone;
+import seedu.address.model.participant.Sex;
 import seedu.address.model.tag.Tag;
-
 
 /**
  * Write the excel sheet.
