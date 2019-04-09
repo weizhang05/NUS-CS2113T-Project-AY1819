@@ -60,6 +60,45 @@ public class WriteToExcel {
     }
 
     /**
+     * Write the excel sheet into Directory.
+     */
+    public static void writeExcelSheetFreshmen(List<Person>persons) {
+        try {
+            String excelFileName = WORKING_DIRECTORY_STRING
+                    + System.getProperty("file.separator")
+                    + "FOP_MANAGER_FRESHMEN_LIST.xls";
+            HSSFWorkbook wb = new HSSFWorkbook();
+            String sheetName = "FOP_CONTACTS_FRESHMEN_ONLY";
+            HSSFSheet sheet = wb.createSheet(sheetName);
+            writeDataIntoExcelSheet(persons, sheet);
+
+            FileOutputStream out = new FileOutputStream(excelFileName);
+            wb.write(out);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeExcelSheetOgl(List<Person>persons) {
+        try {
+            String excelFileName = WORKING_DIRECTORY_STRING
+                    + System.getProperty("file.separator")
+                    + "FOP_MANAGER_OGL_LIST.xls";
+            HSSFWorkbook wb = new HSSFWorkbook();
+            String sheetName = "FOP_CONTACTS_OGL_ONLY";
+            HSSFSheet sheet = wb.createSheet(sheetName);
+            writeDataIntoExcelSheet(persons, sheet);
+
+            FileOutputStream out = new FileOutputStream(excelFileName);
+            wb.write(out);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
     *Write data into ExcelSheet.
     */
     private static void writeDataIntoExcelSheet(List<Person>persons, HSSFSheet sheet) {
