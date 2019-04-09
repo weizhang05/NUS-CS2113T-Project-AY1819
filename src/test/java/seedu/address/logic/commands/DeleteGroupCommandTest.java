@@ -16,8 +16,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.grouping.Group;
 
 public class DeleteGroupCommandTest {
-    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
-
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
@@ -31,19 +29,19 @@ public class DeleteGroupCommandTest {
     }
 
     @Test
-    public void execute_nonexistentGroup_throwsCommandException() throws Exception {
+    public void execute_nonexistentGroup_throwsCommandException() {
         DeleteGroupCommand deleteGroupCommand = new DeleteGroupCommand("G1");
         assertCommandFailure(deleteGroupCommand, model, commandHistory, DeleteGroupCommand.MESSAGE_NONEXISTENT_GROUP);
     }
 
     @Test
-    public void execute_nonemptyGroup_throwsCommandException() throws Exception {
+    public void execute_nonemptyGroup_throwsCommandException() {
         DeleteGroupCommand deleteGroupCommand = new DeleteGroupCommand("R1");
         assertCommandFailure(deleteGroupCommand, model, commandHistory, DeleteGroupCommand.MESSAGE_NOT_EMPTY_GROUP);
     }
 
     @Test
-    public void execute_deleteGroupSuccessful() throws Exception {
+    public void execute_deleteGroupSuccessful() {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         DeleteGroupCommand deleteGroupCommand = new DeleteGroupCommand("B1");
         String expectedMessage = String.format(DeleteGroupCommand.MESSAGE_DELETE_GROUP_SUCCESS, "B1");

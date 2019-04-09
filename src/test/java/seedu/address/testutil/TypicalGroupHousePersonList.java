@@ -26,6 +26,7 @@ public class TypicalGroupHousePersonList {
 
     public static final House Red = new House("Red");
     public static final House Blue = new House("Blue");
+    public static final House Yellow = new House("Yellow");
 
     /**
      * Returns an {@code AddressBook} with typical persons, groups and houses.
@@ -53,6 +54,6 @@ public class TypicalGroupHousePersonList {
     }
 
     public static List<House> getTypicalHouses() {
-        return new ArrayList<>(Arrays.asList(Red, Blue));
+        return new ArrayList<>(Arrays.asList(Red, Blue, Yellow));
     }
 }
