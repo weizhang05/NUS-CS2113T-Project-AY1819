@@ -99,6 +99,13 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_NONEXISTENT_GROUP);
         }
 
+        if (!editedPerson.getGroup().getGroupName().isEmpty()) {
+            Group updatedGroup = model.getGroup(editedPerson.getGroup());
+            editedPerson = new Person(editedPerson.getName(), editedPerson.getSex(),
+                    editedPerson.getBirthday(), editedPerson.getPhone(), editedPerson.getEmail(),
+                    editedPerson.getMajor(), updatedGroup, editedPerson.getTags());
+        }
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.commitAddressBook();

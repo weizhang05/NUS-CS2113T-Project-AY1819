@@ -35,6 +35,7 @@ class JsonAdaptedParticipant {
     private final String email;
     private final String major;
     private final String group;
+    private final String house;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -44,7 +45,7 @@ class JsonAdaptedParticipant {
     public JsonAdaptedParticipant(@JsonProperty("name") String name, @JsonProperty("sex") String sex,
                                   @JsonProperty("birthday") String birthday, @JsonProperty("phone") String phone,
                                   @JsonProperty("email") String email, @JsonProperty("major") String major,
-                                  @JsonProperty("group") String group,
+                                  @JsonProperty("group") String group, @JsonProperty("house") String house,
                                   @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.sex = sex;
@@ -53,6 +54,7 @@ class JsonAdaptedParticipant {
         this.email = email;
         this.major = major;
         this.group = group;
+        this.house = house;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -69,6 +71,7 @@ class JsonAdaptedParticipant {
         email = source.getEmail().value;
         major = source.getMajor().value;
         group = source.getGroup().getGroupName();
+        house = source.getGroup().getHouseName();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -140,7 +143,7 @@ class JsonAdaptedParticipant {
         if (!Group.isValidGroup(group)) {
             throw new IllegalValueException(Group.MESSAGE_CONSTRAINTS);
         }
-        final Group modelGroup = new Group(group);
+        final Group modelGroup = new Group(group, house);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelSex, modelBirthday, modelPhone, modelEmail,

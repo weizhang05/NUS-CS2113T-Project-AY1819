@@ -273,6 +273,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Group getGroup(Group group) {
+            return new Group("", null);
+        }
+
+        @Override
         public ObservableList<Group> getFilteredGroupList() {
             throw new AssertionError("This method should not be called.");
         }
