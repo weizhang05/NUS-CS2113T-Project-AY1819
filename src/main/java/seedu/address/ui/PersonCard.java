@@ -55,7 +55,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText("Phone Number: " + person.getPhone().value);
         major.setText("Major: " + person.getMajor().getFullMajor());
         email.setText("Email: " + person.getEmail().value);
-        group.setText("Group: " + person.getGroup().getGroupName());
+        group.setText("Group: " + person.getGroup().getGroupName() + ", " + person.getGroup().getHouseName());
         person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
