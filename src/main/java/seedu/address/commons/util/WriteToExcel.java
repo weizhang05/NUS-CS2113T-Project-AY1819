@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.lang.*;
 import java.util.List;
 import java.util.Set;
 
@@ -187,13 +188,6 @@ public class WriteToExcel {
             //check if the cell headings match
             Row row = sheet.getRow(0);
             int titleCheck = 1;
-            System.out.println(row.getCell(1).getStringCellValue());
-            System.out.println(row.getCell(2).getStringCellValue());
-            System.out.println(row.getCell(3).getStringCellValue());
-            System.out.println(row.getCell(4).getStringCellValue());
-            System.out.println(row.getCell(5).getStringCellValue());
-            System.out.println(row.getCell(6).getStringCellValue());
-            System.out.println(row.getCell(7).getStringCellValue());
             if ((row.getCell(0).getStringCellValue() == NAME_TITLE)
                     && (row.getCell(1).getStringCellValue() == SEX_TITLE)
                     && (row.getCell(2).getStringCellValue() == BIRTHDAY_TITLE)
@@ -203,8 +197,6 @@ public class WriteToExcel {
                     && (row.getCell(6).getStringCellValue() == GROUP_TITLE)
                     && (row.getCell(7).getStringCellValue() == TAG_TITLE)) {
                 titleCheck = 1;
-            } else {
-                titleCheck = 0;
             }
 
             String nameString;
@@ -229,12 +221,17 @@ public class WriteToExcel {
                     sexString = cell.getStringCellValue();
                     System.out.println(sexString);
                     cell = rowStart.getCell(2);
-                    int birthdayInt = (int) cell.getNumericCellValue();
-                    birthdayString = String.valueOf(birthdayInt);
+
+                   // int birthdayInt = (int)cell.getNumericCellValue();
+                    birthdayString = String.valueOf((int) cell.getNumericCellValue());
+
                     System.out.println(birthdayString);
                     cell = rowStart.getCell(3);
-                    int phoneInt = (int) cell.getNumericCellValue();
-                    phoneString = String.valueOf(phoneInt);
+
+                    //int phoneInt = (int)cell.getNumericCellValue();
+                    //phoneString = String.valueOf(phoneInt);
+                    phoneString = String.valueOf((int) cell.getNumericCellValue());
+
                     System.out.println(phoneString);
                     cell = rowStart.getCell(4);
                     emailString = cell.getStringCellValue();
