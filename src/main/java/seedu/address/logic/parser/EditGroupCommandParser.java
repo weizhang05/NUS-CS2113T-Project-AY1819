@@ -16,7 +16,7 @@ public class EditGroupCommandParser implements Parser<EditGroupCommand> {
      */
 
     public EditGroupCommand parse(String args) throws ParseException {
-        String[] splitArg = args.trim().split(" ");
+        String[] splitArg = args.trim().split("\\s+");
 
         if (splitArg.length != 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditGroupCommand.MESSAGE_USAGE));
