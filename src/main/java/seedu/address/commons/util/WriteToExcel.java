@@ -22,7 +22,6 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.grouping.Group;
-import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Birthday;
 import seedu.address.model.participant.Email;
 import seedu.address.model.participant.Major;
