@@ -142,11 +142,10 @@ public class WriteToExcel {
         for (Person person : persons) {
             Row row = sheet.createRow(++rowNum);
             StringBuilder stringBuilder = new StringBuilder();
-
             writeDataIntoCell(row, FIRST_COLUMN, person.getName().fullName);
             writeDataIntoCell(row, SECOND_COLUMN, person.getSex().value);
-            writeDataIntoCell(row, THIRD_COLUMN, person.getBirthday().value);
-            writeDataIntoCell(row, FOURTH_COLUMN, person.getPhone().value);
+            writeDataIntoCell(row, THIRD_COLUMN, Double.parseDouble(person.getBirthday().value));
+            writeDataIntoCell(row, FOURTH_COLUMN, Double.parseDouble(person.getPhone().value));
             writeDataIntoCell(row, FIFTH_COLUMN, person.getEmail().value);
             writeDataIntoCell(row, SIXTH_COLUMN, person.getMajor().value);
             writeDataIntoCell(row, SEVENTH_COLUMN, person.getGroup().getGroupName());
@@ -246,11 +245,16 @@ public class WriteToExcel {
                     }
                     System.out.println(groupString);
                     cell = rowStart.getCell(7);
-                    tagString = cell.getStringCellValue();
+                    if (cell == null) {
+                        tagString = " ";
+                    } else {
+                        tagString = cell.getStringCellValue();
+                    }
                     System.out.println(tagString);
+
                     if (nameString == null || sexString == null || birthdayString == null || phoneString == null
                             || emailString == null || majorString == null) {
-                        throw new ParseException(Messages.MESSAGE_UNSUCCESSFUL_IMPORT);
+                        throw new ParseException(Messages.MESSAGE_MISSING_VALUES_IMPORT);
                     } else {
                         person.add(createPerson(nameString, sexString, birthdayString, phoneString, emailString,
                                 majorString, groupString, tagString));
