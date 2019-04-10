@@ -245,11 +245,16 @@ public class WriteToExcel {
                     }
                     System.out.println(groupString);
                     cell = rowStart.getCell(7);
-                    tagString = cell.getStringCellValue();
+                    if (cell == null) {
+                        tagString = " ";
+                    } else {
+                        tagString = cell.getStringCellValue();
+                    }
                     System.out.println(tagString);
+
                     if (nameString == null || sexString == null || birthdayString == null || phoneString == null
                             || emailString == null || majorString == null) {
-                        throw new ParseException(Messages.MESSAGE_UNSUCCESSFUL_IMPORT);
+                        throw new ParseException(Messages.MESSAGE_MISSING_VALUES_IMPORT);
                     } else {
                         person.add(createPerson(nameString, sexString, birthdayString, phoneString, emailString,
                                 majorString, groupString, tagString));
