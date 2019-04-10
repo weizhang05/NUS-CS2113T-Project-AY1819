@@ -16,12 +16,23 @@ public class AddGroupCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsAddGroupCommand() throws ParseException {
-        assertParseSuccess(parser, "r1  red", new AddGroupCommand("R1", "Red"));
+        assertParseSuccess(parser, "R1 Red", new AddGroupCommand("R1", "Red"));
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
+    public void parse_validArgsDifferentCapsWithSpaces_returnsAddGroupCommand() throws ParseException {
+        assertParseSuccess(parser, "red1    rEd", new AddGroupCommand("RED1", "Red"));
+    }
+
+    @Test
+    public void parse_shorterArgs_throwsParseException() {
         assertParseFailure(parser, "r1 ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_longerArgs_throwsParseException() {
+        assertParseFailure(parser, "R1 Red Blue",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupCommand.MESSAGE_USAGE));
     }
 }
