@@ -32,6 +32,10 @@ public class DeleteHouseCommand extends Command {
         this.houseName = houseName;
     }
 
+    public String getHouseName() {
+        return houseName;
+    }
+
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
@@ -60,5 +64,12 @@ public class DeleteHouseCommand extends Command {
         model.commitAddressBook();
 
         return new CommandResult(String.format(MESSAGE_DELETE_HOUSE_SUCCESS, houseName));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteHouseCommand // instanceof handles nulls
+                && this.getHouseName().equals(((DeleteHouseCommand) other).getHouseName())); // state check
     }
 }
