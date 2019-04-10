@@ -8,7 +8,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.lang.*;
 import java.util.List;
 import java.util.Set;
 
@@ -222,7 +221,7 @@ public class WriteToExcel {
                     System.out.println(sexString);
                     cell = rowStart.getCell(2);
 
-                   // int birthdayInt = (int)cell.getNumericCellValue();
+                    // int birthdayInt = (int)cell.getNumericCellValue();
                     birthdayString = String.valueOf((int) cell.getNumericCellValue());
 
                     System.out.println(birthdayString);
