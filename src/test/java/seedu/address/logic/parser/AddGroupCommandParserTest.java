@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.Test;
 
 import seedu.address.logic.commands.AddGroupCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AddGroupCommandParserTest {
 
@@ -20,7 +19,7 @@ public class AddGroupCommandParserTest {
 
     @Test
     public void parse_validArgsDifferentCapsWithSpaces_returnsAddGroupCommand() {
-        assertParseSuccess(parser, "red1    rEd", new AddGroupCommand("RED1", "Red"));
+        assertParseSuccess(parser, "b1    bluE", new AddGroupCommand("B1", "Blue"));
     }
 
     @Test

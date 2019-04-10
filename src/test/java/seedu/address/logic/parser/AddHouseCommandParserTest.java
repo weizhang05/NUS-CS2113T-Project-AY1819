@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.Test;
 
 import seedu.address.logic.commands.AddHouseCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AddHouseCommandParserTest {
     private AddHouseCommandParser parser = new AddHouseCommandParser();
@@ -23,13 +22,13 @@ public class AddHouseCommandParserTest {
     }
 
     @Test
-    public void parse_emptyArgs() throws ParseException {
+    public void parse_emptyArgs() {
         assertParseFailure(parser, "",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddHouseCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_longArgs() throws ParseException {
+    public void parse_longArgs() {
         assertParseFailure(parser, "Red Green",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddHouseCommand.MESSAGE_USAGE));
     }
