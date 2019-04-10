@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -15,12 +14,12 @@ public class AddGroupCommandParserTest {
     private AddGroupCommandParser parser = new AddGroupCommandParser();
 
     @Test
-    public void parse_validArgs_returnsAddGroupCommand() throws ParseException {
+    public void parse_validArgs_returnsAddGroupCommand() {
         assertParseSuccess(parser, "R1 Red", new AddGroupCommand("R1", "Red"));
     }
 
     @Test
-    public void parse_validArgsDifferentCapsWithSpaces_returnsAddGroupCommand() throws ParseException {
+    public void parse_validArgsDifferentCapsWithSpaces_returnsAddGroupCommand() {
         assertParseSuccess(parser, "red1    rEd", new AddGroupCommand("RED1", "Red"));
     }
 
