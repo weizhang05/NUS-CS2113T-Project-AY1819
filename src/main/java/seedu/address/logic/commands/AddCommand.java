@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.grouping.Group;
 import seedu.address.model.participant.Person;
 
 /**
@@ -65,12 +66,23 @@ public class AddCommand extends Command {
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        if (!toAdd.getGroup().getGroupName().equals("") && !model.hasGroup(toAdd.getGroup())) {
+
+        if (toAdd.getGroup().getGroupName().equals("")) {
+            model.addPerson(toAdd);
+            model.commitAddressBook();
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        }
+
+        if (!model.hasGroup(toAdd.getGroup())) {
             throw new CommandException(MESSAGE_NONEXISTENT_GROUP);
         }
-        model.addPerson(toAdd);
+
+        Group updatedGroup = model.getGroup(toAdd.getGroup());
+        Person toAddUpdated = new Person(toAdd.getName(), toAdd.getSex(), toAdd.getBirthday(), toAdd.getPhone(),
+                toAdd.getEmail(), toAdd.getMajor(), updatedGroup, toAdd.getTags());
+        model.addPerson(toAddUpdated);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAddUpdated));
     }
 
     @Override

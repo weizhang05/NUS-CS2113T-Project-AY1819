@@ -207,8 +207,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         indicateModified();
     }
 
-    //// house-level operations
+    /**
+    * Returns a group with the correct house name
+     */
+    public Group getGroup(Group group) {
+        return this.groups.getGroup(group);
+    }
 
+    //// house-level operations
     /**
      * Returns true if a house with the same identity as {@code house} exists in the address book.
      */

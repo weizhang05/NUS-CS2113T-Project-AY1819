@@ -21,11 +21,15 @@ import seedu.address.logic.commands.EditGroupCommand;
 import seedu.address.logic.commands.EditHouseCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportCommand;
+import seedu.address.logic.commands.ExportFreshmenCommand;
+import seedu.address.logic.commands.ExportOglCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListGroupCommand;
+import seedu.address.logic.commands.ListHouseCommand;
 import seedu.address.logic.commands.ListOglCommand;
 import seedu.address.logic.commands.ListParticipantCommand;
 import seedu.address.logic.commands.RandomizeCommand;
@@ -37,6 +41,7 @@ import seedu.address.logic.commands.StatCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewGroupsCommand;
 import seedu.address.logic.commands.ViewHousesCommand;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -93,6 +98,16 @@ public class AddressBookParser {
         case ExportCommand.COMMAND_WORD:
             return new ExportCommand();
 
+        case ExportFreshmenCommand.COMMAND_WORD:
+            return new ExportFreshmenCommand();
+
+
+        case ExportOglCommand.COMMAND_WORD:
+            return new ExportOglCommand();
+
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommand();
+
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
 
@@ -122,6 +137,9 @@ public class AddressBookParser {
 
         case ListGroupCommand.COMMAND_WORD:
             return new ListGroupCommandParser().parse(arguments);
+
+        case ListHouseCommand.COMMAND_WORD:
+            return new ListHouseCommandParser().parse(arguments);
 
         case HistoryCommand.COMMAND_WORD:
             return new HistoryCommand();

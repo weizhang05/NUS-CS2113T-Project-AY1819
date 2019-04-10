@@ -44,7 +44,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         major = new Major(DEFAULT_MAJOR);
-        group = new Group(DEFAULT_GROUP);
+        group = new Group(DEFAULT_GROUP, null);
         tags = new HashSet<>();
     }
 

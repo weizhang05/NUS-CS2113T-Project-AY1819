@@ -100,6 +100,20 @@ public class UniqueGroupList implements Iterable<Group> {
     }
 
     /**
+     * Gets a group in the list based on the group name
+     * Group name must exist in the list
+     */
+    public Group getGroup(Group toFind) {
+        Group newGroup = toFind;
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).getGroupName().equals(toFind.getGroupName())) {
+                newGroup.setHouseName(internalList.get(i).getHouseName());
+            }
+        }
+        return newGroup;
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Group> asUnmodifiableObservableList() {

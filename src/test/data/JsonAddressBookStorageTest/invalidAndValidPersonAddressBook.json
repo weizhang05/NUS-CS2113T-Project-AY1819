@@ -6,7 +6,8 @@
     "phone" : "92314523",
     "email" : "valid@example.com",
     "major" : "CEG",
-    "group" : ""
+    "group" : "",
+    "house" : null
   }, {
     "name": "Person With Invalid Phone Field",
     "sex" : "Female",
@@ -14,6 +15,7 @@
     "phone" : "923affd3",
     "email" : "janet@example.com",
     "major" : "CEG",
-    "group" : ""
+    "group" : "",
+    "house" : null
   } ]
 }
