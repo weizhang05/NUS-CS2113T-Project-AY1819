@@ -12,11 +12,10 @@ import seedu.address.model.participant.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class FindGroupHousePredicateTest {
-    List<String> emptyString = Collections.singletonList("EMPTY");
+    private List<String> emptyString = Collections.singletonList("EMPTY");
 
-    FindGroupPredicate secondPredicate = new FindGroupPredicate(emptyString);
-    Person withGroupHouse = new PersonBuilder().withGroup("R1", "Red").build();
-    Person withEmptyGroup = new PersonBuilder().build();
+    private Person withGroupHouse = new PersonBuilder().withGroup("R1", "Red").build();
+    private Person withEmptyGroup = new PersonBuilder().build();
 
     @Test
     public void test_groupContainsKeywords_returnsTrue() {
@@ -24,7 +23,7 @@ public class FindGroupHousePredicateTest {
         FindHousePredicate firstPredicateHouse = new FindHousePredicate(Collections.singletonList("Red"));
         assertTrue(firstPredicate.test(withGroupHouse));
 
-        FindGroupPredicate secondPredicate = new FindGroupPredicate(Collections.singletonList("EMPTY"));
+        FindGroupPredicate secondPredicate = new FindGroupPredicate(emptyString);
         assertTrue(secondPredicate.test(withEmptyGroup));
     }
 
@@ -37,7 +36,7 @@ public class FindGroupHousePredicateTest {
         assertFalse(secondPredicateHouse.test(withEmptyGroup));
 
         // participant with non-empty group
-        FindGroupPredicate thirdPredicate = new FindGroupPredicate(Collections.singletonList("EMPTY"));
+        FindGroupPredicate thirdPredicate = new FindGroupPredicate(emptyString);
         assertFalse(thirdPredicate.test(withGroupHouse));
 
         // wrong keywords
