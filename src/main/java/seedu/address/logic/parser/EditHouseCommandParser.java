@@ -16,7 +16,7 @@ public class EditHouseCommandParser implements Parser<EditHouseCommand> {
      */
 
     public EditHouseCommand parse(String args) throws ParseException {
-        String[] splitArg = args.trim().split(" ");
+        String[] splitArg = args.trim().split("\\s+");
 
         if (splitArg.length != 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditHouseCommand.MESSAGE_USAGE));

@@ -33,6 +33,10 @@ public class DeleteGroupCommand extends Command {
         this.groupName = groupName;
     }
 
+    public String getGroupName() {
+        return groupName;
+    }
+
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
@@ -64,5 +68,12 @@ public class DeleteGroupCommand extends Command {
         model.commitAddressBook();
 
         return new CommandResult(String.format(MESSAGE_DELETE_GROUP_SUCCESS, groupName));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteGroupCommand // instanceof handles nulls
+                && this.getGroupName().equals(((DeleteGroupCommand) other).getGroupName()));
     }
 }
