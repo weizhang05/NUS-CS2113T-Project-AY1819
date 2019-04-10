@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.EditHouseCommand;
 
-public class EditHouseCommandParserTests {
+public class EditHouseCommandParserTest {
     private EditHouseCommandParser parser = new EditHouseCommandParser();
 
     @Test

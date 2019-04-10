@@ -40,7 +40,7 @@ public class FindGroupHousePredicateTest {
         assertFalse(thirdPredicate.test(withGroupHouse));
 
         // wrong keywords
-        FindGroupPredicate fourthPredicate= new FindGroupPredicate(Collections.singletonList("G1"));
+        FindGroupPredicate fourthPredicate = new FindGroupPredicate(Collections.singletonList("G1"));
         FindHousePredicate fourthPredicateHouse = new FindHousePredicate(Collections.singletonList("Green"));
         assertFalse(fourthPredicate.test(withGroupHouse));
         assertFalse(fourthPredicateHouse.test(withGroupHouse));
