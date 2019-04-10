@@ -6,6 +6,7 @@
     "phone" : "92314523",
     "email" : "invalid@example.com",
     "major" : "CEG",
-    "group" : ""
+    "group" : "",
+    "house" : null
   } ]
 }
