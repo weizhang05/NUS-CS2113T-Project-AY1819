@@ -126,6 +126,14 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Overloaded withGroup method to set the {@code Group} with a house name
+     */
+    public PersonBuilder withGroup(String group, String house) {
+        this.group = new Group(group, house);
+        return this;
+    }
+
     public Person build() {
         return new Person(name, sex, birthday, phone, email, major, group, tags);
     }

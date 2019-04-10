@@ -37,11 +37,11 @@ public class EditGroupCommand extends Command {
         this.newGroupName = newGroupName;
     }
 
-    public static String getNewGroupName() {
+    public String getNewGroupName() {
         return newGroupName;
     }
 
-    public static String getOldGroupName() {
+    public String getOldGroupName() {
         return oldGroupName;
     }
 
@@ -94,5 +94,13 @@ public class EditGroupCommand extends Command {
         model.commitAddressBook();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, oldGroupName, newGroupName));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditGroupCommand // instanceof handles nulls
+                && this.getOldGroupName().equals(((EditGroupCommand) other).getOldGroupName())
+                && this.getNewGroupName().equals(((EditGroupCommand) other).getNewGroupName())); // state check
     }
 }
