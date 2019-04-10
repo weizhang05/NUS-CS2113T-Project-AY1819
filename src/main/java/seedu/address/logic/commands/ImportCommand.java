@@ -34,7 +34,12 @@ public class ImportCommand extends Command {
             List<Person> persons = WriteToExcel.readFromExcel();
             if (persons.size() >= 0) {
 
-                model.addListUniquePerson(persons);
+                for (Person person : persons) {
+                    if (model.hasPerson(person)) {
+                        continue;
+                    }
+                    model.addPerson(person);
+                }
                 model.commitAddressBook();
                 message = String.format(MESSAGE_SUCCESS);
             } else {
