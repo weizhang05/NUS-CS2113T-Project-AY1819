@@ -9,6 +9,7 @@
     "email": "alice@example.com",
     "major": "Computer Science",
     "group": "",
+    "house" : null,
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -17,6 +18,7 @@
     "phone": "94351253",
     "email": "pauline@example.com",
     "major": "Computer Science",
-    "group": ""
+    "group": "",
+    "house" : null
   } ]
 }

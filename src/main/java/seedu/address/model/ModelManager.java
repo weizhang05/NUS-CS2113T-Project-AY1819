@@ -300,6 +300,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Group getGroup(Group toGet) {
+        requireNonNull(toGet);
+        return versionedAddressBook.getGroup(toGet);
+    }
+
+    @Override
     public ObservableList<Group> getFilteredGroupList() {
         return filteredGroups;
     }
