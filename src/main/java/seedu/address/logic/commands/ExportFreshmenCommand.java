@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -11,18 +11,25 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.participant.Person;
 
-/**
- * Export the data of the FOP Manager into ExcelSheets.
- */
-public class ExportCommand extends Command {
-    public static final String COMMAND_WORD = "export";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports all the contacts into Excel file.\n";
+import seedu.address.model.person.FindingParticipantPredicate;
 
+/**
+ * Export the data of the Freshmen FOP Manager into ExcelSheets.
+ */
+public class ExportFreshmenCommand extends Command {
+    public static final String COMMAND_WORD = "export_f";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Exports all the freshmen in the contacts into Excel file.\n";
+
+    private FindingParticipantPredicate preparePredicate() {
+        return new FindingParticipantPredicate(Arrays.asList("Freshman".split("\\s+")));
+    }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        FindingParticipantPredicate predicate = preparePredicate();
+        model.updateFilteredPersonList(predicate);
         List<Person> personList = model.getFilteredPersonList();
 
         String message;
@@ -39,7 +46,7 @@ public class ExportCommand extends Command {
      */
     private static Boolean exportData(List<Person> personList) {
         if (personList.size() >= 0) {
-            WriteToExcel.writeExcelSheet(personList);
+            WriteToExcel.writeExcelSheetFreshmen(personList);
             return true;
         } else {
             return false;
