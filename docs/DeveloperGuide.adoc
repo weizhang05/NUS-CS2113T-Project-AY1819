@@ -609,6 +609,44 @@ An example usage of the command is as follows:
 Only one way was considered for the implementation of Export feature, which involved importing the third-party library.
 // end:: export[]
 
+// tag::import[]
+=== Import Feature
+
+Sometimes FOP Project Directors realise they need to add many participants' contacts that they gathered and usually they gather the contacts through sign up links that allow for exportation into Excel spreadsheets. Manually added the large influx of participants is troublesome. Hence, with the Import feature, FOP Project Directors can import the data of Non-duplicate people from an excel file into the FOP Manager. This makes adding of contacts easier.
+
+The following is an Activity Diagram to summarize what happens when the `import` command is entered.
+
+image::ImportCommandActivityDiagram.png[width="800"]
+_Activity Diagram for the importing command_
+
+==== Current Implementation
+* A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
+* The `import` command will call a function from a class `WriteToExcel` to start the reading from a HSSF Workbook found in the current directory path, with the file name "FOP_MANAGER_LIST.xls". 
+* The cell value from the respective heading/columns are read into their respective string and `person` is created with these strings.
+* The `person` is added to a `List<Person>` and each `person` is added into the `Address Book`.
+
+The following Sequence diagram below will explain how the `import` command works in detail.
+
+image::ImportCommandSequenceDiagram.png[width="800"]
+_Sequence Diagram for importing command_
+
+An example usage of the command is as follows:
+
+*Step 1:* The user launches the application. The `VersionedAddressBook` will be initialized with the initial address book state.
+
+*Step 2:* The user enters the `import` command . The `import` command calls the `WriteToExcel` class's `ReadFromExcel()`. This will open the file of the default set name from the set directory.
+
+*Steo 3:* The Excel sheets is checked for the correct headings and then the cell's values are read to create each `person`. Each `person` is added to a `List<Person>` which will be returned to the Import command.
+
+*Step 4:* The `import` command adds each non-duplicate person into the FOP Manager.
+
+** One interesting usage of both `import`and `export` feature will be to retain and retrieve contacts. For instance, after exporting the data, we can clear. We can then import the contacts if neede.
+** Another interesting usage is for manual edit of the details of multiple contacts. We can clear the Address Book and then `import` command to import the data.
+
+==== Design Consideration
+Only one way was considered for the implementation of Import feature, which involved importing the third-party library.
+// end:: import[]
+
 // tag::autocompletion[]
 === [Proposed] Auto-Completion
 
