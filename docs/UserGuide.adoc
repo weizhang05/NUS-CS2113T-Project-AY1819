@@ -617,6 +617,8 @@ Format: `import`
 * Spreadsheet has to be located at the current User Directory.
 * The Excel Spreadsheet should have the headings in the order NAME, SEX, BIRTHDAY, PHONE, EMAIL, MAJOR, GROUP and then TAG.
 * Entries in the NAME, SEX, BIRTHDAY, PHONE, EMAIL and MAJOR columns have to be non-null.
+* Only the non-duplicate contacts are added.
+* If we want to edit the contacts in excel and import, we should `clear` and the `import`.
 
 [[Clear]]
 === Clearing all entries : `clear`
