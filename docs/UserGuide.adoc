@@ -566,12 +566,31 @@ Output: Unable to distribute participants (min 2 groups and 2 participants)
 
 // end::randomize[]
 
-[[Export]]
-=== Exporting contact list : `export`
+=== Export Commands
+
+[[ExportALL]]
+==== Exporting the whole contact list : `export`
 
 Exports all entries from your contact list to Excel Spreadsheet. +
+Excel Spreadsheet name is *FOP_MANAGER_LIST.xls*. +
 Excel Spreadsheet will be saved in the current User Directory. +
 Format: `export`
+
+[[ExportF]]
+==== Exporting only the Freshmen in the contact list : `export_f`
+
+Exports all the Freshmen entries from your contact list to Excel Spreadsheet. +
+Excel Spreadsheet name is *FOP_MANAGER_FRESHMEN_LIST.xls*. +
+Excel Spreadsheet will be saved in the current User Directory. +
+Format: `export_f`
+
+[[ExportO]]
+==== Exporting only the OGLs in the contact list : `export_o`
+
+Exports all the OGL entries from your contact list to Excel Spreadsheet. +
+Excel Spreadsheet name is *FOP_MANAGER_OGL_LIST.xls*. +
+Excel Spreadsheet will be saved in the current User Directory. +
+Format: `export_o`
 
 [[Clear]]
 === Clearing all entries : `clear`
@@ -639,7 +658,9 @@ Below is a summary of all commands available in FOP Manager:
 |`undo` |Undoes previous command |`undo` |<<Undo,Undoing previous command>>
 |`redo` |Redoes previously undone command |`redo` |<<Redo, Redoing previously undone command>>
 |`randomize` |Randomizes group allocation |`randomize` |<<Randomize, Randomizing groupings>>
-|`export` |Exports contact list |`export` |<<Export, Exporting contact list>>
+|`export` |Exports contact list |`export` |<<ExportALL, Exporting whole contact list>>
+|`export_f` |Exports freshmen contact list |`export_f` |<<ExportF, Exporting freshmen contact list>>
+|`export_o` |Exports OGL contact list |`export_o` |<<ExportO, Exporting OGL contact list>>
 |`clear` |Clears contact list |`clear` |<<Clear, Clearing all entries>>
 |`export` |Exports contact list |`export` |<<Export, Exporting all entries>>
 |`exit` |Exits program |`exit` |<<Exit, Exiting the program>>
