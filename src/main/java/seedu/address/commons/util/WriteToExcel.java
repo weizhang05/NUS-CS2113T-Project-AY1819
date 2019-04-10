@@ -22,6 +22,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.grouping.Group;
+import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Birthday;
 import seedu.address.model.participant.Email;
 import seedu.address.model.participant.Major;
@@ -142,11 +143,10 @@ public class WriteToExcel {
         for (Person person : persons) {
             Row row = sheet.createRow(++rowNum);
             StringBuilder stringBuilder = new StringBuilder();
-
             writeDataIntoCell(row, FIRST_COLUMN, person.getName().fullName);
             writeDataIntoCell(row, SECOND_COLUMN, person.getSex().value);
-            writeDataIntoCell(row, THIRD_COLUMN, person.getBirthday().value);
-            writeDataIntoCell(row, FOURTH_COLUMN, person.getPhone().value);
+            writeDataIntoCell(row, THIRD_COLUMN, Double.parseDouble(person.getBirthday().value));
+            writeDataIntoCell(row, FOURTH_COLUMN, Double.parseDouble(person.getPhone().value));
             writeDataIntoCell(row, FIFTH_COLUMN, person.getEmail().value);
             writeDataIntoCell(row, SIXTH_COLUMN, person.getMajor().value);
             writeDataIntoCell(row, SEVENTH_COLUMN, person.getGroup().getGroupName());
