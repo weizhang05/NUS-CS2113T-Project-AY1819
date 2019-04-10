@@ -31,7 +31,7 @@ public class EditHouseCommandParserTests {
 
     @Test
     public void parse_longerArgs_throwsParseException() {
-        assertParseFailure(parser, "Red Green Blue",
+        assertParseFailure(parser, "Red Green bLue",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditHouseCommand.MESSAGE_USAGE));
     }
 }

@@ -30,7 +30,7 @@ public class AddGroupCommandParserTest {
 
     @Test
     public void parse_longerArgs_throwsParseException() {
-        assertParseFailure(parser, "R1 Red Blue",
+        assertParseFailure(parser, "R1 Red bluE",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupCommand.MESSAGE_USAGE));
     }
 }

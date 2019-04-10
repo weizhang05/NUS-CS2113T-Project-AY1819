@@ -29,7 +29,7 @@ public class AddHouseCommandParserTest {
 
     @Test
     public void parse_longArgs() {
-        assertParseFailure(parser, "Red Green",
+        assertParseFailure(parser, "Red red_HouSe",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddHouseCommand.MESSAGE_USAGE));
     }
 }
