@@ -1,25 +1,26 @@
 package seedu.address.logic.commands;
 
-import static org.junit.Assert.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalGroupHousePersonList.getTypicalAddressBookWithGroupHouse;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.grouping.Group;
-import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class EditGroupCommandTest {
-    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
-
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
+    private Model model = new ModelManager(getTypicalAddressBookWithGroupHouse(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -35,54 +36,38 @@ public class EditGroupCommandTest {
     }
 
     @Test
-    public void execute_editGroupWithPersonSuccessful() throws Exception {
-        ModelManager modelManager = new ModelManager();
-        Person validPersonWithGroup = new PersonBuilder().withGroup("G1").build();
+    public void execute_editGroupWithPersonSuccessful() {
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        EditGroupCommand editGroupCommand = new EditGroupCommand("R1", "R3");
+        String expectedMessage = String.format(EditGroupCommand.MESSAGE_SUCCESS, "R1", "R3");
 
-        modelManager.addHouse(new House("Green"));
-        modelManager.addGroup(new Group("G1", "Green"));
-        modelManager.addPerson(validPersonWithGroup);
+        Person editedPerson = new PersonBuilder().withName("Alicia Alice")
+                .withSex("F").withBirthday("07081994").withMajor("CS").withEmail("alicia@example.com")
+                .withPhone("94351253").withGroup("R3", "Red").build();
+        Person toEdit = model.getFilteredPersonList().get(0);
 
-        CommandResult commandResult =
-                new EditGroupCommand("G1", "G2").execute(modelManager, commandHistory);
-
-        assertEquals(String.format(EditGroupCommand.MESSAGE_SUCCESS, "G1", "G2"), commandResult.getFeedbackToUser());
-        assertEquals(new Group("G2", "Green"), modelManager.getFilteredGroupList().get(0));
-        assertEquals("G2", modelManager.getFilteredPersonList().get(0).getGroup().getGroupName());
-        assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
+        expectedModel.setGroup(new Group("R1", "Red"),
+                new Group("R3", "Red"));
+        expectedModel.setPerson(toEdit, editedPerson);
+        expectedModel.commitAddressBook();
+        assertCommandSuccess(editGroupCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_repeatGroup_throwsCommandException() throws Exception {
-        EditGroupCommand editGroupCommand = new EditGroupCommand("G1", "G1");
-        ModelManager modelManager = new ModelManager();
-
-        thrown.expect(CommandException.class);
-        thrown.expectMessage(EditGroupCommand.MESSAGE_REPEAT_GROUP);
-        editGroupCommand.execute(modelManager, commandHistory);
+    public void execute_repeatGroup_throwsCommandException() {
+        EditGroupCommand editGroupCommand = new EditGroupCommand("R1", "R1");
+        assertCommandFailure(editGroupCommand, model, commandHistory, EditGroupCommand.MESSAGE_REPEAT_GROUP);
     }
 
     @Test
-    public void execute_nonexistentOldGroup_throwsCommandException() throws Exception {
-        EditGroupCommand editGroupCommand = new EditGroupCommand("G1", "G2");
-        ModelManager modelManager = new ModelManager();
-
-        thrown.expect(CommandException.class);
-        thrown.expectMessage(EditGroupCommand.MESSAGE_NONEXISTENT_OLD_GROUP);
-        editGroupCommand.execute(modelManager, commandHistory);
+    public void execute_nonexistentOldGroup_throwsCommandException() {
+        EditGroupCommand editGroupCommand = new EditGroupCommand("G1", "B2");
+        assertCommandFailure(editGroupCommand, model, commandHistory, EditGroupCommand.MESSAGE_NONEXISTENT_OLD_GROUP);
     }
 
     @Test
-    public void execute_existentNewGroup_throwsCommandException() throws Exception {
-        EditGroupCommand editGroupCommand = new EditGroupCommand("G1", "G2");
-        ModelManager modelManager = new ModelManager();
-
-        modelManager.addHouse(new House("Green"));
-        modelManager.addGroup(new Group("G1", "Green"));
-        modelManager.addGroup(new Group("G2", "Green"));
-
-        thrown.expect(CommandException.class);
-        thrown.expectMessage(EditGroupCommand.MESSAGE_EXISTENT_NEW_GROUP);
-        editGroupCommand.execute(modelManager, commandHistory);
+    public void execute_existentNewGroup_throwsCommandException() {
+        EditGroupCommand editGroupCommand = new EditGroupCommand("R1", "B1");
+        assertCommandFailure(editGroupCommand, model, commandHistory, EditGroupCommand.MESSAGE_EXISTENT_NEW_GROUP);
     }
 }

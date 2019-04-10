@@ -26,6 +26,7 @@ import seedu.address.logic.commands.ExportOglCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListGroupCommand;
 import seedu.address.logic.commands.ListHouseCommand;
@@ -103,6 +104,9 @@ public class AddressBookParser {
 
         case ExportOglCommand.COMMAND_WORD:
             return new ExportOglCommand();
+
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommand();
 
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);

@@ -37,11 +37,11 @@ public class EditHouseCommand extends Command {
         this.newHouseName = newHouseName;
     }
 
-    public static String getNewHouseName() {
+    public String getNewHouseName() {
         return newHouseName;
     }
 
-    public static String getOldHouseName() {
+    public String getOldHouseName() {
         return oldHouseName;
     }
 
@@ -104,5 +104,13 @@ public class EditHouseCommand extends Command {
         model.commitAddressBook();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, oldHouseName, newHouseName));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditHouseCommand // instanceof handles nulls
+                && this.getNewHouseName().equals(((EditHouseCommand) other).getNewHouseName())
+                && this.getOldHouseName().equals(((EditHouseCommand) other).getOldHouseName())); // state check
     }
 }

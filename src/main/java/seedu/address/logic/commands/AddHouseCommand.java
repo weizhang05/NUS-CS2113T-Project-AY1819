@@ -44,4 +44,11 @@ public class AddHouseCommand extends Command {
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, houseName));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddHouseCommand // instanceof handles nulls
+                && this.getHouseName().equals(((AddHouseCommand) other).getHouseName())); // state check
+    }
 }
