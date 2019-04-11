@@ -19,7 +19,7 @@ public class JsonAdaptedGroup {
     private final String houseName;
 
     /**
-     * Constructs a {@code JsonAdaptedGroup} with the given person details.
+     * Constructs a {@code JsonAdaptedGroup} with the given participant details.
      */
     @JsonCreator
     public JsonAdaptedGroup(@JsonProperty("groupName") String groupName,
@@ -37,9 +37,9 @@ public class JsonAdaptedGroup {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Group} object.
+     * Converts this Jackson-friendly adapted participant object into the model's {@code Group} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted participant.
      */
     public Group toModelType() throws IllegalValueException {
         if (groupName == null) {

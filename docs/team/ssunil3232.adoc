@@ -129,7 +129,7 @@ Format: `add n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...`
 
 ****
 * Parameters can be accepted in any order.
-* An entered person can have any number of tags (including 0).
+* An entered participant can have any number of tags (including 0).
 
 [TIP]
 Leave `GROUP` blank i.e. `g/` since there is no group allocation for this participant!

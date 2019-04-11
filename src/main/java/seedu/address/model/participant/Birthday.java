@@ -8,7 +8,7 @@ import java.util.Calendar;
 
 
 /**
- * Represents a Person's birthday in the address book
+ * Represents a Participant's birthday in the address book
  */
 public class Birthday {
 
