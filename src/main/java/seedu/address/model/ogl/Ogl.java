@@ -10,7 +10,6 @@ import seedu.address.model.participant.Name;
 import seedu.address.model.participant.Person;
 import seedu.address.model.participant.Phone;
 import seedu.address.model.participant.Sex;
-import seedu.address.model.privilege.Privilege;
 import seedu.address.model.tag.Tag;
 
 /**
