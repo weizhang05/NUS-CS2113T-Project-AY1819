@@ -8,6 +8,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 
 import seedu.address.model.grouping.Group;
+import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Birthday;
 import seedu.address.model.participant.Email;
 import seedu.address.model.participant.Major;
@@ -20,7 +21,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
-public class SampleParticipantsUtil {
+public class SampleDataUtil {
     public static Participant[] getSamplePersons() {
         return new Participant[] {
             new Participant(new Name("Alex Yeoh"), new Sex("M"), new Birthday("01021996"),
@@ -50,10 +51,34 @@ public class SampleParticipantsUtil {
         };
     }
 
+    public static House[] getSampleHouses() {
+        return new House[]{
+                new House("Red"),
+                new House("Blue"),
+        };
+    }
+
+    public static Group[] getSampleGroups() {
+        return new Group[]{
+                new Group("R1", "Red"),
+                new Group("R2", "Red"),
+                new Group("B1", "Blue"),
+                new Group("B2", "Blue"),
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Participant sampleParticipant : getSamplePersons()) {
             sampleAb.addPerson(sampleParticipant);
+        }
+
+        for (House sampleHouse : getSampleHouses()) {
+            sampleAb.addHouse(sampleHouse);
+        }
+
+        for (Group sampleGroup : getSampleGroups()) {
+            sampleAb.addGroup(sampleGroup);
         }
         return sampleAb;
     }
