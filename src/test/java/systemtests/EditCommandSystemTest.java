@@ -134,7 +134,8 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         editedParticipant = new PersonBuilder(participantToEdit).withName(VALID_NAME_BOB).build();
         assertCommandSuccess(command, index, editedParticipant);
 
-        /* Case: filtered participant list, edit index within bounds of address book but out of bounds of participant list
+        /* Case: filtered participant list, edit index within bounds of
+         * address book but out of bounds of participant list
          * -> rejected
          */
         showPersonsWithName(KEYWORD_MATCHING_MEIER);

@@ -38,7 +38,8 @@ public class TypicalPersons {
             .withBirthday("08071993").withMajor("IS")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withGroup("").withTags("owesMoney", "friends").build();
-    public static final Participant CARL = new PersonBuilder().withName("Carl Kurz").withSex("M").withBirthday("01021990")
+    public static final Participant CARL = new PersonBuilder().withName("Carl Kurz")
+            .withSex("M").withBirthday("01021990")
             .withPhone("95352563").withEmail("heinz@example.com").withMajor("CS").withGroup("").build();
     public static final Participant DANIEL = new PersonBuilder().withName("Daniel Meier").withSex("M")
             .withBirthday("01021900").withPhone("87652533")
