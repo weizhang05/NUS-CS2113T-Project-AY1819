@@ -136,10 +136,6 @@ public class ModelManager implements Model {
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
         undoableCommand = "Delete " + target.getName().fullName;
-
-        if (FreshmanList.hasFreshman(target.toString())) {
-            FreshmanList.deleteFreshman(target.toString());
-        }
     }
 
     @Override
@@ -278,10 +274,6 @@ public class ModelManager implements Model {
     public void deleteGroup(Group target) {
         versionedAddressBook.removeGroup(target);
         undoableCommand = "Delete Group " + target.getGroupName();
-
-        if (GroupList.hasGroup(target.toString())) {
-            GroupList.deleteGroup(target.toString());
-        }
     }
 
     @Override
@@ -337,10 +329,6 @@ public class ModelManager implements Model {
     public void deleteHouse(House target) {
         versionedAddressBook.removeHouse(target);
         undoableCommand = "Delete House " + target.getHouseName();
-
-        if (HouseList.hasHouse(target.toString())) {
-            HouseList.deleteHouse(target.toString());
-        }
     }
 
     @Override
