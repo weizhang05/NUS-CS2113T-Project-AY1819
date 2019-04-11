@@ -19,11 +19,11 @@ import seedu.address.model.participant.Participant;
 /**
  * Adds a freshman to the address book.
  */
-public class AddParticipantCommand extends AddCommand {
+public class AddFreshmanCommand extends AddCommand {
 
-    public static final String COMMAND_WORD = "add_p";
+    public static final String COMMAND_WORD = "add_f";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a participant to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a freshman to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_SEX + "SEX "
@@ -44,16 +44,16 @@ public class AddParticipantCommand extends AddCommand {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New participant added: %1$s";
-    private static final String MESSAGE_DUPLICATE_PARTICIPANT = "This participant already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New freshman added: %1$s";
+    private static final String MESSAGE_DUPLICATE_PARTICIPANT = "This freshman already exists in the address book";
 
     private final Participant toAdd;
 
     /**
-     * Creates an AddParticipantCommand to add the specified {@code Participant}
+     * Creates an AddFreshmanCommand to add the specified {@code Participant}
      */
 
-    public AddParticipantCommand(Participant participant) {
+    public AddFreshmanCommand(Participant participant) {
         super(participant);
         toAdd = participant;
     }
