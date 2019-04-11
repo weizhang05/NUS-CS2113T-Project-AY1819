@@ -14,7 +14,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
  * Adds a freshman to the address book.
@@ -47,15 +47,15 @@ public class AddParticipantCommand extends AddCommand {
     public static final String MESSAGE_SUCCESS = "New participant added: %1$s";
     private static final String MESSAGE_DUPLICATE_PARTICIPANT = "This participant already exists in the address book";
 
-    private final Person toAdd;
+    private final Participant toAdd;
 
     /**
      * Creates an AddParticipantCommand to add the specified {@code Participant}
      */
 
-    public AddParticipantCommand(Person person) {
-        super(person);
-        toAdd = person;
+    public AddParticipantCommand(Participant participant) {
+        super(participant);
+        toAdd = participant;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class AddParticipantCommand extends AddCommand {
         }
 
         Group updatedGroup = model.getGroup(toAdd.getGroup());
-        Person toAddUpdated = new Person(toAdd.getName(), toAdd.getSex(), toAdd.getBirthday(), toAdd.getPhone(),
+        Participant toAddUpdated = new Participant(toAdd.getName(), toAdd.getSex(), toAdd.getBirthday(), toAdd.getPhone(),
                 toAdd.getEmail(), toAdd.getMajor(), updatedGroup, toAdd.getTags());
         model.addPerson(toAddUpdated);
         model.commitAddressBook();

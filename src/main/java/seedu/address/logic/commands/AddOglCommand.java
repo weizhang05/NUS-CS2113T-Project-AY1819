@@ -14,7 +14,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 import seedu.address.model.ogl.Ogl;
 
 /**
@@ -77,7 +77,7 @@ public class AddOglCommand extends AddCommand {
         }
 
         Group updatedGroup = model.getGroup(toAdd.getGroup());
-        Person toAddUpdated = new Person(toAdd.getName(), toAdd.getSex(), toAdd.getBirthday(), toAdd.getPhone(),
+        Participant toAddUpdated = new Participant(toAdd.getName(), toAdd.getSex(), toAdd.getBirthday(), toAdd.getPhone(),
                 toAdd.getEmail(), toAdd.getMajor(), updatedGroup, toAdd.getTags());
         model.addPerson(toAddUpdated);
         model.commitAddressBook();

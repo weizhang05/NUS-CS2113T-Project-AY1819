@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Participant}'s {@code Name} matches any of the keywords given.
  */
-public class FindingOglPredicate implements Predicate<Person> {
+public class FindingOglPredicate implements Predicate<Participant> {
     private final List<String> keywords;
 
     public FindingOglPredicate(List<String> keywords) {
@@ -17,9 +17,9 @@ public class FindingOglPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Participant participant) {
         return keywords.stream()
-                .allMatch(keyword-> StringUtil.containsWordIgnoreCase(person.getStringTags(), keyword));
+                .allMatch(keyword-> StringUtil.containsWordIgnoreCase(participant.getStringTags(), keyword));
     }
 
     @Override

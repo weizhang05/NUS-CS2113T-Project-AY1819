@@ -7,7 +7,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
  * Deletes a group identified by the group name.
@@ -42,7 +42,7 @@ public class DeleteGroupCommand extends Command {
         requireNonNull(model);
 
         ObservableList<Group> groupList = model.getFilteredGroupList();
-        ObservableList<Person> personList = model.getFilteredPersonList();
+        ObservableList<Participant> participantList = model.getFilteredPersonList();
 
         Group toDelete = new Group (groupName);
 
@@ -58,8 +58,8 @@ public class DeleteGroupCommand extends Command {
             throw new CommandException(MESSAGE_NONEXISTENT_GROUP);
         }
 
-        for (Person person : personList) {
-            if (person.getGroup().getGroupName().equals(groupName)) {
+        for (Participant participant : participantList) {
+            if (participant.getGroup().getGroupName().equals(groupName)) {
                 throw new CommandException(MESSAGE_NOT_EMPTY_GROUP);
             }
         }

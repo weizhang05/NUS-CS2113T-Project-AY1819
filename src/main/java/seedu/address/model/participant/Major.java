@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Represents a Person's address in the address book.
+ * Represents a Participant's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidMajor(String)} (String)}
  */
 public class Major {

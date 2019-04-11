@@ -8,10 +8,10 @@ import com.google.common.collect.ImmutableMultiset;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
- * Provides a handle to a person card in the person list panel.
+ * Provides a handle to a participant card in the participant list panel.
  */
 public class PersonCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
@@ -94,17 +94,17 @@ public class PersonCardHandle extends NodeHandle<Node> {
     }
 
     /**
-     * Returns true if this handle contains {@code person}.
+     * Returns true if this handle contains {@code participant}.
      */
-    public boolean equals(Person person) {
-        return getName().equals(person.getName().fullName)
-                && getMajor().equals("Major: " + person.getMajor().getFullMajor())
-                && getSex().equals("Sex: " + person.getSex().value)
-                && getBirthday().equals("Birthday: " + person.getBirthday().getFormattedBirthday())
-                && getPhone().equals("Phone Number: " + person.getPhone().value)
-                && getEmail().equals("Email: " + person.getEmail().value)
-                && getGroup().equals("Group: " + person.getGroup().getGroupName())
-                && ImmutableMultiset.copyOf(getTags()).equals(ImmutableMultiset.copyOf(person.getTags().stream()
+    public boolean equals(Participant participant) {
+        return getName().equals(participant.getName().fullName)
+                && getMajor().equals("Major: " + participant.getMajor().getFullMajor())
+                && getSex().equals("Sex: " + participant.getSex().value)
+                && getBirthday().equals("Birthday: " + participant.getBirthday().getFormattedBirthday())
+                && getPhone().equals("Phone Number: " + participant.getPhone().value)
+                && getEmail().equals("Email: " + participant.getEmail().value)
+                && getGroup().equals("Group: " + participant.getGroup().getGroupName())
+                && ImmutableMultiset.copyOf(getTags()).equals(ImmutableMultiset.copyOf(participant.getTags().stream()
                         .map(tag -> tag.tagName)
                         .collect(Collectors.toList())));
     }

@@ -14,16 +14,16 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
- * Adds a person to the address book.
+ * Adds a participant to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a participant to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_SEX + "SEX "
@@ -44,19 +44,19 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New participant added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This participant already exists in the address book";
     public static final String MESSAGE_NONEXISTENT_GROUP = "This group does not exist. "
-            + "A person must be added to an existent group!";
+            + "A participant must be added to an existent group!";
 
-    private final Person toAdd;
+    private final Participant toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Participant}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Participant participant) {
+        requireNonNull(participant);
+        toAdd = participant;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class AddCommand extends Command {
         }
 
         Group updatedGroup = model.getGroup(toAdd.getGroup());
-        Person toAddUpdated = new Person(toAdd.getName(), toAdd.getSex(), toAdd.getBirthday(), toAdd.getPhone(),
+        Participant toAddUpdated = new Participant(toAdd.getName(), toAdd.getSex(), toAdd.getBirthday(), toAdd.getPhone(),
                 toAdd.getEmail(), toAdd.getMajor(), updatedGroup, toAdd.getTags());
         model.addPerson(toAddUpdated);
         model.commitAddressBook();

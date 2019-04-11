@@ -11,10 +11,10 @@ import org.junit.Test;
 
 import guitests.guihandles.BrowserPanelHandle;
 import javafx.beans.property.SimpleObjectProperty;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 public class BrowserPanelTest extends GuiUnitTest {
-    private SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
+    private SimpleObjectProperty<Participant> selectedPerson = new SimpleObjectProperty<>();
     private BrowserPanel browserPanel;
     private BrowserPanelHandle browserPanelHandle;
 
@@ -31,7 +31,7 @@ public class BrowserPanelTest extends GuiUnitTest {
         // default web page
         assertEquals(BrowserPanel.DEFAULT_PAGE, browserPanelHandle.getLoadedUrl());
 
-        // associated web page of a person
+        // associated web page of a participant
         guiRobot.interact(() -> selectedPerson.set(ALICE));
         URL expectedPersonUrl = new URL(BrowserPanel.SEARCH_PAGE_URL + ALICE.getName().fullName.replaceAll(" ", "%20"));
 

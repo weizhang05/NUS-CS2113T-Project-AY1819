@@ -16,7 +16,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 import seedu.address.model.participant.UniqueParticipantList;
 import seedu.address.model.participant.exceptions.DuplicatePersonException;
 import seedu.address.model.participant.exceptions.PersonNotFoundException;
@@ -48,7 +48,7 @@ public class UniqueParticipantListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueParticipantList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withMajor(VALID_MAJOR_BOB).withTags(VALID_TAG_HUSBAND)
+        Participant editedAlice = new PersonBuilder(ALICE).withMajor(VALID_MAJOR_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueParticipantList.contains(editedAlice));
     }
@@ -96,7 +96,7 @@ public class UniqueParticipantListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniqueParticipantList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withMajor(VALID_MAJOR_BOB).withTags(VALID_TAG_HUSBAND)
+        Participant editedAlice = new PersonBuilder(ALICE).withMajor(VALID_MAJOR_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueParticipantList.setPerson(ALICE, editedAlice);
         UniqueParticipantList expectedUniqueParticipantList = new UniqueParticipantList();
@@ -159,14 +159,14 @@ public class UniqueParticipantListTest {
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueParticipantList.setPersons((List<Person>) null);
+        uniqueParticipantList.setPersons((List<Participant>) null);
     }
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
         uniqueParticipantList.add(ALICE);
-        List<Person> personList = Collections.singletonList(BOB);
-        uniqueParticipantList.setPersons(personList);
+        List<Participant> participantList = Collections.singletonList(BOB);
+        uniqueParticipantList.setPersons(participantList);
         UniqueParticipantList expectedUniqueParticipantList = new UniqueParticipantList();
         expectedUniqueParticipantList.add(BOB);
         assertEquals(expectedUniqueParticipantList, uniqueParticipantList);
@@ -174,9 +174,9 @@ public class UniqueParticipantListTest {
 
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
+        List<Participant> listWithDuplicateParticipants = Arrays.asList(ALICE, ALICE);
         thrown.expect(DuplicatePersonException.class);
-        uniqueParticipantList.setPersons(listWithDuplicatePersons);
+        uniqueParticipantList.setPersons(listWithDuplicateParticipants);
     }
 
     @Test
