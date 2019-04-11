@@ -9,9 +9,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.WriteToExcel;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
-import seedu.address.model.participant.Participant;
-
 import seedu.address.model.participant.FindingParticipantPredicate;
+import seedu.address.model.participant.Participant;
 
 /**
  * Export the data of the Freshmen FOP Manager into ExcelSheets.
