@@ -93,9 +93,10 @@ public class EditHouseCommand extends Command {
                 continue;
             }
             if (participant.getGroup().getHouseName().equals(oldHouseName)) {
-                Participant editedParticipant = new Participant(participant.getName(), participant.getSex(), participant.getBirthday(),
-                        participant.getPhone(), participant.getEmail(), participant.getMajor(),
-                        new Group(participant.getGroup().getGroupName(), newHouseName), participant.getTags());
+                Participant editedParticipant = new Participant(participant.getName(), participant.getSex(),
+                        participant.getBirthday(), participant.getPhone(), participant.getEmail(),
+                        participant.getMajor(), new Group(participant.getGroup().getGroupName(), newHouseName),
+                        participant.getTags());
                 model.setPerson(participant, editedParticipant);
             }
         }

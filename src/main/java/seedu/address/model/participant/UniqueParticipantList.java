@@ -15,7 +15,8 @@ import seedu.address.model.participant.exceptions.PersonNotFoundException;
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A participant is considered unique by comparing using {@code Participant#isSamePerson(Participant)}.
  * As such, adding and updating of
- * persons uses Participant#isSamePerson(Participant) for equality so as to ensure that the participant being added or updated is
+ * persons uses Participant#isSamePerson(Participant) for equality so as
+ * to ensure that the participant being added or updated is
  * unique in terms of identity in the UniqueParticipantList.
  * However, the removal of a participant uses Participant#equals(Object) so
  * as to ensure that the participant with exactly the same fields will be removed.
@@ -53,7 +54,8 @@ public class UniqueParticipantList implements Iterable<Participant> {
     /**
      * Replaces the participant {@code target} in the list with {@code editedParticipant}.
      * {@code target} must exist in the list.
-     * The participant identity of {@code editedParticipant} must not be the same as another existing participant in the list.
+     * The participant identity of {@code editedParticipant}
+     * must not be the same as another existing participant in the list.
      */
     public void setPerson(Participant target, Participant editedParticipant) {
         requireAllNonNull(target, editedParticipant);

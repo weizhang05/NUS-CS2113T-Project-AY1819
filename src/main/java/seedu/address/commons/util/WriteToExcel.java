@@ -274,8 +274,9 @@ public class WriteToExcel {
     /**
      * Creates a participant.
      */
-    private static Participant createPerson(String nameString, String sexString, String birthdayString, String phoneString,
-                                            String emailString, String majorString, String groupString, String tagString)
+    private static Participant createPerson(String nameString, String sexString, String birthdayString,
+                                            String phoneString, String emailString, String majorString,
+                                            String groupString, String tagString)
             throws ParseException {
         requireNonNull(nameString);
         Name nameParse = ParserUtil.parseName(nameString);
@@ -290,7 +291,8 @@ public class WriteToExcel {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 " " + PREFIX_TAG + processedTags, PREFIX_TAG);
         tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        return new Participant(nameParse, sexParse, birthdayParse, phoneParse, emailParse, majorParse, groupParse, tagList);
+        return new Participant(nameParse, sexParse, birthdayParse, phoneParse,
+                emailParse, majorParse, groupParse, tagList);
     }
 
 }

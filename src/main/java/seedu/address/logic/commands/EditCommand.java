@@ -116,7 +116,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Participant} with the details of {@code participantToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Participant createEditedPerson(Participant participantToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Participant createEditedPerson(Participant participantToEdit,
+                                                  EditPersonDescriptor editPersonDescriptor) {
         assert participantToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(participantToEdit.getName());

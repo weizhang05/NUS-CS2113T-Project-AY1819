@@ -22,8 +22,8 @@ import seedu.address.model.participant.Email;
 import seedu.address.model.participant.Major;
 import seedu.address.model.participant.Name;
 import seedu.address.model.participant.Phone;
-import seedu.address.model.participant.Sex;
 import seedu.address.model.ogl.Ogl;
+import seedu.address.model.participant.Sex;
 import seedu.address.model.tag.Tag;
 
 /**

@@ -111,7 +111,8 @@ public interface Model {
     /**
      * Replaces the given participant {@code target} with {@code editedParticipant}.
      * {@code target} must exist in the address book.
-     * The participant identity of {@code editedParticipant} must not be the same as another existing participant in the address book.
+     * The participant identity of {@code editedParticipant}
+     * must not be the same as another existing participant in the address book.
      */
     void setPerson(Participant target, Participant editedParticipant);
 
