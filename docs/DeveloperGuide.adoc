@@ -621,7 +621,7 @@ _Activity Diagram for the importing command_
 
 ==== Current Implementation
 * A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
-* The `import` command will call a function from a class `WriteToExcel` to start the reading from a HSSF Workbook found in the current directory path, with the file name "FOP_MANAGER_LIST.xls". 
+* The `import` command will call a function from a class `WriteToExcel` to start the reading from a HSSF Workbook found in the current directory path, with the file name "FOP_MANAGER_LIST.xls".
 * The cell value from the respective heading/columns are read into their respective string and `person` is created with these strings.
 * The `person` is added to a `List<Person>` and each `person` is added into the `Address Book`.
 
