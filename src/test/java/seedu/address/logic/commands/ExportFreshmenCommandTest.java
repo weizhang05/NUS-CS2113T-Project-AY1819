@@ -16,7 +16,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.FindingParticipantPredicate;
+import seedu.address.model.participant.FindingParticipantPredicate;
 
 public class ExportFreshmenCommandTest {
     private CommandHistory commandHistory = new CommandHistory();

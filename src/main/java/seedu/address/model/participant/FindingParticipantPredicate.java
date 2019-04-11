@@ -1,10 +1,9 @@
-package seedu.address.model.person;
+package seedu.address.model.participant;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.participant.Participant;
 
 /**
  * Tests that a {@code Participant}'s {@code Tag} matches any of the keywords given.
