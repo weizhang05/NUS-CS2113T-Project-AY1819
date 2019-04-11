@@ -29,21 +29,21 @@ import seedu.address.model.participant.Birthday;
 import seedu.address.model.participant.Email;
 import seedu.address.model.participant.Major;
 import seedu.address.model.participant.Name;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 import seedu.address.model.participant.Phone;
 import seedu.address.model.participant.Sex;
 import seedu.address.model.tag.Tag;
 
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing participant in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the participant identified "
+            + "by the index number used in the displayed participant list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -58,18 +58,18 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Participant: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This participant already exists in the address book.";
     public static final String MESSAGE_NONEXISTENT_GROUP = "This group does not exist. "
-            + "A person must be added to an existent group!";
+            + "A participant must be added to an existent group!";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the participant in the filtered participant list to edit
+     * @param editPersonDescriptor details to edit the participant with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -82,53 +82,54 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Participant> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Participant participantToEdit = lastShownList.get(index.getZeroBased());
+        Participant editedParticipant = createEditedPerson(participantToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!participantToEdit.isSamePerson(editedParticipant) && model.hasPerson(editedParticipant)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        if (!editedPerson.getGroup().getGroupName().equals("") && !model.hasGroup(editedPerson.getGroup())) {
+        if (!editedParticipant.getGroup().getGroupName().equals("") && !model.hasGroup(editedParticipant.getGroup())) {
             throw new CommandException(MESSAGE_NONEXISTENT_GROUP);
         }
 
-        if (!editedPerson.getGroup().getGroupName().isEmpty()) {
-            Group updatedGroup = model.getGroup(editedPerson.getGroup());
-            editedPerson = new Person(editedPerson.getName(), editedPerson.getSex(),
-                    editedPerson.getBirthday(), editedPerson.getPhone(), editedPerson.getEmail(),
-                    editedPerson.getMajor(), updatedGroup, editedPerson.getTags());
+        if (!editedParticipant.getGroup().getGroupName().isEmpty()) {
+            Group updatedGroup = model.getGroup(editedParticipant.getGroup());
+            editedParticipant = new Participant(editedParticipant.getName(), editedParticipant.getSex(),
+                    editedParticipant.getBirthday(), editedParticipant.getPhone(), editedParticipant.getEmail(),
+                    editedParticipant.getMajor(), updatedGroup, editedParticipant.getTags());
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(participantToEdit, editedParticipant);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedParticipant));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Participant} with the details of {@code participantToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Participant createEditedPerson(Participant participantToEdit,
+                                                  EditPersonDescriptor editPersonDescriptor) {
+        assert participantToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Sex updatedSex = editPersonDescriptor.getSex().orElse(personToEdit.getSex());
-        Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Major updatedMajor = editPersonDescriptor.getMajor().orElse(personToEdit.getMajor());
-        Group updatedGroup = editPersonDescriptor.getGroup().orElse(personToEdit.getGroup());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editPersonDescriptor.getName().orElse(participantToEdit.getName());
+        Sex updatedSex = editPersonDescriptor.getSex().orElse(participantToEdit.getSex());
+        Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(participantToEdit.getBirthday());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(participantToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(participantToEdit.getEmail());
+        Major updatedMajor = editPersonDescriptor.getMajor().orElse(participantToEdit.getMajor());
+        Group updatedGroup = editPersonDescriptor.getGroup().orElse(participantToEdit.getGroup());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(participantToEdit.getTags());
 
-        return new Person(updatedName, updatedSex, updatedBirthday, updatedPhone, updatedEmail,
+        return new Participant(updatedName, updatedSex, updatedBirthday, updatedPhone, updatedEmail,
                 updatedMajor, updatedGroup, updatedTags);
     }
 
@@ -151,8 +152,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the participant with. Each non-empty field value will replace the
+     * corresponding field value of the participant.
      */
     public static class EditPersonDescriptor {
         private Name name;

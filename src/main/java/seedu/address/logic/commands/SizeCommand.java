@@ -6,7 +6,7 @@ import java.util.List;
 
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
  * Displays the size of all lists (Participant, OGL, Freshman, Group and House) in the Command result box.
@@ -22,14 +22,14 @@ public class SizeCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
 
-        List<Person> personList = model.getFilteredPersonList();
+        List<Participant> participantList = model.getFilteredPersonList();
         int numOgl = 0;
         int numFreshman = 0;
 
-        for (Person person : personList) {
-            if (person.getStringTags().contains("OGL")) {
+        for (Participant participant : participantList) {
+            if (participant.getStringTags().contains("OGL")) {
                 numOgl++;
-            } else if (person.getStringTags().contains("Freshman")) {
+            } else if (participant.getStringTags().contains("Freshman")) {
                 numFreshman++;
             }
         }
@@ -37,7 +37,7 @@ public class SizeCommand extends Command {
         int groupSize = model.sizeGroupList();
         int houseSize = model.sizeHouseList();
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Integer.toString(personList.size()),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Integer.toString(participantList.size()),
                 Integer.toString(numOgl), Integer.toString(numFreshman), Integer.toString(groupSize),
                 Integer.toString(houseSize)));
     }

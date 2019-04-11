@@ -11,7 +11,7 @@ import seedu.address.logic.parser.EditCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
  * Randomly assigns all participants to all available groups.
@@ -30,7 +30,7 @@ public class RandomizeCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        List<Person> participants = new ArrayList<>(model.getFilteredPersonList());
+        List<Participant> participants = new ArrayList<>(model.getFilteredPersonList());
         List<Group> groups = model.getFilteredGroupList();
 
         /**

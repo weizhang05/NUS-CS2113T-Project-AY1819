@@ -10,7 +10,7 @@ import seedu.address.model.participant.Birthday;
 import seedu.address.model.participant.Email;
 import seedu.address.model.participant.Major;
 import seedu.address.model.participant.Name;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 import seedu.address.model.participant.Phone;
 import seedu.address.model.participant.Sex;
 import seedu.address.model.tag.Tag;
@@ -31,18 +31,18 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code participant}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Participant participant) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setSex(person.getSex());
-        descriptor.setBirthday(person.getBirthday());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setMajor(person.getMajor());
-        descriptor.setGroup(person.getGroup());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(participant.getName());
+        descriptor.setSex(participant.getSex());
+        descriptor.setBirthday(participant.getBirthday());
+        descriptor.setPhone(participant.getPhone());
+        descriptor.setEmail(participant.getEmail());
+        descriptor.setMajor(participant.getMajor());
+        descriptor.setGroup(participant.getGroup());
+        descriptor.setTags(participant.getTags());
     }
 
     /**

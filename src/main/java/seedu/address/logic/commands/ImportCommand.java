@@ -8,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.WriteToExcel;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
  * Import different data.
@@ -32,14 +32,14 @@ public class ImportCommand extends Command {
         String message = null;
         try {
 
-            List<Person> persons = WriteToExcel.readFromExcel();
-            if (persons.size() >= 0) {
+            List<Participant> participants = WriteToExcel.readFromExcel();
+            if (participants.size() >= 0) {
 
-                for (Person person : persons) {
-                    if (model.hasPerson(person)) {
+                for (Participant participant : participants) {
+                    if (model.hasPerson(participant)) {
                         continue;
                     }
-                    model.addPerson(person);
+                    model.addPerson(participant);
                 }
                 model.commitAddressBook();
                 message = String.format(MESSAGE_SUCCESS);

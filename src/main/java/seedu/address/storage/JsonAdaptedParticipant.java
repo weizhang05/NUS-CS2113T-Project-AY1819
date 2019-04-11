@@ -16,17 +16,17 @@ import seedu.address.model.participant.Birthday;
 import seedu.address.model.participant.Email;
 import seedu.address.model.participant.Major;
 import seedu.address.model.participant.Name;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 import seedu.address.model.participant.Phone;
 import seedu.address.model.participant.Sex;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Participant}.
  */
 class JsonAdaptedParticipant {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Participant's %s field is missing!";
 
     private final String name;
     private final String sex;
@@ -39,7 +39,7 @@ class JsonAdaptedParticipant {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedParticipant} with the given person details.
+     * Constructs a {@code JsonAdaptedParticipant} with the given participant details.
      */
     @JsonCreator
     public JsonAdaptedParticipant(@JsonProperty("name") String name, @JsonProperty("sex") String sex,
@@ -61,9 +61,9 @@ class JsonAdaptedParticipant {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Participant} into this class for Jackson use.
      */
-    public JsonAdaptedParticipant(Person source) {
+    public JsonAdaptedParticipant(Participant source) {
         name = source.getName().fullName;
         sex = source.getSex().value;
         birthday = source.getBirthday().value;
@@ -78,11 +78,11 @@ class JsonAdaptedParticipant {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted participant object into the model's {@code Participant} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted participant.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Participant toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -146,7 +146,7 @@ class JsonAdaptedParticipant {
         final Group modelGroup = new Group(group, house);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelSex, modelBirthday, modelPhone, modelEmail,
+        return new Participant(modelName, modelSex, modelBirthday, modelPhone, modelEmail,
                 modelMajor, modelGroup, modelTags);
     }
 

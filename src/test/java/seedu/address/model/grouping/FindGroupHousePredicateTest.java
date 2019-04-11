@@ -8,14 +8,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 import seedu.address.testutil.PersonBuilder;
 
 public class FindGroupHousePredicateTest {
     private List<String> emptyString = Collections.singletonList("EMPTY");
 
-    private Person withGroupHouse = new PersonBuilder().withGroup("R1", "Red").build();
-    private Person withEmptyGroup = new PersonBuilder().build();
+    private Participant withGroupHouse = new PersonBuilder().withGroup("R1", "Red").build();
+    private Participant withEmptyGroup = new PersonBuilder().build();
 
     @Test
     public void test_groupContainsKeywords_returnsTrue() {

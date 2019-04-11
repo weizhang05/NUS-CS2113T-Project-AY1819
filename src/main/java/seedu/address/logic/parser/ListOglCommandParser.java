@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.ListOglCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.FindingOglPredicate;
+import seedu.address.model.ogl.FindingOglPredicate;
 
 
 /**

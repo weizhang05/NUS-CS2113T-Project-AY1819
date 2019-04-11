@@ -26,7 +26,7 @@ import seedu.address.model.participant.Birthday;
 import seedu.address.model.participant.Email;
 import seedu.address.model.participant.Major;
 import seedu.address.model.participant.Name;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 import seedu.address.model.participant.Phone;
 import seedu.address.model.participant.Sex;
 import seedu.address.model.tag.Tag;
@@ -62,7 +62,7 @@ public class WriteToExcel {
     /**
     * Write the excel sheet into Directory.
     */
-    public static void writeExcelSheet(List<Person>persons) {
+    public static void writeExcelSheet(List<Participant> participants) {
         try {
             String excelFileName = WORKING_DIRECTORY_STRING
                     + System.getProperty("file.separator")
@@ -70,7 +70,7 @@ public class WriteToExcel {
             HSSFWorkbook wb = new HSSFWorkbook();
             String sheetName = "FOP_CONTACTS";
             HSSFSheet sheet = wb.createSheet(sheetName);
-            writeDataIntoExcelSheet(persons, sheet);
+            writeDataIntoExcelSheet(participants, sheet);
 
             FileOutputStream out = new FileOutputStream(excelFileName);
             wb.write(out);
@@ -83,7 +83,7 @@ public class WriteToExcel {
     /**
      * Write the excel sheet into Directory.
      */
-    public static void writeExcelSheetFreshmen(List<Person>persons) {
+    public static void writeExcelSheetFreshmen(List<Participant> participants) {
         try {
             String excelFileName = WORKING_DIRECTORY_STRING
                     + System.getProperty("file.separator")
@@ -91,7 +91,7 @@ public class WriteToExcel {
             HSSFWorkbook wb = new HSSFWorkbook();
             String sheetName = "FOP_CONTACTS_FRESHMEN_ONLY";
             HSSFSheet sheet = wb.createSheet(sheetName);
-            writeDataIntoExcelSheet(persons, sheet);
+            writeDataIntoExcelSheet(participants, sheet);
 
             FileOutputStream out = new FileOutputStream(excelFileName);
             wb.write(out);
@@ -104,7 +104,7 @@ public class WriteToExcel {
     /**
      * Write the excel sheet into Directory.
      */
-    public static void writeExcelSheetOgl(List<Person>persons) {
+    public static void writeExcelSheetOgl(List<Participant> participants) {
         try {
             String excelFileName = WORKING_DIRECTORY_STRING
                     + System.getProperty("file.separator")
@@ -112,7 +112,7 @@ public class WriteToExcel {
             HSSFWorkbook wb = new HSSFWorkbook();
             String sheetName = "FOP_CONTACTS_OGL_ONLY";
             HSSFSheet sheet = wb.createSheet(sheetName);
-            writeDataIntoExcelSheet(persons, sheet);
+            writeDataIntoExcelSheet(participants, sheet);
 
             FileOutputStream out = new FileOutputStream(excelFileName);
             wb.write(out);
@@ -125,7 +125,7 @@ public class WriteToExcel {
     /**
     *Write data into ExcelSheet.
     */
-    private static void writeDataIntoExcelSheet(List<Person>persons, HSSFSheet sheet) {
+    private static void writeDataIntoExcelSheet(List<Participant> participants, HSSFSheet sheet) {
 
         int rowNum = STARTING_INDEX;
         Row startingRow = sheet.createRow(rowNum);
@@ -139,18 +139,18 @@ public class WriteToExcel {
         writeDataIntoCell(startingRow, SEVENTH_COLUMN, GROUP_TITLE);
         writeDataIntoCell(startingRow, EIGHTH_COLUMN, TAG_TITLE);
 
-        for (Person person : persons) {
+        for (Participant participant : participants) {
             Row row = sheet.createRow(++rowNum);
             StringBuilder stringBuilder = new StringBuilder();
-            writeDataIntoCell(row, FIRST_COLUMN, person.getName().fullName);
-            writeDataIntoCell(row, SECOND_COLUMN, person.getSex().value);
-            writeDataIntoCell(row, THIRD_COLUMN, Double.parseDouble(person.getBirthday().value));
-            writeDataIntoCell(row, FOURTH_COLUMN, Double.parseDouble(person.getPhone().value));
-            writeDataIntoCell(row, FIFTH_COLUMN, person.getEmail().value);
-            writeDataIntoCell(row, SIXTH_COLUMN, person.getMajor().value);
-            writeDataIntoCell(row, SEVENTH_COLUMN, person.getGroup().getGroupName());
-            if (person.getTags().size() > RECORD_EMPTY) {
-                for (Tag tag : person.getTags()) {
+            writeDataIntoCell(row, FIRST_COLUMN, participant.getName().fullName);
+            writeDataIntoCell(row, SECOND_COLUMN, participant.getSex().value);
+            writeDataIntoCell(row, THIRD_COLUMN, Double.parseDouble(participant.getBirthday().value));
+            writeDataIntoCell(row, FOURTH_COLUMN, Double.parseDouble(participant.getPhone().value));
+            writeDataIntoCell(row, FIFTH_COLUMN, participant.getEmail().value);
+            writeDataIntoCell(row, SIXTH_COLUMN, participant.getMajor().value);
+            writeDataIntoCell(row, SEVENTH_COLUMN, participant.getGroup().getGroupName());
+            if (participant.getTags().size() > RECORD_EMPTY) {
+                for (Tag tag : participant.getTags()) {
                     stringBuilder.append(tag.tagName + TAG_SEPARATOR);
                 }
                 writeDataIntoCell(row, EIGHTH_COLUMN, stringBuilder.toString()
@@ -172,11 +172,11 @@ public class WriteToExcel {
     /**
      * Reading Data.
      */
-    public static List<Person> readFromExcel() {
+    public static List<Participant> readFromExcel() {
         String excelFileName = WORKING_DIRECTORY_STRING
                 + System.getProperty("file.separator")
                 + "FOP_MANAGER_LIST.xls";
-        List<Person> person = new ArrayList<>();
+        List<Participant> participants = new ArrayList<>();
         try {
             FileInputStream file = new FileInputStream(new File(excelFileName));
             HSSFWorkbook wb = new HSSFWorkbook(file);
@@ -256,7 +256,7 @@ public class WriteToExcel {
                             || emailString == null || majorString == null) {
                         throw new ParseException(Messages.MESSAGE_MISSING_VALUES_IMPORT);
                     } else {
-                        person.add(createPerson(nameString, sexString, birthdayString, phoneString, emailString,
+                        participants.add(createPerson(nameString, sexString, birthdayString, phoneString, emailString,
                                 majorString, groupString, tagString));
                     }
                 }
@@ -266,16 +266,17 @@ public class WriteToExcel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(person.size());
+        System.out.println(participants.size());
 
-        return person;
+        return participants;
     }
 
     /**
-     * Creates a person.
+     * Creates a participant.
      */
-    private static Person createPerson(String nameString, String sexString, String birthdayString, String phoneString,
-                                       String emailString, String majorString, String groupString, String tagString)
+    private static Participant createPerson(String nameString, String sexString, String birthdayString,
+                                            String phoneString, String emailString, String majorString,
+                                            String groupString, String tagString)
             throws ParseException {
         requireNonNull(nameString);
         Name nameParse = ParserUtil.parseName(nameString);
@@ -290,7 +291,8 @@ public class WriteToExcel {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 " " + PREFIX_TAG + processedTags, PREFIX_TAG);
         tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        return new Person(nameParse, sexParse, birthdayParse, phoneParse, emailParse, majorParse, groupParse, tagList);
+        return new Participant(nameParse, sexParse, birthdayParse, phoneParse,
+                emailParse, majorParse, groupParse, tagList);
     }
 
 }

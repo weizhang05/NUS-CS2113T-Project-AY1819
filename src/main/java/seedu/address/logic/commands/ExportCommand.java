@@ -9,7 +9,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.WriteToExcel;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
  * Export the data of the FOP Manager into ExcelSheets.
@@ -23,10 +23,10 @@ public class ExportCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        List<Person> personList = model.getFilteredPersonList();
+        List<Participant> participantList = model.getFilteredPersonList();
 
         String message;
-        if (exportData(personList)) {
+        if (exportData(participantList)) {
             message = String.format(Messages.MESSAGE_EXCEL_FILE_WRITTEN_SUCCESSFULLY);
         } else {
             message = Messages.MESSAGE_EXPORT_COMMAND_ERRORS;
@@ -37,9 +37,9 @@ public class ExportCommand extends Command {
     /**
      * Export the contacts into Excel File.
      */
-    private static Boolean exportData(List<Person> personList) {
-        if (personList.size() >= 0) {
-            WriteToExcel.writeExcelSheet(personList);
+    private static Boolean exportData(List<Participant> participantList) {
+        if (participantList.size() >= 0) {
+            WriteToExcel.writeExcelSheet(participantList);
             return true;
         } else {
             return false;

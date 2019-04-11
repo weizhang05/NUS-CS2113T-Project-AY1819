@@ -10,12 +10,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.grouping.Group;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
  * Edits the name of a group.
  * Old group must exist, new group must not, the old and new group must not have the same name.
- * Updates each person in the address book in the old group to the new group.
+ * Updates each participant in the address book in the old group to the new group.
  */
 public class EditGroupCommand extends Command {
     public static final String COMMAND_WORD = "edit_g";
@@ -82,12 +82,13 @@ public class EditGroupCommand extends Command {
         }
 
         //updates persons with old group to new group
-        List<Person> personList = existingAddressBook.getPersonList();
-        for (Person person : personList) {
-            if (person.getGroup().equals(oldGroup)) {
-                Person editedPerson = new Person(person.getName(), person.getSex(), person.getBirthday(),
-                        person.getPhone(), person.getEmail(), person.getMajor(), newGroup, person.getTags());
-                model.setPerson(person, editedPerson);
+        List<Participant> participantList = existingAddressBook.getPersonList();
+        for (Participant participant : participantList) {
+            if (participant.getGroup().equals(oldGroup)) {
+                Participant editedParticipant = new Participant(participant.getName(),
+                        participant.getSex(), participant.getBirthday(), participant.getPhone(),
+                        participant.getEmail(), participant.getMajor(), newGroup, participant.getTags());
+                model.setPerson(participant, editedParticipant);
             }
         }
         model.setGroup(oldGroup, newGroup);

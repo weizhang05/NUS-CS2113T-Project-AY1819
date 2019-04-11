@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.grouping.Group;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 import seedu.address.testutil.PersonBuilder;
 
 public class EditGroupCommandTest {
@@ -41,14 +41,14 @@ public class EditGroupCommandTest {
         EditGroupCommand editGroupCommand = new EditGroupCommand("R1", "R3");
         String expectedMessage = String.format(EditGroupCommand.MESSAGE_SUCCESS, "R1", "R3");
 
-        Person editedPerson = new PersonBuilder().withName("Alicia Alice")
+        Participant editedParticipant = new PersonBuilder().withName("Alicia Alice")
                 .withSex("F").withBirthday("07081994").withMajor("CS").withEmail("alicia@example.com")
                 .withPhone("94351253").withGroup("R3", "Red").build();
-        Person toEdit = model.getFilteredPersonList().get(0);
+        Participant toEdit = model.getFilteredPersonList().get(0);
 
         expectedModel.setGroup(new Group("R1", "Red"),
                 new Group("R3", "Red"));
-        expectedModel.setPerson(toEdit, editedPerson);
+        expectedModel.setPerson(toEdit, editedParticipant);
         expectedModel.commitAddressBook();
         assertCommandSuccess(editGroupCommand, model, commandHistory, expectedMessage, expectedModel);
     }

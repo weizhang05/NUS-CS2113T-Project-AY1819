@@ -8,14 +8,14 @@ import seedu.address.model.participant.Birthday;
 import seedu.address.model.participant.Email;
 import seedu.address.model.participant.Major;
 import seedu.address.model.participant.Name;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 import seedu.address.model.participant.Phone;
 import seedu.address.model.participant.Sex;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleParticipantsUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Participant objects.
  */
 public class PersonBuilder {
 
@@ -49,21 +49,21 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PersonBuilder with the data of {@code participantToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        sex = personToCopy.getSex();
-        birthday = personToCopy.getBirthday();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        major = personToCopy.getMajor();
-        group = personToCopy.getGroup();
-        tags = new HashSet<>(personToCopy.getTags());
+    public PersonBuilder(Participant participantToCopy) {
+        name = participantToCopy.getName();
+        sex = participantToCopy.getSex();
+        birthday = participantToCopy.getBirthday();
+        phone = participantToCopy.getPhone();
+        email = participantToCopy.getEmail();
+        major = participantToCopy.getMajor();
+        group = participantToCopy.getGroup();
+        tags = new HashSet<>(participantToCopy.getTags());
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Participant} that we are building.
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
@@ -71,7 +71,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Sex} of the {@code Person} that we are building.
+     * Sets the {@code Sex} of the {@code Participant} that we are building.
      */
     public PersonBuilder withSex(String sex) {
         this.sex = new Sex(sex);
@@ -79,7 +79,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Birthday} of the {@code Person} that we are building.
+     * Sets the {@code Birthday} of the {@code Participant} that we are building.
      */
     public PersonBuilder withBirthday(String birthday) {
         this.birthday = new Birthday(birthday);
@@ -87,7 +87,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Participant} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleParticipantsUtil.getTagSet(tags);
@@ -95,7 +95,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Major} of the {@code Person} that we are building.
+     * Sets the {@code Major} of the {@code Participant} that we are building.
      */
     public PersonBuilder withMajor(String major) {
         this.major = new Major(major);
@@ -103,7 +103,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Participant} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -111,7 +111,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Participant} that we are building.
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
@@ -119,7 +119,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Group} of the {@code Person} that we are building.
+     * Sets the {@code Group} of the {@code Participant} that we are building.
      */
     public PersonBuilder withGroup(String group) {
         this.group = new Group(group);
@@ -134,8 +134,8 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, sex, birthday, phone, email, major, group, tags);
+    public Participant build() {
+        return new Participant(name, sex, birthday, phone, email, major, group, tags);
     }
 
 }
