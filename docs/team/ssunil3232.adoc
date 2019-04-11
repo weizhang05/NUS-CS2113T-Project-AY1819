@@ -15,7 +15,7 @@ For our Software Engineering module CS2113T, my team and I worked on morphing a 
 Often it gets messy during the facilitation and organisation of FOP camps as the FOP participant size is a lot larger than normal camps and there are various critical student data that need to be passed around among organizers. __FOP Manager__ will aid FOP Organizers in viewing, sharing and changing the participant data more easily.
 
 === My Role
-**My role** was to design features that will enable the separate listing of Freshmen, Orientation Group Leaders (OGL) and other participants in the camp, such as Sponsors, from the contact list stored on FOP Manager. I was also tasked to do an export feature to export the participant data from the contact list into an Excel spreadsheet. Hence, I contributed the `add_f`, `add_o`, `list_f`, `list_o` and `export` features to the FOP Manager.
+**My role** was to design features that will enable the separate listing of Freshmen, Orientation Group Leaders (OGL) and other participants in the camp, such as Organisers, from the contact list stored on FOP Manager. I was also tasked to do an export feature to export the all participants', all Freshmen's and all OGLs' data from the contact list into an Excel spreadsheet. For more conveninet adding of multiple contacts, I was also tasked to do an import feature. Hence, I contributed the `add_f`, `add_o`, `list_f`, `list_o`, `export`, `export_f`, `export_o` and `import` features in the FOP Manager.
 
 == Summary of contributions
 This section shows a summary of my coding, documentation and other contributions to the team project.
@@ -29,11 +29,18 @@ This section shows a summary of my coding, documentation and other contributions
 *** *Code contributed*: [LINK of Pull Requests: https://github.com/cs2113-ay1819s2-t08-4/main/pull[#83], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#81], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#80], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#55]]
 
 ** *Feature 2*: __Exporting of data to an Excel file__
-*** *Format*: `export`
-*** *Purpose*: To export the data in the contact list to Excel spreadsheets, a form shareable with other organisers involved in the camp and others without access to FOP Manager.
-*** *Justification*: This command is necessary for other organizers and non-organisers to be able to view the full contact list, without altering the data stored in the FOP Manager. It will also allow the FOP Organizer to share the contact list information to others without access to the FOP Manager.
+*** *Format*: `export`, `export_f`, `export_o`
+*** *Purpose*: To export the data in the contact list to Excel spreadsheets, a form shareable with other organisers involved in the camp and others without access to FOP Manager. To also export the data of Freshmen and OGLs as separate lists as well.
+*** *Justification*: This command is necessary for other organizers and non-organisers to be able to view the contacts, without altering the data stored in the FOP Manager. It will also allow the FOP Organizer to share the contact list information to others without access to the FOP Manager. The export function will work hand-in-hand with the import function, to ensure there are multiple saved copies of the full contact list.
 *** *Highlights*: This enhancement required the integration of a third-party library. Basic understanding of the usage of the library was sufficient for the implementation of this feature.
-*** *Code contributed*: [LINK of Pull Requests: https://github.com/cs2113-ay1819s2-t08-4/main/pull[#97]]
+*** *Code contributed*: [LINK of Pull Requests: https://github.com/cs2113-ay1819s2-t08-4/main/pull[#97], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#140], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#144]]
+
+** *Feature 3*: __Importing of data from an Excel file__
+*** *Format*: `import`
+*** *Purpose*: To export the data in the contact list to Excel spreadsheets, a form shareable with other organisers involved in the camp and others without access to FOP Manager. To also export the data of Freshmen and OGLs as separate lists as well.
+*** *Justification*: This command is necessary for other organizers and non-organisers to be able to view the contacts, without altering the data stored in the FOP Manager. It will also allow the FOP Organizer to share the contact list information to others without access to the FOP Manager. The export function will work hand-in-hand with the import function, to ensure there are multiple saved copies of the full contact list.
+*** *Highlights*: This enhancement required the integration of a third-party library. Basic understanding of the usage of the library was sufficient for the implementation of this feature.
+*** *Code contributed*: [LINK of Pull Requests: https://github.com/cs2113-ay1819s2-t08-4/main/pull[#143]]
 
 * *Minor enhancement*:
 ** *Feature*: __Adding of freshmen and Orientation Group Leaders(OGLs)__
