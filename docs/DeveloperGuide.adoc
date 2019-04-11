@@ -640,7 +640,7 @@ An example usage of the command is as follows:
 
 *Step 4:* The `import` command adds each non-duplicate person into the FOP Manager.
 
-** One interesting usage of both `import`and `export` feature will be to retain and retrieve contacts. For instance, after exporting the data, we can clear. We can then import the contacts if neede.
+** One interesting usage of both `import` and `export` feature will be to retain and retrieve contacts. For instance, after exporting the data, we can clear. We can then import the contacts if needed.
 ** Another interesting usage is for manual edit of the details of multiple contacts. We can clear the Address Book and then `import` command to import the data.
 
 ==== Design Consideration
