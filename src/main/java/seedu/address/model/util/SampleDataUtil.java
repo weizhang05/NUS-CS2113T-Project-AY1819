@@ -53,17 +53,17 @@ public class SampleDataUtil {
 
     public static House[] getSampleHouses() {
         return new House[]{
-                new House("Red"),
-                new House("Blue"),
+            new House("Red"),
+            new House("Blue"),
         };
     }
 
     public static Group[] getSampleGroups() {
         return new Group[]{
-                new Group("R1", "Red"),
-                new Group("R2", "Red"),
-                new Group("B1", "Blue"),
-                new Group("B2", "Blue"),
+            new Group("R1", "Red"),
+            new Group("R2", "Red"),
+            new Group("B1", "Blue"),
+            new Group("B2", "Blue"),
         };
     }
 
