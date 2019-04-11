@@ -215,7 +215,8 @@ public class EditCommandTest {
         expectedModel.setPerson(participantToEdit, editedParticipant);
         expectedModel.commitAddressBook();
 
-        // edit -> edits second participant in unfiltered participant list / first participant in filtered participant list
+        // edit -> edits second participant in unfiltered participant list / first participant
+        // in filtered participant list
         editCommand.execute(model, commandHistory);
 
         // undo -> reverts addressbook back to previous state and filtered participant list to show all persons

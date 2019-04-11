@@ -131,7 +131,8 @@ public class DeleteCommandTest {
         expectedModel.deletePerson(participantToDelete);
         expectedModel.commitAddressBook();
 
-        // delete -> deletes second participant in unfiltered participant list / first participant in filtered participant list
+        // delete -> deletes second participant in unfiltered participant list / first
+        // participant in filtered participant list
         deleteCommand.execute(model, commandHistory);
 
         // undo -> reverts addressbook back to previous state and filtered participant list to show all persons

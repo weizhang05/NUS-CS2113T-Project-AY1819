@@ -61,9 +61,10 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
     public void add() {
         Model model = getModel();
 
-        /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
+        /* --------------------- Perform add operations on the shown unfiltered list -------------------------- */
 
-        /* Case: add a participant without tags to a non-empty address book, command with leading spaces and trailing spaces
+        /* Case: add a participant without tags to a non-empty address book,
+         * command with leading spaces and trailing spaces
          * -> added
          */
         Participant toAdd = AMY;
@@ -83,13 +84,16 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
 
-        /* Case: add a participant with all fields same as another participant in the address book except name -> added */
+        /* Case: add a participant with all fields same as another participant
+         * in the address book except name -> added
+         */
         toAdd = new PersonBuilder(AMY).withName(VALID_NAME_BOB).build();
         command = AddCommand.COMMAND_WORD + NAME_DESC_BOB + SEX_DESC_AMY + BIRTHDAY_DESC_AMY
                 + PHONE_DESC_AMY + EMAIL_DESC_AMY + MAJOR_DESC_AMY + GROUP_DESC_AMY + TAG_DESC_FRIEND;
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add a participant with all fields same as another participant in the address book except phone and email
+        /* Case: add a participant with all fields same as another
+         * participant in the address book except phone and email
          * -> added
          */
         toAdd = new PersonBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
@@ -110,19 +114,21 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         /* Case: add a participant, missing tags -> added */
         assertCommandSuccess(HOON);
 
-        /* -------------------------- Perform add operation on the shown filtered list ------------------------------ */
+        /* ----------------------- Perform add operation on the shown filtered list --------------------------- */
 
         /* Case: filters the participant list before adding -> added */
         showPersonsWithName(KEYWORD_MATCHING_MEIER);
         assertCommandSuccess(IDA);
 
-        /* ------------------------ Perform add operation while a participant card is selected --------------------------- */
+        /* ------------------- Perform add operation while a participant card is selected ---------------------- */
 
-        /* Case: selects first card in the participant list, add a participant -> added, card selection remains unchanged */
+        /* Case: selects first card in the participant list,
+         * add a participant -> added, card selection remains unchanged
+         */
         selectPerson(Index.fromOneBased(1));
         assertCommandSuccess(CARL);
 
-        /* ----------------------------------- Perform invalid add operations --------------------------------------- */
+        /* -------------------------------- Perform invalid add operations ------------------------------------ */
 
         /* Case: add a duplicate participant -> rejected */
         command = PersonUtil.getAddCommand(HOON);

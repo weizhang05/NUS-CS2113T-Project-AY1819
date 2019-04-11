@@ -89,7 +89,8 @@ public class ParticipantListPanelTest extends GuiUnitTest {
             Email email = new Email("a@aa");
             Major major = new Major("cs");
             Group group = new Group("");
-            Participant participant = new Participant(name, sex, birthday, phone, email, major, group, Collections.emptySet());
+            Participant participant = new Participant(name, sex, birthday, phone, email,
+                    major, group, Collections.emptySet());
             backingList.add(participant);
         }
         return backingList;

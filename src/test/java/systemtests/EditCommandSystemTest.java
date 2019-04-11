@@ -63,7 +63,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
     public void edit() {
         Model model = getModel();
 
-        /* ----------------- Performing edit operation while an unfiltered list is being shown ---------------------- */
+        /* -------------- Performing edit operation while an unfiltered list is being shown ------------------- */
 
         /* Case: edit all fields, command with leading spaces, trailing spaces and multiple spaces between each field
          * -> edited
@@ -92,7 +92,9 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
                 + MAJOR_DESC_BOB + GROUP_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         assertCommandSuccess(command, index, BOB);
 
-        /* Case: edit a participant with new values same as another participant's values but with different name -> edited */
+        /* Case: edit a participant with new values same as
+         * another participant's values but with different name -> edited
+         */
         assertTrue(getModel().getAddressBook().getPersonList().contains(BOB));
         index = INDEX_SECOND_PERSON;
         assertNotEquals(getModel().getFilteredPersonList().get(index.getZeroBased()), BOB);
@@ -102,7 +104,8 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         editedParticipant = new PersonBuilder(BOB).withName(VALID_NAME_AMY).build();
         assertCommandSuccess(command, index, editedParticipant);
 
-        /* Case: edit a participant with new values same as another participant's values but with different phone and email
+        /* Case: edit a participant with new values same as another
+         * participant's values but with different phone and email
          * -> edited
          */
         index = INDEX_SECOND_PERSON;
@@ -120,7 +123,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         editedParticipant = new PersonBuilder(participantToEdit).withTags().build();
         assertCommandSuccess(command, index, editedParticipant);
 
-        /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
+        /* --------------- Performing edit operation while a filtered list is being shown --------------------- */
 
         /* Case: filtered participant list, edit index within bounds of address book and participant list -> edited */
         showPersonsWithName(KEYWORD_MATCHING_MEIER);
@@ -139,9 +142,10 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
                 Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
-        /* --------------------- Performing edit operation while a participant card is selected -------------------------- */
+        /* --------------- Performing edit operation while a participant card is selected -------------------- */
 
-        /* Case: selects first card in the participant list, edit a participant -> edited, card selection remains unchanged but
+        /* Case: selects first card in the participant list, edit a participant -> edited,
+         * card selection remains unchanged but
          * browser url changes
          */
         showAllPersons();
@@ -154,7 +158,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         // browser's url is updated to reflect the new participant's name
         assertCommandSuccess(command, index, AMY, index);
 
-        /* --------------------------------- Performing invalid edit operation -------------------------------------- */
+        /* ------------------------------ Performing invalid edit operation ----------------------------------- */
 
         /* Case: invalid index (0) -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " 0" + NAME_DESC_BOB,
@@ -178,23 +182,28 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
                 EditCommand.MESSAGE_NOT_EDITED);
 
         /* Case: invalid name -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + INVALID_NAME_DESC,
+        assertCommandFailure(EditCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST_PERSON.getOneBased() + INVALID_NAME_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid phone -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + INVALID_PHONE_DESC,
+        assertCommandFailure(EditCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST_PERSON.getOneBased() + INVALID_PHONE_DESC,
                 Phone.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid email -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + INVALID_EMAIL_DESC,
+        assertCommandFailure(EditCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST_PERSON.getOneBased() + INVALID_EMAIL_DESC,
                 Email.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid address -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + INVALID_MAJOR_DESC,
+        assertCommandFailure(EditCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST_PERSON.getOneBased() + INVALID_MAJOR_DESC,
                 Major.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid tag -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + INVALID_TAG_DESC,
+        assertCommandFailure(EditCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST_PERSON.getOneBased() + INVALID_TAG_DESC,
                 Tag.MESSAGE_CONSTRAINTS);
 
         /* Case: edit a participant with new values same as another participant's values -> rejected */
@@ -207,24 +216,33 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
                 + MAJOR_DESC_BOB + GROUP_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_PERSON);
 
-        /* Case: edit a participant with new values same as another participant's values but with different tags -> rejected */
+        /* Case: edit a participant with new values same as another
+         * participant's values but with different tags -> rejected
+         */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + SEX_DESC_BOB
                 + BIRTHDAY_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + MAJOR_DESC_BOB + GROUP_DESC_BOB + TAG_DESC_HUSBAND;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_PERSON);
 
-        /* Case: edit a participant with new values same as another participant's values but with different address -> rejected */
+        /* Case: edit a participant with new values same as another
+         * participant's values but with different address -> rejected
+         */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + SEX_DESC_BOB
                 + BIRTHDAY_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + MAJOR_DESC_AMY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_PERSON);
 
-        /* Case: edit a participant with new values same as another participant's values but with different phone -> rejected */
-        command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_BOB
+        /* Case: edit a participant with new values same as another
+         * participant's values but with different phone -> rejected
+         */
+        command = EditCommand.COMMAND_WORD + " " + index.getOneBased()
+                + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_BOB
                 + MAJOR_DESC_BOB + GROUP_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_PERSON);
 
-        /* Case: edit a participant with new values same as another participant's values but with different email -> rejected */
+        /* Case: edit a participant with new values same as another
+         * participant's values but with different email -> rejected
+         */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + SEX_DESC_BOB
                 + BIRTHDAY_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
                 + MAJOR_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
@@ -242,9 +260,12 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
     }
 
     /**
-     * Performs the same verification as {@code assertCommandSuccess(String, Model, String, Index)} and in addition,<br>
+     * Performs the same verification as
+     * {@code assertCommandSuccess(String, Model, String, Index)} and in addition,<br>
+     *
      * 1. Asserts that result display box displays the success message of executing {@code EditCommand}.<br>
-     * 2. Asserts that the model related components are updated to reflect the participant at index {@code toEdit} being
+     * 2. Asserts that the model related components are updated to
+     *    reflect the participant at index {@code toEdit} being
      * updated to values specified {@code editedParticipant}.<br>
      * @param toEdit the index of the current model's filtered list.
      * @see EditCommandSystemTest#assertCommandSuccess(String, Model, String, Index)

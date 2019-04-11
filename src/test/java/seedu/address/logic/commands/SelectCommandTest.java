@@ -87,7 +87,8 @@ public class SelectCommandTest {
 
     /**
      * Executes a {@code SelectCommand} with the given {@code index},
-     * and checks that the model's selected participant is set to the participant at {@code index} in the filtered participant list.
+     * and checks that the model's selected participant is set to the participant
+     * at {@code index} in the filtered participant list.
      */
     private void assertExecutionSuccess(Index index) {
         SelectCommand selectCommand = new SelectCommand(index);

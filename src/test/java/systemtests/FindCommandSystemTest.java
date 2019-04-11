@@ -41,7 +41,9 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find participant where participant list is not displaying the participant we are finding -> 1 participant found */
+        /* Case: find participant where participant list is not displaying the
+         * participant we are finding -> 1 participant found
+         */
         command = FindCommand.COMMAND_WORD + " Carl";
         ModelHelper.setFilteredList(expectedModel, CARL);
         assertCommandSuccess(command, expectedModel);
@@ -89,7 +91,9 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find participant in address book, keyword is same as name but of different case -> 1 participant found */
+        /* Case: find participant in address book, keyword is same as name
+         * but of different case -> 1 participant found
+         */
         command = FindCommand.COMMAND_WORD + " MeIeR";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
