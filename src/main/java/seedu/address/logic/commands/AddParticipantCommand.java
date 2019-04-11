@@ -22,9 +22,9 @@ import seedu.address.model.role.Participant;
  */
 public class AddParticipantCommand extends AddCommand {
 
-    public static final String COMMAND_WORD = "add_f";
+    public static final String COMMAND_WORD = "add_p";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a freshman to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a participant to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_SEX + "SEX "
@@ -45,8 +45,8 @@ public class AddParticipantCommand extends AddCommand {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New freshman added: %1$s";
-    private static final String MESSAGE_DUPLICATE_FRESHMAN = "This freshman already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New participant added: %1$s";
+    private static final String MESSAGE_DUPLICATE_PARTICIPANT = "This participant already exists in the address book";
 
     private final Participant toAdd;
 
@@ -64,7 +64,7 @@ public class AddParticipantCommand extends AddCommand {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_FRESHMAN);
+            throw new CommandException(MESSAGE_DUPLICATE_PARTICIPANT);
         }
         if (toAdd.getGroup().getGroupName().equals("")) {
             model.addPerson(toAdd);

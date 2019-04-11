@@ -15,7 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.participant.Person;
-import seedu.address.model.role.Ogl;
+import seedu.address.model.ogl.Ogl;
 
 /**
  * Adds an OGL to the address book.
