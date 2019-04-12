@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
 * Tests that a {@code Participant}'s {@code Group} group name matches the group name given.
 */
-public class FindGroupPredicate implements Predicate<Person> {
+public class FindGroupPredicate implements Predicate<Participant> {
 
     private final List<String> keywords;
     private List<String> emptyString = Arrays.asList("EMPTY");
@@ -20,12 +20,12 @@ public class FindGroupPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Participant participant) {
         if (keywords.equals(emptyString)) {
-            return person.getGroup().getGroupName().isEmpty();
+            return participant.getGroup().getGroupName().isEmpty();
         }
         return keywords.stream()
-                .allMatch(keyword-> StringUtil.containsWordIgnoreCase(person.getGroup().getGroupName(), keyword));
+                .allMatch(keyword-> StringUtil.containsWordIgnoreCase(participant.getGroup().getGroupName(), keyword));
     }
 
     @Override

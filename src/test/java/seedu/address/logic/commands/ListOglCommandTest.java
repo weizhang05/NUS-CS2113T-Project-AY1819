@@ -16,7 +16,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.FindingOglPredicate;
+import seedu.address.model.ogl.FindingOglPredicate;
 
 public class ListOglCommandTest {
     private Model model = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs()); //no Freshman

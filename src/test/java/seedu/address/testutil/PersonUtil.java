@@ -13,35 +13,35 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 import seedu.address.model.tag.Tag;
 
 
 /**
- * A utility class for Person.
+ * A utility class for Participant.
  */
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code participant}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Participant participant) {
+        return AddCommand.COMMAND_WORD + " " + getPersonDetails(participant);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code participant}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Participant participant) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_SEX + person.getSex().value + " ");
-        sb.append(PREFIX_BIRTHDAY + person.getBirthday().value + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_MAJOR + person.getMajor().value + " ");
-        sb.append(PREFIX_GROUP + person.getGroup().getGroupName() + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + participant.getName().fullName + " ");
+        sb.append(PREFIX_SEX + participant.getSex().value + " ");
+        sb.append(PREFIX_BIRTHDAY + participant.getBirthday().value + " ");
+        sb.append(PREFIX_PHONE + participant.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + participant.getEmail().value + " ");
+        sb.append(PREFIX_MAJOR + participant.getMajor().value + " ");
+        sb.append(PREFIX_GROUP + participant.getGroup().getGroupName() + " ");
+        participant.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

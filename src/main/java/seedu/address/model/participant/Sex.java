@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Represents a Person's sex in the address book
+ * Represents a Participant's sex in the address book
  * Can only accept two values M or F
  */
 public class Sex {

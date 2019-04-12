@@ -14,13 +14,12 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
-import seedu.address.model.participant.Person;
-import seedu.address.model.role.Participant;
+import seedu.address.model.participant.Participant;
 
 /**
  * Adds a freshman to the address book.
  */
-public class AddParticipantCommand extends AddCommand {
+public class AddFreshmanCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "add_f";
 
@@ -46,17 +45,17 @@ public class AddParticipantCommand extends AddCommand {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New freshman added: %1$s";
-    private static final String MESSAGE_DUPLICATE_FRESHMAN = "This freshman already exists in the address book";
+    private static final String MESSAGE_DUPLICATE_PARTICIPANT = "This freshman already exists in the address book";
 
     private final Participant toAdd;
 
     /**
-     * Creates an AddParticipantCommand to add the specified {@code Participant}
+     * Creates an AddFreshmanCommand to add the specified {@code Participant}
      */
 
-    public AddParticipantCommand(Participant person) {
-        super(person);
-        toAdd = person;
+    public AddFreshmanCommand(Participant participant) {
+        super(participant);
+        toAdd = participant;
     }
 
     @Override
@@ -64,7 +63,7 @@ public class AddParticipantCommand extends AddCommand {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_FRESHMAN);
+            throw new CommandException(MESSAGE_DUPLICATE_PARTICIPANT);
         }
         if (toAdd.getGroup().getGroupName().equals("")) {
             model.addPerson(toAdd);
@@ -77,8 +76,8 @@ public class AddParticipantCommand extends AddCommand {
         }
 
         Group updatedGroup = model.getGroup(toAdd.getGroup());
-        Person toAddUpdated = new Person(toAdd.getName(), toAdd.getSex(), toAdd.getBirthday(), toAdd.getPhone(),
-                toAdd.getEmail(), toAdd.getMajor(), updatedGroup, toAdd.getTags());
+        Participant toAddUpdated = new Participant(toAdd.getName(), toAdd.getSex(), toAdd.getBirthday(),
+                toAdd.getPhone(), toAdd.getEmail(), toAdd.getMajor(), updatedGroup, toAdd.getTags());
         model.addPerson(toAddUpdated);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAddUpdated));

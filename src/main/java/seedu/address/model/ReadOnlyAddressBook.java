@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
  * Unmodifiable view of an address book
@@ -16,7 +16,7 @@ public interface ReadOnlyAddressBook extends Observable {
      * Returns an unmodifiable view of the persons list.
      * This list will not contain any duplicate persons.
      */
-    ObservableList<Person> getPersonList();
+    ObservableList<Participant> getPersonList();
 
 
     /**

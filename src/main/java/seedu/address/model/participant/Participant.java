@@ -11,10 +11,10 @@ import seedu.address.model.grouping.Group;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Participant in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Participant {
 
     // Identity fields
     private final Name name;
@@ -31,8 +31,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Sex sex, Birthday birthday, Phone phone, Email email,
-                  Major major, Group group, Set<Tag> tags) {
+    public Participant(Name name, Sex sex, Birthday birthday, Phone phone, Email email,
+                       Major major, Group group, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, major, tags);
         this.name = name;
         this.sex = sex;
@@ -88,16 +88,16 @@ public class Person {
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(Participant otherParticipant) {
+        if (otherParticipant == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone())
-                || otherPerson.getEmail().equals(getEmail())
-                || otherPerson.getBirthday().equals(getBirthday()));
+        return otherParticipant != null
+                && otherParticipant.getName().equals(getName())
+                && (otherParticipant.getPhone().equals(getPhone())
+                || otherParticipant.getEmail().equals(getEmail())
+                || otherParticipant.getBirthday().equals(getBirthday()));
     }
 
     /**
@@ -110,19 +110,19 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Participant)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getSex().equals(getSex())
-                && otherPerson.getBirthday().equals((getBirthday()))
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getMajor().equals(getMajor())
-                && otherPerson.getGroup().equals(getGroup())
-                && otherPerson.getTags().equals(getTags());
+        Participant otherParticipant = (Participant) other;
+        return otherParticipant.getName().equals(getName())
+                && otherParticipant.getSex().equals(getSex())
+                && otherParticipant.getBirthday().equals((getBirthday()))
+                && otherParticipant.getPhone().equals(getPhone())
+                && otherParticipant.getEmail().equals(getEmail())
+                && otherParticipant.getMajor().equals(getMajor())
+                && otherParticipant.getGroup().equals(getGroup())
+                && otherParticipant.getTags().equals(getTags());
     }
 
     @Override
