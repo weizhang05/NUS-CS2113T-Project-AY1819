@@ -42,6 +42,6 @@ image::ssunil3232.png[width="150", align="left"]
 {empty}[http://github.com/ssunil3232[github]] [<<ssunil3232#, portfolio>>]
 
 Role: Developer +
-Responsibilities: +
+Responsibilities: Add, List, Export, Import features and Documentations
 
 '''

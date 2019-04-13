@@ -290,8 +290,6 @@ Participant management refers to how users manipulate and view the data of camp 
 
 This section describes how the 3 types of participants are managed.
 
-==== Current Implementation
-
 In *FOP Manager*, participants can be added, edited, deleted and listed.
 
 Add
@@ -314,9 +312,9 @@ Participant contact details can be viewed in different manners:
 * `list_o`: Lists all OGLs
 * `list_f`: Lists all Freshmen
 
-All participants are stored in the same contact list as a `UniqueParticipantList` in an AddressBook object. Participants created as OGLs or Freshmen differ only in the tags added to them.
+All participants are stored in the same contact list as a `UniqueParticipantList` in an AddressBook object. Participants created as OGLs or Freshmen differ only in the tags added to them. The different listing of the participants is very useful for Project Directors as it helps them to view the Freshmen and the OGL contacts separately, to specifically see who are in the respective lists and how many participants are there in each of the lists.
 
-*[Explanation on the need to have separate listing commands. TO INSERT]*
+==== Current Implementation
 
 The following is an Activity Diagram to summarize what happens when either the `list_f` or `list_o` commands are entered.
 
@@ -575,6 +573,12 @@ image::StatisticUpdateSequenceDiagram.png[width="800"]
 
 The Export feature will allow the FOP Manager user to export the data into an excel file and distribute to other relevant people involved in the FOP. This way, data can be distributed and raw data untouched except by the Project Director or other camp organisers who are given the access to the raw data.
 
+Participant contact details can be exported in different manners:
+
+* `export`: Exports all participants' contacts into an Excel Spreadsheet
+* `export_f`: Exports all freshmen contacts into an Excel Spreadsheet
+* `export_o`: Exports all OGL contacts into an Excel Spreadsheet
+
 The following is an Activity Diagram to summarize what happens when the `export` command is entered.
 
 image::ExportCommandActivityDiagram.png[width="800"]
@@ -604,6 +608,44 @@ An example usage of the command is as follows:
 ==== Design Consideration
 Only one way was considered for the implementation of Export feature, which involved importing the third-party library.
 // end:: export[]
+
+// tag::import[]
+=== Import Feature
+
+Sometimes FOP Project Directors realise they need to add many participants' contacts that they gathered and usually they gather the contacts through sign up links that allow for exportation into Excel spreadsheets. Manually added the large influx of participants is troublesome. Hence, with the Import feature, FOP Project Directors can import the data of Non-duplicate people from an excel file into the FOP Manager. This makes adding of contacts easier.
+
+The following is an Activity Diagram to summarize what happens when the `import` command is entered.
+
+image::ImportCommandActivityDiagram.png[width="800"]
+_Activity Diagram for the importing command_
+
+==== Current Implementation
+* A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
+* The `import` command will call a function from a class `WriteToExcel` to start the reading from a HSSF Workbook found in the current directory path, with the file name "FOP_MANAGER_LIST.xls".
+* The cell value from the respective heading/columns are read into their respective string and `person` is created with these strings.
+* The `person` is added to a `List<Person>` and each `person` is added into the `Address Book`.
+
+The following Sequence diagram below will explain how the `import` command works in detail.
+
+image::ImportCommandSequenceDiagram.png[width="800"]
+_Sequence Diagram for importing command_
+
+An example usage of the command is as follows:
+
+*Step 1:* The user launches the application. The `VersionedAddressBook` will be initialized with the initial address book state.
+
+*Step 2:* The user enters the `import` command . The `import` command calls the `WriteToExcel` class's `ReadFromExcel()`. This will open the file of the default set name from the set directory.
+
+*Steo 3:* The Excel sheets is checked for the correct headings and then the cell's values are read to create each `person`. Each `person` is added to a `List<Person>` which will be returned to the Import command.
+
+*Step 4:* The `import` command adds each non-duplicate person into the FOP Manager.
+
+** One interesting usage of both `import` and `export` feature will be to retain and retrieve contacts. For instance, after exporting the data, we can clear. We can then import the contacts if needed.
+** Another interesting usage is for manual edit of the details of multiple contacts. We can clear the Address Book and then `import` command to import the data.
+
+==== Design Consideration
+Only one way was considered for the implementation of Import feature, which involved importing the third-party library.
+// end:: import[]
 
 // tag::autocompletion[]
 === [Proposed] Auto-Completion
