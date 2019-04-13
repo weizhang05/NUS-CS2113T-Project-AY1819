@@ -10,7 +10,7 @@ ifdef::env-github[]
 :experimental:
 endif::[]
 
-Hello! I am a Year 2 Computer Engineering student studying in the National University of Singapore (NUS). In NUS, Computer Engineering a combined major under both School of Computing and the Faculty Engineering. As someone rather new to the industry, I am always excited to learn and experience new things. I have done both hardware and software projects in my last 2 years in university, and in this document I will be showing you a portfolio of my contributions to my team's Software Engineering project over this semester.
+Hello! I am a Year 2 Computer Engineering student studying in the National University of Singapore (NUS). As someone rather new to the industry, I am always excited to learn and experience new things. I have done both hardware and software projects in my last 2 years in university, and in this document I will be showing you a portfolio of my contributions to my team's Software Engineering project over this semester.
 
 == PROJECT: _FOP Manager_
 
@@ -18,7 +18,7 @@ Hello! I am a Year 2 Computer Engineering student studying in the National Unive
 
 == About The Project
 
-My team and I were tasked with developing an existing Command Line Interface addressbook application. We decided to enhance it to an application that manages camp participants' information for NUS Freshmen Orientation Camp Project Directors, and hence the birth of _FOP Manager_. This enhanced application allows Project Directors to view and modify participants' contact details with ease, and also supports Freshmen and Orientation Group Leader (OGL) participants, arranging participants into groups and houses, and a Graphic User Interface that displays contact details and command results in an appealing format, among other things.
+My team and I decided to enhance an existing Command Line Interface address book application to manage camp participants' information, to be used by NUS Freshmen Orientation Camp Project Directors (PDs). This enhanced application allows PDs to view and modify participants' contact details with ease.
 
 In this project, I was in charge of creating the commands that support the addition and modification of groups and houses.
 
@@ -46,29 +46,28 @@ In this project, I was in charge of creating the logic to support our app's feat
 
 *Major enhancements*:
 
-. Adding, editing and deleting groups and houses
-* _Commands_: `add_g`, `add_h`, `edit_g`, `edit_h`, `delete_g`, `delete_h`
-* _Purpose_: These commands allow users to add, edit and delete `_House_` and `_Group_` objects, enabling them to group participants according to their camp grouping.
-* _Justification_: Being tailored to manage participant details in Freshmen Orientation camps, having groups and houses are essential to organising participants as camp organisers normally do when planning camps.
-* _Highlights_: These commands are a core component of the project that other commands such as `randomize` build upon. More details of how I implemented them can be found below in the <<DesignConsiderations,Design Considerations>> of the section of the Developer Guide covering group and house management. The implementation of these commands was challenging as it required changes to basic commands like `add` and `edit`, as well as to the overall model of the app.
+* Adding, editing and deleting groups and houses
+** _Commands_: `add_g`, `add_h`, `edit_g`, `edit_h`, `delete_g`, `delete_h`
+** _Purpose_: These commands allow users to add, edit and delete `_House_` and `_Group_` objects, enabling them to group participants according to their camp grouping.
+** _Justification_: Being tailored to manage participant details in Freshmen Orientation camps, having groups and houses are essential to organising participants as camp organisers normally do when planning camps.
+** _Highlights_: These commands are a core component of the project that other commands such as `randomize` build upon. The implementation of these commands was challenging as it required changes to basic commands like `add` and `edit`, as well as to the app's model.
 
-. Listing participants by houses and groups
-* _Commands_: `list_h`, `list_g`
-* _Purpose_: These commands allow the user to list the participants in a specified house or group.
-* _Justification_: Listing the participants in the same group and same house is necessary for the user to filter through data quickly, especially when managing a large camp. It also allows the user to see the current size of a specific group or house.
-* _Acknowledgement_: These commands were modified from the `list_o` and `list_f` commands, making use of predicates as well to identify a different list of participants.
-* _Highlights_: The `list_g` command supports listing participants without a group (i.e. an empty `_Group_` field) by entering the command `list_g empty`. This allows the user to quickly see which participants have not been placed in groups, making group assignments much easier and ensuring no participants have been overlooked in group placement.
+* Listing participants by houses and groups
+** _Commands_: `list_h`, `list_g`
+** _Purpose_: These commands allow the user to list the participants in a specified house or group.
+** _Justification_: Listing the participants in the same group and same house is necessary for the user to filter through data quickly, especially when managing a large camp. It also allows the user to see the current size of a specific group or house.
+** _Acknowledgement_: These commands were modified from the `list_o` and `list_f` commands, making use of predicates as well to identify a different list of participants.
+** _Highlights_: The `list_g` command supports listing participants without a group (i.e. an empty `_Group_` field) by entering the command `list_g empty`. This allows the user to quickly see which participants have not been placed in groups, making group assignments much easier and ensuring no participants have been overlooked in group placement.
 
-. Viewing houses and groups
-* _Commands_: `view_h`, `view_g`
-* _Purpose_: These commands allow the user to view the houses and groups they have added so far.
-* _Justification_: After adding a house and a group, the user may want to edit its name, or delete it. Also, users can only add groups to existing houses, and add participants to existing groups. Each of these commands require the exact house or group name to be specified. The commands `view_h` and `view_h` help the user know which houses and groups have been created so far, and can therefore be added to, modified or deleted.
+* Viewing houses and groups
+** _Commands_: `view_h`, `view_g`
+** _Purpose_: These commands allow the user to view the houses and groups they have added so far.
+** _Justification_: After adding a house and a group, the user may want to edit its name, or delete it. Also, users can only add groups to existing houses, and add participants to existing groups. Each of these commands require the exact house or group name to be specified. `view_h` and `view_g` help the user know which houses and groups have been created so far, and can therefore be added to, modified or deleted.
 
 *Minor enhancement*:
 
-. _Size command_
- * _Command_: `size`
- * _Purpose_: This command allows the user to view the sizing details of the camp.
+* Size command: `size`
+ ** _Purpose_: This command allows the user to view the sizing details of the camp.
 
 *Code contributed*:
 
@@ -101,6 +100,9 @@ The following is an excerpt from the User Guide showing the additions I made for
 
 === Editing Houses and Groups
 include::../UserGuide.adoc[tag=editgrouphouse]
+
+=== Deleting Groups and Houses
+include::../UserGuide.adoc[tag=deletegrouphouse]
 
 Check out the full User Guide https://github.com/shanseet/T08-Fork/blob/master/docs/UserGuide.adoc[here].
 
