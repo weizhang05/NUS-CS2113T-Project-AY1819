@@ -83,7 +83,8 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         /* Case: redo editing the last participant in the list -> last participant edited again */
         command = RedoCommand.COMMAND_WORD;
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
-        model.setParticipant(getModel().getFilteredParticipantList().get(INDEX_FIRST_PERSON.getZeroBased()), editedParticipant);
+        model.setParticipant(getModel().getFilteredParticipantList()
+                .get(INDEX_FIRST_PERSON.getZeroBased()), editedParticipant);
         assertCommandSuccess(command, model, expectedResultMessage);
 
         /* Case: edit a participant with new values same as existing values -> edited */
@@ -275,7 +276,8 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
             Index expectedSelectedCardIndex) {
 
         Model expectedModel = getModel();
-        expectedModel.setParticipant(expectedModel.getFilteredParticipantList().get(toEdit.getZeroBased()), editedParticipant);
+        expectedModel.setParticipant(expectedModel.getFilteredParticipantList()
+                .get(toEdit.getZeroBased()), editedParticipant);
         expectedModel.updateFilteredParticipantList(PREDICATE_SHOW_ALL_PARTICIPANTS);
 
         assertCommandSuccess(command, expectedModel,
