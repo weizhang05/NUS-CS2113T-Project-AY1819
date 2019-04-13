@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.participant.Participant;
-import seedu.address.model.util.SampleParticipantsUtil;
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.TestUtil;
 
 public class SampleDataTest extends AddressBookSystemTest {
@@ -45,7 +45,7 @@ public class SampleDataTest extends AddressBookSystemTest {
 
     @Test
     public void addressBook_dataFileDoesNotExist_loadSampleData() {
-        Participant[] expectedList = SampleParticipantsUtil.getSamplePersons();
+        Participant[] expectedList = SampleDataUtil.getSampleFreshmen();
         assertListMatching(getPersonListPanel(), expectedList);
     }
 }

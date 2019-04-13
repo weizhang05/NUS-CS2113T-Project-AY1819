@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.participant.exceptions.DuplicatePersonException;
-import seedu.address.model.participant.exceptions.PersonNotFoundException;
+import seedu.address.model.participant.exceptions.DuplicateParticipantException;
+import seedu.address.model.participant.exceptions.ParticipantNotFoundException;
 
 /**
  * A list of groups that enforces uniqueness between its elements and does not allow nulls.
@@ -45,7 +45,7 @@ public class UniqueGroupList implements Iterable<Group> {
     public void add(Group toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateParticipantException();
         }
         internalList.add(toAdd);
     }
@@ -60,11 +60,11 @@ public class UniqueGroupList implements Iterable<Group> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ParticipantNotFoundException();
         }
 
         if (!target.isSameGroup(editedPerson) && contains(editedPerson)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateParticipantException();
         }
 
         internalList.set(index, editedPerson);
@@ -82,7 +82,7 @@ public class UniqueGroupList implements Iterable<Group> {
     public void remove(Group toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ParticipantNotFoundException();
         }
     }
 
@@ -93,7 +93,7 @@ public class UniqueGroupList implements Iterable<Group> {
     public void setGroups(List<Group> groups) {
         requireAllNonNull(groups);
         if (!groupsAreUnique(groups)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateParticipantException();
         }
 
         internalList.setAll(groups);

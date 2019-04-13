@@ -63,11 +63,11 @@ public class AddOglCommand extends AddCommand {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasParticipant(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_OGL);
         }
         if (toAdd.getGroup().getGroupName().equals("")) {
-            model.addPerson(toAdd);
+            model.addParticipant(toAdd);
             model.commitAddressBook();
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
@@ -79,7 +79,7 @@ public class AddOglCommand extends AddCommand {
         Group updatedGroup = model.getGroup(toAdd.getGroup());
         Participant toAddUpdated = new Participant(toAdd.getName(), toAdd.getSex(), toAdd.getBirthday(),
                 toAdd.getPhone(), toAdd.getEmail(), toAdd.getMajor(), updatedGroup, toAdd.getTags());
-        model.addPerson(toAddUpdated);
+        model.addParticipant(toAddUpdated);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAddUpdated));
     }

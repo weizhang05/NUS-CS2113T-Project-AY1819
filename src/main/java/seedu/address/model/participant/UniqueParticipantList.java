@@ -8,14 +8,14 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.participant.exceptions.DuplicatePersonException;
-import seedu.address.model.participant.exceptions.PersonNotFoundException;
+import seedu.address.model.participant.exceptions.DuplicateParticipantException;
+import seedu.address.model.participant.exceptions.ParticipantNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A participant is considered unique by comparing using {@code Participant#isSamePerson(Participant)}.
+ * A participant is considered unique by comparing using {@code Participant#isSameParticipant(Participant)}.
  * As such, adding and updating of
- * persons uses Participant#isSamePerson(Participant) for equality so as
+ * persons uses Participant#isSameParticipant(Participant) for equality so as
  * to ensure that the participant being added or updated is
  * unique in terms of identity in the UniqueParticipantList.
  * However, the removal of a participant uses Participant#equals(Object) so
@@ -23,7 +23,7 @@ import seedu.address.model.participant.exceptions.PersonNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Participant#isSamePerson(Participant)
+ * @see Participant#isSameParticipant(Participant)
  */
 public class UniqueParticipantList implements Iterable<Participant> {
 
@@ -36,7 +36,7 @@ public class UniqueParticipantList implements Iterable<Participant> {
      */
     public boolean contains(Participant toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameParticipant);
     }
 
     /**
@@ -46,7 +46,7 @@ public class UniqueParticipantList implements Iterable<Participant> {
     public void add(Participant toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateParticipantException();
         }
         internalList.add(toAdd);
     }
@@ -57,16 +57,16 @@ public class UniqueParticipantList implements Iterable<Participant> {
      * The participant identity of {@code editedParticipant}
      * must not be the same as another existing participant in the list.
      */
-    public void setPerson(Participant target, Participant editedParticipant) {
+    public void setParticipant(Participant target, Participant editedParticipant) {
         requireAllNonNull(target, editedParticipant);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ParticipantNotFoundException();
         }
 
-        if (!target.isSamePerson(editedParticipant) && contains(editedParticipant)) {
-            throw new DuplicatePersonException();
+        if (!target.isSameParticipant(editedParticipant) && contains(editedParticipant)) {
+            throw new DuplicateParticipantException();
         }
 
         internalList.set(index, editedParticipant);
@@ -79,11 +79,11 @@ public class UniqueParticipantList implements Iterable<Participant> {
     public void remove(Participant toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ParticipantNotFoundException();
         }
     }
 
-    public void setPersons(UniqueParticipantList replacement) {
+    public void setParticipants(UniqueParticipantList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -92,10 +92,10 @@ public class UniqueParticipantList implements Iterable<Participant> {
      * Replaces the contents of this list with {@code participants}.
      * {@code participants} must not contain duplicate participants.
      */
-    public void setPersons(List<Participant> participants) {
+    public void setParticipants(List<Participant> participants) {
         requireAllNonNull(participants);
-        if (!personsAreUnique(participants)) {
-            throw new DuplicatePersonException();
+        if (!participantsAreUnique(participants)) {
+            throw new DuplicateParticipantException();
         }
 
         internalList.setAll(participants);
@@ -128,10 +128,10 @@ public class UniqueParticipantList implements Iterable<Participant> {
     /**
      * Returns true if {@code participants} contains only unique participants.
      */
-    private boolean personsAreUnique(List<Participant> participants) {
+    private boolean participantsAreUnique(List<Participant> participants) {
         for (int i = 0; i < participants.size() - 1; i++) {
             for (int j = i + 1; j < participants.size(); j++) {
-                if (participants.get(i).isSamePerson(participants.get(j))) {
+                if (participants.get(i).isSameParticipant(participants.get(j))) {
                     return false;
                 }
             }

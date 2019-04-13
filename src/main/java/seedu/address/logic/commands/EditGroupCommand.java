@@ -82,13 +82,13 @@ public class EditGroupCommand extends Command {
         }
 
         //updates persons with old group to new group
-        List<Participant> participantList = existingAddressBook.getPersonList();
+        List<Participant> participantList = existingAddressBook.getParticipantList();
         for (Participant participant : participantList) {
             if (participant.getGroup().equals(oldGroup)) {
                 Participant editedParticipant = new Participant(participant.getName(),
                         participant.getSex(), participant.getBirthday(), participant.getPhone(),
                         participant.getEmail(), participant.getMajor(), newGroup, participant.getTags());
-                model.setPerson(participant, editedParticipant);
+                model.setParticipant(participant, editedParticipant);
             }
         }
         model.setGroup(oldGroup, newGroup);

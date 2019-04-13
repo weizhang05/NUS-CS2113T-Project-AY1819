@@ -22,7 +22,7 @@ public class SizeCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
 
-        List<Participant> participantList = model.getFilteredPersonList();
+        List<Participant> participantList = model.getFilteredParticipantList();
         int numOgl = 0;
         int numFreshman = 0;
 

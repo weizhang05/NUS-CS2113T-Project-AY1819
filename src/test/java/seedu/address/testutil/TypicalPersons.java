@@ -90,7 +90,7 @@ public class TypicalPersons {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Participant participant : getTypicalPersons()) {
-            ab.addPerson(participant);
+            ab.addParticipant(participant);
         }
         return ab;
     }
@@ -98,7 +98,7 @@ public class TypicalPersons {
     public static AddressBook getAddressBookWithOneFreshmanAndOgl() {
         AddressBook ab = new AddressBook();
         for (Participant participant : getTypicalPersonsWithOneFreshmanAndOgl()) {
-            ab.addPerson(participant);
+            ab.addParticipant(participant);
         }
         return ab;
     }

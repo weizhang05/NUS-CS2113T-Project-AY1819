@@ -88,7 +88,7 @@ public class Participant {
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Participant otherParticipant) {
+    public boolean isSameParticipant(Participant otherParticipant) {
         if (otherParticipant == this) {
             return true;
         }

@@ -27,7 +27,7 @@ public class VersionedAddressBook extends AddressBook {
     }
 
     public boolean isEmpty() {
-        return addressBookStateList.get(currentStatePointer).getPersonList().isEmpty();
+        return addressBookStateList.get(currentStatePointer).getParticipantList().isEmpty();
     }
 
     public ObservableMap<String, Integer> getAgeData() {
