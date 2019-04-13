@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.Value;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -179,7 +180,7 @@ public class ParserUtil {
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
-        tagSet.add(parseTag("Freshman"));
+        tagSet.add(parseTag(Value.FRESHMAN));
         return tagSet;
     }
     /**
@@ -191,7 +192,7 @@ public class ParserUtil {
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
-        tagSet.add(parseTag("OGL"));
+        tagSet.add(parseTag(Value.OGL));
         return tagSet;
     }
 }
