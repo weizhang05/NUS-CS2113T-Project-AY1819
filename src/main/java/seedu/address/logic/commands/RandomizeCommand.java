@@ -13,6 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.participant.Participant;
+import seedu.address.model.tag.Tag;
 
 /**
  * Randomly assigns all participants to all available groups.
@@ -26,8 +27,7 @@ public class RandomizeCommand extends Command {
             + ": Evenly distribute all participants across all groups.";
 
     public static final String MESSAGE_SUCCESS = "Participants are evenly distributed";
-    public static final String MESSAGE_FAILURE = "Unable to distribute participants "
-            + "(min 2 groups and 2 participants)";
+    public static final String MESSAGE_FAILURE = "Unable to distribute participants ";
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
@@ -35,10 +35,22 @@ public class RandomizeCommand extends Command {
         List<Group> groups = model.getFilteredGroupList();
         List<Participant> freshmen = new ArrayList<>(), ogls = new ArrayList<>();
 
-        for (Participant p : participants) {
-            if (p.getTags().contains(Value.FRESHMAN)) {
+        /**
+         * Integer list is to simulate shuffling of freshmen (applies to subsequent shuffling)
+         *
+         *
+         * Algorithm is applied to subsequent objects (i.e. same steps are applied to OGLs as well)
+         */
+        List<Integer> jumbledOrderFreshmen = new ArrayList<>();
+        List<Integer> jumbledOrderOgls = new ArrayList<>();
+        for (int i = 1; i <= participants.size(); i++) {
+            Participant p = participants.get(i - 1);
+            if (p.getTags().contains(new Tag(Value.FRESHMAN))) {
+                jumbledOrderFreshmen.add(i);
                 freshmen.add(p);
-            } else if (p.getTags().contains(Value.OGL)) {
+            }
+            else if (p.getTags().contains(new Tag(Value.OGL))) {
+                jumbledOrderOgls.add(i);
                 ogls.add(p);
             }
         }
@@ -52,9 +64,12 @@ public class RandomizeCommand extends Command {
         if (freshmen.size() < 2 || groups.size() < 2 || ogls.size() < groups.size()) {
             throw new CommandException(MESSAGE_FAILURE + ":"
                     + "\nNumber of participants: " + participants.size()
-                    + "\nNumber of OGLs:" + ogls.size()
+                    + "\nNumber of OGLs: " + ogls.size()
                     + "\nNumber of groups: " + groups.size());
         }
+
+        Collections.shuffle(jumbledOrderFreshmen, new SecureRandom());
+        Collections.shuffle(jumbledOrderOgls, new SecureRandom());
 
         /**
          * command: programmatically execute command
@@ -63,39 +78,22 @@ public class RandomizeCommand extends Command {
         Command command;
         int counter = 0;
 
-        // Integer list is to simulate shuffling of freshmen (applies to subsequent shuffling)
-        List<Integer> jumbledOrderFreshmen = new ArrayList<>();
-        for (int i = 1; i <= freshmen.size(); i++) {
-            jumbledOrderFreshmen.add(i);
-        }
-        Collections.shuffle(jumbledOrderFreshmen, new SecureRandom());
         // Programmatically calls the 'edit' to update groups of participants
         for (int i = 0; i < freshmen.size(); i++) {
             try {
-                if (participants.get(i).getTags().contains(Value.FRESHMAN)) {
+                if (freshmen.get(i).getTags().contains(new Tag(Value.FRESHMAN))) {
                     command = new EditCommandParser().parse(jumbledOrderFreshmen.get(i)
                             + " g/" + groups.get(counter % groups.size()).getGroupName());
                     command.execute(model, history);
                     ++counter;
                 }
-
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         }
-
-        // Resets the counter
-        counter = 0;
-
-        // Algorithm is applied to subsequent objects (i.e. same steps are applied to OGLs as well)
-        List<Integer> jumbledOrderOgls = new ArrayList<>();
-        for (int i = 1; i <= freshmen.size(); i++) {
-            jumbledOrderOgls.add(i);
-        }
-        Collections.shuffle(jumbledOrderOgls, new SecureRandom());
         for (int i = 0; i < ogls.size(); i++) {
             try {
-                if (participants.get(i).getTags().contains(Value.FRESHMAN)) {
+                if (ogls.get(i).getTags().contains(new Tag(Value.OGL))) {
                     command = new EditCommandParser().parse(jumbledOrderOgls.get(i)
                             + " g/" + groups.get(counter % groups.size()).getGroupName());
                     command.execute(model, history);
