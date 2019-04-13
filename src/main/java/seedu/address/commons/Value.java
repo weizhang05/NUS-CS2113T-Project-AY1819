@@ -10,4 +10,5 @@ public class Value {
     public final static String FRESHMAN = "FRESHMAN";
     public final static String OGL = "OGL";
     public final static String HOUSE_HEAD = "HOUSE_HEAD";
+
 }
