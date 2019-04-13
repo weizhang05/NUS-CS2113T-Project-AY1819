@@ -99,7 +99,6 @@ public class RandomizeCommand extends Command {
                     command.execute(model, history);
                     ++counter;
                 }
-
             } catch (ParseException e) {
                 e.printStackTrace();
             }
