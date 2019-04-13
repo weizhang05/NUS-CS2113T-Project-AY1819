@@ -2,7 +2,7 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "houses": [ ],
   "groups": [],
-  "persons" : [ {
+  "participants" : [ {
     "name" : "Alice Pauline",
     "sex": "F",
     "birthday": "07081994",
