@@ -54,22 +54,22 @@ public class SampleDataUtil {
 
     public static Participant[] getSampleOgls() {
         return new Participant[] {
-                new Participant(new Name("OGL 1"), new Sex("M"), new Birthday("01021996"),
-                        new Phone("91234567"),
-                        new Email("ogl1@example.com"), new Major("Computer Science"), new Group(""),
-                        getTagSet(Value.OGL)),
-                new Participant(new Name("OGL 2"), new Sex("F"), new Birthday("01021996"),
-                        new Phone("98765432"),
-                        new Email("ogl2@example.com"), new Major("Information Security"), new Group(""),
-                        getTagSet(Value.OGL)),
-                new Participant(new Name("OGL 3"), new Sex("M"), new Birthday("01021996"),
-                        new Phone("81234567"),
-                        new Email("ogl3@example.com"), new Major("Computer Engineering"), new Group(""),
-                        getTagSet(Value.OGL)),
-                new Participant(new Name("OGL 4"), new Sex("F"), new Birthday("01021996"),
-                        new Phone("87654321"),
-                        new Email("ogl4@example.com"), new Major("Business Analytic"), new Group(""),
-                        getTagSet(Value.OGL))
+            new Participant(new Name("OGL 1"), new Sex("M"), new Birthday("01021996"),
+                    new Phone("91234567"),
+                    new Email("ogl1@example.com"), new Major("Computer Science"), new Group(""),
+                    getTagSet(Value.OGL)),
+            new Participant(new Name("OGL 2"), new Sex("F"), new Birthday("01021996"),
+                    new Phone("98765432"),
+                    new Email("ogl2@example.com"), new Major("Information Security"), new Group(""),
+                    getTagSet(Value.OGL)),
+            new Participant(new Name("OGL 3"), new Sex("M"), new Birthday("01021996"),
+                    new Phone("81234567"),
+                    new Email("ogl3@example.com"), new Major("Computer Engineering"), new Group(""),
+                    getTagSet(Value.OGL)),
+            new Participant(new Name("OGL 4"), new Sex("F"), new Birthday("01021996"),
+                    new Phone("87654321"),
+                    new Email("ogl4@example.com"), new Major("Business Analytic"), new Group(""),
+                    getTagSet(Value.OGL))
         };
     }
 

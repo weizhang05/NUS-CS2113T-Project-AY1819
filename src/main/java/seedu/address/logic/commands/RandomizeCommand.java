@@ -33,7 +33,8 @@ public class RandomizeCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         List<Participant> participants = new ArrayList<>(model.getFilteredPersonList());
         List<Group> groups = model.getFilteredGroupList();
-        List<Participant> freshmen = new ArrayList<>(), ogls = new ArrayList<>();
+        List<Participant> freshmen = new ArrayList<>();
+        List<Participant> ogls = new ArrayList<>();
 
         /**
          * Integer list is to simulate shuffling of freshmen (applies to subsequent shuffling)
@@ -48,8 +49,7 @@ public class RandomizeCommand extends Command {
             if (p.getTags().contains(new Tag(Value.FRESHMAN))) {
                 jumbledOrderFreshmen.add(i);
                 freshmen.add(p);
-            }
-            else if (p.getTags().contains(new Tag(Value.OGL))) {
+            } else if (p.getTags().contains(new Tag(Value.OGL))) {
                 jumbledOrderOgls.add(i);
                 ogls.add(p);
             }
