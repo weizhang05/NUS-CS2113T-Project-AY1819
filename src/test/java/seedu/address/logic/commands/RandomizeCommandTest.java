@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import static org.junit.Assert.assertEquals;
+import static seedu.address.model.util.SampleDataUtil.getTagSet;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -17,9 +20,6 @@ import seedu.address.model.participant.Name;
 import seedu.address.model.participant.Participant;
 import seedu.address.model.participant.Phone;
 import seedu.address.model.participant.Sex;
-
-import static org.junit.Assert.assertEquals;
-import static seedu.address.model.util.SampleDataUtil.getTagSet;
 
 public class RandomizeCommandTest {
 
