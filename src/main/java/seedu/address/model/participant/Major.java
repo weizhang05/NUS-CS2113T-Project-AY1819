@@ -23,7 +23,7 @@ public class Major {
     private static final ArrayList<String> validMajorCS = new ArrayList<>(Arrays.asList("COMPUTER SCIENCE",
             "COMSCI", "CS"));
     private static final ArrayList<String> validMajorIS = new ArrayList<>(Arrays.asList("INFORMATION SYSTEM",
-            "INFOSYS", "IS"));
+            "INFORMATION SYSTEMS", "INFOSYS", "IS"));
     private static final ArrayList<String> validMajorCEG = new ArrayList<>(Arrays.asList("COMPUTER ENGINEERING",
             "COMENG", "CEG"));
     private static final ArrayList<String> validMajorISC = new ArrayList<>(Arrays.asList("INFORMATION SECURITY",
