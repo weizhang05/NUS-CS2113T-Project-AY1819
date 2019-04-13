@@ -140,7 +140,8 @@ public abstract class AddressBookSystemTest {
      */
     protected void showAllPersons() {
         executeCommand(ListCommand.COMMAND_WORD);
-        assertEquals(getModel().getAddressBook().getParticipantList().size(), getModel().getFilteredParticipantList().size());
+        assertEquals(getModel().getAddressBook().getParticipantList().size(),
+                getModel().getFilteredParticipantList().size());
     }
 
     /**
