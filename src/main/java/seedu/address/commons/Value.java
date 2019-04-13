@@ -6,9 +6,9 @@ package seedu.address.commons;
 public class Value {
 
     // Participant type identifier
-    public final static String PARTICIPANT = "PARTICIPANT";
-    public final static String FRESHMAN = "FRESHMAN";
-    public final static String OGL = "OGL";
-    public final static String HOUSE_HEAD = "HOUSE_HEAD";
+    public static final String PARTICIPANT = "PARTICIPANT";
+    public static final String FRESHMAN = "FRESHMAN";
+    public static final String OGL = "OGL";
+    public static final String HOUSE_HEAD = "HOUSE_HEAD";
 
 }
