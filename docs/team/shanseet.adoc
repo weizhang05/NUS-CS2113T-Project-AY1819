@@ -40,39 +40,30 @@ NOTE: This symbol indicates important information.
 
 == Summary of Contributions
 
-This section shows a summary of my coding, documentation, and other helpful contributions to the team project.
-
-In this project, I was in charge of creating the logic to support our app's feature of `_Group_` and `_House_` management.
+This section shows a summary of my coding, documentation, and other helpful contributions. In this project, I was in charge of creating the logic to support our app's feature of `_Group_` and `_House_` management.
 
 *Major enhancements*:
+[options="header"]
+|=======================
+|Feature |Description |Justification |Highlights
+|Adding, editing and deleting groups and houses |Allows the user to add, edit and delete `_House_` and `_Group_` objects, so that participants can be grouped according to their camp grouping. |Being tailored to manage participant details in Freshmen Orientation camps, having groups and houses are essential to organising participants as camp organisers normally do when planning camps. |These commands are a core component of the project that other features such as `randomize` build upon. It was challenging to implement as it required changes to basic commands like `add` and `edit`, as well as to the app's model.
 
-* Adding, editing and deleting groups and houses
-** _Commands_: `add_g`, `add_h`, `edit_g`, `edit_h`, `delete_g`, `delete_h`
-** _Purpose_: These commands allow users to add, edit and delete `_House_` and `_Group_` objects, enabling them to group participants according to their camp grouping.
-** _Justification_: Being tailored to manage participant details in Freshmen Orientation camps, having groups and houses are essential to organising participants as camp organisers normally do when planning camps.
-** _Highlights_: These commands are a core component of the project that other commands such as `randomize` build upon. The implementation of these commands was challenging as it required changes to basic commands like `add` and `edit`, as well as to the app's model.
+|Listing participants by houses and groups |Allows the user to list the participants in a specified house or group. |Listing the participants in the same group and same house is necessary for the user to filter through data quickly, especially when managing a large camp. It also allows the user to see the current size of a specific group or house. |The implementation of these commands required knowledge of using predicates to find participants that match a certain search criteria.
 
-* Listing participants by houses and groups
-** _Commands_: `list_h`, `list_g`
-** _Purpose_: These commands allow the user to list the participants in a specified house or group.
-** _Justification_: Listing the participants in the same group and same house is necessary for the user to filter through data quickly, especially when managing a large camp. It also allows the user to see the current size of a specific group or house.
-** _Acknowledgement_: These commands were modified from the `list_o` and `list_f` commands, making use of predicates as well to identify a different list of participants.
-** _Highlights_: The `list_g` command supports listing participants without a group (i.e. an empty `_Group_` field) by entering the command `list_g empty`. This allows the user to quickly see which participants have not been placed in groups, making group assignments much easier and ensuring no participants have been overlooked in group placement.
-
-* Viewing houses and groups
-** _Commands_: `view_h`, `view_g`
-** _Purpose_: These commands allow the user to view the houses and groups they have added so far.
-** _Justification_: After adding a house and a group, the user may want to edit its name, or delete it. Also, users can only add groups to existing houses, and add participants to existing groups. Each of these commands require the exact house or group name to be specified. `view_h` and `view_g` help the user know which houses and groups have been created so far, and can therefore be added to, modified or deleted.
+|Viewing houses and groups |Allows the user to view the houses and groups they have added so far. | The exact house or group name must be specified to edit its name, delete it, or add to it. These commands help the user to know which houses and groups have been created so far, and can therefore be added to, modified or deleted.|
+|=======================
 
 *Minor enhancement*:
-
-* Size command: `size`
- ** _Purpose_: This command allows the user to view the sizing details of the camp.
+[options="header"]
+|=======================
+|Feature |Description |Justification
+|Size command| This command allows the user to view the sizing details of the camp. |
+|=======================
 
 *Code contributed*:
 
-* _Functional code_: https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/AddGroupCommand.java[Add Group Command], https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/EditGroupCommand.java[Edit Group Command], https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/ListGroupCommand.java[List Group Command]
-* _Test code_: https://github.com/shanseet/T08-Fork/blob/master/src/test/java/seedu/address/logic/commands/EditGroupCommandTest.java[Edit Group Commmand Test], https://github.com/shanseet/T08-Fork/blob/master/src/test/java/seedu/address/logic/commands/EditHouseCommandTest.java[Edit House Command Test], https://github.com/shanseet/T08-Fork/blob/master/src/test/java/seedu/address/model/grouping/FindGroupHousePredicateTest.java[Find Group and House Predicate Test]
+* _Functional code_: [https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/AddGroupCommand.java[Add Group Command]], [https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/EditGroupCommand.java[Edit Group Command]], [https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/ListGroupCommand.java[List Group Command]]
+* _Test code_: [https://github.com/shanseet/T08-Fork/blob/master/src/test/java/seedu/address/logic/commands/EditGroupCommandTest.java[Edit Group Commmand Test]], [https://github.com/shanseet/T08-Fork/blob/master/src/test/java/seedu/address/logic/commands/EditHouseCommandTest.java[Edit House Command Test]]
 * Check out more of my code on Project Code Dashboard https://nuscs2113-ay1819s2.github.io/dashboard-beta/#=undefined&search=shanseet[here].
 
 *Other contributions*:
@@ -81,7 +72,7 @@ In this project, I was in charge of creating the logic to support our app's feat
 ** In charge of the issue tracker
 ** Managed milestones v1.2 to v1.4
 * _Documentation_:
-** Made major changes to reformat and update User Guide and Developer Guide to include new features, as well as make it more reader-friendly: https://github.com/cs2113-ay1819s2-t08-4/main/pull/74[#74], https://github.com/cs2113-ay1819s2-t08-4/main/pull/102[#102]
+** Made major changes to reformat and update User Guide and Developer Guide to include new features, as well as make it more reader-friendly: [https://github.com/cs2113-ay1819s2-t08-4/main/pull/74[#74]], [https://github.com/cs2113-ay1819s2-t08-4/main/pull/102[#102]]
 * _Community_:
 ** Gave consistent feedback to team members to improve their implemented features
 ** Gave suggestions for other teams in the same tutorial group to improve their User Guide and Developer Guide
@@ -104,7 +95,7 @@ include::../UserGuide.adoc[tag=editgrouphouse]
 === Deleting Groups and Houses
 include::../UserGuide.adoc[tag=deletegrouphouse]
 
-Check out the full User Guide https://github.com/shanseet/T08-Fork/blob/master/docs/UserGuide.adoc[here].
+Check out the full User Guide [https://github.com/shanseet/T08-Fork/blob/master/docs/UserGuide.adoc[here]].
 
 == Contributions to the Developer Guide
 
@@ -112,4 +103,4 @@ Shown below are sections I contributed to the Developer Guide. They showcase my 
 
 include::../DeveloperGuide.adoc[tag=GroupHouseManagement]
 
-Check out the full Developer Guide https://github.com/shanseet/T08-Fork/blob/master/docs/DeveloperGuide.adoc[here].
+Check out the full Developer Guide [https://github.com/shanseet/T08-Fork/blob/master/docs/DeveloperGuide.adoc[here]].
