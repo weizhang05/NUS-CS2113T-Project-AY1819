@@ -140,7 +140,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Participant participant) {
-        versionedAddressBook.addPerson(participant);
+        versionedAddressBook.addParticipant(participant);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         undoableCommand = "Add " + participant.getName().fullName;
     }

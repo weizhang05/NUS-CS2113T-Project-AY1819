@@ -136,7 +136,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a participant to the address book.
      * The participant must not already exist in the address book.
      */
-    public void addPerson(Participant p) {
+    public void addParticipant(Participant p) {
         persons.add(p);
         //addData(p);
         indicateModified();

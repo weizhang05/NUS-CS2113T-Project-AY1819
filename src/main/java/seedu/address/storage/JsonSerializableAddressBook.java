@@ -63,7 +63,7 @@ class JsonSerializableAddressBook {
             if (addressBook.hasPerson(participant)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(participant);
+            addressBook.addParticipant(participant);
         }
 
         for (JsonAdaptedGroup jsonAdaptedGroup : groups) {
