@@ -30,9 +30,9 @@ public class RandomizeCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Participants are evenly distributed";
 
     public static final String MESSAGE_FAILURE = "Unable to distribute participants";
-    public static final String MESSAGE_INSUFFICIENT_PARTICIPANTS = MESSAGE_FAILURE+": Insufficient particiapnts";
-    public static final String MESSAGE_INSUFFICIENT_OGLS = MESSAGE_FAILURE+": Insufficient OGLs";
-    public static final String MESSAGE_INSUFFICIENT_GROUPS = MESSAGE_FAILURE+": Insufficient groups";
+    public static final String MESSAGE_INSUFFICIENT_PARTICIPANTS = MESSAGE_FAILURE + ": Insufficient particiapnts";
+    public static final String MESSAGE_INSUFFICIENT_OGLS = MESSAGE_FAILURE + ": Insufficient OGLs";
+    public static final String MESSAGE_INSUFFICIENT_GROUPS = MESSAGE_FAILURE + ": Insufficient groups";
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
@@ -67,11 +67,9 @@ public class RandomizeCommand extends Command {
          */
         if (freshmen.size() < 2) {
             throw new CommandException(MESSAGE_INSUFFICIENT_PARTICIPANTS);
-        }
-        else if (groups.size() < 2) {
+        } else if (groups.size() < 2) {
             throw new CommandException(MESSAGE_INSUFFICIENT_GROUPS);
-        }
-        else if (ogls.size() < groups.size()) {
+        } else if (ogls.size() < groups.size()) {
             throw new CommandException(MESSAGE_INSUFFICIENT_OGLS);
         }
 
