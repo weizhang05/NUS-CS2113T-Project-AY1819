@@ -13,12 +13,14 @@ endif::[]
 
 * This is a desktop Address Book application. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
 * It is a Java application targeted at *Project Directors* organizing the *School of Computing Freshman Orientation Camp*.
-* This application is a useful tool to manage the contacts of participating freshmen and OGLs. Its features include:
+* This application is a useful tool to manage the contacts of participating Freshmen, OGLs and others. Its features include:
 ** An easy to use GUI with a list panel displaying participant details
+** Listing of participants by their 3 categories (Freshmen, OGLs and others)
 ** Grouping of participants into groups, stored within houses
 ** Viewing graphs of the statistics of the camp participants
 ** Random shuffling of freshman grouping
-** Exporting participant information from the application to a readable format
+** Exporting participant information (by whole list, by Freshmen list or by OGL list) from the application to a readable format (Excel)
+** Importing participant information from Excel file to FOP Manager
 
 == Site Map
 
