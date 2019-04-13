@@ -29,7 +29,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddFreshmanCommand object
  */
-public class AddParticipantCommandParser extends AddCommandParser {
+public class AddFreshmanCommandParser extends AddCommandParser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddFreshmanCommand

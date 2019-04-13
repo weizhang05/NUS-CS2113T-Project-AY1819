@@ -84,7 +84,7 @@ public class AddressBookParser {
             return new AddOglCommandParser().parse(arguments);
 
         case AddFreshmanCommand.COMMAND_WORD:
-            return new AddParticipantCommandParser().parse(arguments);
+            return new AddFreshmanCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
