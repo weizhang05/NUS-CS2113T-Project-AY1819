@@ -100,7 +100,7 @@ public class AddressBookParser {
 
         case ExportFreshmenCommand.COMMAND_WORD:
             return new ExportFreshmenCommand();
-            
+
         case ExportOglCommand.COMMAND_WORD:
             return new ExportOglCommand();
 
