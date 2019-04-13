@@ -270,10 +270,10 @@ In the current implementation of *FOP Manager*, some commands are create from a 
 
 ==== Design Considerations
 
-===== Aspect: Handling unneccesary parameters
+===== Aspect: Handling unnecessary parameters
 
 * *Alternative 1:* Ignore all unnecessary parameters and pass as arguments to the command object the number of parameters required for the command.
-** Pros: Less computationaly expensive, and allows the user to make mistakes
+** Pros: Less computationally expensive, and allows the user to make mistakes
 ** Cons: User's intentions may be misinterpreted and wrong commands may be executed
 * *Alternative 2:* Only accept the number of parameters the command requires, nothing more and nothing less.
 ** Pros: Command carried out will always be the user's exact intention
@@ -531,7 +531,7 @@ The `randomize` is achieved by coding a sequence of steps to achieve the allocat
 ** Pros: No internal coupling
 ** Cons: Unnecessary recoding
 * *Alternative 2 (current choice):* Programmatically simulate the `edit` command
-** Pros: Lesser code and better maintainance of the editing feature
+** Pros: Lesser code and better maintenance of the editing feature
 ** Cons: Internal coupling within the component
 
 ===== Aspect: Shuffling of participants
@@ -650,7 +650,7 @@ Only one way was considered for the implementation of Import feature, which invo
 // tag::autocompletion[]
 === [Proposed] Auto-Completion
 
-_{Coming in: v1.4}_
+_{Coming in: v2.0}_
 
 // end::autocompletion[]
 
