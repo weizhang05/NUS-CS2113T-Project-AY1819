@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.participant.exceptions.DuplicatePersonException;
-import seedu.address.model.participant.exceptions.PersonNotFoundException;
+import seedu.address.model.participant.exceptions.DuplicateParticipantException;
+import seedu.address.model.participant.exceptions.ParticipantNotFoundException;
 
 /**
  * A list of houses that enforces uniqueness between its elements and does not allow nulls.
@@ -45,7 +45,7 @@ public class UniqueHouseList implements Iterable<House> {
     public void add(House toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateParticipantException();
         }
         internalList.add(toAdd);
     }
@@ -60,11 +60,11 @@ public class UniqueHouseList implements Iterable<House> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ParticipantNotFoundException();
         }
 
         if (!target.isSameHouse(editedHouse) && contains(editedHouse)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateParticipantException();
         }
 
         internalList.set(index, editedHouse);
@@ -77,7 +77,7 @@ public class UniqueHouseList implements Iterable<House> {
     public void remove(House toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ParticipantNotFoundException();
         }
     }
 
@@ -88,7 +88,7 @@ public class UniqueHouseList implements Iterable<House> {
     public void setHouses(List<House> houses) {
         requireAllNonNull(houses);
         if (!housesAreUnique(houses)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateParticipantException();
         }
 
         internalList.setAll(houses);

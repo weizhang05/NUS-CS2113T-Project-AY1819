@@ -36,7 +36,7 @@ public class RandomizeCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        List<Participant> participants = new ArrayList<>(model.getFilteredPersonList());
+        List<Participant> participants = new ArrayList<>(model.getFilteredParticipantList());
         List<Group> groups = model.getFilteredGroupList();
         List<Participant> freshmen = new ArrayList<>();
         List<Participant> ogls = new ArrayList<>();

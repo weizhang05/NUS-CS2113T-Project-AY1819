@@ -44,11 +44,11 @@ public class EditGroupCommandTest {
         Participant editedParticipant = new PersonBuilder().withName("Alicia Alice")
                 .withSex("F").withBirthday("07081994").withMajor("CS").withEmail("alicia@example.com")
                 .withPhone("94351253").withGroup("R3", "Red").build();
-        Participant toEdit = model.getFilteredPersonList().get(0);
+        Participant toEdit = model.getFilteredParticipantList().get(0);
 
         expectedModel.setGroup(new Group("R1", "Red"),
                 new Group("R3", "Red"));
-        expectedModel.setPerson(toEdit, editedParticipant);
+        expectedModel.setParticipant(toEdit, editedParticipant);
         expectedModel.commitAddressBook();
         assertCommandSuccess(editGroupCommand, model, commandHistory, expectedMessage, expectedModel);
     }

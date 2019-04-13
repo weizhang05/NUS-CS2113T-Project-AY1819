@@ -25,7 +25,7 @@ import javafx.collections.ObservableMap;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Participant;
-import seedu.address.model.participant.exceptions.DuplicatePersonException;
+import seedu.address.model.participant.exceptions.DuplicateParticipantException;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -37,7 +37,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getParticipantList());
     }
 
     @Test
@@ -61,25 +61,25 @@ public class AddressBookTest {
         List<Participant> newParticipants = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newParticipants);
 
-        thrown.expect(DuplicatePersonException.class);
+        thrown.expect(DuplicateParticipantException.class);
         addressBook.resetData(newData);
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        addressBook.hasPerson(null);
+        addressBook.hasParticipant(null);
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(addressBook.hasParticipant(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
         addressBook.addParticipant(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        assertTrue(addressBook.hasParticipant(ALICE));
     }
 
     @Test
@@ -87,13 +87,13 @@ public class AddressBookTest {
         addressBook.addParticipant(ALICE);
         Participant editedAlice = new PersonBuilder(ALICE).withMajor(VALID_MAJOR_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasParticipant(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        addressBook.getPersonList().remove(0);
+        addressBook.getParticipantList().remove(0);
     }
 
     @Test
@@ -139,7 +139,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Participant> getPersonList() {
+        public ObservableList<Participant> getParticipantList() {
             return participants;
         }
 

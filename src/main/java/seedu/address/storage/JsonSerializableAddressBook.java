@@ -45,7 +45,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedParticipant::new).collect(Collectors.toList()));
+        persons.addAll(source.getParticipantList().stream().map(JsonAdaptedParticipant::new).collect(Collectors.toList()));
         groups.addAll(source.getGroupList().stream().map(JsonAdaptedGroup::new).collect(Collectors.toList()));
         houses.addAll(source.getHouseList().stream().map(JsonAdaptedHouse::new).collect(Collectors.toList()));
     }
@@ -60,7 +60,7 @@ class JsonSerializableAddressBook {
 
         for (JsonAdaptedParticipant jsonAdaptedParticipant : persons) {
             Participant participant = jsonAdaptedParticipant.toModelType();
-            if (addressBook.hasPerson(participant)) {
+            if (addressBook.hasParticipant(participant)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addParticipant(participant);

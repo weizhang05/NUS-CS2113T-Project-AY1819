@@ -47,23 +47,23 @@ public class RandomizeCommandTest {
                 new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Major("Computer Science"), new Group(""),
                 getTagSet(Value.FRESHMAN));
-        modelManager.addPerson(validParticipant);
+        modelManager.addParticipant(validParticipant);
         validParticipant = new Participant(new Name("Bernice Yu"), new Sex("M"), new Birthday("01021996"),
                 new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Major("Information System"), new Group(""),
                 getTagSet(Value.FRESHMAN));
-        modelManager.addPerson(validParticipant);
+        modelManager.addParticipant(validParticipant);
 
         Participant validOgl = new Participant(new Name("OGL 1"), new Sex("M"), new Birthday("01021996"),
                 new Phone("91234567"),
                 new Email("ogl1@example.com"), new Major("Computer Science"), new Group(""),
                 getTagSet(Value.OGL));
-        modelManager.addPerson(validOgl);
+        modelManager.addParticipant(validOgl);
         validOgl = new Participant(new Name("OGL 2"), new Sex("F"), new Birthday("01021996"),
                 new Phone("98765432"),
                 new Email("ogl2@example.com"), new Major("Information Security"), new Group(""),
                 getTagSet(Value.OGL));
-        modelManager.addPerson(validOgl);
+        modelManager.addParticipant(validOgl);
 
         CommandResult commandResult = new RandomizeCommand().execute(modelManager, commandHistory);
 
@@ -92,7 +92,7 @@ public class RandomizeCommandTest {
                 new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Major("Computer Science"), new Group(""),
                 getTagSet(Value.FRESHMAN));
-        modelManager.addPerson(validParticipant);
+        modelManager.addParticipant(validParticipant);
 
         new RandomizeCommand().execute(modelManager, commandHistory);
     }
@@ -114,23 +114,23 @@ public class RandomizeCommandTest {
                 new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Major("Computer Science"), new Group(""),
                 getTagSet(Value.FRESHMAN));
-        modelManager.addPerson(validParticipant);
+        modelManager.addParticipant(validParticipant);
         validParticipant = new Participant(new Name("Bernice Yu"), new Sex("M"), new Birthday("01021996"),
                 new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Major("Information System"), new Group(""),
                 getTagSet(Value.FRESHMAN));
-        modelManager.addPerson(validParticipant);
+        modelManager.addParticipant(validParticipant);
 
         Participant validOgl = new Participant(new Name("OGL 1"), new Sex("M"), new Birthday("01021996"),
                 new Phone("91234567"),
                 new Email("ogl1@example.com"), new Major("Computer Science"), new Group(""),
                 getTagSet(Value.OGL));
-        modelManager.addPerson(validOgl);
+        modelManager.addParticipant(validOgl);
         validOgl = new Participant(new Name("OGL 2"), new Sex("F"), new Birthday("01021996"),
                 new Phone("98765432"),
                 new Email("ogl2@example.com"), new Major("Information Security"), new Group(""),
                 getTagSet(Value.OGL));
-        modelManager.addPerson(validOgl);
+        modelManager.addParticipant(validOgl);
 
         new RandomizeCommand().execute(modelManager, commandHistory);
     }
@@ -156,18 +156,18 @@ public class RandomizeCommandTest {
                 new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Major("Computer Science"), new Group(""),
                 getTagSet(Value.FRESHMAN));
-        modelManager.addPerson(validParticipant);
+        modelManager.addParticipant(validParticipant);
         validParticipant = new Participant(new Name("Bernice Yu"), new Sex("M"), new Birthday("01021996"),
                 new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Major("Information System"), new Group(""),
                 getTagSet(Value.FRESHMAN));
-        modelManager.addPerson(validParticipant);
+        modelManager.addParticipant(validParticipant);
 
         Participant validOgl = new Participant(new Name("OGL 1"), new Sex("M"), new Birthday("01021996"),
                 new Phone("91234567"),
                 new Email("ogl1@example.com"), new Major("Computer Science"), new Group(""),
                 getTagSet(Value.OGL));
-        modelManager.addPerson(validOgl);
+        modelManager.addParticipant(validOgl);
 
         new RandomizeCommand().execute(modelManager, commandHistory);
     }

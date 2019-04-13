@@ -16,7 +16,7 @@ import seedu.address.model.participant.Participant;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Participant> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Participant> PREDICATE_SHOW_ALL_PARTICIPANTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -67,17 +67,17 @@ public interface Model {
     boolean isEmpty();
 
     /**
-     * Returns the number of persons by age
+     * Returns the number of participants by age
      */
     ObservableMap<String, Integer> getAgeData();
 
     /**
-     * Returns the number of persons by sex
+     * Returns the number of participants by sex
      */
     ObservableMap<String, Integer> getSexData();
 
     /**
-     * Returns the number of persons by major
+     * Returns the number of participants by major
      */
     ObservableMap<String, Integer> getMajorData();
 
@@ -94,19 +94,19 @@ public interface Model {
     /**
      * Returns true if a participant with the same identity as {@code participant} exists in the address book.
      */
-    boolean hasPerson(Participant participant);
+    boolean hasParticipant(Participant participant);
 
     /**
      * Deletes the given participant.
      * The participant must exist in the address book.
      */
-    void deletePerson(Participant target);
+    void deleteParticipant(Participant target);
 
     /**
      * Adds the given participant.
      * {@code participant} must not already exist in the address book.
      */
-    void addPerson(Participant participant);
+    void addParticipant(Participant participant);
 
     /**
      * Replaces the given participant {@code target} with {@code editedParticipant}.
@@ -114,16 +114,16 @@ public interface Model {
      * The participant identity of {@code editedParticipant}
      * must not be the same as another existing participant in the address book.
      */
-    void setPerson(Participant target, Participant editedParticipant);
+    void setParticipant(Participant target, Participant editedParticipant);
 
     /** Returns an unmodifiable view of the filtered participant list */
-    ObservableList<Participant> getFilteredPersonList();
+    ObservableList<Participant> getFilteredParticipantList();
 
     /**
      * Updates the filter of the filtered participant list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Participant> predicate);
+    void updateFilteredParticipantList(Predicate<Participant> predicate);
 
     // ================ Undo/Redo functions ======================
     /** Returns an unmodifiable view of the undo list */
@@ -161,18 +161,18 @@ public interface Model {
      * Selected participant in the filtered participant list.
      * null if no participant is selected.
      */
-    ReadOnlyProperty<Participant> selectedPersonProperty();
+    ReadOnlyProperty<Participant> selectedParticipantProperty();
 
     /**
      * Returns the selected participant in the filtered participant list.
      * null if no participant is selected.
      */
-    Participant getSelectedPerson();
+    Participant getSelectedParticipant();
 
     /**
      * Sets the selected participant in the filtered participant list.
      */
-    void setSelectedPerson(Participant participant);
+    void setSelectedParticipant(Participant participant);
 
     // ================ Group ======================
     /**

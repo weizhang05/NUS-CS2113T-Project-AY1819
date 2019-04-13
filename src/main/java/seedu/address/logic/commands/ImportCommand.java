@@ -36,10 +36,10 @@ public class ImportCommand extends Command {
             if (participants.size() >= 0) {
 
                 for (Participant participant : participants) {
-                    if (model.hasPerson(participant)) {
+                    if (model.hasParticipant(participant)) {
                         continue;
                     }
-                    model.addPerson(participant);
+                    model.addParticipant(participant);
                 }
                 model.commitAddressBook();
                 message = String.format(MESSAGE_SUCCESS);
