@@ -40,6 +40,6 @@ public class RedoCard extends UiPart<Region> {
         // state check
         RedoCard card = (RedoCard) other;
         return id.getText().equals(card.id.getText())
-                && redoableCommand.equals(card.redoableCommand);
+                && redoableCommand.getText().equals(card.redoableCommand.getText());
     }
 }
