@@ -17,6 +17,7 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Randomly assigns all participants to all available groups.
+ *
  * Evenly distributes the participants (number differs from either 1 or 2).
  */
 public class RandomizeCommand extends Command {
@@ -37,10 +38,9 @@ public class RandomizeCommand extends Command {
         List<Participant> ogls = new ArrayList<>();
 
         /**
-         * Integer list is to simulate shuffling of freshmen (applies to subsequent shuffling)
+         * Integer list is to simulate shuffling of freshmen.
          *
-         *
-         * Algorithm is applied to subsequent objects (i.e. same steps are applied to OGLs as well)
+         * Algorithm is applied to subsequent objects (i.e. same steps are applied to OGLs as well).
          */
         List<Integer> jumbledOrderFreshmen = new ArrayList<>();
         List<Integer> jumbledOrderOgls = new ArrayList<>();
@@ -68,6 +68,11 @@ public class RandomizeCommand extends Command {
                     + "\nNumber of groups: " + groups.size());
         }
 
+        /**
+         * Shuffling of the index to have a random order of group allocation.
+         *
+         * SecureRandom is used as a seed to ensure better randomness.
+         */
         Collections.shuffle(jumbledOrderFreshmen, new SecureRandom());
         Collections.shuffle(jumbledOrderOgls, new SecureRandom());
 
