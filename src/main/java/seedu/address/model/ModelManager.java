@@ -20,7 +20,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
 import seedu.address.model.participant.Participant;
-import seedu.address.model.participant.exceptions.PersonNotFoundException;
+import seedu.address.model.participant.exceptions.ParticipantNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -32,7 +32,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
 
     private final FilteredList<Participant> filteredParticipants;
-    private final SimpleObjectProperty<Participant> selectedPerson = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<Participant> selectedParticipant = new SimpleObjectProperty<>();
 
     private final FilteredList<Group> filteredGroups;
     private final SimpleObjectProperty<Group> selectedGroups = new SimpleObjectProperty<>();
@@ -54,8 +54,8 @@ public class ModelManager implements Model {
 
         versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredParticipants = new FilteredList<>(versionedAddressBook.getPersonList());
-        filteredParticipants.addListener(this::ensureSelectedPersonIsValid);
+        filteredParticipants = new FilteredList<>(versionedAddressBook.getParticipantList());
+        filteredParticipants.addListener(this::ensureSelectedParticipantIsValid);
 
         filteredGroups = new FilteredList<>(versionedAddressBook.getGroupList());
         filteredGroups.addListener(this::ensureSelectedGroupIsValid);
@@ -118,7 +118,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         versionedAddressBook.resetData(addressBook);
-        undoableCommand = "Clear all persons";
+        undoableCommand = "Clear all participants";
     }
 
     @Override
@@ -127,29 +127,29 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Participant participant) {
+    public boolean hasParticipant(Participant participant) {
         requireNonNull(participant);
-        return versionedAddressBook.hasPerson(participant);
+        return versionedAddressBook.hasParticipant(participant);
     }
 
     @Override
-    public void deletePerson(Participant target) {
-        versionedAddressBook.removePerson(target);
+    public void deleteParticipant(Participant target) {
+        versionedAddressBook.removeParticipant(target);
         undoableCommand = "Delete " + target.getName().fullName;
     }
 
     @Override
-    public void addPerson(Participant participant) {
-        versionedAddressBook.addPerson(participant);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addParticipant(Participant participant) {
+        versionedAddressBook.addParticipant(participant);
+        updateFilteredParticipantList(PREDICATE_SHOW_ALL_PARTICIPANTS);
         undoableCommand = "Add " + participant.getName().fullName;
     }
 
     @Override
-    public void setPerson(Participant target, Participant editedParticipant) {
+    public void setParticipant(Participant target, Participant editedParticipant) {
         requireAllNonNull(target, editedParticipant);
 
-        versionedAddressBook.setPerson(target, editedParticipant);
+        versionedAddressBook.setParticipant(target, editedParticipant);
         undoableCommand = "Edit " + editedParticipant.getName().fullName;
     }
 
@@ -205,12 +205,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Participant> getFilteredPersonList() {
+    public ObservableList<Participant> getFilteredParticipantList() {
         return filteredParticipants;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Participant> predicate) {
+    public void updateFilteredParticipantList(Predicate<Participant> predicate) {
         requireNonNull(predicate);
         filteredParticipants.setPredicate(predicate);
     }
@@ -246,21 +246,21 @@ public class ModelManager implements Model {
     //=========== Selected participant ===========================================================================
 
     @Override
-    public ReadOnlyProperty<Participant> selectedPersonProperty() {
-        return selectedPerson;
+    public ReadOnlyProperty<Participant> selectedParticipantProperty() {
+        return selectedParticipant;
     }
 
     @Override
-    public Participant getSelectedPerson() {
-        return selectedPerson.getValue();
+    public Participant getSelectedParticipant() {
+        return selectedParticipant.getValue();
     }
 
     @Override
-    public void setSelectedPerson(Participant participant) {
+    public void setSelectedParticipant(Participant participant) {
         if (participant != null && !filteredParticipants.contains(participant)) {
-            throw new PersonNotFoundException();
+            throw new ParticipantNotFoundException();
         }
-        selectedPerson.setValue(participant);
+        selectedParticipant.setValue(participant);
     }
 
     // ================ Group Operations ======================
@@ -279,7 +279,7 @@ public class ModelManager implements Model {
     @Override
     public void addGroup(Group group) {
         versionedAddressBook.addGroup(group);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredParticipantList(PREDICATE_SHOW_ALL_PARTICIPANTS);
         undoableCommand = "Add Group " + group.getGroupName();
     }
 
@@ -334,7 +334,7 @@ public class ModelManager implements Model {
     @Override
     public void addHouse(House house) {
         versionedAddressBook.addHouse(house);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredParticipantList(PREDICATE_SHOW_ALL_PARTICIPANTS);
         undoableCommand = "Add House " + house.getHouseName();
     }
 
@@ -364,30 +364,32 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Ensures {@code selectedPerson} is a valid participant in {@code filteredParticipants}.
+     * Ensures {@code selectedParticipant} is a valid participant in {@code filteredParticipants}.
      */
-    private void ensureSelectedPersonIsValid(ListChangeListener.Change<? extends Participant> change) {
+    private void ensureSelectedParticipantIsValid(ListChangeListener.Change<? extends Participant> change) {
         while (change.next()) {
-            if (selectedPerson.getValue() == null) {
+            if (selectedParticipant.getValue() == null) {
                 // null is always a valid selected participant, so we do not need to check that it is valid anymore.
                 return;
             }
 
-            boolean wasSelectedPersonReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedPerson.getValue());
-            if (wasSelectedPersonReplaced) {
-                // Update selectedPerson to its new value.
-                int index = change.getRemoved().indexOf(selectedPerson.getValue());
-                selectedPerson.setValue(change.getAddedSubList().get(index));
+            boolean wasSelectedParticipantReplaced = change.wasReplaced()
+                    && change.getAddedSize() == change.getRemovedSize()
+                    && change.getRemoved().contains(selectedParticipant.getValue());
+            if (wasSelectedParticipantReplaced) {
+                // Update selectedParticipant to its new value.
+                int index = change.getRemoved().indexOf(selectedParticipant.getValue());
+                selectedParticipant.setValue(change.getAddedSubList().get(index));
                 continue;
             }
 
-            boolean wasSelectedPersonRemoved = change.getRemoved().stream()
-                    .anyMatch(removedPerson -> selectedPerson.getValue().isSamePerson(removedPerson));
-            if (wasSelectedPersonRemoved) {
+            boolean wasSelectedParticipantRemoved = change.getRemoved().stream()
+                    .anyMatch(removedParticipant -> selectedParticipant
+                    .getValue().isSameParticipant(removedParticipant));
+            if (wasSelectedParticipantRemoved) {
                 // Select the participant that came before it in the list,
                 // or clear the selection if there is no such participant.
-                selectedPerson.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
+                selectedParticipant.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
             }
         }
     }
@@ -467,7 +469,7 @@ public class ModelManager implements Model {
         return versionedAddressBook.equals(other.versionedAddressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredParticipants.equals(other.filteredParticipants)
-                && Objects.equals(selectedPerson.get(), other.selectedPerson.get());
+                && Objects.equals(selectedParticipant.get(), other.selectedParticipant.get());
     }
 
 }

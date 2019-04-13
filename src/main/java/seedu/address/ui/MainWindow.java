@@ -126,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         //Browser Remove
-        //browserPanel = new BrowserPanel(logic.selectedPersonProperty());
+        //browserPanel = new BrowserPanel(logic.selectedParticipantProperty());
         //browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.selectedPersonProperty(),

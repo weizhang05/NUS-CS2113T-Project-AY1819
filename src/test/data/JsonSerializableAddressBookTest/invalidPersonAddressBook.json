@@ -1,7 +1,7 @@
 {
   "houses": [ ],
   "groups": [ ],
-  "persons": [ {
+  "participants": [ {
     "name": "Hans Muster",
     "sex": "F",
     "birthday": "01023456",

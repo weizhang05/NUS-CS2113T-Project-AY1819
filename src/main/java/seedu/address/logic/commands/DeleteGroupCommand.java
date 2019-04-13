@@ -42,7 +42,7 @@ public class DeleteGroupCommand extends Command {
         requireNonNull(model);
 
         ObservableList<Group> groupList = model.getFilteredGroupList();
-        ObservableList<Participant> participantList = model.getFilteredPersonList();
+        ObservableList<Participant> participantList = model.getFilteredParticipantList();
 
         Group toDelete = new Group (groupName);
 

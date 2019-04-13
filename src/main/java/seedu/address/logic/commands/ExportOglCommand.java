@@ -28,8 +28,8 @@ public class ExportOglCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         FindingOglPredicate predicate = preparePredicate();
-        model.updateFilteredPersonList(predicate);
-        List<Participant> participantList = model.getFilteredPersonList();
+        model.updateFilteredParticipantList(predicate);
+        List<Participant> participantList = model.getFilteredParticipantList();
         String message;
         if (exportData(participantList)) {
             message = String.format(Messages.MESSAGE_EXCEL_FILE_WRITTEN_SUCCESSFULLY);

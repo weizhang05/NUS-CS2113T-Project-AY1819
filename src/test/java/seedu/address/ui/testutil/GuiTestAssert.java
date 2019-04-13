@@ -7,7 +7,9 @@ import java.util.stream.Collectors;
 
 import guitests.guihandles.PersonCardHandle;
 import guitests.guihandles.PersonListPanelHandle;
+import guitests.guihandles.RedoCardHandle;
 import guitests.guihandles.TextResultDisplayHandle;
+import guitests.guihandles.UndoCardHandle;
 import seedu.address.model.participant.Participant;
 
 /**
@@ -38,6 +40,20 @@ public class GuiTestAssert {
         assertEquals("Major: " + expectedParticipant.getMajor().getFullMajor(), actualCard.getMajor());
         assertEquals(expectedParticipant.getTags().stream().map(tag -> tag.tagName).collect(Collectors.toList()),
                 actualCard.getTags());
+    }
+
+    /**
+     * Assert that {@code actualCard} displays the {@undoCard}
+     */
+    public static void assertUndoCardDisplay(String commandText, UndoCardHandle undoCard) {
+        assertEquals(commandText, undoCard.getCommand());
+    }
+
+    /**
+     * Assert that {@code actualCard} displays the {@redoCard}
+     */
+    public static void assertRedoCardDisplay(String commandText, RedoCardHandle redoCard) {
+        assertEquals(commandText, redoCard.getCommand());
     }
 
     /**
