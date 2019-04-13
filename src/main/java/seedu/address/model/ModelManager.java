@@ -373,7 +373,8 @@ public class ModelManager implements Model {
                 return;
             }
 
-            boolean wasSelectedParticipantReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
+            boolean wasSelectedParticipantReplaced = change.wasReplaced()
+                    && change.getAddedSize() == change.getRemovedSize()
                     && change.getRemoved().contains(selectedParticipant.getValue());
             if (wasSelectedParticipantReplaced) {
                 // Update selectedParticipant to its new value.
@@ -383,7 +384,8 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedParticipantRemoved = change.getRemoved().stream()
-                    .anyMatch(removedParticipant -> selectedParticipant.getValue().isSameParticipant(removedParticipant));
+                    .anyMatch(removedParticipant -> selectedParticipant
+                    .getValue().isSameParticipant(removedParticipant));
             if (wasSelectedParticipantRemoved) {
                 // Select the participant that came before it in the list,
                 // or clear the selection if there is no such participant.
