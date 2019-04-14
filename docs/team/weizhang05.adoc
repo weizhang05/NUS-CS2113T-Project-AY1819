@@ -38,15 +38,15 @@ This segment showcase my contribution to both the development of the application
 [options="header"]
 |=======================
 |					                    |Description      																			|Justification 																						|Highlights
-|Randomize Command	                    |Allows the Project Director to automatically assign all participants to created groups.	|The command prevents the Project Director from assigning the participants to the group manually.	|
-|Redesign current Model and Storage		|Changing the current format of Model and Storage.                                       	|Supports the storing of house and groups on top of the current participants. 						|
+|Randomize Command	                    |Allows the Project Director to automatically assign all participants to created groups.	|The command prevents the Project Director from assigning the participants to the group manually.	|The challenge here is to come out with a suitable algorithm which ensure even distribution with sufficient OGLs for all groups.
+|Redesign current Model and Storage		|Changing the current format of Model and Storage.                                       	|Supports the storing of house and groups on top of the current participants. 						|The challenge here is figuring out how is the whole application designed as this modification requires knowing the code base very well.
 |=======================
 
 * *Minor enhancement*:
 [options="header"]
 |=======================
 | 													|Description 																						|Justification 												|Highlights
-|Input box is clear after every command execution 	|Simulate a Terminal/CMD interface which refreshes the command after every entering of commands.    |Improves the user friendliness of using the command line.  |
+|Input box is clear after every command execution 	|Simulate a Terminal/CMD interface which refreshes the command after every entering of commands.    |Improves the user friendliness of using the command line.  |The challenge here is to figure out the code for the UI portion and ensuring which part of it is to be placed. This include ensuring the fix works as well.
 |=======================
 
 * *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
