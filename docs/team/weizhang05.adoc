@@ -19,10 +19,11 @@ Aside from this project, I'm also a *Software Engineer* where my main interests 
 
 The purpose of this document is to showcase the contribution of my work towards this project as part of the context of learning in this module. +
  +
-The outline of this document will be listed as follows, mainly describing the work I have done in both technical and non-technical aspect: +
-*Summary of Contributions*: Describes mainly the technical aspect of work I have contributing in the development of the project. It also includes any other possible contributions I have done that may not be technical. +
-*Contributions to User Guide*: Showcases my ability in writing a guide for user of the application that was developed for. +
-*Contributions to Developer Guide*: Showcases my ability in writing a guide for developers who may continue to work on the development and maintainance of the application in the future.
+The outline of this document will be listed as follows, mainly describing the work I have done in both technical and non-technical aspect:
+
+* *Summary of Contributions*: Describes mainly the technical aspect of work I have contributing in the development of the project. It also includes any other possible contributions I have done that may not be technical. +
+* *Contributions to User Guide*: Showcases my ability in writing a guide for user of the application that was developed for. +
+* *Contributions to Developer Guide*: Showcases my ability in writing a guide for developers who may continue to work on the development and maintainance of the application in the future.
 
 == PROJECT: FOP Manager
 
@@ -49,14 +50,20 @@ This segment showcase my contribution to both the development of the application
 |Input box is clear after every command execution 	|Simulate a Terminal/CMD interface which refreshes the command after every entering of commands.    |Improves the user friendliness of using the command line.  |The challenge here is to figure out the code for the UI portion and ensuring which part of it is to be placed. This include ensuring the fix works as well.
 |=======================
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+* *Code contributed*:
+*** Randomize Command
+** Implementation (Pull requests https://github.com/CS2113-AY1819S2-T08-4/main/pull/4[#4], https://github.com/CS2113-AY1819S2-T08-4/main/pull/37[#37], https://github.com/CS2113-AY1819S2-T08-4/main/pull/94[#94])
+** Enhancement (Pull requests https://github.com/CS2113-AY1819S2-T08-4/main/pull/148[#148], https://github.com/CS2113-AY1819S2-T08-4/main/pull/156[#156])
+*** Redesign current Model and Storage (Pull requests https://github.com/CS2113-AY1819S2-T08-4/main/pull/2[#2], https://github.com/CS2113-AY1819S2-T08-4/main/pull/8[#8], https://github.com/CS2113-AY1819S2-T08-4/main/pull/12[#12], https://github.com/CS2113-AY1819S2-T08-4/main/pull/15[#15], https://github.com/CS2113-AY1819S2-T08-4/main/pull/43[#43], https://github.com/CS2113-AY1819S2-T08-4/main/pull/72[#72])
+*** Code cleaning and refactoring (Pull requests https://github.com/CS2113-AY1819S2-T08-4/main/pull/147[#147])
 
 * *Other contributions*:
 
 ** Project management:
 *** Reviewing of codes before officially merging and integrating
+*** Managed release for v1.3 and v1.4 on GitHub
 ** Documentation:
-*** Updating of both UG and DG
+*** Updating of both UG and DG (Pull requests https://github.com/CS2113-AY1819S2-T08-4/main/pull/3[3], https://github.com/CS2113-AY1819S2-T08-4/main/pull/41[41], https://github.com/CS2113-AY1819S2-T08-4/main/pull/104[104], https://github.com/CS2113-AY1819S2-T08-4/main/pull/105[105], https://github.com/CS2113-AY1819S2-T08-4/main/pull/110[110], https://github.com/CS2113-AY1819S2-T08-4/main/pull/159/files[159], https://github.com/CS2113-AY1819S2-T08-4/main/pull/167/files[167], https://github.com/CS2113-AY1819S2-T08-4/main/pull/169/files[169], )
 
 == Contributions to the User Guide
 
