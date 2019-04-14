@@ -77,8 +77,7 @@ public class AddOglCommand extends AddCommand {
         }
 
         Group updatedGroup = model.getGroup(toAdd.getGroup());
-        Participant toAddUpdated = new Participant(toAdd.getName(), toAdd.getSex(), toAdd.getBirthday(),
-                toAdd.getPhone(), toAdd.getEmail(), toAdd.getMajor(), updatedGroup, toAdd.getTags());
+        Participant toAddUpdated = getParticipantUpdatedGroup(toAdd, updatedGroup);
         model.addParticipant(toAddUpdated);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAddUpdated));
