@@ -240,6 +240,7 @@ Edits the phone number and group of the participant at index 1 to be `91234567` 
 Edits the name of the participant at index 2 to be `John Koe` and clears all existing tags.
 
 [[EditHouse]]
+// tag::editgrouphouse[]
 ==== Editing a house : `edit_h`
 
 Edits a house name. +
@@ -290,6 +291,8 @@ Example:
 
 * `edit_g red1 red2` +
 Edits the group named `RED1` to `RED2`. All participants in RED1 are now in RED2.
+
+//end::editgrouphouse[]
 
 === List Commands
 

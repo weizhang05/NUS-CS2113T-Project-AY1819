@@ -18,7 +18,7 @@ import seedu.address.model.participant.UniqueParticipantList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameParticipant comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -26,7 +26,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final ObservableMap<String, Integer> majorData = FXCollections.observableHashMap();
     private final ObservableMap<String, Integer> sexData = FXCollections.observableHashMap();
 
-    private final UniqueParticipantList persons;
+    private final UniqueParticipantList participants;
     private final UniqueGroupList groups;
     private final UniqueHouseList houses;
     private final InvalidationListenerManager invalidationListenerManager = new InvalidationListenerManager();
@@ -38,7 +38,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
     *   among constructors.
     */ {
-        persons = new UniqueParticipantList();
+        participants = new UniqueParticipantList();
         groups = new UniqueGroupList();
         houses = new UniqueHouseList();
     }
@@ -59,8 +59,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the participant list with {@code participants}.
      * {@code participants} must not contain duplicate participants.
      */
-    public void setPersons(List<Participant> participants) {
-        this.persons.setPersons(participants);
+    public void setParticipants(List<Participant> participants) {
+        this.participants.setParticipants(participants);
         indicateModified();
     }
 
@@ -92,7 +92,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setParticipants(newData.getParticipantList());
         setGroups(newData.getGroupList());
         setHouses(newData.getHouseList());
 
@@ -105,8 +105,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the participant list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the participant list with {@code participants}.
+     * {@code participants} must not contain duplicate participants.
      */
     public void setGroups(List<Group> groups) {
         this.groups.setGroups(groups);
@@ -114,8 +114,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the participant list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the participant list with {@code participants}.
+     * {@code participants} must not contain duplicate participants.
      */
     public void setHouses(List<House> houses) {
         this.houses.setHouses(houses);
@@ -127,17 +127,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a participant with the same identity as {@code participant} exists in the address book.
      */
-    public boolean hasPerson(Participant participant) {
+    public boolean hasParticipant(Participant participant) {
         requireNonNull(participant);
-        return persons.contains(participant);
+        return participants.contains(participant);
     }
 
     /**
      * Adds a participant to the address book.
      * The participant must not already exist in the address book.
      */
-    public void addPerson(Participant p) {
-        persons.add(p);
+    public void addParticipant(Participant p) {
+        participants.add(p);
         //addData(p);
         indicateModified();
     }
@@ -148,13 +148,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The participant identity of {@code editedParticipant}
      * must not be the same as another existing participant in the address book.
      */
-    public void setPerson(Participant target, Participant editedParticipant) {
+    public void setParticipant(Participant target, Participant editedParticipant) {
         requireNonNull(editedParticipant);
 
         //addData(editedParticipant);
         //deleteData(target);
 
-        persons.setPerson(target, editedParticipant);
+        participants.setParticipant(target, editedParticipant);
         indicateModified();
     }
 
@@ -162,8 +162,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Participant key) {
-        persons.remove(key);
+    public void removeParticipant(Participant key) {
+        participants.remove(key);
         //deleteData(key);
         indicateModified();
     }
@@ -275,7 +275,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public ObservableMap<String, Integer> getAgeData() {
         ageData.clear();
-        for (Participant p : persons) {
+        for (Participant p : participants) {
             String key = p.getBirthday().getAge();
             Integer value = (ageData.containsKey(key)) ? (ageData.get(key) + 1) : (1);
             ageData.put(key, value);
@@ -285,7 +285,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public ObservableMap<String, Integer> getMajorData() {
         majorData.clear();
-        for (Participant p : persons) {
+        for (Participant p : participants) {
             String key = p.getMajor().value;
             Integer value = (majorData.containsKey(key)) ? (majorData.get(key) + 1) : (1);
             majorData.put(key, value);
@@ -295,7 +295,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public ObservableMap<String, Integer> getSexData() {
         sexData.clear();
-        for (Participant p : persons) {
+        for (Participant p : participants) {
             String key = p.getSex().value;
             Integer value = (sexData.containsKey(key)) ? (sexData.get(key) + 1) : (1);
             sexData.put(key, value);
@@ -305,13 +305,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return participants.asUnmodifiableObservableList().size() + " participants";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Participant> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Participant> getParticipantList() {
+        return participants.asUnmodifiableObservableList();
     }
 
     @Override
@@ -328,11 +328,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && participants.equals(((AddressBook) other).participants));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return participants.hashCode();
     }
 }

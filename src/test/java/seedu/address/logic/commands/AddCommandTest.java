@@ -162,7 +162,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Participant participant) {
+        public void addParticipant(Participant participant) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -177,22 +177,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Participant participant) {
+        public boolean hasParticipant(Participant participant) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Participant target) {
+        public void deleteParticipant(Participant target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Participant target, Participant editedParticipant) {
+        public void setParticipant(Participant target, Participant editedParticipant) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Participant> getFilteredPersonList() {
+        public ObservableList<Participant> getFilteredParticipantList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -208,7 +208,7 @@ public class AddCommandTest {
 
 
         @Override
-        public void updateFilteredPersonList(Predicate<Participant> predicate) {
+        public void updateFilteredParticipantList(Predicate<Participant> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -238,17 +238,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyProperty<Participant> selectedPersonProperty() {
+        public ReadOnlyProperty<Participant> selectedParticipantProperty() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Participant getSelectedPerson() {
+        public Participant getSelectedParticipant() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setSelectedPerson(Participant participant) {
+        public void setSelectedParticipant(Participant participant) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -345,9 +345,9 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Participant participant) {
+        public boolean hasParticipant(Participant participant) {
             requireNonNull(participant);
-            return this.participant.isSamePerson(participant);
+            return this.participant.isSameParticipant(participant);
         }
     }
 
@@ -358,13 +358,13 @@ public class AddCommandTest {
         final ArrayList<Participant> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Participant participant) {
+        public boolean hasParticipant(Participant participant) {
             requireNonNull(participant);
-            return personsAdded.stream().anyMatch(participant::isSamePerson);
+            return personsAdded.stream().anyMatch(participant::isSameParticipant);
         }
 
         @Override
-        public void addPerson(Participant participant) {
+        public void addParticipant(Participant participant) {
             requireNonNull(participant);
             personsAdded.add(participant);
         }
