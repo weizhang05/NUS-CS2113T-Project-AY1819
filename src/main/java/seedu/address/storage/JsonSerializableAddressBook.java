@@ -23,8 +23,8 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE = "list contains duplicate";
     public static final String MESSAGE_DUPLICATE_PARTICIPANT = "Participant " + MESSAGE_DUPLICATE + "participant.";
-    public static final String MESSAGE_DUPLICATE_GROUP = "Group "+MESSAGE_DUPLICATE + "group.";
-    public static final String MESSAGE_DUPLICATE_HOUSE = "House "+MESSAGE_DUPLICATE + "house.";
+    public static final String MESSAGE_DUPLICATE_GROUP = "Group " + MESSAGE_DUPLICATE + "group.";
+    public static final String MESSAGE_DUPLICATE_HOUSE = "House " + MESSAGE_DUPLICATE + "house.";
 
     private final List<JsonAdaptedParticipant> participants = new ArrayList<>();
     private final List<JsonAdaptedGroup> groups = new ArrayList<>();
