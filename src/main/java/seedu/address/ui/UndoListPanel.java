@@ -26,7 +26,7 @@ public class UndoListPanel extends UiPart<Region> {
     }
 
     /**
-     * Update the undo list after a command is executed because I don't know how Observable List works
+     * Update the undo list after a command is executed
      */
     public void updateUndoList(ObservableList<String> undoList) {
         undoListView.setItems(undoList);
