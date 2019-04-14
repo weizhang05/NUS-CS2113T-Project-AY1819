@@ -560,7 +560,10 @@ Format: `randomize`
 
 ****
 [NOTE]
-Command will only work when there is at least 2 registered participants and 2 created groups.
+Command will only work under the following conditions:  
+- At least 2 groups created
+- Number of OGLs must be more than number of groups
+- At least 2 participants registered
 ****
 
 Examples:
