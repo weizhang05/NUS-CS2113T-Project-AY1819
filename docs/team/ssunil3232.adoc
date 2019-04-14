@@ -69,7 +69,7 @@ This section shows a summary of my coding, documentation and other contributions
 == Contributions to the User Guide
 
 |===
-|_We updated the given User Guide with instructions on how to use the features that we added to the morphed Address book. The following section will show the additions made to the FOP Manager User Guide for the features implemented by me._
+|_We updated the given User Guide with instructions on how to use the features that we added to the morphed Address book. The following section will show the additions made to the FOP Manager User Guide for the features implemented by me. I made additions to the Add Commands, List Commands, Export Commands and the Import Command sections. This section will elaborate only on the Import Command and the Export Commands section. The rest of the commands can be found in the User Guide._
 |===
 
 _Throughout this section, the following icons are used, as shown below:_
@@ -77,62 +77,6 @@ _Throughout this section, the following icons are used, as shown below:_
 TIP: This is a tip. Following these suggestions will make using FOP Manager much simpler.
 
 WARNING: This is a warning and they need to be heeded for FOP Manager to work smoothly.
-
-=== *Add Commands*
-
-==== *Adding a freshman* : `add_f`
-
-Adds a freshman to the Freshman list +
-Format: `add_f n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...`
-
-****
-* Parameters can be accepted in any order.
-* A freshman can have any number of tags (including 0).
-
-[TIP]
-`GROUP` can be left blank i.e. `g/`
-
-[WARNING]
-If not blank, the `GROUP` must exist before a freshman can be added to it
-****
-
-Examples:
-
-* `add_f n/John Doe s/M b/27071999 p/98765432 e/johnd@example.com m/Information Systems g/`
-* `add_f n/Jane Doe s/F e/betsycrowe@example.com m/CS g/ p/1234567 t/vegetarian`
-
-==== *Adding an OGL* : `add_o`
-
-Adds an OGL to the OGL list +
-Format: `add_o n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...`
-
-****
-* Parameters can be accepted in any order.
-* An OGL can have any number of tags (including 0).
-
-[TIP]
-`GROUP` can be left blank i.e. `g/`
-
-[WARNING]
-If not blank, the `GROUP` must exist before an OGL can be added to it
-****
-
-Example:
-
-* `add_o n/James Boe s/M b/27071999 p/13579753 e/jamesd@example.com m/CEG g/`
-* `add_o n/Jane Doe s/F e/betsycrowe@example.com m/CS g/ p/1234567 t/vegetarian`
-
-=== *List Commands*
-
-==== *Listing all freshmen* : `list_f`
-
-Shows a list of all the freshmen in the freshmen list. +
-Format: `list_f`
-
-==== *Listing all OGLs* : `list_o`
-
-Shows a list of all the OGLs in the OGL list. +
-Format: `list_o`
 
 === *Export Command*
 ==== *Exporting the whole contact list* : `export`
@@ -250,17 +194,5 @@ This section elaborates on the possible ways for implementation that were consid
 |=======================
 
 We decided to go ahead with *Alternative 1* as it was easier to implement. It would not require creation of switch cases for the UI to display the respective lists and would not require unnecessarily long codes to filter out freshmen and OGLs from the participant list. The pros of doing *Alternative 1* outweighs the pros of doing *Alternative 2* hence the decision to implement the latter.
-
-=== Export feature
-
-The Export feature will allow the FOP Manager user to export the data into an excel file and distribute to other relevant people involved in the FOP. This way, data can be distributed and raw data untouched except by the Project Director or other camp organisers who are given the access to the raw data.
-
-The example usage, Sequence Diagram, Current Implementation and Design Considerations of the command can be found in the **Developer Guide's Export Feature** section under _Implementation_.
-
-=== Import Feature
-
-Sometimes FOP Project Directors realise they need to add many participants' contacts that they gathered and usually they gather the contacts through sign up links that allow for exportation into Excel spreadsheets. Manually added the large influx of participants is troublesome. Hence, with the Import feature, FOP Project Directors can import the data of Non-duplicate people from an excel file into the FOP Manager. This makes adding of contacts easier.
-
-The example usage, Sequence Diagram, Current Implementation and Design Considerations of the command can be found in the **Developer Guide's Import Feature** section under _Implementation_.
 
 Link to view the Developer Guide: [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/docs/DeveloperGuide.adoc[Developer Guide]]
