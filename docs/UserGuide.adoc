@@ -43,7 +43,7 @@ This section serves as a tutorial for a new user to FOP Manager.
 === Installation
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `FOPManager.jar` link:{repoURL}/releases[here].
+.  Download the latest `fop_manager.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for FOP Manager.
 .  Double-click the file to start the app. The GUI should appear in a few seconds and will look like this:
 +
