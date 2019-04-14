@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
@@ -15,7 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-    private Path chartStoragePath = Paths.get("chart");
+    private Path chartStoragePath = Paths.get("charts");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -49,6 +50,12 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     public Path getChartStoragePath() {
+        File theDir = new File(chartStoragePath.toString());
+
+        // if the directory does not exist, create it
+        if (!theDir.exists()) {
+            theDir.mkdir();
+        }
         return chartStoragePath;
     }
 
