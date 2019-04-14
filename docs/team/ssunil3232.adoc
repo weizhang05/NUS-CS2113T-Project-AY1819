@@ -262,5 +262,4 @@ This section elaborates on the possible ways for implementation that were consid
 
 We decided to go ahead with *Alternative 1* as it was easier to implement. It would not require creation of switch cases for the UI to display the respective lists and would not require unnecessarily long codes to filter out freshmen and OGLs from the participant list. The pros of doing *Alternative 1* outweighs the pros of doing *Alternative 2* hence the decision to implement the latter.
 
-
 Link to view the Developer Guide: [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/docs/DeveloperGuide.adoc[Developer Guide]]
