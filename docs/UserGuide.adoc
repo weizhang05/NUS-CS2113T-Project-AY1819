@@ -602,7 +602,7 @@ Examples:
 
 * `add_o n/John s/M b/27071995 p/98765432 e/johnd@example.com m/Information System g/` +
 
-* `add_o n/Doe s/M b/27071999 p/98765432 e/johnd@example.com m/cs g/G1` +
+* `add_o n/Doe s/M b/27071999 p/98765432 e/johnd@example.com m/cs g/` +
 Add some sample data to the application
 
 * `stat` +
