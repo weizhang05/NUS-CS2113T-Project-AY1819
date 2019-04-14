@@ -50,7 +50,10 @@ This segment showcase my contribution to both the development of the application
 |Input box is clear after every command execution 	|Simulate a Terminal/CMD interface which refreshes the command after every entering of commands.    |Improves the user friendliness of using the command line.  |The challenge here is to figure out the code for the UI portion and ensuring which part of it is to be placed. This include ensuring the fix works as well.
 |=======================
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+* *Code contributed*:
+*** Randomize Command
+** Implementation (Pull requests https://github.com/CS2113-AY1819S2-T08-4/main/pull/4[#4], https://github.com/CS2113-AY1819S2-T08-4/main/pull/37[#37], https://github.com/CS2113-AY1819S2-T08-4/main/pull/94[#94])
+** Enhancement (Pull requests https://github.com/CS2113-AY1819S2-T08-4/main/pull/148[#148], https://github.com/CS2113-AY1819S2-T08-4/main/pull/156[#156])
 
 * *Other contributions*:
 
