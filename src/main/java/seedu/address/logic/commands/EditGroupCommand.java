@@ -53,8 +53,7 @@ public class EditGroupCommand extends Command {
             throw new CommandException(MESSAGE_REPEAT_GROUP);
         }
 
-        ReadOnlyAddressBook existingAddressBook = model.getAddressBook();
-        ObservableList<Group> groupList = existingAddressBook.getGroupList();
+        ObservableList<Group> groupList = model.getAddressBook().getGroupList();
 
         Group oldGroup = new Group(oldGroupName);
         Group newGroup = new Group(newGroupName);
@@ -82,7 +81,7 @@ public class EditGroupCommand extends Command {
         }
 
         //updates persons with old group to new group
-        List<Participant> participantList = existingAddressBook.getParticipantList();
+        List<Participant> participantList = model.getAddressBook().getParticipantList();
         for (Participant participant : participantList) {
             if (participant.getGroup().equals(oldGroup)) {
                 Participant editedParticipant = getParticipantUpdatedGroup(participant, newGroup);
