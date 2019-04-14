@@ -314,14 +314,14 @@ Participant contact details can be viewed in different manners:
 * `list_o`: Lists all OGLs
 * `list_f`: Lists all Freshmen
 
-All participants are stored in the same contact list as a `UniqueParticipantList` in an AddressBook object. Participants created as OGLs or Freshmen differ only in the tags added to them. The different listing of the participants is very useful for Project Directors as it helps them to view the Freshmen and the OGL contacts separately, to specifically see who are in the respective lists and how many participants are there in each of the lists.
+All participants are stored in the same participant list as a `UniqueParticipantList` in an AddressBook object. Participants created as OGLs or Freshmen differ only in the tags added to them. The different listing of the participants is very useful for Project Directors as it helps them to view the Freshmen and the OGL participants separately, to specifically see who are in the respective lists and how many participants are there in each of the lists.
 
 The following is an Activity Diagram to summarize what happens when either the `list_f` or `list_o` commands are entered.
 
 image::ListFreshmenCommandActivityDiagram.png[width="800"]
 _Activity Diagram for listing Freshmen command_
 
-The list commands, `list_o` and `list_f`, use the keywords/predicates "OGL" and "Freshman", respectively, to search through the tags of all participants in the contact list. All participants with matching tags of "Freshman" or "OGL" will be added into the filtered participant list, enabling the user to view all freshmen or OGLs in the contact list.
+The list commands, `list_o` and `list_f`, use the keywords/predicates "OGL" and "Freshman", respectively, to search through the tags of all participants in the participant list. All participants with matching tags of "Freshman" or "OGL" will be added into the filtered participant list, enabling the user to view all freshmen or OGLs in the participant list.
 
 The following Sequence diagram below will explain how the `list_f` command works in detail.
 
@@ -334,11 +334,11 @@ An example usage of the `list_f` command is as follows:
 
 *Step 2:* The user enters the `list_f` command . The `list_f` command calls the `FindingParticipantPredicate` class and searches all tags of each participant for "Freshman".
 
-*Step 3:* The `updateFilteredParticipantList()` takes in this predicate and the `getFilteredParticipantList()` is called to give the list of Freshmen in the contact list
+*Step 3:* The `updateFilteredParticipantList()` takes in this predicate and the `getFilteredParticipantList()` is called to give the list of Freshmen in the participant list
 
 The implementation is similar for the `list_o` command with the use of `FindingOglPredicate` instead where the searched tag is "OGL".
 
-==== Design Considerations
+= ==== Design Considerations
 
 ===== Aspect: Separate management of freshmen and OGLs
 
@@ -1215,7 +1215,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |view the Groups I have added |see the groups I have added, and which groups belong to which houses
 
-|`* * *` |user |see the size of my contact list |see the number of participants in the camp
+|`* * *` |user |see the size of my participant list |see the number of participants in the camp
 
 |`* * *` |user |see the number of Freshmen in the camp |see the number of sign-ups the camp has so far
 
@@ -1343,43 +1343,67 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
+=== Adding an OGL
+
+. Adding an OGL to the participant list
+
+.. Prerequisites: List all participants using the `list` command, no groups added yet.
+.. Test case: `add_o n/[NAME] s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/ [t/TAG]…` +
+   Expected: Participant is added to the participant list with tag `OGL`. Details of added contact shown in the result box.
+.. Test case: `add_o n/[NAME] s/SEX b/BIRTHDAY p/PHONE e/EMAIL g/` (or missing any field) +
+   Expected: No participant is added. Error details shown in the result box.
+.. Test case: `add_o n/[NAME] s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/1` +
+   Expected: No participant is added. Error details shown in the result box.
+
+=== Adding a freshman
+
+. Adding a freshman to the participant list
+
+.. Prerequisites: The participant's name must not match any existing participant. +
+   : Only group `R1` has been added.
+.. Test case: `add_f n/Janet Tan s/F b/19041998 e/janet@example.com m/CS g/` +
+    Expected: Freshman named Janet Tan is added to the bottom of the participant list.
+.. Test case: `add_f n/James Tan s/M b/20041998 e/james@example.com m/IS g/r1` +
+    Expected: Freshman named James Tan is added to the bottom of the participant list.
+.. Test case: `add_f n/Joel Tan s/M b/01121998 e/joel@example.com m/IS g/b1` +
+    Expected: No participant is added due to the nonexistent group `B1`. Error details shown in the result box.
+
 === Deleting a participant
 
 . Deleting a participant while all participants are listed
 
 .. Prerequisites: List all participants using the `list` command. Multiple participants in the list.
 .. Test case: `delete 1` +
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+  Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `delete 0` +
-   Expected: No participant is deleted. Error details shown in the status message. Status bar remains the same.
+  Expected: No participant is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) +
-   Expected: Similar to previous.
+  Expected: Similar to previous.
 
-=== Adding an OGL
+=== Adding a House
 
-. Adding an OGL to contact list
+. Adding a house to the address book
 
-.. Prerequisites: List all participants using the `list` command, no groups added yet.
-.. Test case: `add_o n/[NAME] s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/ [t/TAG]…` +
-   Expected: Participant is added to the contact list with tag `OGL`. Details of added contact shown in the status message.
-.. Test case: `add_o n/[NAME] s/SEX b/BIRTHDAY p/PHONE e/EMAIL g/` (or missing any field) +
-   Expected: No participant is added. Error details shown in the status message.
-.. Test case: `add_o n/[NAME] s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/1` +
-   Expected: No participant is added. Error details shown in the status message.
+.. Test case: `add_h Green` +
+    Expected: House named `Green` is added.
+.. Test case: +
+    `add_h Red` +
+    `add_h Red` +
+    Expected: House named `Red` is added on first command. No house is added on the second. An error message showing that the house `Red` already exists is shown in the result box.
 
 === Adding a Group
 
-. Adding a Group to the address book
+. Adding a group to the address book
 
 .. Prerequisites: House named Green has been added.
 .. Test case: `add_g g1 green` +
-   Expected: Group named `G1` is added to the House named Green.
+   Expected: Group named `G1` is added to the house named Green.
 .. Test case: `add_g g2 gReEn` +
-   Expected: Group named `G2` is added to the House named Green.
+   Expected: Group named `G2` is added to the house named Green.
 .. Test case: +
    `add_g g1 Green` +
    `add_g g1 Green` +
-   Expected: Group named `G1` is added on first command. No group is added on the second. Error details shown in the status message.
+   Expected: Group named `G1` is added on first command. No group is added on the second. An error message showing that group `G1` already exists is shown in the result box.
 
 // tag::Tan_test[]
 === Show participant statistic
@@ -1392,7 +1416,7 @@ These instructions only provide a starting point for testers to work on; testers
 .. Test case: +
    `clear` +
    `stat` +
-   Expected: Error details shown in the status message
+   Expected: Error details shown in the result box.
 
 === Save pie charts to image files
 
@@ -1406,5 +1430,5 @@ These instructions only provide a starting point for testers to work on; testers
 .. Test case: +
    `clear` +
    `stat` +
-   Expected: Error details shown in the status message
+   Expected: Error details shown in the result box.
 // end::Tan_test[]
