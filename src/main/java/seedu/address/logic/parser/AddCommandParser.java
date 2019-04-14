@@ -21,7 +21,7 @@ import seedu.address.model.participant.Birthday;
 import seedu.address.model.participant.Email;
 import seedu.address.model.participant.Major;
 import seedu.address.model.participant.Name;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 import seedu.address.model.participant.Phone;
 import seedu.address.model.participant.Sex;
 import seedu.address.model.tag.Tag;
@@ -55,9 +55,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, sex, birthday, phone, email, major, group, tagList);
+        Participant participant = new Participant(name, sex, birthday, phone, email, major, group, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(participant);
     }
 
     /**

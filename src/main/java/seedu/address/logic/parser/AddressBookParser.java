@@ -7,10 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddFreshmanCommand;
 import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.commands.AddHouseCommand;
 import seedu.address.logic.commands.AddOglCommand;
-import seedu.address.logic.commands.AddParticipantCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -83,8 +83,8 @@ public class AddressBookParser {
         case AddOglCommand.COMMAND_WORD:
             return new AddOglCommandParser().parse(arguments);
 
-        case AddParticipantCommand.COMMAND_WORD:
-            return new AddParticipantCommandParser().parse(arguments);
+        case AddFreshmanCommand.COMMAND_WORD:
+            return new AddFreshmanCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
@@ -100,7 +100,6 @@ public class AddressBookParser {
 
         case ExportFreshmenCommand.COMMAND_WORD:
             return new ExportFreshmenCommand();
-
 
         case ExportOglCommand.COMMAND_WORD:
             return new ExportOglCommand();

@@ -1,7 +1,7 @@
 package seedu.address.model.grouping;
 
 /**
- * Represents a person's camp grouping
+ * Represents a participant's camp grouping
  * Can only be created within a house that has already been created.
  */
 public class Group {

@@ -54,7 +54,7 @@
             </padding>
           </StackPane>
 -->
-          <VBox fx:id="personList" minWidth="800" prefWidth="800" SplitPane.resizableWithParent="false">
+          <VBox fx:id="participantList" minWidth="800" prefWidth="800" SplitPane.resizableWithParent="false">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>

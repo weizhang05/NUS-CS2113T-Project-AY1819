@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.ListParticipantCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.FindingParticipantPredicate;
+import seedu.address.model.participant.FindingParticipantPredicate;
 
 
 /**

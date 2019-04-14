@@ -9,14 +9,14 @@ import javafx.collections.ObservableMap;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Participant> PREDICATE_SHOW_ALL_PARTICIPANTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -62,22 +62,22 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if there are no person in the address book.
+     * Returns true if there are no participant in the address book.
      */
     boolean isEmpty();
 
     /**
-     * Returns the number of persons by age
+     * Returns the number of participants by age
      */
     ObservableMap<String, Integer> getAgeData();
 
     /**
-     * Returns the number of persons by sex
+     * Returns the number of participants by sex
      */
     ObservableMap<String, Integer> getSexData();
 
     /**
-     * Returns the number of persons by major
+     * Returns the number of participants by major
      */
     ObservableMap<String, Integer> getMajorData();
 
@@ -92,37 +92,38 @@ public interface Model {
     void setFileName(String fileName);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a participant with the same identity as {@code participant} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasParticipant(Participant participant);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given participant.
+     * The participant must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteParticipant(Participant target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given participant.
+     * {@code participant} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addParticipant(Participant participant);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given participant {@code target} with {@code editedParticipant}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The participant identity of {@code editedParticipant}
+     * must not be the same as another existing participant in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setParticipant(Participant target, Participant editedParticipant);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered participant list */
+    ObservableList<Participant> getFilteredParticipantList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered participant list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredParticipantList(Predicate<Participant> predicate);
 
     // ================ Undo/Redo functions ======================
     /** Returns an unmodifiable view of the undo list */
@@ -157,21 +158,21 @@ public interface Model {
     void commitAddressBook();
 
     /**
-     * Selected person in the filtered person list.
-     * null if no person is selected.
+     * Selected participant in the filtered participant list.
+     * null if no participant is selected.
      */
-    ReadOnlyProperty<Person> selectedPersonProperty();
+    ReadOnlyProperty<Participant> selectedParticipantProperty();
 
     /**
-     * Returns the selected person in the filtered person list.
-     * null if no person is selected.
+     * Returns the selected participant in the filtered participant list.
+     * null if no participant is selected.
      */
-    Person getSelectedPerson();
+    Participant getSelectedParticipant();
 
     /**
-     * Sets the selected person in the filtered person list.
+     * Sets the selected participant in the filtered participant list.
      */
-    void setSelectedPerson(Person person);
+    void setSelectedParticipant(Participant participant);
 
     // ================ Group ======================
     /**

@@ -154,7 +154,7 @@ Format: `add n/NAME s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/GROUP [t/TAG]...`
 
 ****
 * Parameters can be accepted in any order.
-* An entered person can have any number of tags (including 0).
+* An entered participant can have any number of tags (including 0).
 
 [TIP]
 Leave `GROUP` blank i.e. `g/` since there is no group allocation for this participant!
@@ -240,6 +240,7 @@ Edits the phone number and group of the participant at index 1 to be `91234567` 
 Edits the name of the participant at index 2 to be `John Koe` and clears all existing tags.
 
 [[EditHouse]]
+// tag::editgrouphouse[]
 ==== Editing a house : `edit_h`
 
 Edits a house name. +
@@ -290,6 +291,8 @@ Example:
 
 * `edit_g red1 red2` +
 Edits the group named `RED1` to `RED2`. All participants in RED1 are now in RED2.
+
+//end::editgrouphouse[]
 
 === List Commands
 
@@ -566,12 +569,65 @@ Output: Unable to distribute participants (min 2 groups and 2 participants)
 
 // end::randomize[]
 
-[[Export]]
-=== Exporting contact list : `export`
+=== Export Commands
+
+[[ExportALL]]
+==== Exporting the whole contact list : `export`
 
 Exports all entries from your contact list to Excel Spreadsheet. +
-Excel Spreadsheet will be saved in the current User Directory. +
 Format: `export`
+
+* Excel Spreadsheet name is *FOP_MANAGER_LIST.xls*.
+* Excel Spreadsheet will be saved in the current User Directory.
+
+Entering the `export` commands will result in an Excel Spreadsheet in the current User Directory. As shown below.
+
+image::ExportImage.png[width="800"]
+
+The Excel Spreadsheet will look like this:
+
+image::ExportResult.png[width="800"]
+
+
+There are other export commands to produce a spreadsheet for Freshmen and OGL lists as shown in the next two sections. +
+The name of the file will change accordingly, however, the location is the same.
+
+[[ExportF]]
+==== Exporting only the Freshmen in the contact list : `export_f`
+
+Exports all the Freshmen entries from your contact list to Excel Spreadsheet. +
+Format: `export_f`
+
+* Excel Spreadsheet name is *FOP_MANAGER_FRESHMEN_LIST.xls*. +
+* Excel Spreadsheet will be saved in the current User Directory. +
+
+[[ExportO]]
+==== Exporting only the OGLs in the contact list : `export_o`
+
+Exports all the OGL entries from your contact list to Excel Spreadsheet. +
+Format: `export_o`
+
+* Excel Spreadsheet name is *FOP_MANAGER_OGL_LIST.xls*. +
+* Excel Spreadsheet will be saved in the current User Directory. +
+
+[[Import]]
+=== Importing contact list : `import`
+
+Imports contact list from an Excel Spreadsheet into the FOP Manager. +
+Format: `import`
+
+****
+* The Excel Spreadsheet should have the headings in the order NAME, SEX, BIRTHDAY, PHONE, EMAIL, MAJOR, GROUP and then TAG.
+* Entries in the NAME, SEX, BIRTHDAY, PHONE, EMAIL and MAJOR columns have to be non-null.
+* Only the non-duplicate contacts are added.
+* If we want to edit the contacts found in the FOP Manager via excel, we should `clear` the FOP Manager and then `import`.
+
+[WARNING]
+
+Spreadsheet name has to be *FOP_MANAGER_LIST.xls* and it has to be located at the current User Directory. +
+The values entered under each respective columns, have to follow the format of the the `add` command.
+
+****
 
 [[Clear]]
 === Clearing all entries : `clear`
@@ -639,9 +695,11 @@ Below is a summary of all commands available in FOP Manager:
 |`undo` |Undoes previous command |`undo` |<<Undo,Undoing previous command>>
 |`redo` |Redoes previously undone command |`redo` |<<Redo, Redoing previously undone command>>
 |`randomize` |Randomizes group allocation |`randomize` |<<Randomize, Randomizing groupings>>
-|`export` |Exports contact list |`export` |<<Export, Exporting contact list>>
+|`export` |Exports contact list |`export` |<<ExportALL, Exporting whole contact list>>
+|`export_f` |Exports freshmen contact list |`export_f` |<<ExportF, Exporting freshmen contact list>>
+|`export_o` |Exports OGL contact list |`export_o` |<<ExportO, Exporting OGL contact list>>
+|`import` |Imports contacts |`import` |<<Import, Importing contact list from Excel Spreadsheet>>
 |`clear` |Clears contact list |`clear` |<<Clear, Clearing all entries>>
-|`export` |Exports contact list |`export` |<<Export, Exporting all entries>>
 |`exit` |Exits program |`exit` |<<Exit, Exiting the program>>
 |==========
 // end::commandsummary[]

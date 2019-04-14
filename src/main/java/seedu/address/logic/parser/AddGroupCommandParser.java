@@ -19,7 +19,7 @@ public class AddGroupCommandParser implements Parser<AddGroupCommand> {
 
     public AddGroupCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        String[] splitArg = args.trim().split(" ");
+        String[] splitArg = args.trim().split("\\s+");
 
         if (splitArg.length != 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupCommand.MESSAGE_USAGE));

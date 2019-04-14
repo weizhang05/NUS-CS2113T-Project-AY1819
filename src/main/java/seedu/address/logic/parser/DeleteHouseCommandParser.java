@@ -24,7 +24,7 @@ public class DeleteHouseCommandParser implements Parser<DeleteHouseCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteHouseCommand.MESSAGE_USAGE));
         }
 
-        String[] splitArg = args.trim().split(" ");
+        String[] splitArg = args.trim().split("\\s+");
 
         if (splitArg.length != 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteHouseCommand.MESSAGE_USAGE));

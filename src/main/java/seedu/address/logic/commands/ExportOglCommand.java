@@ -9,9 +9,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.WriteToExcel;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
-import seedu.address.model.participant.Person;
-
-import seedu.address.model.person.FindingOglPredicate;
+import seedu.address.model.ogl.FindingOglPredicate;
+import seedu.address.model.participant.Participant;
 
 /**
  * Export the data of the OGL FOP Manager into ExcelSheets.
@@ -29,10 +28,10 @@ public class ExportOglCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         FindingOglPredicate predicate = preparePredicate();
-        model.updateFilteredPersonList(predicate);
-        List<Person> personList = model.getFilteredPersonList();
+        model.updateFilteredParticipantList(predicate);
+        List<Participant> participantList = model.getFilteredParticipantList();
         String message;
-        if (exportData(personList)) {
+        if (exportData(participantList)) {
             message = String.format(Messages.MESSAGE_EXCEL_FILE_WRITTEN_SUCCESSFULLY);
         } else {
             message = Messages.MESSAGE_EXPORT_COMMAND_ERRORS;
@@ -43,9 +42,9 @@ public class ExportOglCommand extends Command {
     /**
      * Export the contacts into Excel File.
      */
-    private static Boolean exportData(List<Person> personList) {
-        if (personList.size() >= 0) {
-            WriteToExcel.writeExcelSheetOgl(personList);
+    private static Boolean exportData(List<Participant> participantList) {
+        if (participantList.size() >= 0) {
+            WriteToExcel.writeExcelSheetOgl(participantList);
             return true;
         } else {
             return false;

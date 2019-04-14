@@ -23,7 +23,6 @@ public class RedoListPanel extends UiPart<Region> {
         super(FXML);
         redoListView.setItems(redoList);
         redoListView.setCellFactory(listView -> new RedoListViewCell());
-        //redoListView.getSelectionModel().getSelectedItems().addListener(observable -> {updateRedoList(redoList);});
     }
 
     /** Update the redo list after it changes */

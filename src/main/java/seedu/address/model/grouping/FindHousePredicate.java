@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
  * Tests that a {@code Participant}'s {@code Group} house name matches the house name given.
  */
-public class FindHousePredicate implements Predicate<Person> {
+public class FindHousePredicate implements Predicate<Participant> {
 
     private final List<String> keywords;
 
@@ -18,12 +18,12 @@ public class FindHousePredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        if (person.getGroup().getGroupName().isEmpty()) {
+    public boolean test(Participant participant) {
+        if (participant.getGroup().getGroupName().isEmpty()) {
             return false;
         }
         return keywords.stream()
-                .allMatch(keyword-> StringUtil.containsWordIgnoreCase(person.getGroup().getHouseName(), keyword));
+                .allMatch(keyword-> StringUtil.containsWordIgnoreCase(participant.getGroup().getHouseName(), keyword));
     }
 
     @Override

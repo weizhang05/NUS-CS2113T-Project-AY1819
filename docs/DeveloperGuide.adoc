@@ -206,7 +206,7 @@ link:{repoURL}/src/main/java/seedu/major/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `AddressBookParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding a person).
+.  The command execution can affect the `Model` (e.g. adding a participant).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -290,8 +290,6 @@ Participant management refers to how users manipulate and view the data of camp 
 
 This section describes how the 3 types of participants are managed.
 
-==== Current Implementation
-
 In *FOP Manager*, participants can be added, edited, deleted and listed.
 
 Add
@@ -314,9 +312,9 @@ Participant contact details can be viewed in different manners:
 * `list_o`: Lists all OGLs
 * `list_f`: Lists all Freshmen
 
-All participants are stored in the same contact list as a `UniqueParticipantList` in an AddressBook object. Participants created as OGLs or Freshmen differ only in the tags added to them.
+All participants are stored in the same contact list as a `UniqueParticipantList` in an AddressBook object. Participants created as OGLs or Freshmen differ only in the tags added to them. The different listing of the participants is very useful for Project Directors as it helps them to view the Freshmen and the OGL contacts separately, to specifically see who are in the respective lists and how many participants are there in each of the lists.
 
-*[Explanation on the need to have separate listing commands. TO INSERT]*
+==== Current Implementation
 
 The following is an Activity Diagram to summarize what happens when either the `list_f` or `list_o` commands are entered.
 
@@ -334,7 +332,7 @@ An example usage of the `list_f` command is as follows:
 
 *Step 1:* The user launches the application. The `VersionedAddressBook` will be initialized with the initial address book state.
 
-*Step 2:* The user enters the `list_f` command . The `list_f` command calls the `FindingParticipantPredicate` class and searches all tags of each person for "Freshman".
+*Step 2:* The user enters the `list_f` command . The `list_f` command calls the `FindingParticipantPredicate` class and searches all tags of each participant for "Freshman".
 
 *Step 3:* The `updateFilteredPersonList()` takes in this predicate and the `getFilteredPersonList()` is called to give the list of Freshmen in the contact list
 
@@ -453,18 +451,18 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 image::UndoRedoStartingStateListDiagram.png[width="800"]
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th participant in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 image::UndoRedoNewCommand1StateListDiagram.png[width="800"]
 
-Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David ...` to add a new participant. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 image::UndoRedoNewCommand2StateListDiagram.png[width="800"]
 
 [NOTE]
 If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the participant was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 image::UndoRedoExecuteUndoStateListDiagram.png[width="800"]
 
@@ -500,7 +498,7 @@ image::UndoRedoActivityDiagram.png[width="800"]
 ** Pros: Easy to implement.
 ** Cons: May have performance issues in terms of memory usage.
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
-** Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+** Pros: Will use less memory (e.g. for `delete`, just save the participant being deleted).
 ** Cons: We must ensure that the implementation of each individual command are correct.
 
 ===== Aspect: Data structure to support the undo/redo commands
@@ -567,13 +565,19 @@ image::StatisticUpdateSequenceDiagram.png[width="800"]
 ** Cons: We must ensure that the data is updated after each command.
 * **Alternative 2**: Use a loop to loop through the `UniquePersonList` to get the data of everyone
 ** Pros: Easy to implement, guaranteed to get the correct data every time.
-** Cons: Takes longer time to get the result, especially if there are many person in the `UniquePersonList`.
+** Cons: Takes longer time to get the result, especially if there are many participant in the `UniquePersonList`.
 // end:: statistic[]
 
 // tag::export[]
 === Export Feature
 
 The Export feature will allow the FOP Manager user to export the data into an excel file and distribute to other relevant people involved in the FOP. This way, data can be distributed and raw data untouched except by the Project Director or other camp organisers who are given the access to the raw data.
+
+Participant contact details can be exported in different manners:
+
+* `export`: Exports all participants' contacts into an Excel Spreadsheet
+* `export_f`: Exports all freshmen contacts into an Excel Spreadsheet
+* `export_o`: Exports all OGL contacts into an Excel Spreadsheet
 
 The following is an Activity Diagram to summarize what happens when the `export` command is entered.
 
@@ -593,17 +597,55 @@ An example usage of the command is as follows:
 
 *Step 1:* The user launches the application. The `VersionedAddressBook` will be initialized with the initial address book state.
 
-*Step 2:* The user enters the `export` command . The `export` command updates the filtered list with the predicate to show all persons in the address book.
+*Step 2:* The user enters the `export` command . The `export` command updates the filtered list with the predicate to show all participants in the address book.
 
 *Step 3:* The filtered list is obtained in the command. The export command calls the `WriteToExcel` class's `WriteExcelSheet()`. This will set the directory, create the Excel Workbook and Sheet, the file name, the cells and rows with the titles for the FOP Manager.
 
-*Step 4:* `WriteExcelSheet()` calls `WriteDataIntoExcelSheet()` which writes the values from the filtered person list into the Excel Sheet.
+*Step 4:* `WriteExcelSheet()` calls `WriteDataIntoExcelSheet()` which writes the values from the filtered participant list into the Excel Sheet.
 
 *Step 5:* Returning to `WriteExcelSheet()`, the file is output to user's current directory as an .xls file.
 
 ==== Design Consideration
 Only one way was considered for the implementation of Export feature, which involved importing the third-party library.
 // end:: export[]
+
+// tag::import[]
+=== Import Feature
+
+Sometimes FOP Project Directors realise they need to add many participants' contacts that they gathered and usually they gather the contacts through sign up links that allow for exportation into Excel spreadsheets. Manually added the large influx of participants is troublesome. Hence, with the Import feature, FOP Project Directors can import the data of Non-duplicate people from an excel file into the FOP Manager. This makes adding of contacts easier.
+
+The following is an Activity Diagram to summarize what happens when the `import` command is entered.
+
+image::ImportCommandActivityDiagram.png[width="800"]
+_Activity Diagram for the importing command_
+
+==== Current Implementation
+* A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
+* The `import` command will call a function from a class `WriteToExcel` to start the reading from a HSSF Workbook found in the current directory path, with the file name "FOP_MANAGER_LIST.xls".
+* The cell value from the respective heading/columns are read into their respective string and `person` is created with these strings.
+* The `person` is added to a `List<Person>` and each `person` is added into the `Address Book`.
+
+The following Sequence diagram below will explain how the `import` command works in detail.
+
+image::ImportCommandSequenceDiagram.png[width="800"]
+_Sequence Diagram for importing command_
+
+An example usage of the command is as follows:
+
+*Step 1:* The user launches the application. The `VersionedAddressBook` will be initialized with the initial address book state.
+
+*Step 2:* The user enters the `import` command . The `import` command calls the `WriteToExcel` class's `ReadFromExcel()`. This will open the file of the default set name from the set directory.
+
+*Steo 3:* The Excel sheets is checked for the correct headings and then the cell's values are read to create each `person`. Each `person` is added to a `List<Person>` which will be returned to the Import command.
+
+*Step 4:* The `import` command adds each non-duplicate person into the FOP Manager.
+
+** One interesting usage of both `import` and `export` feature will be to retain and retrieve contacts. For instance, after exporting the data, we can clear. We can then import the contacts if needed.
+** Another interesting usage is for manual edit of the details of multiple contacts. We can clear the Address Book and then `import` command to import the data.
+
+==== Design Consideration
+Only one way was considered for the implementation of Import feature, which involved importing the third-party library.
+// end:: import[]
 
 // tag::autocompletion[]
 === [Proposed] Auto-Completion
@@ -849,7 +891,7 @@ Each individual exercise in this section is component-based (i.e. you would not 
 [TIP]
 Do take a look at <<Design-Logic>> before attempting to modify the `Logic` component.
 
-. Add a shorthand equivalent alias for each of the individual commands. For example, besides typing `clear`, the user can also type `c` to remove all persons in the list.
+. Add a shorthand equivalent alias for each of the individual commands. For example, besides typing `clear`, the user can also type `c` to remove all participants in the list.
 +
 ****
 * Hints
@@ -876,9 +918,9 @@ Do take a look at <<Design-Model>> before attempting to modify the `Model` compo
 * Hints
 ** The link:{repoURL}/src/main/java/seedu/major/model/Model.java[`Model`] and the link:{repoURL}/src/main/java/seedu/major/model/AddressBook.java[`AddressBook`] API need to be updated.
 ** Think about how you can use SLAP to design the method. Where should we place the main logic of deleting tags?
-**  Find out which of the existing API methods in  link:{repoURL}/src/main/java/seedu/major/model/AddressBook.java[`AddressBook`] and link:{repoURL}/src/main/java/seedu/major/model/person/Person.java[`Person`] classes can be used to implement the tag removal logic. link:{repoURL}/src/main/java/seedu/major/model/AddressBook.java[`AddressBook`] allows you to update a person, and link:{repoURL}/src/main/java/seedu/major/model/person/Person.java[`Person`] allows you to update the tags.
+**  Find out which of the existing API methods in  link:{repoURL}/src/main/java/seedu/major/model/AddressBook.java[`AddressBook`] and link:{repoURL}/src/main/java/seedu/major/model/participant/Person.java[`Person`] classes can be used to implement the tag removal logic. link:{repoURL}/src/main/java/seedu/major/model/AddressBook.java[`AddressBook`] allows you to update a participant, and link:{repoURL}/src/main/java/seedu/major/model/participant/Person.java[`Person`] allows you to update the tags.
 * Solution
-** Implement a `removeTag(Tag)` method in link:{repoURL}/src/main/java/seedu/major/model/AddressBook.java[`AddressBook`]. Loop through each person, and remove the `tag` from each person.
+** Implement a `removeTag(Tag)` method in link:{repoURL}/src/main/java/seedu/major/model/AddressBook.java[`AddressBook`]. Loop through each participant, and remove the `tag` from each participant.
 ** Add a new API method `deleteTag(Tag)` in link:{repoURL}/src/main/java/seedu/major/model/ModelManager.java[`ModelManager`]. Your link:{repoURL}/src/main/java/seedu/major/model/ModelManager.java[`ModelManager`] should call `AddressBook#removeTag(Tag)`.
 ** Add new tests for each of the new public methods that you have added.
 ** See this https://github.com/se-edu/addressbook-level4/pull/790[PR] for the full solution.
@@ -887,12 +929,12 @@ Do take a look at <<Design-Model>> before attempting to modify the `Model` compo
 [discrete]
 ==== `Ui` component
 
-*Scenario:* You are in charge of `ui`. During a beta testing session, your team is observing how the users use your address book application. You realize that one of the users occasionally tries to delete non-existent tags from a contact, because the tags all look the same visually, and the user got confused. Another user made a typing mistake in his command, but did not realize he had done so because the error message wasn't prominent enough. A third user keeps scrolling down the list, because he keeps forgetting the index of the last person in the list. Your job is to implement improvements to the UI to solve all these problems.
+*Scenario:* You are in charge of `ui`. During a beta testing session, your team is observing how the users use your address book application. You realize that one of the users occasionally tries to delete non-existent tags from a contact, because the tags all look the same visually, and the user got confused. Another user made a typing mistake in his command, but did not realize he had done so because the error message wasn't prominent enough. A third user keeps scrolling down the list, because he keeps forgetting the index of the last participant in the list. Your job is to implement improvements to the UI to solve all these problems.
 
 [TIP]
 Do take a look at <<Design-Ui>> before attempting to modify the `UI` component.
 
-. Use different colors for different tags inside person cards. For example, `friends` tags can be all in brown, and `colleagues` tags can be all in yellow.
+. Use different colors for different tags inside participant cards. For example, `friends` tags can be all in brown, and `colleagues` tags can be all in yellow.
 +
 **Before**
 +
@@ -952,10 +994,10 @@ image::getting-started-ui-status-after.png[width="500"]
 ** link:{repoURL}/src/main/resources/view/StatusBarFooter.fxml[`StatusBarFooter.fxml`] will need a new `StatusBar`. Be sure to set the `GridPane.columnIndex` properly for each `StatusBar` to avoid misalignment!
 ** link:{repoURL}/src/main/java/seedu/major/ui/StatusBarFooter.java[`StatusBarFooter`] needs to initialize the status bar on application start, and to update it accordingly whenever the address book is updated.
 * Solution
-** Modify the constructor of link:{repoURL}/src/main/java/seedu/major/ui/StatusBarFooter.java[`StatusBarFooter`] to take in the number of persons when the application just started.
-** Use link:{repoURL}/src/main/java/seedu/major/ui/StatusBarFooter.java[`StatusBarFooter#handleAddressBookChangedEvent(AddressBookChangedEvent)`] to update the number of persons whenever there are new changes to the addressbook.
+** Modify the constructor of link:{repoURL}/src/main/java/seedu/major/ui/StatusBarFooter.java[`StatusBarFooter`] to take in the number of participants when the application just started.
+** Use link:{repoURL}/src/main/java/seedu/major/ui/StatusBarFooter.java[`StatusBarFooter#handleAddressBookChangedEvent(AddressBookChangedEvent)`] to update the number of participants whenever there are new changes to the addressbook.
 ** For tests, modify link:{repoURL}/src/test/java/guitests/guihandles/StatusBarFooterHandle.java[`StatusBarFooterHandle`] by adding a state-saving functionality for the total number of people status, just like what we did for save location and sync status.
-** For system tests, modify link:{repoURL}/src/test/java/systemtests/AddressBookSystemTest.java[`AddressBookSystemTest`] to also verify the new total number of persons status bar.
+** For system tests, modify link:{repoURL}/src/test/java/systemtests/AddressBookSystemTest.java[`AddressBookSystemTest`] to also verify the new total number of participants status bar.
 ** See this https://github.com/se-edu/addressbook-level4/pull/803[PR] for the full solution.
 ****
 
@@ -985,15 +1027,15 @@ By creating this command, you will get a chance to learn how to implement a feat
 *Scenario:* You are a software maintainer for `addressbook`, as the former developer team has moved on to new projects. The current users of your application have a list of new feature requests that they hope the software will eventually have. The most popular request is to allow adding additional comments/notes about a particular contact, by providing a flexible `remark` field for each contact, rather than relying on tags alone. After designing the specification for the `remark` command, you are convinced that this feature is worth implementing. Your job is to implement the `remark` command.
 
 ==== Description
-Edits the remark for a person specified in the `INDEX`. +
+Edits the remark for a participant specified in the `INDEX`. +
 Format: `remark INDEX r/[REMARK]`
 
 Examples:
 
 * `remark 1 r/Likes to drink coffee.` +
-Edits the remark for the first person to `Likes to drink coffee.`
+Edits the remark for the first participant to `Likes to drink coffee.`
 * `remark 1 r/` +
-Removes the remark for the first person.
+Removes the remark for the first participant.
 
 ==== Step-by-step Instructions
 
@@ -1027,7 +1069,7 @@ for `RemarkCommandParser`.
 . Modify link:{repoURL}/src/test/java/seedu/major/logic/parser/AddressBookParserTest.java[`AddressBookParserTest`] to test that the correct command is generated according to the user input.
 
 ===== [Step 3] Ui: Add a placeholder for remark in `PersonCard`
-Let's add a placeholder on all our link:{repoURL}/src/main/java/seedu/major/ui/PersonCard.java[`PersonCard`] s to display a remark for each person later.
+Let's add a placeholder on all our link:{repoURL}/src/main/java/seedu/major/ui/PersonCard.java[`PersonCard`] s to display a remark for each participant later.
 
 **Main:**
 
@@ -1039,11 +1081,11 @@ Let's add a placeholder on all our link:{repoURL}/src/main/java/seedu/major/ui/P
 . Modify link:{repoURL}/src/test/java/guitests/guihandles/PersonCardHandle.java[`PersonCardHandle`] so that future tests can read the contents of the remark label.
 
 ===== [Step 4] Model: Add `Remark` class
-We have to properly encapsulate the remark in our link:{repoURL}/src/main/java/seedu/major/model/person/Person.java[`Person`] class. Instead of just using a `String`, let's follow the conventional class structure that the codebase already uses by adding a `Remark` class.
+We have to properly encapsulate the remark in our link:{repoURL}/src/main/java/seedu/major/model/participant/Person.java[`Person`] class. Instead of just using a `String`, let's follow the conventional class structure that the codebase already uses by adding a `Remark` class.
 
 **Main:**
 
-. Add `Remark` to model component (you can copy from link:{repoURL}/src/main/java/seedu/major/model/person/Address.java[`Address`], remove the regex and change the names accordingly).
+. Add `Remark` to model component (you can copy from link:{repoURL}/src/main/java/seedu/major/model/participant/Address.java[`Address`], remove the regex and change the names accordingly).
 . Modify `RemarkCommand` to now take in a `Remark` instead of a `String`.
 
 **Tests:**
@@ -1051,12 +1093,12 @@ We have to properly encapsulate the remark in our link:{repoURL}/src/main/java/s
 . Add test for `Remark`, to test the `Remark#equals()` method.
 
 ===== [Step 5] Model: Modify `Person` to support a `Remark` field
-Now we have the `Remark` class, we need to actually use it inside link:{repoURL}/src/main/java/seedu/major/model/person/Person.java[`Person`].
+Now we have the `Remark` class, we need to actually use it inside link:{repoURL}/src/main/java/seedu/major/model/participant/Person.java[`Person`].
 
 **Main:**
 
-. Add `getRemark()` in link:{repoURL}/src/main/java/seedu/major/model/person/Person.java[`Person`].
-. You may assume that the user will not be able to use the `add` and `edit` commands to modify the remarks field (i.e. the person will be created without a remark).
+. Add `getRemark()` in link:{repoURL}/src/main/java/seedu/major/model/participant/Person.java[`Person`].
+. You may assume that the user will not be able to use the `add` and `edit` commands to modify the remarks field (i.e. the participant will be created without a remark).
 . Modify link:{repoURL}/src/main/java/seedu/major/model/util/SampleDataUtil.java/[`SampleDataUtil`] to add remarks for the sample data (delete your `data/addressbook.json` so that the application will load the sample data when you launch it.)
 
 ===== [Step 6] Storage: Add `Remark` field to `JsonAdaptedPerson` class
@@ -1071,11 +1113,11 @@ We now have `Remark` s for `Person` s, but they will be gone when we exit the ap
 . Fix `invalidAndValidPersonAddressBook.json`, `typicalPersonsAddressBook.json`, `validAddressBook.json` etc., such that the JSON tests will not fail due to a missing `remark` field.
 
 ===== [Step 6b] Test: Add withRemark() for `PersonBuilder`
-Since `Person` can now have a `Remark`, we should add a helper method to link:{repoURL}/src/test/java/seedu/major/testutil/PersonBuilder.java[`PersonBuilder`], so that users are able to create remarks when building a link:{repoURL}/src/main/java/seedu/major/model/person/Person.java[`Person`].
+Since `Person` can now have a `Remark`, we should add a helper method to link:{repoURL}/src/test/java/seedu/major/testutil/PersonBuilder.java[`PersonBuilder`], so that users are able to create remarks when building a link:{repoURL}/src/main/java/seedu/major/model/participant/Person.java[`Person`].
 
 **Tests:**
 
-. Add a new method `withRemark()` for link:{repoURL}/src/test/java/seedu/major/testutil/PersonBuilder.java[`PersonBuilder`]. This method will create a new `Remark` for the person that it is currently building.
+. Add a new method `withRemark()` for link:{repoURL}/src/test/java/seedu/major/testutil/PersonBuilder.java[`PersonBuilder`]. This method will create a new `Remark` for the participant that it is currently building.
 . Try and use the method on any sample `Person` in link:{repoURL}/src/test/java/seedu/major/testutil/TypicalPersons.java[`TypicalPersons`].
 
 ===== [Step 7] Ui: Connect `Remark` field to `PersonCard`
@@ -1094,7 +1136,7 @@ We now have everything set up... but we still can't modify the remarks. Let's fi
 
 **Main:**
 
-. Replace the logic in `RemarkCommand#execute()` (that currently just throws an `Exception`), with the actual logic to modify the remarks of a person.
+. Replace the logic in `RemarkCommand#execute()` (that currently just throws an `Exception`), with the actual logic to modify the remarks of a participant.
 
 **Tests:**
 
@@ -1135,7 +1177,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |delete participants wrongly added |have error-free data
 
-|`* * *` |user |find a participant by name |locate details of persons without having to go through the entire list
+|`* * *` |user |find a participant by name |locate details of participants without having to go through the entire list
 
 |`* * *` |user |list only the OGLs |see the details of only the OGLs in the camp for planning purposes
 
@@ -1178,14 +1220,14 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 (For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+=== Use case: Delete participant
 
 *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list participants
+2.  AddressBook shows a list of participants
+3.  User requests to delete a specific participant in the list
+4.  AddressBook deletes the participant
 +
 Use case ends.
 
@@ -1203,18 +1245,18 @@ Use case ends.
 +
 Use case resumes at step 2.
 
-=== Use case: Add person into group
+=== Use case: Add participant into group
 
 *MSS*
 
 1. User requests to add a house
 2. User requests to add a group to house
-3. User requests to add a person and specifies group that exists in house
+3. User requests to add a participant and specifies group that exists in house
 
 Use case ends.
 
 *Extensions*
-* 3a. User edits the group attribute of a person with no specified group to the new group
+* 3a. User edits the group attribute of a participant with no specified group to the new group
 
 === Use case: Change the name of a group
 
@@ -1227,7 +1269,7 @@ Use case ends.
 == Non Functional Requirements
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `9` or higher installed.
-.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+.  Should be able to hold up to 1000 participants without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 _{More to be added}_

@@ -14,8 +14,8 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
-import seedu.address.model.participant.Person;
-import seedu.address.model.role.Ogl;
+import seedu.address.model.ogl.Ogl;
+import seedu.address.model.participant.Participant;
 
 /**
  * Adds an OGL to the address book.
@@ -63,11 +63,11 @@ public class AddOglCommand extends AddCommand {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasParticipant(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_OGL);
         }
         if (toAdd.getGroup().getGroupName().equals("")) {
-            model.addPerson(toAdd);
+            model.addParticipant(toAdd);
             model.commitAddressBook();
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
@@ -77,9 +77,9 @@ public class AddOglCommand extends AddCommand {
         }
 
         Group updatedGroup = model.getGroup(toAdd.getGroup());
-        Person toAddUpdated = new Person(toAdd.getName(), toAdd.getSex(), toAdd.getBirthday(), toAdd.getPhone(),
-                toAdd.getEmail(), toAdd.getMajor(), updatedGroup, toAdd.getTags());
-        model.addPerson(toAddUpdated);
+        Participant toAddUpdated = new Participant(toAdd.getName(), toAdd.getSex(), toAdd.getBirthday(),
+                toAdd.getPhone(), toAdd.getEmail(), toAdd.getMajor(), updatedGroup, toAdd.getTags());
+        model.addParticipant(toAddUpdated);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAddUpdated));
     }

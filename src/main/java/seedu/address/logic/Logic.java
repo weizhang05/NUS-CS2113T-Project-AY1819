@@ -10,7 +10,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
  * API of the Logic component
@@ -33,7 +33,7 @@ public interface Logic {
     ReadOnlyAddressBook getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Participant> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the list of undoable commands */
     ObservableList<String> getUndoList();
@@ -68,19 +68,19 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Selected person in the filtered person list.
-     * null if no person is selected.
+     * Selected participant in the filtered participant list.
+     * null if no participant is selected.
      *
-     * @see seedu.address.model.Model#selectedPersonProperty()
+     * @see seedu.address.model.Model#selectedParticipantProperty()
      */
-    ReadOnlyProperty<Person> selectedPersonProperty();
+    ReadOnlyProperty<Participant> selectedPersonProperty();
 
     /**
-     * Sets the selected person in the filtered person list.
+     * Sets the selected participant in the filtered participant list.
      *
-     * @see seedu.address.model.Model#setSelectedPerson(Person)
+     * @see seedu.address.model.Model#setSelectedParticipant(Participant)
      */
-    void setSelectedPerson(Person person);
+    void setSelectedPerson(Participant participant);
 
     /**
      * Returns the number of persons by age

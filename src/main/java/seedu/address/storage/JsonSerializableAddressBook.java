@@ -13,7 +13,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -21,20 +21,20 @@ import seedu.address.model.participant.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PARTICIPANT = "Participants list contains duplicate participant(s).";
 
-    private final List<JsonAdaptedParticipant> persons = new ArrayList<>();
+    private final List<JsonAdaptedParticipant> participants = new ArrayList<>();
     private final List<JsonAdaptedGroup> groups = new ArrayList<>();
     private final List<JsonAdaptedHouse> houses = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons, groups and houses.
+     * Constructs a {@code JsonSerializableAddressBook} with the given participants, groups and houses.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedParticipant> persons,
+    public JsonSerializableAddressBook(@JsonProperty("participants") List<JsonAdaptedParticipant> participants,
                                        @JsonProperty("groups") List<JsonAdaptedGroup> groups,
                                        @JsonProperty("houses") List<JsonAdaptedHouse> houses) {
-        this.persons.addAll(persons);
+        this.participants.addAll(participants);
         this.groups.addAll(groups);
         this.houses.addAll(houses);
     }
@@ -45,7 +45,8 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedParticipant::new).collect(Collectors.toList()));
+        participants.addAll(source.getParticipantList().stream()
+                .map(JsonAdaptedParticipant::new).collect(Collectors.toList()));
         groups.addAll(source.getGroupList().stream().map(JsonAdaptedGroup::new).collect(Collectors.toList()));
         houses.addAll(source.getHouseList().stream().map(JsonAdaptedHouse::new).collect(Collectors.toList()));
     }
@@ -58,18 +59,18 @@ class JsonSerializableAddressBook {
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
 
-        for (JsonAdaptedParticipant jsonAdaptedParticipant : persons) {
-            Person person = jsonAdaptedParticipant.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedParticipant jsonAdaptedParticipant : participants) {
+            Participant participant = jsonAdaptedParticipant.toModelType();
+            if (addressBook.hasParticipant(participant)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PARTICIPANT);
             }
-            addressBook.addPerson(person);
+            addressBook.addParticipant(participant);
         }
 
         for (JsonAdaptedGroup jsonAdaptedGroup : groups) {
             Group group = jsonAdaptedGroup.toModelType();
             if (addressBook.hasGroup(group)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PARTICIPANT);
             }
             addressBook.addGroup(group);
         }
@@ -77,7 +78,7 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedHouse jsonAdaptedHouse : houses) {
             House house = jsonAdaptedHouse.toModelType();
             if (addressBook.hasHouse(house)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PARTICIPANT);
             }
             addressBook.addHouse(house);
         }

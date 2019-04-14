@@ -24,8 +24,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
-import seedu.address.model.participant.Person;
-import seedu.address.model.participant.exceptions.DuplicatePersonException;
+import seedu.address.model.participant.Participant;
+import seedu.address.model.participant.exceptions.DuplicateParticipantException;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -37,7 +37,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getParticipantList());
     }
 
     @Test
@@ -55,45 +55,45 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withMajor(VALID_MAJOR_BOB).withTags(VALID_TAG_HUSBAND)
+        // Two participants with the same identity fields
+        Participant editedAlice = new PersonBuilder(ALICE).withMajor(VALID_MAJOR_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        List<Participant> newParticipants = Arrays.asList(ALICE, editedAlice);
+        AddressBookStub newData = new AddressBookStub(newParticipants);
 
-        thrown.expect(DuplicatePersonException.class);
+        thrown.expect(DuplicateParticipantException.class);
         addressBook.resetData(newData);
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        addressBook.hasPerson(null);
+        addressBook.hasParticipant(null);
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(addressBook.hasParticipant(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        addressBook.addParticipant(ALICE);
+        assertTrue(addressBook.hasParticipant(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withMajor(VALID_MAJOR_BOB).withTags(VALID_TAG_HUSBAND)
+        addressBook.addParticipant(ALICE);
+        Participant editedAlice = new PersonBuilder(ALICE).withMajor(VALID_MAJOR_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasParticipant(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        addressBook.getPersonList().remove(0);
+        addressBook.getParticipantList().remove(0);
     }
 
     @Test
@@ -101,7 +101,7 @@ public class AddressBookTest {
         SimpleIntegerProperty counter = new SimpleIntegerProperty();
         InvalidationListener listener = observable -> counter.set(counter.get() + 1);
         addressBook.addListener(listener);
-        addressBook.addPerson(ALICE);
+        addressBook.addParticipant(ALICE);
         assertEquals(1, counter.get());
     }
 
@@ -111,19 +111,19 @@ public class AddressBookTest {
         InvalidationListener listener = observable -> counter.set(counter.get() + 1);
         addressBook.addListener(listener);
         addressBook.removeListener(listener);
-        addressBook.addPerson(ALICE);
+        addressBook.addParticipant(ALICE);
         assertEquals(0, counter.get());
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose participants list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Participant> participants = FXCollections.observableArrayList();
         private final ObservableList<Group> groups = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        AddressBookStub(Collection<Participant> participants) {
+            this.participants.setAll(participants);
         }
 
         public ObservableMap<String, Integer> getAgeData() {
@@ -139,8 +139,8 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Participant> getParticipantList() {
+            return participants;
         }
 
         @Override

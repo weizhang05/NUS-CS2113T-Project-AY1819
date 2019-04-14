@@ -10,7 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.grouping.House;
-import seedu.address.model.participant.Person;
+import seedu.address.model.participant.Participant;
 
 /**
  * Edits the name of a House.
@@ -37,11 +37,11 @@ public class EditHouseCommand extends Command {
         this.newHouseName = newHouseName;
     }
 
-    public static String getNewHouseName() {
+    public String getNewHouseName() {
         return newHouseName;
     }
 
-    public static String getOldHouseName() {
+    public String getOldHouseName() {
         return oldHouseName;
     }
 
@@ -87,16 +87,17 @@ public class EditHouseCommand extends Command {
             }
         }
         //updates participants with old house name to new house name
-        List<Person> personList = model.getAddressBook().getPersonList();
-        for (Person person : personList) {
-            if (person.getGroup().getGroupName().isEmpty()) {
+        List<Participant> participantList = model.getAddressBook().getParticipantList();
+        for (Participant participant : participantList) {
+            if (participant.getGroup().getGroupName().isEmpty()) {
                 continue;
             }
-            if (person.getGroup().getHouseName().equals(oldHouseName)) {
-                Person editedPerson = new Person(person.getName(), person.getSex(), person.getBirthday(),
-                        person.getPhone(), person.getEmail(), person.getMajor(),
-                        new Group(person.getGroup().getGroupName(), newHouseName), person.getTags());
-                model.setPerson(person, editedPerson);
+            if (participant.getGroup().getHouseName().equals(oldHouseName)) {
+                Participant editedParticipant = new Participant(participant.getName(), participant.getSex(),
+                        participant.getBirthday(), participant.getPhone(), participant.getEmail(),
+                        participant.getMajor(), new Group(participant.getGroup().getGroupName(), newHouseName),
+                        participant.getTags());
+                model.setParticipant(participant, editedParticipant);
             }
         }
 
@@ -104,5 +105,13 @@ public class EditHouseCommand extends Command {
         model.commitAddressBook();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, oldHouseName, newHouseName));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditHouseCommand // instanceof handles nulls
+                && this.getNewHouseName().equals(((EditHouseCommand) other).getNewHouseName())
+                && this.getOldHouseName().equals(((EditHouseCommand) other).getOldHouseName())); // state check
     }
 }
