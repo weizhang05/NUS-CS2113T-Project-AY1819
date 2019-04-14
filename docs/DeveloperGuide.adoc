@@ -290,6 +290,8 @@ Participant management refers to how users manipulate and view the data of camp 
 
 This section describes how the 3 types of participants are managed.
 
+==== Current Implementation
+
 In *FOP Manager*, participants can be added, edited, deleted and listed.
 
 Add
@@ -313,8 +315,6 @@ Participant contact details can be viewed in different manners:
 * `list_f`: Lists all Freshmen
 
 All participants are stored in the same contact list as a `UniqueParticipantList` in an AddressBook object. Participants created as OGLs or Freshmen differ only in the tags added to them. The different listing of the participants is very useful for Project Directors as it helps them to view the Freshmen and the OGL contacts separately, to specifically see who are in the respective lists and how many participants are there in each of the lists.
-
-==== Current Implementation
 
 The following is an Activity Diagram to summarize what happens when either the `list_f` or `list_o` commands are entered.
 
@@ -371,24 +371,37 @@ We decided to go with *Alternative 2* as it meant there was no need to check for
 
 ==== Current Implementation
 
-In *FOP Manager*, groups and houses can be added, edited and deleted.
+In *FOP Manager*, groups can be added, edit and deleted.
 
 Add
 
-* `add_h` creates a new house and adds it to the `UniqueHouseList` in the `AddressBook` object.
-* `add_g` adds a new group with its corresponding house name to the `UniqueGroupList` in the `AddressBook` object.
+* `add_h HOUSENAME`: Adds a new house with `HOUSENAME`
+** Creates a new house by adding it to `UniqueHouseList` in the `VersionedAddressBook`.
+* `add_g GROUPNAME HOUSENAME`: Adds a new group named `GROUPNAME` into the house
+** Adds a new group to a house by adding it to `UniqueGroupList` in the `VersionedAddressBook`.
+
+The following sequence diagram shows how the `Logic` and `Model` components interact when the user enters the command `add_g r1 red`.
+
+image::AddGroupSequenceDiagram.png[width="800"]
+Figure X. Interactions within `Logic` and `Model` for the command `add_g r1 red`
+
+* The new group (R1, Red) is added to `UniqueGroupList` stored within `VersionedAddressBook` when the `addGroup(a)` function is called from `Model`
+
 
 Edit
 
-* `edit_h` edits the name of a house in `UniqueHouseList`, as well as changes the house name of all groups within the house in `UniqueGroupList`.
-* `edit_g` edits the name of a group in `UniqueGroupList`, as well as changes the group name of all participants with that group name in `UniqueParticipantList`.
+* `edit_h OLDHOUSENAME NEWHOUSENAME`: Edits the name of an existing house
+** Edits the name of a house in `UniqueHouseList`, as well as changes the house name of all groups within the house in `UniqueGroupList`.
+* `edit_g OLDGROUPNAME NEWGROUPNAME`: Edits the name of an existing group
+** `edit_g` edits the name of a group in `UniqueGroupList`, as well as changes the group name of all participants with that group name in `UniqueParticipantList`.
 
 Delete
+* `delete_h HOUSENAME`: Deletes the group named `HOUSENAME`
+** Deleting of house objects require there to be no groups within that house.
+* `delete_g GROUPNAME`: Deletes the group named `GROUPNAME`
+** Deleting of group objects require there to be no participants within that group.
 
-* Deleting of house objects require there to be no groups within that house.
-* Deleting of group objects require there to be no participants within that group.
-
-Groups and houses can be viewed in different manners:
+Groups and houses can also be viewed in different manners:
 
 * Viewing houses and groups
 ** `view_h` and `view_g` simply displays the houses and groups stored in `UniqueHouseList` and `UniqueGroupList` respectively.
