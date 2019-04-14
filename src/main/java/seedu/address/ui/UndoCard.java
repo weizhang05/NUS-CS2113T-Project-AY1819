@@ -40,6 +40,6 @@ public class UndoCard extends UiPart<Region> {
         // state check
         UndoCard card = (UndoCard) other;
         return id.getText().equals(card.id.getText())
-                && undoableCommand.equals(card.undoableCommand);
+                && undoableCommand.getText().equals(card.undoableCommand.getText());
     }
 }

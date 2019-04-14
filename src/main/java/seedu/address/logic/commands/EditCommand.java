@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PARTICIPANTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -82,7 +82,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        List<Participant> lastShownList = model.getFilteredPersonList();
+        List<Participant> lastShownList = model.getFilteredParticipantList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -91,7 +91,7 @@ public class EditCommand extends Command {
         Participant participantToEdit = lastShownList.get(index.getZeroBased());
         Participant editedParticipant = createEditedPerson(participantToEdit, editPersonDescriptor);
 
-        if (!participantToEdit.isSamePerson(editedParticipant) && model.hasPerson(editedParticipant)) {
+        if (!participantToEdit.isSameParticipant(editedParticipant) && model.hasParticipant(editedParticipant)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
@@ -106,8 +106,8 @@ public class EditCommand extends Command {
                     editedParticipant.getMajor(), updatedGroup, editedParticipant.getTags());
         }
 
-        model.setPerson(participantToEdit, editedParticipant);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setParticipant(participantToEdit, editedParticipant);
+        model.updateFilteredParticipantList(PREDICATE_SHOW_ALL_PARTICIPANTS);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedParticipant));
     }

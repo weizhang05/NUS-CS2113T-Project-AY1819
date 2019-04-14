@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PARTICIPANTS;
 
 import java.util.List;
 
@@ -22,8 +22,8 @@ public class ExportCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        List<Participant> participantList = model.getFilteredPersonList();
+        model.updateFilteredParticipantList(PREDICATE_SHOW_ALL_PARTICIPANTS);
+        List<Participant> participantList = model.getFilteredParticipantList();
 
         String message;
         if (exportData(participantList)) {

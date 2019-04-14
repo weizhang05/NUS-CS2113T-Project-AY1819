@@ -71,14 +71,14 @@ public interface Logic {
      * Selected participant in the filtered participant list.
      * null if no participant is selected.
      *
-     * @see seedu.address.model.Model#selectedPersonProperty()
+     * @see seedu.address.model.Model#selectedParticipantProperty()
      */
     ReadOnlyProperty<Participant> selectedPersonProperty();
 
     /**
      * Sets the selected participant in the filtered participant list.
      *
-     * @see seedu.address.model.Model#setSelectedPerson(Participant)
+     * @see seedu.address.model.Model#setSelectedParticipant(Participant)
      */
     void setSelectedPerson(Participant participant);
 

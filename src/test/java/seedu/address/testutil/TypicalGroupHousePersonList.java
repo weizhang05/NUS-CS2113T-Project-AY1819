@@ -41,7 +41,7 @@ public class TypicalGroupHousePersonList {
     public static AddressBook getTypicalAddressBookWithGroupHouse() {
         AddressBook ab = new AddressBook();
         for (Participant participant : getTypicalPersons()) {
-            ab.addPerson(participant);
+            ab.addParticipant(participant);
         }
         for (Group group : getTypicalGroups()) {
             ab.addGroup(group);

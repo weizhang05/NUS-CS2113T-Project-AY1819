@@ -28,8 +28,8 @@ public class ExportFreshmenCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         FindingParticipantPredicate predicate = preparePredicate();
-        model.updateFilteredPersonList(predicate);
-        List<Participant> participantList = model.getFilteredPersonList();
+        model.updateFilteredParticipantList(predicate);
+        List<Participant> participantList = model.getFilteredParticipantList();
 
         String message;
         if (exportData(participantList)) {
