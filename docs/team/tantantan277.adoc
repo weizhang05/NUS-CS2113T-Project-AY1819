@@ -1,10 +1,7 @@
-`= Phan Duy Nhat Tan - Project Portfolio`
+= Phan Duy Nhat Tan - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
-:note-caption: :information_source:
-:warning-caption: :warning:
-:tip-caption: :bulb:
 
 Greetings. I am a second-year Computer Engineering student from National University of Singapore (NUS). This document showcases the features I did for my
 Software Engineering Project, as well as the relevant sections I added to the User and Developer Guides.
@@ -68,6 +65,7 @@ image::UndoRedoList.png[width="800"]
 |===
 
 include::../UserGuide.adoc[tag=stat]
+
 include::../UserGuide.adoc[tag=save]
 
 == Contributions to the Developer Guide
