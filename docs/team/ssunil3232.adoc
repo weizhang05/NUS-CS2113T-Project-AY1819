@@ -74,8 +74,6 @@ This section shows a summary of my coding, documentation and other contributions
 
 _Throughout this section, the following icons are used, as shown below:_
 
-TIP: This is a tip. Following these suggestions will make using FOP Manager much simpler.
-
 WARNING: This is a warning and they need to be heeded for FOP Manager to work smoothly.
 
 === *Export Command*
