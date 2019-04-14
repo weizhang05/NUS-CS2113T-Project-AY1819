@@ -33,7 +33,7 @@ image::shanseet.png[width="150", align="left"]
 {empty}[http://github.com/shanseet[github]] [<<shanseet#, portfolio>>]
 
 Role: Developer +
-Responsibilities: Documentation
+Responsibilities: Logic + Documentation +
 
 '''
 
