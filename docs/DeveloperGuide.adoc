@@ -543,9 +543,13 @@ image::RandomizeActivityDiagram.png[width="800"]
 ==== Current Implementation
 
 The `randomize` is achieved by coding a sequence of steps to achieve the allocation of groups to participants:
-* Creates a list of integer based index. This is to simulate the participants.
-* Shuffles the list of index using a seed generated from SecureRandom. This is to ensure the result is to avoid possible similar results for every reshuffle.
-* Simulate the edit command to update the group details of all participants. This is done by programmatically executing the `edit` command, but only for the group attributes of the participants.
+* Creating list holding specific type of participants (i.e. all OGLs will be stored in a list while freshmen will be stored in another)
+* Shuffles all of the previously created list
+* Assigns all of the participants to a group in order of freshmen, OGLs
+
+Following is the sequence diagram of the flow of the program when the command is executed:
+
+image::RandomizeSequenceDiagram.png[width="800"]
 
 ==== Design Considerations
 
