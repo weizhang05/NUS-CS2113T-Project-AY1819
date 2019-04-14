@@ -568,13 +568,16 @@ Command will only work under the following conditions: +
 
 Examples:
 
-* `randomize` has just been entered (successful). +
-Output:
+* `randomize` +
+Successful Output:
 
 image::randomize_success.png[width="800"]
 
 * `randomize` has just been entered (error). +
-Output: Unable to distribute participants (min 2 groups and 2 participants)
+Output:
+
+image::randomize_fail.png[width="800"]
+
 
 // end::randomize[]
 
