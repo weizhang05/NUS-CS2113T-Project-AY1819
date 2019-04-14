@@ -8,8 +8,6 @@ import java.util.List;
 import seedu.address.commons.Value;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.EditCommandParser;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.participant.Participant;
@@ -36,84 +34,70 @@ public class RandomizeCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        List<Participant> participants = new ArrayList<>(model.getFilteredParticipantList());
         List<Group> groups = model.getFilteredGroupList();
+
+        if (groups.size() < 2) {
+            throw new CommandException(MESSAGE_INSUFFICIENT_GROUPS);
+        }
+
+        List<Participant> participants = model.getFilteredParticipantList();
         List<Participant> freshmen = new ArrayList<>();
         List<Participant> ogls = new ArrayList<>();
 
-        /**
-         * Integer list is to simulate shuffling of freshmen.
-         *
-         * Algorithm is applied to subsequent objects (i.e. same steps are applied to OGLs as well).
-         */
-        List<Integer> jumbledOrderFreshmen = new ArrayList<>();
-        List<Integer> jumbledOrderOgls = new ArrayList<>();
-        for (int i = 1; i <= participants.size(); i++) {
-            Participant p = participants.get(i - 1);
+        for (int i = 0; i < participants.size(); i++) {
+            Participant p = participants.get(i);
             if (p.getTags().contains(new Tag(Value.FRESHMAN))) {
-                jumbledOrderFreshmen.add(i);
                 freshmen.add(p);
             } else if (p.getTags().contains(new Tag(Value.OGL))) {
-                jumbledOrderOgls.add(i);
                 ogls.add(p);
             }
         }
 
-        /**
-         * Exception is thrown under the following conditions:
-         * - Less than 2 groups
-         * - Less than 2 people
-         * - Insufficient OGLs to be in-charge of all groups
-         */
         if (freshmen.size() < 2) {
             throw new CommandException(MESSAGE_INSUFFICIENT_PARTICIPANTS);
-        } else if (groups.size() < 2) {
-            throw new CommandException(MESSAGE_INSUFFICIENT_GROUPS);
         } else if (ogls.size() < groups.size()) {
             throw new CommandException(MESSAGE_INSUFFICIENT_OGLS);
         }
 
-        /**
-         * Shuffling of the index to have a random order of group allocation.
-         *
-         * SecureRandom is used as a seed to ensure better randomness.
-         */
-        Collections.shuffle(jumbledOrderFreshmen, new SecureRandom());
-        Collections.shuffle(jumbledOrderOgls, new SecureRandom());
+        // SecureRandom is used as a seed for better randomness
+        Collections.shuffle(freshmen, new SecureRandom());
+        Collections.shuffle(ogls, new SecureRandom());
 
-        /**
-         * command: programmatically execute command
-         * counter: required for retrieving group information
-         */
-        Command command;
+
+        // Required for retrieving group information
         int counter = 0;
 
-        // Programmatically calls the 'edit' to update groups of participants
-        for (int i = 0; i < freshmen.size(); i++) {
-            try {
-                if (freshmen.get(i).getTags().contains(new Tag(Value.FRESHMAN))) {
-                    command = new EditCommandParser().parse(jumbledOrderFreshmen.get(i)
-                            + " g/" + groups.get(counter % groups.size()).getGroupName());
-                    command.execute(model, history);
-                    ++counter;
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        Participant originalParticipant;
+        Participant editedParticipant;
+
+        for (Participant freshman : freshmen) {
+            originalParticipant = freshman;
+            editedParticipant = getParticipantUpdatedGroup(originalParticipant,
+                    groups.get(counter % groups.size()));
+
+            model.setParticipant(originalParticipant, editedParticipant);
+
+            ++counter;
         }
-        for (int i = 0; i < ogls.size(); i++) {
-            try {
-                if (ogls.get(i).getTags().contains(new Tag(Value.OGL))) {
-                    command = new EditCommandParser().parse(jumbledOrderOgls.get(i)
-                            + " g/" + groups.get(counter % groups.size()).getGroupName());
-                    command.execute(model, history);
-                    ++counter;
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        for (Participant ogl : ogls) {
+            originalParticipant = ogl;
+            editedParticipant = getParticipantUpdatedGroup(originalParticipant,
+                    groups.get(counter % groups.size()));
+
+            model.setParticipant(originalParticipant, editedParticipant);
+
+            ++counter;
         }
 
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    /**
+     * Creates and returns a {@code Participant} with the updated {@code group}.
+     */
+    private static Participant getParticipantUpdatedGroup(Participant participantToEdit, Group group) {
+        return new Participant(participantToEdit.getName(), participantToEdit.getSex(),
+                participantToEdit.getBirthday(), participantToEdit.getPhone(), participantToEdit.getEmail(),
+                participantToEdit.getMajor(), group, participantToEdit.getTags());
     }
 }
