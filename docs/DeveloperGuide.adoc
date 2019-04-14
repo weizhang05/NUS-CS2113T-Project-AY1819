@@ -272,14 +272,14 @@ In the current implementation of *FOP Manager*, some commands are create from a 
 
 ===== Aspect: Handling unnecessary parameters
 
-* *Alternative 1:* Ignore all unnecessary parameters and pass as arguments to the command object the number of parameters required for the command.
-** Pros: Less computationally expensive, and allows the user to make mistakes
-** Cons: User's intentions may be misinterpreted and wrong commands may be executed
-* *Alternative 2:* Only accept the number of parameters the command requires, nothing more and nothing less.
-** Pros: Command carried out will always be the user's exact intention
-** Cons: More computationally expensive, and leaves no room for user mistakes or typos
-* *Alternative 3 (current choice):* Combination of Alternative 1 and Alternative 2.
-** Commands that do not require parameters and do not modify data (such as list and view) ignore unnecessary parameters. Commands that require specific instructions to identify particular participants, groups or houses only accept the required number of parameters.
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Ignore all unnecessary parameters and pass as arguments to the command object the number of parameters required for the command. |Less computationally expensive, and allows the user to make mistakes |User's intentions may be misinterpreted and wrong commands may be executed
+|Only accept the number of parameters the command requires, nothing more and nothing less. |Command carried out will always be the user's exact intention |More computationally expensive, and leaves no room for user mistakes or typos
+|=========
+
+We chose to implement a combination of both alternatives: commands that do not require parameters and do not modify data (such as list and view) ignore unnecessary parameters. At the same time, commands that require specific instructions to identify particular participants, groups or houses only accept the required number of parameters.
 
 //end::commandStructure[]
 
@@ -342,24 +342,23 @@ The implementation is similar for the `list_o` command with the use of `FindingO
 
 ===== Aspect: Separate management of freshmen and OGLs
 
-* *Alternative 1:* Create 2 separate lists containing freshmen and OGLs separately, in addition to a full list containing all participants.
-* Pros: Less computationally expensive to obtain separate lists of freshmen and OGLs
-* Cons: Involves greater code complexity to update any contact details, with greater room for error, and requires more memory and storage
-* *Alternative 2 (current choice):* Store all participants in the same list.
-* Pros: Smaller code base needed, and allows for participants who are neither OGLs nor Freshmen (such as camp directors or camp commandants) to be added
-* Cons: More computationally expensive to access lists of freshmen and lists of OGLs
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Create 2 separate lists containing freshmen and OGLs separately, in addition to a full list containing all participants. |Less computationally expensive to obtain separate lists of freshmen and OGLs |Involves greater code complexity to update any contact details, with greater room for error, and requires more memory and storage
+|Store all participants in the same list (current choice). |Smaller code base needed, and allows for participants who are neither OGLs nor Freshmen (such as camp directors or camp commandants) to be added |More computationally expensive to access lists of freshmen and lists of OGLs
+|=========
 
 We decided to go ahead with *Alternative 2* as it was easier to implement. It would not require creation of switch cases for the UI to display the respective lists and would not require unnecessarily long codes to filter out freshmen and OGLs from the participant list. The pros of doing *Alternative 2* outweighs the pros of doing *Alternative 1* hence the decision to implement the latter.
 
 ===== Aspect: Editing or deleting participants
 
-* *Alternative 1:* Editing and deleting by name.
-* Pros: More intuitive for the user to edit and delete a participant by name
-* Cons: Greater complexity required to handle multiple participants who have the same partial name, or user must specify participant's full name
-
-* *Alternative 2(current choice):* Editing and deleting by index.
-* Pros: Specifies the exact participant to be edited or deleted
-* Cons: Must be used with other commands such as `find` to obtain the index of the desired participant
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Editing and deleting by name. |More intuitive for the user to edit and delete a participant by name |Greater complexity required to handle multiple participants who have the same partial name, or user must specify participant's full name
+|Editing and deleting by index (current choice). |Specifies the exact participant to be edited or deleted |Must be used with other commands such as `find` to obtain the index of the desired participant
+|=========
 
 We decided to go with *Alternative 2* as it meant there was no need to check for the full name of the participant and so fewer complications as in indexing, each participant has a unique index.
 //end::PartManagement[]
@@ -406,41 +405,45 @@ Groups and houses can also be viewed in different manners:
 
 * Viewing houses and groups
 ** `view_h` and `view_g` simply displays the houses and groups stored in `UniqueHouseList` and `UniqueGroupList` respectively.
-* Listing participants in a group
-** `list_g` uses similar logic to `list_o` and `list_f`, implemented by using an entered group name as a predicate that searches through all the `Group` fields of participants, and updates the `filteredParticipant` list with participants with the matching group name.
-** Entering `list_g empty` lists all participants without a group yet by searching for participants with an empty group name.
+* Listing participants in a particular group or house
+** `list_g` and `list_h` use similar logic to `list_o` and `list_f`, implemented by using an entered group name as a predicate that searches through all the `Group` fields of participants, and updates the `filteredParticipant` list with participants with the matching group name or house name respectively.
+
+NOTE: `list_g empty` lists all participants without a group by searching for participants with an empty group name.
 
 ==== Design Considerations
 
 ===== Aspect: Storage of group and house lists
 
-* *Alternative 1:* Storing groups and houses within a single list of houses that contain differing number of groups
-** Pros: Easy management of data
-** Cons: Violates separation of concerns principle by requiring access and modification made to houses, whenever only group level data is required
-* *Alternative 2 (current choice):* Storing groups and houses in 2 separate lists
-** Pros: House objects are not affected by the operations done to the groups stored within it
-** Cons: More computationally expensive to identify the groups within a house.
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Storing groups and houses within a single list of houses that contain differing number of groups. | Easy management of data |Requires looping through all houses to find a single group and to ensure group names are unique
+|Storing groups and houses in 2 separate lists (current choice). |House objects are not affected by the operations done to the groups stored within it |More computationally expensive to identify the groups within a single house
+|=========
+
+We decided to follow the second alternative as it allows us to identify a specific group faster, a function that will be more commonly used in *FOP Manager*, since it is called when adding and editing a person and/or a group name.
 
 ===== Aspect: Deleting a group object requirements
 
-* *Alternative 1:* No requirements when groups are deleted.
-** Pros: User can delete a group much more easily
-** Cons: Participants in the deleted group will belong to no group
-* *Alternative 2 (current choice):* Requires a group to contain no participants before it can be deleted.
-** Pros: User can be sure to not delete a group with participants in it accidentally
-** Cons: Participants must be manually removed from the group before being deleted
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|No requirements when groups are deleted. |User can delete a group much more easily |Participants in the deleted group will belong to no group
+|Requires a group to contain no participants before it can be deleted (current choice). |User can be sure to not delete a group with participants in it accidentally |Participants must be manually removed from the group before being deleted
+|=========
 
-[NOTE]
 Camp organizers rarely intend to remove a filled group. Requiring a group to be empty before being deleted acts as a fail-safe to ensure that filled groups are not accidentally removed, resulting in participants having to be manually added back to the group.
 
 ===== Aspect: Duplicate group names under different houses
 
-* *Alternative 1 (current choice):* Duplicate group names are not allowed.
-** Pros: Groups can be searched for by name without specifying its house
-** Cons: Simple names such as 1 and 2 cannot be used for different houses at initial planning stage
-* *Alternative 2:* Duplicate group names under different houses are allowed.
-** Pros: User can easily name groups without too much thought
-** Cons: User must always specify house name when searching for a specific group
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Duplicate group names are not allowed (current choice). |Groups can be searched for by name without specifying its house |Simple names such as 1 and 2 cannot be used for different houses at initial planning stage
+|Duplicate group names under different houses are allowed. |User can easily name groups without too much thought |User must always specify house name when searching for a specific group
+|=========
+
+We chose to not allow duplicate groups, as it makes the app more user-friendly. Moreover, this will model real life situations as camp groups normally have unique group names.
 
 //end::GroupHouseManagement[]
 
@@ -508,21 +511,21 @@ image::UndoRedoActivityDiagram.png[width="800"]
 
 ===== Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-** Pros: Easy to implement.
-** Cons: May have performance issues in terms of memory usage.
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-** Pros: Will use less memory (e.g. for `delete`, just save the participant being deleted).
-** Cons: We must ensure that the implementation of each individual command are correct.
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Saves the entire address book (current choice). |Easy to implement. |May have performance issues in terms of memory usage.
+|Individual command knows how to undo/redo by itself. |Will use less memory (e.g. for `delete`, just save the participant being deleted). |We must ensure that the implementation of each individual command are correct.
+|=========
 
 ===== Aspect: Data structure to support the undo/redo commands
 
-* **Alternative 1 (current choice):** Use a list to store the history of address book states.
-** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.
-** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`.
-* **Alternative 2:** Use `HistoryManager` for undo/redo
-** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.
-** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Use a list to store the history of address book states (current choice). |Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project. |Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`.
+|Use `HistoryManager` for undo/redo |We do not need to maintain a separate list, and just reuse what is already in the codebase. |Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
+|=========
 // end::undoredo[]
 
 //tag::randomize[]
@@ -541,22 +544,21 @@ The `randomize` is achieved by coding a sequence of steps to achieve the allocat
 
 ===== Aspect: Updating group attribute of participants
 
-* *Alternative 1:* Use the same way as how the `edit` command works
-** Pros: No internal coupling
-** Cons: Unnecessary recoding
-* *Alternative 2 (current choice):* Programmatically simulate the `edit` command
-** Pros: Lesser code and better maintenance of the editing feature
-** Cons: Internal coupling within the component
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Use the same way as how the `edit` command works. |No internal coupling |Unnecessary recoding
+|Programmatically simulate the `edit` command (current choice). |Lesser code and better maintenance of the editing feature |Internal coupling within the component
+|=========
 
 ===== Aspect: Shuffling of participants
 
-* *Alternative 1:* Shuffling the actual
-** Pros: Unidentifiable
-** Cons: Uses even more computational resource and more complex coding as the current list of participant is
-unmodifiable.
-* *Alternative 2 (current choice):* Creating a list of integer based index to simulate participants
-** Pros: Less computational intensive as dealing with native data type
-** Cons: Uses slightly more memory at that point of time
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Shuffling the actual. |Unidentifiable |Uses even more computational resource and more complex coding as the current list of participant is unmodifiable.
+|Creating a list of integer based index to simulate participants (current choice). |Less computational intensive as dealing with native data type |Uses slightly more memory at that point of time
+|=========
 
 //end::randomize[]
 
@@ -576,14 +578,14 @@ image::StatisticUpdateSequenceDiagram.png[width="800"]
 
 ===== Aspect: How to update the data of the AddressBook
 
-* **Alternative 1 (current choice)**: Use a loop to loop through the `UniqueParticipantList` to get the data of everyone
-** Pros: Easy to implement, guaranteed to get the correct data every time.
-** Cons: Takes longer time and more computational power to get the result. However, since this function is unlikely to be
-used many times and the number of participants in a camp is not too large, the drawbacks is acceptable
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Use a loop to loop through the `UniqueParticipantList` to get the data of everyone (current choice). |Easy to implement, guaranteed to get the correct data every time |Takes longer time and more computational power to get the result.
+|Update charts data after each commands that modify it. |Quick runtime, does not require much changes to the codebase |We must ensure that the data is updated after each command.
+|=========
+Since this function is unlikely to be used many times and the number of participants in a camp is not too large, the drawbacks to the first alternative are acceptable.
 
-* **Alternative 2 :** Update charts data after each commands that modify it.
-** Pros: Quick runtime, does not require much changes to the codebase.
-** Cons: We must ensure that the data is updated after each command.
 // end::statistic[]
 
 // tag::export[]
