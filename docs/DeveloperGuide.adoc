@@ -227,11 +227,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Address Book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Participant>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 [NOTE]
-As a more OOP model, we can store a `Tag` list in `Address Book`, which `Person` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +
+As a more OOP model, we can store a `Tag` list in `Address Book`, which `Participant` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Participant` needing their own `Tag` object. An example of how such a model may look like is given below. +
  +
 image:ModelClassBetterOopDiagram.png[width="800"]
 
@@ -270,16 +270,16 @@ In the current implementation of *FOP Manager*, some commands are create from a 
 
 ==== Design Considerations
 
-===== Aspect: Handling unneccesary parameters
+===== Aspect: Handling unnecessary parameters
 
-* *Alternative 1:* Ignore all unnecessary parameters and pass as arguments to the command object the number of parameters required for the command.
-** Pros: Less computationaly expensive, and allows the user to make mistakes
-** Cons: User's intentions may be misinterpreted and wrong commands may be executed
-* *Alternative 2:* Only accept the number of parameters the command requires, nothing more and nothing less.
-** Pros: Command carried out will always be the user's exact intention
-** Cons: More computationally expensive, and leaves no room for user mistakes or typos
-* *Alternative 3 (current choice):* Combination of Alternative 1 and Alternative 2.
-** Commands that do not require parameters and do not modify data (such as list and view) ignore unnecessary parameters. Commands that require specific instructions to identify particular participants, groups or houses only accept the required number of parameters.
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Ignore all unnecessary parameters and pass as arguments to the command object the number of parameters required for the command. |Less computationally expensive, and allows the user to make mistakes |User's intentions may be misinterpreted and wrong commands may be executed
+|Only accept the number of parameters the command requires, nothing more and nothing less. |Command carried out will always be the user's exact intention |More computationally expensive, and leaves no room for user mistakes or typos
+|=========
+
+We chose to implement a combination of both alternatives: commands that do not require parameters and do not modify data (such as list and view) ignore unnecessary parameters. At the same time, commands that require specific instructions to identify particular participants, groups or houses only accept the required number of parameters.
 
 //end::commandStructure[]
 
@@ -289,6 +289,8 @@ In the current implementation of *FOP Manager*, some commands are create from a 
 Participant management refers to how users manipulate and view the data of camp participants. Participants are categorised into 3 types: OGL, Freshman or other.
 
 This section describes how the 3 types of participants are managed.
+
+==== Current Implementation
 
 In *FOP Manager*, participants can be added, edited, deleted and listed.
 
@@ -312,21 +314,20 @@ Participant contact details can be viewed in different manners:
 * `list_o`: Lists all OGLs
 * `list_f`: Lists all Freshmen
 
-All participants are stored in the same contact list as a `UniqueParticipantList` in an AddressBook object. Participants created as OGLs or Freshmen differ only in the tags added to them. The different listing of the participants is very useful for Project Directors as it helps them to view the Freshmen and the OGL contacts separately, to specifically see who are in the respective lists and how many participants are there in each of the lists.
-
-==== Current Implementation
+All participants are stored in the same participant list as a `UniqueParticipantList` in an AddressBook object. Participants created as OGLs or Freshmen differ only in the tags added to them. The different listing of the participants is very useful for Project Directors as it helps them to view the Freshmen and the OGL participants separately, to specifically see who are in the respective lists and how many participants are there in each of the lists.
 
 The following is an Activity Diagram to summarize what happens when either the `list_f` or `list_o` commands are entered.
 
+.Activity Diagram for listing Freshmen command
 image::ListFreshmenCommandActivityDiagram.png[width="800"]
-_Activity Diagram for listing Freshmen command_
 
-The list commands, `list_o` and `list_f`, use the keywords/predicates "OGL" and "Freshman", respectively, to search through the tags of all participants in the contact list. All participants with matching tags of "Freshman" or "OGL" will be added into the filtered participant list, enabling the user to view all freshmen or OGLs in the contact list.
+
+The list commands, `list_o` and `list_f`, use the keywords/predicates "OGL" and "Freshman", respectively, to search through the tags of all participants in the participant list. All participants with matching tags of "Freshman" or "OGL" will be added into the filtered participant list, enabling the user to view all freshmen or OGLs in the participant list.
 
 The following Sequence diagram below will explain how the `list_f` command works in detail.
 
+.Sequence Diagram for listing Freshmen command
 image::ListParticipantCommandSequenceDiagram.png[width="800"]
-_Sequence Diagram for listing Freshmen command_
 
 An example usage of the `list_f` command is as follows:
 
@@ -334,7 +335,7 @@ An example usage of the `list_f` command is as follows:
 
 *Step 2:* The user enters the `list_f` command . The `list_f` command calls the `FindingParticipantPredicate` class and searches all tags of each participant for "Freshman".
 
-*Step 3:* The `updateFilteredPersonList()` takes in this predicate and the `getFilteredPersonList()` is called to give the list of Freshmen in the contact list
+*Step 3:* The `updateFilteredParticipantList()` takes in this predicate and the `getFilteredParticipantList()` is called to give the list of Freshmen in the participant list
 
 The implementation is similar for the `list_o` command with the use of `FindingOglPredicate` instead where the searched tag is "OGL".
 
@@ -342,24 +343,23 @@ The implementation is similar for the `list_o` command with the use of `FindingO
 
 ===== Aspect: Separate management of freshmen and OGLs
 
-* *Alternative 1:* Create 2 separate lists containing freshmen and OGLs separately, in addition to a full list containing all participants.
-* Pros: Less computationally expensive to obtain separate lists of freshmen and OGLs
-* Cons: Involves greater code complexity to update any contact details, with greater room for error, and requires more memory and storage
-* *Alternative 2 (current choice):* Store all participants in the same list.
-* Pros: Smaller code base needed, and allows for participants who are neither OGLs nor Freshmen (such as camp directors or camp commandants) to be added
-* Cons: More computationally expensive to access lists of freshmen and lists of OGLs
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Create 2 separate lists containing freshmen and OGLs separately, in addition to a full list containing all participants. |Less computationally expensive to obtain separate lists of freshmen and OGLs |Involves greater code complexity to update any contact details, with greater room for error, and requires more memory and storage
+|Store all participants in the same list (current choice). |Smaller code base needed, and allows for participants who are neither OGLs nor Freshmen (such as camp directors or camp commandants) to be added |More computationally expensive to access lists of freshmen and lists of OGLs
+|=========
 
 We decided to go ahead with *Alternative 2* as it was easier to implement. It would not require creation of switch cases for the UI to display the respective lists and would not require unnecessarily long codes to filter out freshmen and OGLs from the participant list. The pros of doing *Alternative 2* outweighs the pros of doing *Alternative 1* hence the decision to implement the latter.
 
 ===== Aspect: Editing or deleting participants
 
-* *Alternative 1:* Editing and deleting by name.
-* Pros: More intuitive for the user to edit and delete a participant by name
-* Cons: Greater complexity required to handle multiple participants who have the same partial name, or user must specify participant's full name
-
-* *Alternative 2(current choice):* Editing and deleting by index.
-* Pros: Specifies the exact participant to be edited or deleted
-* Cons: Must be used with other commands such as `find` to obtain the index of the desired participant
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Editing and deleting by name. |More intuitive for the user to edit and delete a participant by name |Greater complexity required to handle multiple participants who have the same partial name, or user must specify participant's full name
+|Editing and deleting by index (current choice). |Specifies the exact participant to be edited or deleted |Must be used with other commands such as `find` to obtain the index of the desired participant
+|=========
 
 We decided to go with *Alternative 2* as it meant there was no need to check for the full name of the participant and so fewer complications as in indexing, each participant has a unique index.
 //end::PartManagement[]
@@ -371,62 +371,80 @@ We decided to go with *Alternative 2* as it meant there was no need to check for
 
 ==== Current Implementation
 
-In *FOP Manager*, groups and houses can be added, edited and deleted.
+In *FOP Manager*, groups can be added, edit and deleted.
 
 Add
 
-* `add_h` creates a new house and adds it to the `UniqueHouseList` in the `AddressBook` object.
-* `add_g` adds a new group with its corresponding house name to the `UniqueGroupList` in the `AddressBook` object.
+* `add_h HOUSENAME`: Adds a new house with `HOUSENAME`
+** Creates a new house by adding it to `UniqueHouseList` in the `VersionedAddressBook`.
+* `add_g GROUPNAME HOUSENAME`: Adds a new group named `GROUPNAME` into the house
+** Adds a new group to a house by adding it to `UniqueGroupList` in the `VersionedAddressBook`.
+
+The following sequence diagram shows how the `Logic` and `Model` components interact when the user enters the command `add_g r1 red`.
+
+.Interactions within Logic and Model for the command `add_g r1 red`
+image::AddGroupSequenceDiagram.png[width="800"]
+
+* The new group (R1, Red) is added to `UniqueGroupList` stored within `VersionedAddressBook` when the `addGroup(a)` function is called from `Model`
+
 
 Edit
 
-* `edit_h` edits the name of a house in `UniqueHouseList`, as well as changes the house name of all groups within the house in `UniqueGroupList`.
-* `edit_g` edits the name of a group in `UniqueGroupList`, as well as changes the group name of all participants with that group name in `UniqueParticipantList`.
+* `edit_h OLDHOUSENAME NEWHOUSENAME`: Edits the name of an existing house
+** Edits the name of a house in `UniqueHouseList`, as well as changes the house name of all groups within the house in `UniqueGroupList`.
+* `edit_g OLDGROUPNAME NEWGROUPNAME`: Edits the name of an existing group
+** `edit_g` edits the name of a group in `UniqueGroupList`, as well as changes the group name of all participants with that group name in `UniqueParticipantList`.
 
 Delete
 
-* Deleting of house objects require there to be no groups within that house.
-* Deleting of group objects require there to be no participants within that group.
+* `delete_h HOUSENAME`: Deletes the group named `HOUSENAME`
+** Deleting of house objects require there to be no groups within that house.
+* `delete_g GROUPNAME`: Deletes the group named `GROUPNAME`
+** Deleting of group objects require there to be no participants within that group.
 
-Groups and houses can be viewed in different manners:
+Groups and houses can also be viewed in different manners:
 
 * Viewing houses and groups
 ** `view_h` and `view_g` simply displays the houses and groups stored in `UniqueHouseList` and `UniqueGroupList` respectively.
-* Listing participants in a group
-** `list_g` uses similar logic to `list_o` and `list_f`, implemented by using an entered group name as a predicate that searches through all the `Group` fields of participants, and updates the `filteredPersons` list with participants with the matching group name.
-** Entering `list_g empty` lists all participants without a group yet by searching for participants with an empty group name.
+* Listing participants in a particular group or house
+** `list_g` and `list_h` use similar logic to `list_o` and `list_f`, implemented by using an entered group name as a predicate that searches through all the `Group` fields of participants, and updates the `filteredParticipant` list with participants with the matching group name or house name respectively.
+
+NOTE: `list_g empty` lists all participants without a group by searching for participants with an empty group name.
 
 ==== Design Considerations
 
 ===== Aspect: Storage of group and house lists
 
-* *Alternative 1:* Storing groups and houses within a single list of houses that contain differing number of groups
-** Pros: Easy management of data
-** Cons: Violates separation of concerns principle by requiring access and modification made to houses, whenever only group level data is required
-* *Alternative 2 (current choice):* Storing groups and houses in 2 separate lists
-** Pros: House objects are not affected by the operations done to the groups stored within it
-** Cons: More computationally expensive to identify the groups within a house.
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Storing groups and houses within a single list of houses that contain differing number of groups. | Easy management of data |Requires looping through all houses to find a single group and to ensure group names are unique
+|Storing groups and houses in 2 separate lists (current choice). |House objects are not affected by the operations done to the groups stored within it |More computationally expensive to identify the groups within a single house
+|=========
+
+We decided to follow the second alternative as it allows us to identify a specific group faster, a function that will be more commonly used in *FOP Manager*, since it is called when adding and editing a person and/or a group name.
 
 ===== Aspect: Deleting a group object requirements
 
-* *Alternative 1:* No requirements when groups are deleted.
-** Pros: User can delete a group much more easily
-** Cons: Participants in the deleted group will belong to no group
-* *Alternative 2 (current choice):* Requires a group to contain no participants before it can be deleted.
-** Pros: User can be sure to not delete a group with participants in it accidentally
-** Cons: Participants must be manually removed from the group before being deleted
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|No requirements when groups are deleted. |User can delete a group much more easily |Participants in the deleted group will belong to no group
+|Requires a group to contain no participants before it can be deleted (current choice). |User can be sure to not delete a group with participants in it accidentally |Participants must be manually removed from the group before being deleted
+|=========
 
-[NOTE]
 Camp organizers rarely intend to remove a filled group. Requiring a group to be empty before being deleted acts as a fail-safe to ensure that filled groups are not accidentally removed, resulting in participants having to be manually added back to the group.
 
 ===== Aspect: Duplicate group names under different houses
 
-* *Alternative 1 (current choice):* Duplicate group names are not allowed.
-** Pros: Groups can be searched for by name without specifying its house
-** Cons: Simple names such as 1 and 2 cannot be used for different houses at initial planning stage
-* *Alternative 2:* Duplicate group names under different houses are allowed.
-** Pros: User can easily name groups without too much thought
-** Cons: User must always specify house name when searching for a specific group
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Duplicate group names are not allowed (current choice). |Groups can be searched for by name without specifying its house |Simple names such as 1 and 2 cannot be used for different houses at initial planning stage
+|Duplicate group names under different houses are allowed. |User can easily name groups without too much thought |User must always specify house name when searching for a specific group
+|=========
+
+We chose to not allow duplicate groups, as it makes the app more user-friendly. Moreover, this will model real life situations as camp groups normally have unique group names.
 
 //end::GroupHouseManagement[]
 
@@ -471,6 +489,7 @@ If the `currentStatePointer` is at index 0, pointing to the initial address book
 
 The following sequence diagram shows how the undo operation works:
 
+.Interactions within Logic and Model when `undo` is entered
 image::UndoRedoSequenceDiagram.png[width="800"]
 
 The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
@@ -488,27 +507,28 @@ image::UndoRedoNewCommand4StateListDiagram.png[width="800"]
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
+.Activity flow when new command is executed
 image::UndoRedoActivityDiagram.png[width="800"]
 
 ==== Design Considerations
 
 ===== Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-** Pros: Easy to implement.
-** Cons: May have performance issues in terms of memory usage.
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-** Pros: Will use less memory (e.g. for `delete`, just save the participant being deleted).
-** Cons: We must ensure that the implementation of each individual command are correct.
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Saves the entire address book (current choice). |Easy to implement. |May have performance issues in terms of memory usage.
+|Individual command knows how to undo/redo by itself. |Will use less memory (e.g. for `delete`, just save the participant being deleted). |We must ensure that the implementation of each individual command are correct.
+|=========
 
 ===== Aspect: Data structure to support the undo/redo commands
 
-* **Alternative 1 (current choice):** Use a list to store the history of address book states.
-** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.
-** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`.
-* **Alternative 2:** Use `HistoryManager` for undo/redo
-** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.
-** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Use a list to store the history of address book states (current choice). |Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project. |Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`.
+|Use `HistoryManager` for undo/redo |We do not need to maintain a separate list, and just reuse what is already in the codebase. |Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
+|=========
 // end::undoredo[]
 
 //tag::randomize[]
@@ -527,28 +547,28 @@ The `randomize` is achieved by coding a sequence of steps to achieve the allocat
 
 ===== Aspect: Updating group attribute of participants
 
-* *Alternative 1:* Use the same way as how the `edit` command works
-** Pros: No internal coupling
-** Cons: Unnecessary recoding
-* *Alternative 2 (current choice):* Programmatically simulate the `edit` command
-** Pros: Lesser code and better maintainance of the editing feature
-** Cons: Internal coupling within the component
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Use the same way as how the `edit` command works. |No internal coupling |Unnecessary recoding
+|Programmatically simulate the `edit` command (current choice). |Lesser code and better maintenance of the editing feature |Internal coupling within the component
+|=========
 
 ===== Aspect: Shuffling of participants
 
-* *Alternative 1:* Shuffling the actual
-** Pros: Unidentifiable
-** Cons: Uses even more computational resource and more complex coding as the current list of participant is
-unmodifiable.
-* *Alternative 2 (current choice):* Creating a list of integer based index to simulate participants
-** Pros: Less computational intensive as dealing with native data type
-** Cons: Uses slightly more memory at that point of time
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Shuffling the actual. |Unidentifiable |Uses even more computational resource and more complex coding as the current list of participant is unmodifiable.
+|Creating a list of integer based index to simulate participants (current choice). |Less computational intensive as dealing with native data type |Uses slightly more memory at that point of time
+|=========
 
 //end::randomize[]
 
 // tag::statistic[]
 === Statistic feature
 The 'stat' command allows FOP Manager users to view the statistic of camp participants regarding their age, major and sex in a graphical manner.
+
 ==== Current Implementation
 
 The Statistic feature is facilitated by `AddressBook`. It has three HashMaps, containing the number of each categories in the participants' age, major and sex. These Map are generated after every call of the
@@ -556,20 +576,22 @@ The Statistic feature is facilitated by `AddressBook`. It has three HashMaps, co
 
 The following sequence diagram show hows the 'stat' command works in details :
 
+.Interaction between UI, Logic and Model when `stat` is executed
 image::StatisticUpdateSequenceDiagram.png[width="800"]
 
 ==== Design Consideration
 
 ===== Aspect: How to update the data of the AddressBook
 
-* **Alternative 1 (current choice)**: Use a loop to loop through the `UniquePersonList` to get the data of everyone
-** Pros: Easy to implement, guaranteed to get the correct data every time.
-** Cons: Takes longer time and more computational power to get the result. However, since this function is unlikely to be
-used many times and the number of participants in a camp is not too large, the drawbacks is acceptable
+[options="header"]
+|=========
+|Alternatives |Pros | Cons
+|Use a loop to loop through the `UniqueParticipantList` to get the data of everyone (current choice). |Easy to implement, guaranteed to get the correct data every time |Takes longer time and more computational power to get the result.
+|Update charts data after each commands that modify it. |Quick runtime, does not require much changes to the codebase |We must ensure that the data is updated after each command.
+|=========
 
-* **Alternative 2 :** Update charts data after each commands that modify it.
-** Pros: Quick runtime, does not require much changes to the codebase.
-** Cons: We must ensure that the data is updated after each command.
+Since this function is unlikely to be used many times and the number of participants in a camp is not too large, the drawbacks to the first alternative are acceptable.
+
 // end::statistic[]
 
 // tag::export[]
@@ -585,8 +607,8 @@ Participant contact details can be exported in different manners:
 
 The following is an Activity Diagram to summarize what happens when the `export` command is entered.
 
+.Activity Diagram for exporting command
 image::ExportCommandActivityDiagram.png[width="800"]
-_Activity Diagram for exporting command_
 
 ==== Current Implementation
 * A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
@@ -594,8 +616,8 @@ _Activity Diagram for exporting command_
 
 The following Sequence diagram below will explain how the `export` command works in detail.
 
+.Sequence Diagram for exporting command
 image::ExportCommandSequenceDiagram.png[width="800"]
-_Sequence Diagram for exporting command_
 
 An example usage of the command is as follows:
 
@@ -620,8 +642,8 @@ Sometimes FOP Project Directors realise they need to add many participants' cont
 
 The following is an Activity Diagram to summarize what happens when the `import` command is entered.
 
+.Activity Diagram for the importing command
 image::ImportCommandActivityDiagram.png[width="800"]
-_Activity Diagram for the importing command_
 
 ==== Current Implementation
 * A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
@@ -631,8 +653,8 @@ _Activity Diagram for the importing command_
 
 The following Sequence diagram below will explain how the `import` command works in detail.
 
+.Sequence Diagram for importing command
 image::ImportCommandSequenceDiagram.png[width="800"]
-_Sequence Diagram for importing command_
 
 An example usage of the command is as follows:
 
@@ -1199,7 +1221,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |view the Groups I have added |see the groups I have added, and which groups belong to which houses
 
-|`* * *` |user |see the size of my contact list |see the number of participants in the camp
+|`* * *` |user |see the size of my participant list |see the number of participants in the camp
 
 |`* * *` |user |see the number of Freshmen in the camp |see the number of sign-ups the camp has so far
 
@@ -1327,43 +1349,67 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
+=== Adding an OGL
+
+. Adding an OGL to the participant list
+
+.. Prerequisites: List all participants using the `list` command, no groups added yet.
+.. Test case: `add_o n/[NAME] s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/ [t/TAG]…` +
+   Expected: Participant is added to the participant list with tag `OGL`. Details of added contact shown in the result box.
+.. Test case: `add_o n/[NAME] s/SEX b/BIRTHDAY p/PHONE e/EMAIL g/` (or missing any field) +
+   Expected: No participant is added. Error details shown in the result box.
+.. Test case: `add_o n/[NAME] s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/1` +
+   Expected: No participant is added. Error details shown in the result box.
+
+=== Adding a freshman
+
+. Adding a freshman to the participant list
+
+.. Prerequisites: The participant's name must not match any existing participant. +
+   : Only group `R1` has been added.
+.. Test case: `add_f n/Janet Tan s/F b/19041998 e/janet@example.com m/CS g/` +
+    Expected: Freshman named Janet Tan is added to the bottom of the participant list.
+.. Test case: `add_f n/James Tan s/M b/20041998 e/james@example.com m/IS g/r1` +
+    Expected: Freshman named James Tan is added to the bottom of the participant list.
+.. Test case: `add_f n/Joel Tan s/M b/01121998 e/joel@example.com m/IS g/b1` +
+    Expected: No participant is added due to the nonexistent group `B1`. Error details shown in the result box.
+
 === Deleting a participant
 
 . Deleting a participant while all participants are listed
 
 .. Prerequisites: List all participants using the `list` command. Multiple participants in the list.
 .. Test case: `delete 1` +
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+  Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `delete 0` +
-   Expected: No participant is deleted. Error details shown in the status message. Status bar remains the same.
+  Expected: No participant is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) +
-   Expected: Similar to previous.
+  Expected: Similar to previous.
 
-=== Adding an OGL
+=== Adding a house
 
-. Adding an OGL to contact list
+. Adding a house to the address book
 
-.. Prerequisites: List all participants using the `list` command, no groups added yet.
-.. Test case: `add_o n/[NAME] s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/ [t/TAG]…` +
-   Expected: Participant is added to the contact list with tag `OGL`. Details of added contact shown in the status message.
-.. Test case: `add_o n/[NAME] s/SEX b/BIRTHDAY p/PHONE e/EMAIL g/` (or missing any field) +
-   Expected: No participant is added. Error details shown in the status message.
-.. Test case: `add_o n/[NAME] s/SEX b/BIRTHDAY p/PHONE e/EMAIL m/MAJOR g/1` +
-   Expected: No participant is added. Error details shown in the status message.
+.. Test case: `add_h Green` +
+    Expected: House named `Green` is added.
+.. Test case: +
+    `add_h Red` +
+    `add_h Red` +
+    Expected: House named `Red` is added on first command. No house is added on the second. An error message showing that the house `Red` already exists is shown in the result box.
 
-=== Adding a Group
+=== Adding a group
 
-. Adding a Group to the address book
+. Adding a group to the address book
 
 .. Prerequisites: House named Green has been added.
 .. Test case: `add_g g1 green` +
-   Expected: Group named `G1` is added to the House named Green.
+   Expected: Group named `G1` is added to the house named Green.
 .. Test case: `add_g g2 gReEn` +
-   Expected: Group named `G2` is added to the House named Green.
+   Expected: Group named `G2` is added to the house named Green.
 .. Test case: +
    `add_g g1 Green` +
    `add_g g1 Green` +
-   Expected: Group named `G1` is added on first command. No group is added on the second. Error details shown in the status message.
+   Expected: Group named `G1` is added on first command. No group is added on the second. An error message showing that group `G1` already exists is shown in the result box.
 
 // tag::Tan_test[]
 === Show participant statistic
@@ -1376,7 +1422,7 @@ These instructions only provide a starting point for testers to work on; testers
 .. Test case: +
    `clear` +
    `stat` +
-   Expected: Error details shown in the status message
+   Expected: Error details shown in the result box.
 
 === Save pie charts to image files
 
@@ -1390,5 +1436,5 @@ These instructions only provide a starting point for testers to work on; testers
 .. Test case: +
    `clear` +
    `stat` +
-   Expected: Error details shown in the status message
+   Expected: Error details shown in the result box.
 // end::Tan_test[]
