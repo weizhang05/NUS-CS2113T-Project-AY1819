@@ -42,7 +42,7 @@ public class TypicalPersons {
             .withSex("M").withBirthday("01021990")
             .withPhone("95352563").withEmail("heinz@example.com").withMajor("CS").withGroup("").build();
     public static final Participant DANIEL = new PersonBuilder().withName("Daniel Meier").withSex("M")
-            .withBirthday("01021900").withPhone("87652533")
+            .withBirthday("01021980").withPhone("87652533")
             .withEmail("cornelia@example.com").withMajor("BZA")
             .withGroup("").withTags("friends").build();
     public static final Participant ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822243")
