@@ -63,7 +63,7 @@ This segment showcase my contribution to both the development of the application
 *** Reviewing of codes before officially merging and integrating
 *** Managed release for v1.3 and v1.4 on GitHub
 ** Documentation:
-*** Updating of both UG and DG (Pull requests https://github.com/CS2113-AY1819S2-T08-4/main/pull/3[3], https://github.com/CS2113-AY1819S2-T08-4/main/pull/41[41], https://github.com/CS2113-AY1819S2-T08-4/main/pull/104[104], https://github.com/CS2113-AY1819S2-T08-4/main/pull/105[105], https://github.com/CS2113-AY1819S2-T08-4/main/pull/110[110], https://github.com/CS2113-AY1819S2-T08-4/main/pull/159/files[159], https://github.com/CS2113-AY1819S2-T08-4/main/pull/167/files[167], https://github.com/CS2113-AY1819S2-T08-4/main/pull/169/files[169], )
+*** Updating of both UG and DG (Pull requests https://github.com/CS2113-AY1819S2-T08-4/main/pull/3[#3], https://github.com/CS2113-AY1819S2-T08-4/main/pull/41[#41], https://github.com/CS2113-AY1819S2-T08-4/main/pull/104[#104], https://github.com/CS2113-AY1819S2-T08-4/main/pull/105[#105], https://github.com/CS2113-AY1819S2-T08-4/main/pull/110[#110], https://github.com/CS2113-AY1819S2-T08-4/main/pull/159/files[#159], https://github.com/CS2113-AY1819S2-T08-4/main/pull/167/files[#167], https://github.com/CS2113-AY1819S2-T08-4/main/pull/169/files[#169], https://github.com/CS2113-AY1819S2-T08-4/main/pull/171[#171])
 
 == Contributions to the User Guide
 
