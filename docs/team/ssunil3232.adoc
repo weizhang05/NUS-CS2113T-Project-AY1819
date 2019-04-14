@@ -214,7 +214,7 @@ The values entered under each respective columns, have to follow the format of t
 ****
 
 Link to view the User Guide:
-include::../UserGuide.adoc[tag=Add]
+include::../UserGuide.adoc[tag=add]
 
 == Contributions to the Developer Guide
 
@@ -283,9 +283,6 @@ This section elaborates on the possible ways for implementation that were consid
 We decided to go ahead with *Alternative 1* as it was easier to implement. It would not require creation of switch cases for the UI to display the respective lists and would not require unnecessarily long codes to filter out freshmen and OGLs from the participant list. The pros of doing *Alternative 1* outweighs the pros of doing *Alternative 2* hence the decision to implement the latter.
 
 
-Link to view in detail:
-include::../DeveloperGuide.adoc[tag=PartManagement]
-
 === Export feature
 
 The Export feature will allow the FOP Manager user to export the data into an excel file and distribute to other relevant people involved in the FOP. This way, data can be distributed and raw data untouched except by the Project Director or other camp organisers who are given the access to the raw data.
@@ -326,9 +323,6 @@ An example usage of the command is as follows:
 Only one way was considered for the implementation of Export feature, which involved importing the third-party library.
 
 
-Link to view in detail:
-include::../DeveloperGuide.adoc[tag=export]
-
 === Import Feature
 
 Sometimes FOP Project Directors realise they need to add many participants' contacts that they gathered and usually they gather the contacts through sign up links that allow for exportation into Excel spreadsheets. Manually added the large influx of participants is troublesome. Hence, with the Import feature, FOP Project Directors can import the data of Non-duplicate people from an excel file into the FOP Manager. This makes adding of contacts easier.
@@ -355,7 +349,7 @@ An example usage of the command is as follows:
 
 *Step 2:* The user enters the `import` command . The `import` command calls the `WriteToExcel` class's `ReadFromExcel()`. This will open the file of the default set name from the set directory.
 
-*Steo 3:* The Excel sheets is checked for the correct headings and then the cell's values are read to create each `person`. Each `person` is added to a `List<Person>` which will be returned to the Import command.
+*Step 3:* The Excel sheets is checked for the correct headings and then the cell's values are read to create each `person`. Each `person` is added to a `List<Person>` which will be returned to the Import command.
 
 *Step 4:* The `import` command adds each non-duplicate person into the FOP Manager.
 
@@ -366,5 +360,5 @@ An example usage of the command is as follows:
 Only one way was considered for the implementation of Import feature, which involved importing the third-party library.
 
 
-Link to view in detail:
-include::../DeveloperGuide.adoc[tag=import]
+Link to view the Developer Guide in detail:
+include::../DeveloperGuide.adoc[tag=export]
