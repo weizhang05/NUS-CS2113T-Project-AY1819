@@ -85,9 +85,7 @@ public class EditGroupCommand extends Command {
         List<Participant> participantList = existingAddressBook.getParticipantList();
         for (Participant participant : participantList) {
             if (participant.getGroup().equals(oldGroup)) {
-                Participant editedParticipant = new Participant(participant.getName(),
-                        participant.getSex(), participant.getBirthday(), participant.getPhone(),
-                        participant.getEmail(), participant.getMajor(), newGroup, participant.getTags());
+                Participant editedParticipant = getParticipantUpdatedGroup(participant, newGroup);
                 model.setParticipant(participant, editedParticipant);
             }
         }
@@ -103,5 +101,14 @@ public class EditGroupCommand extends Command {
                 || (other instanceof EditGroupCommand // instanceof handles nulls
                 && this.getOldGroupName().equals(((EditGroupCommand) other).getOldGroupName())
                 && this.getNewGroupName().equals(((EditGroupCommand) other).getNewGroupName())); // state check
+    }
+
+    /**
+     * Creates and returns a {@code Participant} with the updated {@code group}.
+     */
+    private static Participant getParticipantUpdatedGroup(Participant participantToEdit, Group group) {
+        return new Participant(participantToEdit.getName(), participantToEdit.getSex(),
+                participantToEdit.getBirthday(), participantToEdit.getPhone(), participantToEdit.getEmail(),
+                participantToEdit.getMajor(), group, participantToEdit.getTags());
     }
 }
