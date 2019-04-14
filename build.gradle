@@ -78,7 +78,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'fop_manager.jar'
+    archiveName = '[T08-4][FOPManager].jar'
 
     destinationDir = file("${buildDir}/jar/")
 }
