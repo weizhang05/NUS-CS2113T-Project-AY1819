@@ -1,23 +1,18 @@
 package seedu.address.model.grouping;
 
-import java.util.ArrayList;
-
 /**
- * Represents houses in a camp.
- * A House has multiple groups within it.
+ * Represents a house in a camp.
  */
 
 public class House {
 
     private String houseName;
-    private ArrayList<Group> groups;
 
     /**
      * Constructs an {@code House}.
      */
     public House (String name) {
         houseName = name;
-        groups = new ArrayList<>();
     }
 
     public String getHouseName() {
@@ -26,36 +21,6 @@ public class House {
 
     public void setHouseName(String houseName) {
         this.houseName = houseName;
-    }
-
-    // ========== Group Operations ==========
-
-    public ArrayList<Group> getGroups() {
-        return groups;
-    }
-
-    /**
-     * Adds a new group to the house
-     */
-    public void addGroup (String groupName) {
-        if (hasGroup(groupName)) {
-            return;
-        }
-        groups.add(new Group(groupName, getHouseName()));
-    }
-
-    /**
-     * Remove a group from the house
-     */
-    public void removeGroup(String groupName) {
-        groups.remove(new Group(groupName, getHouseName()));
-    }
-
-    /**
-     * Returns true if Group exists in House
-     */
-    public boolean hasGroup(String groupName) {
-        return groups.contains(new Group(groupName, getHouseName()));
     }
 
     /**
