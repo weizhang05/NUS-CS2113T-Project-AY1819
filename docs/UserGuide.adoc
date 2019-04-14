@@ -100,6 +100,7 @@ e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend 
 Opens a window with a list of all the commands available on FOP Manager +
 Format: `help`
 
+// tag::add[]
 === Add Commands
 
 [[AddFresh]]
@@ -203,6 +204,7 @@ Groups can only be added to houses that already exist
 Example:
 
 * `add_g b1 blue` saves a group named `B1` in house `Blue` to the group list.
+// end::add[]
 
 === Edit Commands
 
@@ -294,6 +296,7 @@ Edits the group named `RED1` to `RED2`. All participants in RED1 are now in RED2
 
 //end::editgrouphouse[]
 
+// tag::list[]
 === List Commands
 
 [[ListALL]]
@@ -335,6 +338,7 @@ Examples:
 
 * `list_g g1` lists all participants in Group `G1` if `G1` exists.
 * `list_g empty` lists all participants not in any group yet.
+// end::list[]
 
 === View Commands
 
@@ -626,6 +630,7 @@ Examples:
 Save the charts to image files with the name "For NUS"
 // end::save[]
 
+// tag::export[]
 === Export Commands
 
 [[ExportALL]]
@@ -666,7 +671,9 @@ Format: `export_o`
 
 * Excel Spreadsheet name is *FOP_MANAGER_OGL_LIST.xls*. +
 * Excel Spreadsheet will be saved in the current User Directory. +
+// end::export[]
 
+// tag::import[]
 [[Import]]
 === Importing contact list : `import`
 
@@ -685,6 +692,7 @@ Spreadsheet name has to be *FOP_MANAGER_LIST.xls* and it has to be located at th
 The values entered under each respective columns, have to follow the format of the the `add` command.
 
 ****
+// end::import[]
 
 [[Clear]]
 === Clearing all entries : `clear`
