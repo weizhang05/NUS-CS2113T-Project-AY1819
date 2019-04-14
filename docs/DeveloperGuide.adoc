@@ -318,15 +318,16 @@ All participants are stored in the same participant list as a `UniqueParticipant
 
 The following is an Activity Diagram to summarize what happens when either the `list_f` or `list_o` commands are entered.
 
+.Activity Diagram for listing Freshmen command
 image::ListFreshmenCommandActivityDiagram.png[width="800"]
-_Activity Diagram for listing Freshmen command_
+
 
 The list commands, `list_o` and `list_f`, use the keywords/predicates "OGL" and "Freshman", respectively, to search through the tags of all participants in the participant list. All participants with matching tags of "Freshman" or "OGL" will be added into the filtered participant list, enabling the user to view all freshmen or OGLs in the participant list.
 
 The following Sequence diagram below will explain how the `list_f` command works in detail.
 
+.Sequence Diagram for listing Freshmen command
 image::ListParticipantCommandSequenceDiagram.png[width="800"]
-_Sequence Diagram for listing Freshmen command_
 
 An example usage of the `list_f` command is as follows:
 
@@ -338,7 +339,7 @@ An example usage of the `list_f` command is as follows:
 
 The implementation is similar for the `list_o` command with the use of `FindingOglPredicate` instead where the searched tag is "OGL".
 
-= ==== Design Considerations
+==== Design Considerations
 
 ===== Aspect: Separate management of freshmen and OGLs
 
@@ -381,8 +382,8 @@ Add
 
 The following sequence diagram shows how the `Logic` and `Model` components interact when the user enters the command `add_g r1 red`.
 
+.Interactions within Logic and Model for the command `add_g r1 red`
 image::AddGroupSequenceDiagram.png[width="800"]
-Figure X. Interactions within `Logic` and `Model` for the command `add_g r1 red`
 
 * The new group (R1, Red) is added to `UniqueGroupList` stored within `VersionedAddressBook` when the `addGroup(a)` function is called from `Model`
 
@@ -488,6 +489,7 @@ If the `currentStatePointer` is at index 0, pointing to the initial address book
 
 The following sequence diagram shows how the undo operation works:
 
+.Interactions within Logic and Model when `undo` is entered
 image::UndoRedoSequenceDiagram.png[width="800"]
 
 The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
@@ -505,6 +507,7 @@ image::UndoRedoNewCommand4StateListDiagram.png[width="800"]
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
+.Activity flow when new command is executed
 image::UndoRedoActivityDiagram.png[width="800"]
 
 ==== Design Considerations
@@ -565,6 +568,7 @@ The `randomize` is achieved by coding a sequence of steps to achieve the allocat
 // tag::statistic[]
 === Statistic feature
 The 'stat' command allows FOP Manager users to view the statistic of camp participants regarding their age, major and sex in a graphical manner.
+
 ==== Current Implementation
 
 The Statistic feature is facilitated by `AddressBook`. It has three HashMaps, containing the number of each categories in the participants' age, major and sex. These Map are generated after every call of the
@@ -572,6 +576,7 @@ The Statistic feature is facilitated by `AddressBook`. It has three HashMaps, co
 
 The following sequence diagram show hows the 'stat' command works in details :
 
+.Interaction between UI, Logic and Model when `stat` is executed
 image::StatisticUpdateSequenceDiagram.png[width="800"]
 
 ==== Design Consideration
@@ -584,6 +589,7 @@ image::StatisticUpdateSequenceDiagram.png[width="800"]
 |Use a loop to loop through the `UniqueParticipantList` to get the data of everyone (current choice). |Easy to implement, guaranteed to get the correct data every time |Takes longer time and more computational power to get the result.
 |Update charts data after each commands that modify it. |Quick runtime, does not require much changes to the codebase |We must ensure that the data is updated after each command.
 |=========
+
 Since this function is unlikely to be used many times and the number of participants in a camp is not too large, the drawbacks to the first alternative are acceptable.
 
 // end::statistic[]
@@ -601,8 +607,8 @@ Participant contact details can be exported in different manners:
 
 The following is an Activity Diagram to summarize what happens when the `export` command is entered.
 
+.Activity Diagram for exporting command
 image::ExportCommandActivityDiagram.png[width="800"]
-_Activity Diagram for exporting command_
 
 ==== Current Implementation
 * A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
@@ -610,8 +616,8 @@ _Activity Diagram for exporting command_
 
 The following Sequence diagram below will explain how the `export` command works in detail.
 
+.Sequence Diagram for exporting command
 image::ExportCommandSequenceDiagram.png[width="800"]
-_Sequence Diagram for exporting command_
 
 An example usage of the command is as follows:
 
@@ -636,8 +642,8 @@ Sometimes FOP Project Directors realise they need to add many participants' cont
 
 The following is an Activity Diagram to summarize what happens when the `import` command is entered.
 
+.Activity Diagram for the importing command
 image::ImportCommandActivityDiagram.png[width="800"]
-_Activity Diagram for the importing command_
 
 ==== Current Implementation
 * A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
@@ -647,8 +653,8 @@ _Activity Diagram for the importing command_
 
 The following Sequence diagram below will explain how the `import` command works in detail.
 
+.Sequence Diagram for importing command
 image::ImportCommandSequenceDiagram.png[width="800"]
-_Sequence Diagram for importing command_
 
 An example usage of the command is as follows:
 
@@ -1380,7 +1386,7 @@ These instructions only provide a starting point for testers to work on; testers
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) +
   Expected: Similar to previous.
 
-=== Adding a House
+=== Adding a house
 
 . Adding a house to the address book
 
@@ -1391,7 +1397,7 @@ These instructions only provide a starting point for testers to work on; testers
     `add_h Red` +
     Expected: House named `Red` is added on first command. No house is added on the second. An error message showing that the house `Red` already exists is shown in the result box.
 
-=== Adding a Group
+=== Adding a group
 
 . Adding a group to the address book
 
