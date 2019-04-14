@@ -57,8 +57,12 @@ This section shows a summary of my coding, documentation and other contributions
 *** *Highlights*: It was a necessary enhancement to implement for the various listing commands to work the way they were implemented.
 *** *Code contributed*: [LINK of Pull Requests: https://github.com/cs2113-ay1819s2-t08-4/main/pull[#89], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#56]]
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
-**NEED TO UPDATE**
+* *Code contributed*:
+
+* _Functional code_: [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/logic/commands/AddFreshmanCommand.java[Add Freshman Command]],  [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/logic/commands/AddOglCommand.java[Add OGL Command]], [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/logic/commands/ListParticipantCommand.java[List Freshmen Command]], [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/logic/commands/ListOglCommand.java[List OGL Command]], [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/logic/commands/ExportCommand.java[Export Command]], [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/logic/commands/ExportFreshmenCommand.java[Export Freshmen Command]], [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/logic/commands/ExportOglCommand.java[Export OGL Command]], [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/logic/commands/ImportCommand.java[Import Command]]
+* _Test code_: [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/test/java/seedu/address/logic/commands/ListParticipantCommandTest.java[List Freshmen Command Test]], [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/test/java/seedu/address/logic/commands/ListOglCommandTest.java[List OGL Command Test]], [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/test/java/seedu/address/logic/commands/ExportCommandTest.java[Export Command Test]], [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/test/java/seedu/address/logic/commands/ExportFreshmenCommandTest.java[Export Freshmen Command Test]], [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/test/java/seedu/address/logic/commands/ExportOglCommandTest.java[Export OGL Command Test]],
+* Check out more of my code on Project Code Dashboard https://nuscs2113-ay1819s2.github.io/dashboard-beta/#=undefined&search=ssunil3232[here].
+
 * *Other contributions*:
 
 ** I contributed to the User Guide and Developer Guide to update it with features that were added by the team (Pull requests https://github.com/cs2113-ay1819s2-t08-4/main/pull[#100], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#99], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#98], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#87], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#63], https://github.com/cs2113-ay1819s2-t08-4/main/pull[#51])
@@ -214,7 +218,7 @@ The values entered under each respective columns, have to follow the format of t
 ****
 
 Link to view the User Guide:
-include::../UserGuide.adoc[tag=Add]
+[https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/docs/UserGuide.adoc[User Guide]]
 
 == Contributions to the Developer Guide
 
@@ -283,9 +287,6 @@ This section elaborates on the possible ways for implementation that were consid
 We decided to go ahead with *Alternative 1* as it was easier to implement. It would not require creation of switch cases for the UI to display the respective lists and would not require unnecessarily long codes to filter out freshmen and OGLs from the participant list. The pros of doing *Alternative 1* outweighs the pros of doing *Alternative 2* hence the decision to implement the latter.
 
 
-Link to view in detail:
-include::../DeveloperGuide.adoc[tag=PartManagement]
-
 === Export feature
 
 The Export feature will allow the FOP Manager user to export the data into an excel file and distribute to other relevant people involved in the FOP. This way, data can be distributed and raw data untouched except by the Project Director or other camp organisers who are given the access to the raw data.
@@ -326,9 +327,6 @@ An example usage of the command is as follows:
 Only one way was considered for the implementation of Export feature, which involved importing the third-party library.
 
 
-Link to view in detail:
-include::../DeveloperGuide.adoc[tag=export]
-
 === Import Feature
 
 Sometimes FOP Project Directors realise they need to add many participants' contacts that they gathered and usually they gather the contacts through sign up links that allow for exportation into Excel spreadsheets. Manually added the large influx of participants is troublesome. Hence, with the Import feature, FOP Project Directors can import the data of Non-duplicate people from an excel file into the FOP Manager. This makes adding of contacts easier.
@@ -355,7 +353,7 @@ An example usage of the command is as follows:
 
 *Step 2:* The user enters the `import` command . The `import` command calls the `WriteToExcel` class's `ReadFromExcel()`. This will open the file of the default set name from the set directory.
 
-*Steo 3:* The Excel sheets is checked for the correct headings and then the cell's values are read to create each `person`. Each `person` is added to a `List<Person>` which will be returned to the Import command.
+*Step 3:* The Excel sheets is checked for the correct headings and then the cell's values are read to create each `person`. Each `person` is added to a `List<Person>` which will be returned to the Import command.
 
 *Step 4:* The `import` command adds each non-duplicate person into the FOP Manager.
 
@@ -366,5 +364,5 @@ An example usage of the command is as follows:
 Only one way was considered for the implementation of Import feature, which involved importing the third-party library.
 
 
-Link to view in detail:
-include::../DeveloperGuide.adoc[tag=import]
+Link to view the Developer Guide in detail:
+[https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/docs/DeveloperGuide.adoc[Developer Guide]]
