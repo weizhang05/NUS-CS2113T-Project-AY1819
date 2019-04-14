@@ -14,10 +14,6 @@
 
 For our Software Engineering module CS2113T, my team and I worked on morphing a given Command Line Interface (CLI) Address book for its **use by Faculty Orientation Program (FOP) Project Directors for easier management of participant data during camps**.
 
-Here is how the FOP Manager looks like:
-
-image::Ui.png[width="790"]
-
 === Purpose of the Project
 Often it gets messy during the facilitation and organisation of FOP camps as the FOP participant size is a lot larger than normal camps and there are various critical student data that need to be passed around among organizers. __FOP Manager__ will aid FOP Project Directors in viewing, sharing and changing the participant data more easily.
 
@@ -199,14 +195,12 @@ Link to view the User Guide: [https://github.com/CS2113-AY1819S2-T08-4/main/blob
 == Contributions to the Developer Guide
 
 |===
-|_I added the sections on Participant Management, the Export Feature and the Import Feature to the FOP Manager Developer Guide. The following section is an example contribution of the Participant Management section I wrote on in the Developer Guide and sample of the Export Feature and Import Feature sections. You can view the details on the Export Feature and the Import Feature in greater detail from the Developer Guide._
+|_I added the sections on Participant Management, the Export Feature and the Import Feature to the FOP Manager Developer Guide. The following section is an example contribution of the Participant Management section I wrote on in the Developer Guide and sample of the Export Feature and Import Feature sections. You can view the Export Feature and the Import Feature in greater detail from the Developer Guide._
 |===
 
 === Participant Management
 
-Participant management refers to how users manipulate and view the data of camp participants. Participants are categorised into 3 types: OGL, Freshman or other.
-
-This section describes how the 3 types of participants are managed.
+Participant management refers to how users manipulate and view the data of camp participants. Participants are categorised into 3 types: OGL, Freshman or other. This section describes how the 3 types of participants are managed.
 
 In *FOP Manager*, participants can be added, edited, deleted and listed.
 
@@ -225,11 +219,6 @@ Participant contact details can be viewed in different manners:
 All participants are stored in the same contact list as a `UniqueParticipantList` in an AddressBook object. Participants created as OGLs or Freshmen differ only in the tags added to them. The different listing of the participants is very useful for Project Directors as it helps them to view the Freshmen and the OGL contacts separately, to specifically see who are in the respective lists and how many participants are there in each of the lists.
 
 ==== Current Implementation
-
-The following is an Activity Diagram to summarize what happens when either the `list_f` or `list_o` commands are entered.
-
-image::ListFreshmenCommandActivityDiagram.png[width="800"]
-_Activity Diagram for listing Freshmen command_
 
 The list commands, `list_o` and `list_f`, use the keywords/predicates "Freshman" and "OGL" to search through the tags of all participants in the contact list. All participants with matching tags of "Freshman" or "OGL" will be added into the filtered participant list, enabling the user to view all freshmen or OGLs in the contact list.
 
@@ -266,44 +255,12 @@ We decided to go ahead with *Alternative 1* as it was easier to implement. It wo
 
 The Export feature will allow the FOP Manager user to export the data into an excel file and distribute to other relevant people involved in the FOP. This way, data can be distributed and raw data untouched except by the Project Director or other camp organisers who are given the access to the raw data.
 
-Participant contact details can be exported in different manners:
-
-* `export`: Exports all participants' contacts into an Excel Spreadsheet
-* `export_f`: Exports all freshmen contacts into an Excel Spreadsheet
-* `export_o`: Exports all OGL contacts into an Excel Spreadsheet
-
-==== Current Implementation
-* A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
-* The `export` command will call a function from a class `WriteToExcel` to start the creation of the HSSF Workbook and the addition of all the participants found on the participant list to the Workbook, with the respective objects to the participant class added to the correct column. The system will get the current directory path and add the path name to the proposed file name that end with ".xls". The file will thus be successfully saved in the current user directory.
-
-==== Design Consideration
-Only one way was considered for the implementation of Export feature, which involved importing the third-party library.
-
-The following Sequence diagram below will explain how the `export` command works in detail.
-
-image::ExportCommandSequenceDiagram.png[width="800"]
-_Sequence Diagram for exporting command_
-
-The example usage of the command can be found in the Developer Guide's Export Feature section under -Implementation_.
-Link to view the Developer Guide: [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/docs/DeveloperGuide.adoc[Developer Guide]]
+The example usage, Sequence Diagram, Current Implementation and Design Considerations of the command can be found in the **Developer Guide's Export Feature** section under _Implementation_.
 
 === Import Feature
 
 Sometimes FOP Project Directors realise they need to add many participants' contacts that they gathered and usually they gather the contacts through sign up links that allow for exportation into Excel spreadsheets. Manually added the large influx of participants is troublesome. Hence, with the Import feature, FOP Project Directors can import the data of Non-duplicate people from an excel file into the FOP Manager. This makes adding of contacts easier.
 
-==== Current Implementation
-* A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
-* The `import` command will call a function from a class `WriteToExcel` to start the reading from a HSSF Workbook found in the current directory path, with the file name "FOP_MANAGER_LIST.xls".
-* The cell value from the respective heading/columns are read into their respective string and `person` is created with these strings.
-* The `person` is added to a `List<Person>` and each `person` is added into the `Address Book`.
+The example usage, Sequence Diagram, Current Implementation and Design Considerations of the command can be found in the **Developer Guide's Import Feature** section under _Implementation_.
 
-==== Design Consideration
-Only one way was considered for the implementation of Import feature, which involved importing the third-party library.
-
-The following Sequence diagram below will explain how the `import` command works in detail.
-
-image::ImportCommandSequenceDiagram.png[width="800"]
-_Sequence Diagram for importing command_
-
-The example usage of the command can be found in the Developer Guide's Import Feature section under -Implementation_.
 Link to view the Developer Guide: [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/docs/DeveloperGuide.adoc[Developer Guide]]
