@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.grouping.Group;
 import seedu.address.model.participant.Participant;
 
@@ -53,8 +52,7 @@ public class EditGroupCommand extends Command {
             throw new CommandException(MESSAGE_REPEAT_GROUP);
         }
 
-        ReadOnlyAddressBook existingAddressBook = model.getAddressBook();
-        ObservableList<Group> groupList = existingAddressBook.getGroupList();
+        ObservableList<Group> groupList = model.getAddressBook().getGroupList();
 
         Group oldGroup = new Group(oldGroupName);
         Group newGroup = new Group(newGroupName);
@@ -82,12 +80,10 @@ public class EditGroupCommand extends Command {
         }
 
         //updates persons with old group to new group
-        List<Participant> participantList = existingAddressBook.getParticipantList();
+        List<Participant> participantList = model.getAddressBook().getParticipantList();
         for (Participant participant : participantList) {
             if (participant.getGroup().equals(oldGroup)) {
-                Participant editedParticipant = new Participant(participant.getName(),
-                        participant.getSex(), participant.getBirthday(), participant.getPhone(),
-                        participant.getEmail(), participant.getMajor(), newGroup, participant.getTags());
+                Participant editedParticipant = getParticipantUpdatedGroup(participant, newGroup);
                 model.setParticipant(participant, editedParticipant);
             }
         }
@@ -103,5 +99,14 @@ public class EditGroupCommand extends Command {
                 || (other instanceof EditGroupCommand // instanceof handles nulls
                 && this.getOldGroupName().equals(((EditGroupCommand) other).getOldGroupName())
                 && this.getNewGroupName().equals(((EditGroupCommand) other).getNewGroupName())); // state check
+    }
+
+    /**
+     * Creates and returns a {@code Participant} with the updated {@code group}.
+     */
+    private static Participant getParticipantUpdatedGroup(Participant participantToEdit, Group group) {
+        return new Participant(participantToEdit.getName(), participantToEdit.getSex(),
+                participantToEdit.getBirthday(), participantToEdit.getPhone(), participantToEdit.getEmail(),
+                participantToEdit.getMajor(), group, participantToEdit.getTags());
     }
 }

@@ -78,9 +78,7 @@ public class AddCommand extends Command {
         }
 
         Group updatedGroup = model.getGroup(toAdd.getGroup());
-        Participant toAddUpdated = new Participant(toAdd.getName(), toAdd.getSex(),
-                toAdd.getBirthday(), toAdd.getPhone(),
-                toAdd.getEmail(), toAdd.getMajor(), updatedGroup, toAdd.getTags());
+        Participant toAddUpdated = getParticipantUpdatedGroup(toAdd, updatedGroup);
         model.addParticipant(toAddUpdated);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAddUpdated));
@@ -91,5 +89,14 @@ public class AddCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
                 && toAdd.equals(((AddCommand) other).toAdd));
+    }
+
+    /**
+     * Creates and returns a {@code Participant} with the updated {@code group}.
+     */
+    public static Participant getParticipantUpdatedGroup(Participant participantToEdit, Group group) {
+        return new Participant(participantToEdit.getName(), participantToEdit.getSex(),
+                participantToEdit.getBirthday(), participantToEdit.getPhone(), participantToEdit.getEmail(),
+                participantToEdit.getMajor(), group, participantToEdit.getTags());
     }
 }

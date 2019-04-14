@@ -14,8 +14,6 @@ Hello! I am a Year 2 Computer Engineering student studying in the National Unive
 
 == PROJECT: _FOP Manager_
 
----
-
 == About The Project
 
 My team and I decided to enhance an existing Command Line Interface address book application to manage camp participants' information, to be used by NUS Freshmen Orientation Camp Project Directors (PDs). This enhanced application allows PDs to view and modify participants' contact details with ease.
@@ -42,28 +40,29 @@ NOTE: This symbol indicates important information.
 
 This section shows a summary of my coding, documentation, and other helpful contributions. In this project, I was in charge of creating the logic to support our app's feature of `_Group_` and `_House_` management.
 
-*Major enhancements*:
+*Major enhancement*:
 [options="header"]
 |=======================
 |Feature |Description |Justification |Highlights
 |Adding, editing and deleting groups and houses |Allows the user to add, edit and delete `_House_` and `_Group_` objects, so that participants can be grouped according to their camp grouping. |Being tailored to manage participant details in Freshmen Orientation camps, having groups and houses are essential to organising participants as camp organisers normally do when planning camps. |These commands are a core component of the project that other features such as `randomize` build upon. It was challenging to implement as it required changes to basic commands like `add` and `edit`, as well as to the app's model.
-
-|Listing participants by houses and groups |Allows the user to list the participants in a specified house or group. |Listing the participants in the same group and same house is necessary for the user to filter through data quickly, especially when managing a large camp. It also allows the user to see the current size of a specific group or house. |The implementation of these commands required knowledge of using predicates to find participants that match a certain search criteria.
-
-|Viewing houses and groups |Allows the user to view the houses and groups they have added so far. | The exact house or group name must be specified to edit its name, delete it, or add to it. These commands help the user to know which houses and groups have been created so far, and can therefore be added to, modified or deleted.|
 |=======================
 
-*Minor enhancement*:
+*Minor enhancements*:
 [options="header"]
 |=======================
 |Feature |Description |Justification
-|Size command| This command allows the user to view the sizing details of the camp. |
+
+|Listing participants by houses and groups |Allows the user to list the participants in a specified house or group. |Listing the participants in the same group and same house is necessary for the user to filter through data quickly, especially when managing a large camp. It also allows the user to see the current size of a specific group or house.
+
+|Viewing houses and groups |Allows the user to view the houses and groups they have added so far. | The exact house or group name must be specified to edit its name, delete it, or add to it. These commands help the user to know which houses and groups have been created so far, and can therefore be added to, modified or deleted.
+
+|Size command| This command allows the user to view the sizing details of the camp. |This command allows the user to easily see the number of participants, OGLs, freshmen, groups and houses at one shot, providing a quick way to size the camp.
 |=======================
 
 *Code contributed*:
 
-* _Functional code_: [https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/AddGroupCommand.java[Add Group Command]], [https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/EditGroupCommand.java[Edit Group Command]], [https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/ListGroupCommand.java[List Group Command]]
-* _Test code_: [https://github.com/shanseet/T08-Fork/blob/master/src/test/java/seedu/address/logic/commands/EditGroupCommandTest.java[Edit Group Commmand Test]], [https://github.com/shanseet/T08-Fork/blob/master/src/test/java/seedu/address/logic/commands/EditHouseCommandTest.java[Edit House Command Test]]
+* _Functional code sample_: [https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/AddGroupCommand.java[Add Group Command]], [https://github.com/shanseet/T08-Fork/blob/master/src/main/java/seedu/address/logic/commands/ListGroupCommand.java[List Group Command]]
+* _Test code sample_: [https://github.com/shanseet/T08-Fork/blob/master/src/test/java/seedu/address/logic/commands/EditGroupCommandTest.java[Edit Group Commmand Test]]
 * Check out more of my code on Project Code Dashboard https://nuscs2113-ay1819s2.github.io/dashboard-beta/#=undefined&search=shanseet[here].
 
 *Other contributions*:
@@ -91,9 +90,6 @@ The following is an excerpt from the User Guide showing the additions I made for
 
 === Editing Houses and Groups
 include::../UserGuide.adoc[tag=editgrouphouse]
-
-=== Deleting Groups and Houses
-include::../UserGuide.adoc[tag=deletegrouphouse]
 
 Check out the full User Guide [https://github.com/shanseet/T08-Fork/blob/master/docs/UserGuide.adoc[here]].
 
