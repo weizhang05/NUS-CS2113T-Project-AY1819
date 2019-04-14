@@ -534,7 +534,11 @@ image::UndoRedoActivityDiagram.png[width="800"]
 //tag::randomize[]
 === Randomized Group Allocation
 
-*FOP Manager* has a `randomize` command, which allows the Project Director to automatically assign all participants to a group.
+*FOP Manager* has a `randomize` command, which allows the Project Director to automatically assign all participants to a group. +
+
+Following is the activity diagram when the command is executed:
+
+image::RandomizeActivityDiagram.png[width="800"]
 
 ==== Current Implementation
 
