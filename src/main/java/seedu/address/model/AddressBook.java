@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Map;
 
 import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
@@ -96,11 +97,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         setGroups(newData.getGroupList());
         setHouses(newData.getHouseList());
 
-        //ageData.clear();
         ageData.putAll(newData.getAgeData());
-        //majorData.clear();
         majorData.putAll(newData.getMajorData());
-        //sexData.clear();
         sexData.putAll(newData.getSexData());
     }
 
@@ -138,7 +136,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addParticipant(Participant p) {
         participants.add(p);
-        //addData(p);
         indicateModified();
     }
 
@@ -151,9 +148,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setParticipant(Participant target, Participant editedParticipant) {
         requireNonNull(editedParticipant);
 
-        //addData(editedParticipant);
-        //deleteData(target);
-
         participants.setParticipant(target, editedParticipant);
         indicateModified();
     }
@@ -164,7 +158,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeParticipant(Participant key) {
         participants.remove(key);
-        //deleteData(key);
         indicateModified();
     }
 
@@ -275,30 +268,45 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public ObservableMap<String, Integer> getAgeData() {
         ageData.clear();
+        ObservableMap<String, Integer> rawData = FXCollections.observableHashMap();
         for (Participant p : participants) {
             String key = p.getBirthday().getAge();
-            Integer value = (ageData.containsKey(key)) ? (ageData.get(key) + 1) : (1);
-            ageData.put(key, value);
+            Integer value = (rawData.containsKey(key)) ? (rawData.get(key) + 1) : (1);
+            rawData.put(key, value);
+        }
+
+        for (String key : rawData.keySet()) {
+            ageData.put(key + " (" + rawData.get(key) + ")", rawData.get(key));
         }
         return FXCollections.observableMap(ageData);
     }
 
     public ObservableMap<String, Integer> getMajorData() {
         majorData.clear();
+        ObservableMap<String, Integer> rawData = FXCollections.observableHashMap();
         for (Participant p : participants) {
             String key = p.getMajor().value;
-            Integer value = (majorData.containsKey(key)) ? (majorData.get(key) + 1) : (1);
-            majorData.put(key, value);
+            Integer value = (rawData.containsKey(key)) ? (rawData.get(key) + 1) : (1);
+            rawData.put(key, value);
+        }
+
+        for (String key : rawData.keySet()) {
+            majorData.put(key + " (" + rawData.get(key) + ")", rawData.get(key));
         }
         return FXCollections.unmodifiableObservableMap(majorData);
     }
 
     public ObservableMap<String, Integer> getSexData() {
         sexData.clear();
+        ObservableMap<String, Integer> rawData = FXCollections.observableHashMap();
         for (Participant p : participants) {
             String key = p.getSex().value;
-            Integer value = (sexData.containsKey(key)) ? (sexData.get(key) + 1) : (1);
-            sexData.put(key, value);
+            Integer value = (rawData.containsKey(key)) ? (rawData.get(key) + 1) : (1);
+            rawData.put(key, value);
+        }
+
+        for (String key : rawData.keySet()) {
+            sexData.put(key + " (" + rawData.get(key) + ")", rawData.get(key));
         }
         return FXCollections.unmodifiableObservableMap(sexData);
     }
