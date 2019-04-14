@@ -7,7 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Shows pir charts presenting the percentage of camp's participant by age, sex and major.
+ * Shows pie charts presenting the percentage of camp's participant by age, sex and major.
  */
 
 public class StatCommand extends Command {

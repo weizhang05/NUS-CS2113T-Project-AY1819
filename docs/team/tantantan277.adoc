@@ -26,7 +26,7 @@ Please take notes of the following icons and their meanings used in the document
 
 == Summary of contributions
 
-* *Major enhancement*: implemented *the `stat` and `save_c` command*
+* *Major enhancement: implemented the `stat` and `save_c` command*
 ** What it does: The `stat` command will generate three pie charts of all of the camp's participants' age, major and sex and display them on the GUI as in Figure 1. The `save_c` command will save those charts into separate image files.
 ** Justification: At the end of every FOP, the Project Directors usually have to make various reports for their university, their faculty or different sponsors that requires these information. These two features together
 will let the user generate those data quickly and efficiently.
@@ -54,7 +54,18 @@ image::StatResult.png[width="800"]
 image::UndoRedoList.png[width="800"]
 
 
-* *Code written*: https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=tantantan277&sort=displayName&since=2019-02-10&until=2019-04-11&timeframe=day&reverse=false&repoSort=true[Click here to see what I'm capable of]
+* *Code contributions*:
+** Functional code: [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/logic/commands/StatCommand.java[Stat Command]],
+[https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/logic/commands/SaveChartCommand.java[Save Chart Command]],
+[https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/ui/ChartPanel.java[Chart Panel]],
+[https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/ui/UndoListPanel.java[Undo List Panel]],
+[https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/ui/UndoCard.java[Undo Card]]
+** Test code:
+[https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/test/java/seedu/address/logic/commands/StatCommandTest.java[Stat Command Test]],
+[https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/test/java/seedu/address/logic/commands/SaveChartCommandTest.java[Save Chart Command Test]],
+[https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/test/java/seedu/address/ui/UndoListPanelTest.java[Undo List Panel Test]],
+[https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/test/java/seedu/address/ui/UndoCardTest.java[Undo Card]]
+** Feel free to check out all of my code on the Project Code Dashboard https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=tantantan277&sort=displayName&since=2019-02-10&until=2019-04-11&timeframe=day&reverse=false&repoSort=true[here]
 
 == Contributions to the User Guide
 
