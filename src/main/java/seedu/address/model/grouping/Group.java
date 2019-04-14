@@ -24,10 +24,6 @@ public class Group {
         return groupName;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
     /**
      * Returns true if it's a valid group. Always true (can be empty).
      * @param test
@@ -42,7 +38,7 @@ public class Group {
      * This defines a weaker notion of equality between two groups.
      */
     public boolean isSameGroup(Group otherGroup) {
-        return this.getGroupName().equals(otherGroup.getGroupName());
+        return this.equals(otherGroup);
     }
 
     // ========= House Operations =========
