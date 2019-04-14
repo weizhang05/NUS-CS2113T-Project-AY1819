@@ -19,10 +19,10 @@ Aside from this project, I'm also a *Software Engineer* where my main interests 
 
 The purpose of this document is to showcase the contribution of my work towards this project as part of the context of learning in this module. +
  +
-The outline of this document will be listed as follows, mainly describing the work I have done in both technical and non-technical aspect:
-* *Summary of Contributions*: Describes mainly the technical aspect of work I have contributing in the development of the project. It also includes any other possible contributions I have done that may not be technical.
-* *Contributions to User Guide*: Showcases my ability in writing a guide for user of the application that was developed for.
-* *Contributions to Developer Guide*: Showcases my ability in writing a guide for developers who may continue to work on the development and maintainance of the application in the future.
+The outline of this document will be listed as follows, mainly describing the work I have done in both technical and non-technical aspect: +
+*Summary of Contributions*: Describes mainly the technical aspect of work I have contributing in the development of the project. It also includes any other possible contributions I have done that may not be technical. +
+*Contributions to User Guide*: Showcases my ability in writing a guide for user of the application that was developed for. +
+*Contributions to Developer Guide*: Showcases my ability in writing a guide for developers who may continue to work on the development and maintainance of the application in the future.
 
 == PROJECT: FOP Manager
 
@@ -31,20 +31,22 @@ The outline of this document will be listed as follows, mainly describing the wo
 FOP Manager is a desktop application for NUS undergraduate students who are Project Directors of Freshmen Orientation Programs to manage both participants and committee members of the program. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC. The development of this application is to teach Principles of Software Engineering.
 
 == Summary of contributions
+This segment showcase my contribution to both the development of the application and the documentation. +
+ +
 
 * *Major enhancement*:
 [options="header"]
 |=======================
 |					                    |Description      																			|Justification 																						|Highlights
-|Randomize Command	                    |Allows the Project Director to automatically assign all participants to created groups.	|The command prevents the Project Director from assigning the participants to the group manually.	|
-|Redesign current Model and Storage		|Changing the current format of Model and Storage.                                       	|Supports the storing of house and groups on top of the current participants. 						|
+|Randomize Command	                    |Allows the Project Director to automatically assign all participants to created groups.	|The command prevents the Project Director from assigning the participants to the group manually.	|The challenge here is to come out with a suitable algorithm which ensure even distribution with sufficient OGLs for all groups.
+|Redesign current Model and Storage		|Changing the current format of Model and Storage.                                       	|Supports the storing of house and groups on top of the current participants. 						|The challenge here is figuring out how is the whole application designed as this modification requires knowing the code base very well.
 |=======================
 
 * *Minor enhancement*:
 [options="header"]
 |=======================
 | 													|Description 																						|Justification 												|Highlights
-|Input box is clear after every command execution 	|Simulate a Terminal/CMD interface which refreshes the command after every entering of commands.    |Improves the user friendliness of using the command line.  |
+|Input box is clear after every command execution 	|Simulate a Terminal/CMD interface which refreshes the command after every entering of commands.    |Improves the user friendliness of using the command line.  |The challenge here is to figure out the code for the UI portion and ensuring which part of it is to be placed. This include ensuring the fix works as well.
 |=======================
 
 * *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
