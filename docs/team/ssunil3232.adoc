@@ -204,9 +204,7 @@ Link to view the User Guide: [https://github.com/CS2113-AY1819S2-T08-4/main/blob
 
 === Participant Management
 
-Participant management refers to how users manipulate and view the data of camp participants. Participants are categorised into 3 types: OGL, Freshman or other.
-
-This section describes how the 3 types of participants are managed.
+Participant management refers to how users manipulate and view the data of camp participants. Participants are categorised into 3 types: OGL, Freshman or other. This section describes how the 3 types of participants are managed.
 
 In *FOP Manager*, participants can be added, edited, deleted and listed.
 
@@ -261,34 +259,12 @@ We decided to go ahead with *Alternative 1* as it was easier to implement. It wo
 
 The Export feature will allow the FOP Manager user to export the data into an excel file and distribute to other relevant people involved in the FOP. This way, data can be distributed and raw data untouched except by the Project Director or other camp organisers who are given the access to the raw data.
 
-Participant contact details can be exported in different manners:
-
-* `export`: Exports all participants' contacts into an Excel Spreadsheet
-* `export_f`: Exports all freshmen contacts into an Excel Spreadsheet
-* `export_o`: Exports all OGL contacts into an Excel Spreadsheet
-
-==== Current Implementation
-* A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
-* The `export` command will call a function from a class `WriteToExcel` to start the creation of the HSSF Workbook and the addition of all the participants found on the participant list to the Workbook, with the respective objects to the participant class added to the correct column. The system will get the current directory path and add the path name to the proposed file name that end with ".xls". The file will thus be successfully saved in the current user directory.
-
-==== Design Consideration
-Only one way was considered for the implementation of Export feature, which involved importing the third-party library.
-
-The example usage and Sequence Diagram of the command can be found in the **Developer Guide's Export Feature** section under _Implementation_.
-Link to view the Developer Guide: [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/docs/DeveloperGuide.adoc[Developer Guide]]
+The example usage, Sequence Diagram, Current Implementation and Design Considerations of the command can be found in the **Developer Guide's Export Feature** section under _Implementation_.
 
 === Import Feature
 
 Sometimes FOP Project Directors realise they need to add many participants' contacts that they gathered and usually they gather the contacts through sign up links that allow for exportation into Excel spreadsheets. Manually added the large influx of participants is troublesome. Hence, with the Import feature, FOP Project Directors can import the data of Non-duplicate people from an excel file into the FOP Manager. This makes adding of contacts easier.
 
-==== Current Implementation
-* A third-party library 'Apache.poi' was integrated into the project to enable easy creation of excel files through Object-Oriented Programming (OOP). In this case, the library will enable the creation of HSSF Workbook.
-* The `import` command will call a function from a class `WriteToExcel` to start the reading from a HSSF Workbook found in the current directory path, with the file name "FOP_MANAGER_LIST.xls".
-* The cell value from the respective heading/columns are read into their respective string and `person` is created with these strings.
-* The `person` is added to a `List<Person>` and each `person` is added into the `Address Book`.
+The example usage, Sequence Diagram, Current Implementation and Design Considerations of the command can be found in the **Developer Guide's Import Feature** section under _Implementation_.
 
-==== Design Consideration
-Only one way was considered for the implementation of Import feature, which involved importing the third-party library.
-
-The example usage and Sequence Diagram of the command can be found in the **Developer Guide's Import Feature** section under _Implementation_.
 Link to view the Developer Guide: [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/docs/DeveloperGuide.adoc[Developer Guide]]
