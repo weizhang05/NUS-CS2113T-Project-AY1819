@@ -14,10 +14,6 @@
 
 For our Software Engineering module CS2113T, my team and I worked on morphing a given Command Line Interface (CLI) Address book for its **use by Faculty Orientation Program (FOP) Project Directors for easier management of participant data during camps**.
 
-Here is how the FOP Manager looks like:
-
-image::Ui.png[width="790"]
-
 === Purpose of the Project
 Often it gets messy during the facilitation and organisation of FOP camps as the FOP participant size is a lot larger than normal camps and there are various critical student data that need to be passed around among organizers. __FOP Manager__ will aid FOP Project Directors in viewing, sharing and changing the participant data more easily.
 
