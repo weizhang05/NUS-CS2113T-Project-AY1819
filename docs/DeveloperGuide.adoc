@@ -577,11 +577,11 @@ Rationale: Choice is made based on design practice. It may seems very intuitive 
 [options="header"]
 |=========
 |Alternatives |Pros | Cons
-|Creating lists for OGLs and freshmen and assigning them list by list (current choice) |Ensures all groups will have at least an OGL and balanced distribution amongst the group | Requires more memory space
+|Creating lists for OGLs and freshmen and assigning them list by list (current choice) |Ensures all groups will have at least an OGL and balanced distribution amongst the group |Requires more memory space
+|=========
 
 Rationale: There is only 1 consideration for this feature due to it's complexity, no other alternative has yet been identified.
 Future developers are free to modify the algorithm but must ensure all groups has at least an OGL and freshmen are evenly distributed (with 1 or 2 difference in numbers for freshmen).
-=========
 
 //end::randomize[]
 
