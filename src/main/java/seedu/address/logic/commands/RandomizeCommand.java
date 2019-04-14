@@ -30,7 +30,7 @@ public class RandomizeCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Participants are evenly distributed";
 
     public static final String MESSAGE_FAILURE = "Unable to distribute participants";
-    public static final String MESSAGE_INSUFFICIENT_PARTICIPANTS = MESSAGE_FAILURE + ": Insufficient particiapnts";
+    public static final String MESSAGE_INSUFFICIENT_PARTICIPANTS = MESSAGE_FAILURE + ": Insufficient participants";
     public static final String MESSAGE_INSUFFICIENT_OGLS = MESSAGE_FAILURE + ": Insufficient OGLs";
     public static final String MESSAGE_INSUFFICIENT_GROUPS = MESSAGE_FAILURE + ": Insufficient groups";
 
