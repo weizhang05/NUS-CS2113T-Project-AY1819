@@ -44,7 +44,7 @@ public class Birthday {
          * - Nobody is born in the future
          * - No undergraduate is older than 50 years old
          */
-        if (year > Year.now().getValue()) { //invalid year
+        if (year > Year.now().getValue() || year < (Year.now().getValue() - 50)) { //invalid year
             return false;
         }
         return true;
