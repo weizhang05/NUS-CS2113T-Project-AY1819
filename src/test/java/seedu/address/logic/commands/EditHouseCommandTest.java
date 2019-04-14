@@ -62,14 +62,14 @@ public class EditHouseCommandTest {
         Participant editedParticipant = new PersonBuilder().withName("Alicia Alice")
                 .withSex("F").withBirthday("07081994").withMajor("CS").withEmail("alicia@example.com")
                 .withPhone("94351253").withGroup("R1", "Green").build();
-        Participant toEdit = model.getFilteredPersonList().get(0);
+        Participant toEdit = model.getFilteredParticipantList().get(0);
 
         expectedModel.setGroup(new Group("R1", "Red"),
                 new Group("R1", "Green"));
         expectedModel.setGroup(new Group("R2", "Red"),
                 new Group("R2", "Green"));
         expectedModel.setHouse(new House("Red"), new House("Green"));
-        expectedModel.setPerson(toEdit, editedParticipant);
+        expectedModel.setParticipant(toEdit, editedParticipant);
         expectedModel.commitAddressBook();
         assertCommandSuccess(editHouseCommand, model, commandHistory, expectedMessage, expectedModel);
     }

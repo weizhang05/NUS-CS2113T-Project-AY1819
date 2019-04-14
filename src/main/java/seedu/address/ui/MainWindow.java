@@ -32,7 +32,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private BrowserPanel browserPanel;
     private ChartPanel chartPanel;
     private PersonListPanel personListPanel;
     private TextResultDisplay textResultDisplay;
@@ -126,7 +125,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         //Browser Remove
-        //browserPanel = new BrowserPanel(logic.selectedPersonProperty());
+        //browserPanel = new BrowserPanel(logic.selectedParticipantProperty());
         //browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.selectedPersonProperty(),

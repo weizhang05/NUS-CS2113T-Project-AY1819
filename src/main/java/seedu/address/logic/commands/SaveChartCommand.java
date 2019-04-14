@@ -18,8 +18,13 @@ public class SaveChartCommand extends Command {
             + "File Name";
 
     public static final String MESSAGE_SUCCESS = "Saved images";
+    public static final String MESSAGE_NO_PERSON = "There is no information in the app.";
 
     private static String fileName;
+
+    public SaveChartCommand() {
+        this.fileName = "";
+    }
 
     public SaveChartCommand(String fileName) {
         this.fileName = fileName;
@@ -32,6 +37,10 @@ public class SaveChartCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+
+        if (model.isEmpty()) {
+            throw new CommandException(MESSAGE_NO_PERSON);
+        }
 
         model.setFileName(fileName);
 

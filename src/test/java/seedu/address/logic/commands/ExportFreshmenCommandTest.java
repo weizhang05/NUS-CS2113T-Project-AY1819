@@ -34,10 +34,10 @@ public class ExportFreshmenCommandTest {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs()); //no Freshman
         FindingParticipantPredicate predicate = preparePredicate();
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredParticipantList(predicate);
         assertCommandSuccess(new ExportFreshmenCommand(), model, commandHistory,
                 Messages.MESSAGE_EXCEL_FILE_WRITTEN_SUCCESSFULLY, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredParticipantList());
     }
 
     /**
@@ -48,9 +48,9 @@ public class ExportFreshmenCommandTest {
         Model model = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs());
         Model expectedModel = new ModelManager(getAddressBookWithOneFreshmanAndOgl(), new UserPrefs()); //no Freshman
         FindingParticipantPredicate predicate = preparePredicate();
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredParticipantList(predicate);
         assertCommandSuccess(new ExportFreshmenCommand(), model, commandHistory,
                 Messages.MESSAGE_EXCEL_FILE_WRITTEN_SUCCESSFULLY, expectedModel);
-        assertEquals(Arrays.asList(MARK), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(MARK), model.getFilteredParticipantList());
     }
 }

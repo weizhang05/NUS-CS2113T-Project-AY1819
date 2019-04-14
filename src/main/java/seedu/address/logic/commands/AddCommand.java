@@ -63,12 +63,12 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasParticipant(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
         if (toAdd.getGroup().getGroupName().equals("")) {
-            model.addPerson(toAdd);
+            model.addParticipant(toAdd);
             model.commitAddressBook();
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
@@ -81,7 +81,7 @@ public class AddCommand extends Command {
         Participant toAddUpdated = new Participant(toAdd.getName(), toAdd.getSex(),
                 toAdd.getBirthday(), toAdd.getPhone(),
                 toAdd.getEmail(), toAdd.getMajor(), updatedGroup, toAdd.getTags());
-        model.addPerson(toAddUpdated);
+        model.addParticipant(toAddUpdated);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAddUpdated));
     }

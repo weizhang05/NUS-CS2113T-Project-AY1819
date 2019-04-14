@@ -40,10 +40,10 @@ public class ListGroupHouseCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         FindGroupPredicate predicate = prepareGroupPredicate(toFind);
         ListGroupCommand listGroupCommand = new ListGroupCommand(predicate, toFind);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredParticipantList(predicate);
         String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         assertCommandSuccess(listGroupCommand, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(), model.getFilteredParticipantList());
     }
 
     @Test
@@ -52,10 +52,10 @@ public class ListGroupHouseCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         FindGroupPredicate predicate = prepareGroupPredicate(toFind);
         ListGroupCommand listGroupCommand = new ListGroupCommand(predicate, toFind);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredParticipantList(predicate);
         String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         assertCommandSuccess(listGroupCommand, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICIA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICIA), model.getFilteredParticipantList());
     }
 
     @Test
@@ -64,10 +64,10 @@ public class ListGroupHouseCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         FindGroupPredicate predicate = prepareGroupPredicate(toFind);
         ListGroupCommand listGroupCommand = new ListGroupCommand(predicate, toFind);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredParticipantList(predicate);
         String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         assertCommandSuccess(listGroupCommand, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENEDICT), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(BENEDICT), model.getFilteredParticipantList());
     }
 
     @Test
@@ -76,10 +76,10 @@ public class ListGroupHouseCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         FindHousePredicate predicate = prepareHousePredicate(toFind);
         ListHouseCommand listHouseCommand = new ListHouseCommand(predicate, toFind);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredParticipantList(predicate);
         String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         assertCommandSuccess(listHouseCommand, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(), model.getFilteredParticipantList());
     }
 
     @Test
@@ -88,9 +88,9 @@ public class ListGroupHouseCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         FindHousePredicate predicate = prepareHousePredicate(toFind);
         ListHouseCommand listHouseCommand = new ListHouseCommand(predicate, toFind);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredParticipantList(predicate);
         String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         assertCommandSuccess(listHouseCommand, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICIA, COCO), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICIA, COCO), model.getFilteredParticipantList());
     }
 }

@@ -14,16 +14,12 @@ public class Major {
 
     public static final String MESSAGE_CONSTRAINTS = "Major must be one of the five majors of NUS School of Computing:"
             + " Computer Science, Information System, Computer Engineering, Business Analytics or Information Security";
-
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
     public static final String VALIDATION_REGEX = "[^\\s].*";
+
     private static final ArrayList<String> validMajorCS = new ArrayList<>(Arrays.asList("COMPUTER SCIENCE",
             "COMSCI", "CS"));
     private static final ArrayList<String> validMajorIS = new ArrayList<>(Arrays.asList("INFORMATION SYSTEM",
-            "INFOSYS", "IS"));
+            "INFORMATION SYSTEMS", "INFOSYS", "IS"));
     private static final ArrayList<String> validMajorCEG = new ArrayList<>(Arrays.asList("COMPUTER ENGINEERING",
             "COMENG", "CEG"));
     private static final ArrayList<String> validMajorISC = new ArrayList<>(Arrays.asList("INFORMATION SECURITY",

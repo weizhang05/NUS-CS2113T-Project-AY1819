@@ -18,8 +18,8 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.model.participant.Participant;
 import seedu.address.model.participant.UniqueParticipantList;
-import seedu.address.model.participant.exceptions.DuplicatePersonException;
-import seedu.address.model.participant.exceptions.PersonNotFoundException;
+import seedu.address.model.participant.exceptions.DuplicateParticipantException;
+import seedu.address.model.participant.exceptions.ParticipantNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniqueParticipantListTest {
@@ -62,32 +62,32 @@ public class UniqueParticipantListTest {
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniqueParticipantList.add(ALICE);
-        thrown.expect(DuplicatePersonException.class);
+        thrown.expect(DuplicateParticipantException.class);
         uniqueParticipantList.add(ALICE);
     }
 
     @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueParticipantList.setPerson(null, ALICE);
+        uniqueParticipantList.setParticipant(null, ALICE);
     }
 
     @Test
     public void setPerson_nullEditedPerson_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueParticipantList.setPerson(ALICE, null);
+        uniqueParticipantList.setParticipant(ALICE, null);
     }
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        thrown.expect(PersonNotFoundException.class);
-        uniqueParticipantList.setPerson(ALICE, ALICE);
+        thrown.expect(ParticipantNotFoundException.class);
+        uniqueParticipantList.setParticipant(ALICE, ALICE);
     }
 
     @Test
     public void setPerson_editedPersonIsSamePerson_success() {
         uniqueParticipantList.add(ALICE);
-        uniqueParticipantList.setPerson(ALICE, ALICE);
+        uniqueParticipantList.setParticipant(ALICE, ALICE);
         UniqueParticipantList expectedUniqueParticipantList = new UniqueParticipantList();
         expectedUniqueParticipantList.add(ALICE);
         assertEquals(expectedUniqueParticipantList, uniqueParticipantList);
@@ -98,7 +98,7 @@ public class UniqueParticipantListTest {
         uniqueParticipantList.add(ALICE);
         Participant editedAlice = new PersonBuilder(ALICE).withMajor(VALID_MAJOR_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniqueParticipantList.setPerson(ALICE, editedAlice);
+        uniqueParticipantList.setParticipant(ALICE, editedAlice);
         UniqueParticipantList expectedUniqueParticipantList = new UniqueParticipantList();
         expectedUniqueParticipantList.add(editedAlice);
         assertEquals(expectedUniqueParticipantList, uniqueParticipantList);
@@ -107,7 +107,7 @@ public class UniqueParticipantListTest {
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {
         uniqueParticipantList.add(ALICE);
-        uniqueParticipantList.setPerson(ALICE, BOB);
+        uniqueParticipantList.setParticipant(ALICE, BOB);
         UniqueParticipantList expectedUniqueParticipantList = new UniqueParticipantList();
         expectedUniqueParticipantList.add(BOB);
         assertEquals(expectedUniqueParticipantList, uniqueParticipantList);
@@ -117,8 +117,8 @@ public class UniqueParticipantListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniqueParticipantList.add(ALICE);
         uniqueParticipantList.add(BOB);
-        thrown.expect(DuplicatePersonException.class);
-        uniqueParticipantList.setPerson(ALICE, BOB);
+        thrown.expect(DuplicateParticipantException.class);
+        uniqueParticipantList.setParticipant(ALICE, BOB);
     }
 
     @Test
@@ -129,7 +129,7 @@ public class UniqueParticipantListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        thrown.expect(PersonNotFoundException.class);
+        thrown.expect(ParticipantNotFoundException.class);
         uniqueParticipantList.remove(ALICE);
     }
 
@@ -144,7 +144,7 @@ public class UniqueParticipantListTest {
     @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueParticipantList.setPersons((UniqueParticipantList) null);
+        uniqueParticipantList.setParticipants((UniqueParticipantList) null);
     }
 
     @Test
@@ -152,21 +152,21 @@ public class UniqueParticipantListTest {
         uniqueParticipantList.add(ALICE);
         UniqueParticipantList expectedUniqueParticipantList = new UniqueParticipantList();
         expectedUniqueParticipantList.add(BOB);
-        uniqueParticipantList.setPersons(expectedUniqueParticipantList);
+        uniqueParticipantList.setParticipants(expectedUniqueParticipantList);
         assertEquals(expectedUniqueParticipantList, uniqueParticipantList);
     }
 
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueParticipantList.setPersons((List<Participant>) null);
+        uniqueParticipantList.setParticipants((List<Participant>) null);
     }
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
         uniqueParticipantList.add(ALICE);
         List<Participant> participantList = Collections.singletonList(BOB);
-        uniqueParticipantList.setPersons(participantList);
+        uniqueParticipantList.setParticipants(participantList);
         UniqueParticipantList expectedUniqueParticipantList = new UniqueParticipantList();
         expectedUniqueParticipantList.add(BOB);
         assertEquals(expectedUniqueParticipantList, uniqueParticipantList);
@@ -175,8 +175,8 @@ public class UniqueParticipantListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Participant> listWithDuplicateParticipants = Arrays.asList(ALICE, ALICE);
-        thrown.expect(DuplicatePersonException.class);
-        uniqueParticipantList.setPersons(listWithDuplicateParticipants);
+        thrown.expect(DuplicateParticipantException.class);
+        uniqueParticipantList.setParticipants(listWithDuplicateParticipants);
     }
 
     @Test
