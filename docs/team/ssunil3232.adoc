@@ -218,7 +218,7 @@ The values entered under each respective columns, have to follow the format of t
 ****
 
 Link to view the User Guide:
-include::../UserGuide.adoc[tag=add]
+[https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/docs/UserGuide.adoc[User Guide]]
 
 == Contributions to the Developer Guide
 
@@ -365,4 +365,4 @@ Only one way was considered for the implementation of Import feature, which invo
 
 
 Link to view the Developer Guide in detail:
-include::../DeveloperGuide.adoc[tag=export]
+[https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/docs/DeveloperGuide.adoc[Developer Guide]]
