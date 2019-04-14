@@ -11,4 +11,7 @@ public class Value {
     public static final String OGL = "OGL";
     public static final String HOUSE_HEAD = "HOUSE_HEAD";
 
+    // Values for constraint checking
+    public static final int MAX_AGE = 50;
+
 }
