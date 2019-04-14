@@ -542,14 +542,22 @@ image::UndoRedoActivityDiagram.png[width="800"]
 //tag::randomize[]
 === Randomized Group Allocation
 
-*FOP Manager* has a `randomize` command, which allows the Project Director to automatically assign all participants to a group.
+*FOP Manager* has a `randomize` command, which allows the Project Director to automatically assign all participants to a group. +
+
+Following is the activity diagram when the command is executed:
+
+image::RandomizeActivityDiagram.png[width="800"]
 
 ==== Current Implementation
 
 The `randomize` is achieved by coding a sequence of steps to achieve the allocation of groups to participants:
-* Creates a list of integer based index. This is to simulate the participants.
-* Shuffles the list of index using a seed generated from SecureRandom. This is to ensure the result is to avoid possible similar results for every reshuffle.
-* Simulate the edit command to update the group details of all participants. This is done by programmatically executing the `edit` command, but only for the group attributes of the participants.
+* Creating list holding specific type of participants (i.e. all OGLs will be stored in a list while freshmen will be stored in another)
+* Shuffles all of the previously created list
+* Assigns all of the participants to a group in order of freshmen, OGLs
+
+Following is the sequence diagram of the flow of the program when the command is executed:
+
+image::RandomizeSequenceDiagram.png[width="800"]
 
 ==== Design Considerations
 
@@ -558,18 +566,22 @@ The `randomize` is achieved by coding a sequence of steps to achieve the allocat
 [options="header"]
 |=========
 |Alternatives |Pros | Cons
-|Use the same way as how the `edit` command works. |No internal coupling |Unnecessary recoding
-|Programmatically simulate the `edit` command (current choice). |Lesser code and better maintenance of the editing feature |Internal coupling within the component
+|Programmatically call the `edit` command |Changing of interface with the model only requires changing the EditCommand and Parser |Tightly coupled with EditCommand and Parser
+|Interact with ModelManager (current choice) |Modification is obvious and follow guidelines of the architecture of the system and cleaner code |Coupled with ModelManager
 |=========
+Rationale: Choice is made based on design practice. It may seems very intuitive to programmatically call the `edit` command,
+ but it might causes unknown complexity within the system if there is a change in the EditCommand or the parser.
 
 ===== Aspect: Shuffling of participants
 
 [options="header"]
 |=========
 |Alternatives |Pros | Cons
-|Shuffling the actual. |Unidentifiable |Uses even more computational resource and more complex coding as the current list of participant is unmodifiable.
-|Creating a list of integer based index to simulate participants (current choice). |Less computational intensive as dealing with native data type |Uses slightly more memory at that point of time
-|=========
+|Creating lists for OGLs and freshmen and assigning them list by list (current choice) |Ensures all groups will have at least an OGL and balanced distribution amongst the group | Requires more memory space
+
+Rationale: There is only 1 consideration for this feature due to it's complexity, no other alternative has yet been identified.
+Future developers are free to modify the algorithm but must ensure all groups has at least an OGL and freshmen are evenly distributed (with 1 or 2 difference in numbers for freshmen).
+=========
 
 //end::randomize[]
 

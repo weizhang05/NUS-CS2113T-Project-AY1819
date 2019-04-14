@@ -21,7 +21,10 @@ import seedu.address.model.participant.Participant;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PARTICIPANT = "Participants list contains duplicate participant(s).";
+    public static final String MESSAGE_DUPLICATE = "list contains duplicate";
+    public static final String MESSAGE_DUPLICATE_PARTICIPANT = "Participant " + MESSAGE_DUPLICATE + "participant.";
+    public static final String MESSAGE_DUPLICATE_GROUP = "Group " + MESSAGE_DUPLICATE + "group.";
+    public static final String MESSAGE_DUPLICATE_HOUSE = "House " + MESSAGE_DUPLICATE + "house.";
 
     private final List<JsonAdaptedParticipant> participants = new ArrayList<>();
     private final List<JsonAdaptedGroup> groups = new ArrayList<>();
@@ -70,7 +73,7 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedGroup jsonAdaptedGroup : groups) {
             Group group = jsonAdaptedGroup.toModelType();
             if (addressBook.hasGroup(group)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PARTICIPANT);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_GROUP);
             }
             addressBook.addGroup(group);
         }
@@ -78,7 +81,7 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedHouse jsonAdaptedHouse : houses) {
             House house = jsonAdaptedHouse.toModelType();
             if (addressBook.hasHouse(house)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PARTICIPANT);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_HOUSE);
             }
             addressBook.addHouse(house);
         }
