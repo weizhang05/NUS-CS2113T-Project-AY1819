@@ -217,8 +217,7 @@ The values entered under each respective columns, have to follow the format of t
 
 ****
 
-Link to view the User Guide:
-[https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/docs/UserGuide.adoc[User Guide]]
+Link to view the User Guide: [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/docs/UserGuide.adoc[User Guide]]
 
 == Contributions to the Developer Guide
 
@@ -364,5 +363,4 @@ An example usage of the command is as follows:
 Only one way was considered for the implementation of Import feature, which involved importing the third-party library.
 
 
-Link to view the Developer Guide in detail:
-[https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/docs/DeveloperGuide.adoc[Developer Guide]]
+Link to view the Developer Guide in detail: [https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/docs/DeveloperGuide.adoc[Developer Guide]]
