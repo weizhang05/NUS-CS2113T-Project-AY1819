@@ -25,7 +25,9 @@ public class RedoListPanel extends UiPart<Region> {
         redoListView.setCellFactory(listView -> new RedoListViewCell());
     }
 
-    /** Update the redo list after it changes */
+    /**
+     * Update the redo list after a command is executed
+     */
     public void updateRedoList(ObservableList<String> redoList) {
         redoListView.setItems(redoList);
         redoListView.setCellFactory(listView -> new RedoListViewCell());

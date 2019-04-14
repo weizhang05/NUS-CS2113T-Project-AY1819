@@ -118,7 +118,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         versionedAddressBook.resetData(addressBook);
-        undoableCommand = "Clear all persons";
+        undoableCommand = "Clear all participants";
     }
 
     @Override

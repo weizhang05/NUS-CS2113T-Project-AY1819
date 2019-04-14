@@ -1,7 +1,13 @@
-= Phan Duy Nhat Tan - Project Portfolio
+`= Phan Duy Nhat Tan - Project Portfolio`
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
+:note-caption: :information_source:
+:warning-caption: :warning:
+:tip-caption: :bulb:
+
+Greetings. I am a second-year Computer Engineering student from National University of Singapore (NUS). This document showcases the features I did for my
+Software Engineering Project, as well as the relevant sections I added to the User and Developer Guides.
 
 == PROJECT: FOP Manager
 
@@ -9,42 +15,50 @@
 
 == Overview
 
+=== About the Project
+
 FOP Manager is a desktop Address Book application made for Project Directors organizing the NUS School of Computing Freshman Orientation Program (FOP). The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
-I was in charge of the UI aspect of the application, and designed and implemented the `stat` feature. The following section will describe these enhancements in more details, as well as showcasing all the relevant sections I have added to the user guide and developer guides in relation to these enhancements.
+=== My roles
+
+I was in charge of the UI aspect of the application, and designed and implemented the Statistic and Save feature. The following section will describe these enhancements in more details, as well as showcasing all the relevant sections I have added to the user guide and developer guides in relation to these enhancements.
 
 Please take notes of the following icons and their meanings used in the document:
 
+#`command`# | Grey highlight indicates that this is a command that can be inputted into the command line and executed by the application.
+
 == Summary of contributions
 
-* *Major enhancement*: implemented *the `stat` and 'save' feature*
-** What it does: The `stat` command will generate three pie charts of all of the camp's participants' age, major and sex and display them on the GUI as in Figure 1. The `save` command will save those charts into separate image files.
-** Justification: At the end of every FOP, the Project Directors usually have to make various reports for their university, their faculty or different sponsors that requires these information. The `stat` and `save` features together
+* *Major enhancement*: implemented *the `stat` and `save_c` command*
+** What it does: The `stat` command will generate three pie charts of all of the camp's participants' age, major and sex and display them on the GUI as in Figure 1. The `save_c` command will save those charts into separate image files.
+** Justification: At the end of every FOP, the Project Directors usually have to make various reports for their university, their faculty or different sponsors that requires these information. These two features together
 will let the user generate those data quickly and efficiently.
 ** Highlights: This enhancement touched on the logic, model ,and UI components. A new `CustomPieChart` class was created to improve code readability.
+** Code contributed: Pull Request https://github.com/CS2113-AY1819S2-T08-4/main/pull/75[#75]
 ** Credits: Some parts of the `stat` command was inspired by Part 6 of the excellent https://code.makery.ch/library/javafx-tutorial/part6/[Java FX Tutorial] by Marco Jakob.
 
 .Stat command result on the GUI
-image::StatResult.png[width="600"]
+
+image::StatResult.png[width="800"]
 
 * *Minor enhancement*: Show a list of commands that can be undo or redo on the GUI.
 
-.Undo and redo list on the GUI
-image::UndoRedoList.png[width="600']
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]]
+* *Code contributed*: Click on these to see samples of my code [https://github.com[Functional code]] [https://github.com[Test code]]
 * *Other contributions*:
 
 ** Project management:
-***
+*** Make a mock release for mid v1.3 to prepare for the real one
+
 ** Enhancements to existing features:
-*** Refactor the Person class's attributes (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from (Pull requests https://github.com[#36], https://github.com[#38])
-** Documentation:
-***
+*** Refactor the Person class's attributes (Pull request https://github.com/CS2113-AY1819S2-T08-4/main/pull/35[#35])
+*** Show a list of commands that can be undo or redo on the GUI. (Pull request https://github.com/CS2113-AY1819S2-T08-4/main/pull/21[#21]
+.Undo and redo list on the GUI
+
+image::UndoRedoList.png[width="800"]
 ** Community:
-***
-** Tools:
+*** Review and merge various pull requests from team members
+*** Help other teams with their UI component
 
 == Contributions to the User Guide
 
@@ -53,8 +67,8 @@ image::UndoRedoList.png[width="600']
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-//include::../UserGuide.adoc[]
-
+include::../UserGuide.adoc[tag=stat]
+include::../UserGuide.adoc[tag=save]
 
 == Contributions to the Developer Guide
 
@@ -62,6 +76,6 @@ image::UndoRedoList.png[width="600']
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-//include::../DeveloperGuide.adoc[tag=undoredo]
-//
-//include::../DeveloperGuide.adoc[tag=dataencryption]
+include::../DeveloperGuide.adoc[tag=statistic]
+
+include::../DeveloperGuide.adoc[tag=Tan_test]
