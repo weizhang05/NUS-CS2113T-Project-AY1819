@@ -571,7 +571,7 @@ Examples:
 * `randomize` has just been entered (successful). +
 Output:
 
-image::randomize_success.png[width="800"][height="200"]
+image::randomize_success.png[width="800"]
 
 * `randomize` has just been entered (error). +
 Output: Unable to distribute participants (min 2 groups and 2 participants)
