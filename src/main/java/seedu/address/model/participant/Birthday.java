@@ -6,6 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.Year;
 import java.util.Calendar;
 
+import seedu.address.commons.Value;
+
 
 /**
  * Represents a Participant's birthday in the address book
@@ -39,7 +41,12 @@ public class Birthday {
         if (month > 12 || month < 1) { //invalid month
             return false;
         }
-        if (year > Year.now().getValue()) { //invalid year
+        /**
+         * Valid DOB is based on the following:
+         * - Nobody is born in the future
+         * - No undergraduate is older than 50 years old
+         */
+        if (year > Year.now().getValue() || year < (Year.now().getValue() - Value.MAX_AGE)) { //invalid year
             return false;
         }
         return true;
