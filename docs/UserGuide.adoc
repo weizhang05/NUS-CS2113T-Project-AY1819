@@ -570,6 +570,7 @@ Examples:
 
 * `randomize` has just been entered (successful). +
 Output:
+
 image::randomize_success.png[width="800"]
 
 * `randomize` has just been entered (error). +
