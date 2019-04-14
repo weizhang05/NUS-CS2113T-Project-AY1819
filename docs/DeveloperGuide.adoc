@@ -227,11 +227,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Address Book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Participant>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 [NOTE]
-As a more OOP model, we can store a `Tag` list in `Address Book`, which `Person` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +
+As a more OOP model, we can store a `Tag` list in `Address Book`, which `Participant` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Participant` needing their own `Tag` object. An example of how such a model may look like is given below. +
  +
 image:ModelClassBetterOopDiagram.png[width="800"]
 
@@ -334,7 +334,7 @@ An example usage of the `list_f` command is as follows:
 
 *Step 2:* The user enters the `list_f` command . The `list_f` command calls the `FindingParticipantPredicate` class and searches all tags of each participant for "Freshman".
 
-*Step 3:* The `updateFilteredPersonList()` takes in this predicate and the `getFilteredPersonList()` is called to give the list of Freshmen in the contact list
+*Step 3:* The `updateFilteredParticipantList()` takes in this predicate and the `getFilteredParticipantList()` is called to give the list of Freshmen in the contact list
 
 The implementation is similar for the `list_o` command with the use of `FindingOglPredicate` instead where the searched tag is "OGL".
 
@@ -396,6 +396,7 @@ Edit
 ** `edit_g` edits the name of a group in `UniqueGroupList`, as well as changes the group name of all participants with that group name in `UniqueParticipantList`.
 
 Delete
+
 * `delete_h HOUSENAME`: Deletes the group named `HOUSENAME`
 ** Deleting of house objects require there to be no groups within that house.
 * `delete_g GROUPNAME`: Deletes the group named `GROUPNAME`
@@ -406,7 +407,7 @@ Groups and houses can also be viewed in different manners:
 * Viewing houses and groups
 ** `view_h` and `view_g` simply displays the houses and groups stored in `UniqueHouseList` and `UniqueGroupList` respectively.
 * Listing participants in a group
-** `list_g` uses similar logic to `list_o` and `list_f`, implemented by using an entered group name as a predicate that searches through all the `Group` fields of participants, and updates the `filteredPersons` list with participants with the matching group name.
+** `list_g` uses similar logic to `list_o` and `list_f`, implemented by using an entered group name as a predicate that searches through all the `Group` fields of participants, and updates the `filteredParticipant` list with participants with the matching group name.
 ** Entering `list_g empty` lists all participants without a group yet by searching for participants with an empty group name.
 
 ==== Design Considerations
@@ -575,7 +576,7 @@ image::StatisticUpdateSequenceDiagram.png[width="800"]
 
 ===== Aspect: How to update the data of the AddressBook
 
-* **Alternative 1 (current choice)**: Use a loop to loop through the `UniquePersonList` to get the data of everyone
+* **Alternative 1 (current choice)**: Use a loop to loop through the `UniqueParticipantList` to get the data of everyone
 ** Pros: Easy to implement, guaranteed to get the correct data every time.
 ** Cons: Takes longer time and more computational power to get the result. However, since this function is unlikely to be
 used many times and the number of participants in a camp is not too large, the drawbacks is acceptable
