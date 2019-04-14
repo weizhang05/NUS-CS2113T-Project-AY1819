@@ -185,7 +185,7 @@ image::UiClassDiagram.png[width="800"]
 
 *API* : link:{repoURL}/src/main/java/seedu/major/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `TextResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `ChartPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/major/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -538,7 +538,8 @@ The `randomize` is achieved by coding a sequence of steps to achieve the allocat
 
 * *Alternative 1:* Shuffling the actual
 ** Pros: Unidentifiable
-** Cons: Uses even more computational resource and more complex coding as the current list of participant is unmodifiable.
+** Cons: Uses even more computational resource and more complex coding as the current list of participant is
+unmodifiable.
 * *Alternative 2 (current choice):* Creating a list of integer based index to simulate participants
 ** Pros: Less computational intensive as dealing with native data type
 ** Cons: Uses slightly more memory at that point of time
@@ -546,27 +547,30 @@ The `randomize` is achieved by coding a sequence of steps to achieve the allocat
 //end::randomize[]
 
 // tag::statistic[]
-=== [Proposed] Statistic feature
-==== Planned Implementation
+=== Statistic feature
+The 'stat' command allows FOP Manager users to view the statistic of camp participants regarding their age, major and sex in a graphical manner.
+==== Current Implementation
 
-The statistic feature is facilitated by `VersionedAddressBook`. It extends `AddressBook` with two Hashtables, one containing the number of male and female participants, and the other one contains the number of participants in each major. These
-variables will be updated after each `add`, `edit` or `delete` command.
+The Statistic feature is facilitated by `AddressBook`. It has three HashMaps, containing the number of each categories in the participants' age, major and sex. These Map are generated after every call of the
+`stat` command. After command call, these data is loaded into three different pie charts and shown on the UI.
 
-The following sequence diagram show hows the Hashtable is updated after an `add` command:
+The following sequence diagram show hows the 'stat' command works in details :
 
 image::StatisticUpdateSequenceDiagram.png[width="800"]
 
 ==== Design Consideration
 
-===== Aspect: Data structure to get the data from the AddressBook
+===== Aspect: How to update the data of the AddressBook
 
-* **Alternative 1 (current choice):** Add new variables inside the `VersionedAddressBook` to store the data and update them after each commands.
+* **Alternative 1 (current choice)**: Use a loop to loop through the `UniquePersonList` to get the data of everyone
+** Pros: Easy to implement, guaranteed to get the correct data every time.
+** Cons: Takes longer time and more computational power to get the result. However, since this function is unlikely to be
+used many times and the number of participants in a camp is not too large, the drawbacks is acceptable
+
+* **Alternative 2 :** Update charts data after each commands that modify it.
 ** Pros: Quick runtime, does not require much changes to the codebase.
 ** Cons: We must ensure that the data is updated after each command.
-* **Alternative 2**: Use a loop to loop through the `UniquePersonList` to get the data of everyone
-** Pros: Easy to implement, guaranteed to get the correct data every time.
-** Cons: Takes longer time to get the result, especially if there are many participant in the `UniquePersonList`.
-// end:: statistic[]
+// end::statistic[]
 
 // tag::export[]
 === Export Feature
@@ -650,7 +654,7 @@ Only one way was considered for the implementation of Import feature, which invo
 // tag::autocompletion[]
 === [Proposed] Auto-Completion
 
-_{Coming in: v1.4}_
+_{Coming in: v2.0}_
 
 // end::autocompletion[]
 
@@ -1360,3 +1364,31 @@ These instructions only provide a starting point for testers to work on; testers
    `add_g g1 Green` +
    `add_g g1 Green` +
    Expected: Group named `G1` is added on first command. No group is added on the second. Error details shown in the status message.
+
+// tag::Tan_test[]
+=== Show participant statistic
+
+. Show pie charts of participants' age, major and sex
+
+.. Prerequisites: List all participants using the `list` command. Multiple participants in the list.
+.. Test case: `stat` +
+   Expected: Three pie charts are shown on the GUI with labels for each one.
+.. Test case: +
+   `clear` +
+   `stat` +
+   Expected: Error details shown in the status message
+
+=== Save pie charts to image files
+
+. Show pie charts of participants' age, major and sex
+
+.. Prerequisites: List all participants using the `list` command. Multiple participants in the list.
+.. Test case: +
+   `stat` +
+   `save_c File Name` +
+   Expected: Open chart folder to see three PNG files name "File Name_age", "File Name_major" ,and "File Name_sex"
+.. Test case: +
+   `clear` +
+   `stat` +
+   Expected: Error details shown in the status message
+// end::Tan_test[]
