@@ -395,6 +395,14 @@ Edit
 * `edit_g OLDGROUPNAME NEWGROUPNAME`: Edits the name of an existing group
 ** `edit_g` edits the name of a group in `UniqueGroupList`, as well as changes the group name of all participants with that group name in `UniqueParticipantList`.
 
+The following sequence diagram shows how the `Logic` and `Model` components interact when the user enters the command `edit_g r1 r2`.
+
+.Interactions within Logic and Model for the command `edit_g r1 r2`
+image::EditGroupSequenceDiagram.png[width="800"]
+
+* The edit group command updates the group of all participants within the old group by looping through `UniqueParticipantList` from `VersionedAddressBook` to check if their group matches the old group name.
+* This command also changes the name of the group within `UniqueGroupList` stored within `VersionedAddressBook`.
+
 Delete
 
 * `delete_h HOUSENAME`: Deletes the group named `HOUSENAME`
