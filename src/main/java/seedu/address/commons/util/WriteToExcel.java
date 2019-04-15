@@ -222,7 +222,9 @@ public class WriteToExcel {
 
                     // int birthdayInt = (int)cell.getNumericCellValue();
                     birthdayString = String.valueOf((int) cell.getNumericCellValue());
-
+                    if(birthdayString.length()<8){
+                        birthdayString = '0'+birthdayString;
+                    }
                     System.out.println(birthdayString);
                     cell = rowStart.getCell(3);
 
