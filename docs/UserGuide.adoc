@@ -561,9 +561,9 @@ Format: `randomize`
 ****
 [NOTE]
 Command will only work under the following conditions: +
-* At least 2 groups created +
-* Number of OGLs must be more than number of groups +
-* At least 2 participants registered +
+- At least 2 groups created +
+- Number of OGLs must be more than number of groups +
+- At least 2 participants registered +
 ****
 
 Examples:
