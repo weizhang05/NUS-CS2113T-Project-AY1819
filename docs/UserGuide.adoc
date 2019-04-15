@@ -690,7 +690,7 @@ Format: `import`
 
 ****
 * The Excel Spreadsheet should have the headings in the order NAME, SEX, BIRTHDAY, PHONE, EMAIL, MAJOR, GROUP and then TAG.
-* Entries in the NAME, SEX, BIRTHDAY, PHONE, EMAIL and MAJOR columns have to be non-null.
+* Entries in the NAME, SEX, BIRTHDAY, PHONE, EMAIL, MAJOR and TAG columns have to be non-null.
 * Only the non-duplicate contacts are added.
 * If we want to edit the contacts found in the FOP Manager via excel, we should `clear` the FOP Manager and then `import`.
 
@@ -698,6 +698,7 @@ Format: `import`
 
 Spreadsheet name has to be *FOP_MANAGER_LIST.xls* and it has to be located at the current User Directory. +
 The values entered under each respective columns, have to follow the format of the the `add` command.
+The TAG column cannot be empty. If you want it to be empty, put a white space.
 
 ****
 // end::import[]
