@@ -561,7 +561,7 @@ Following is the sequence diagram of the flow of the program when the command is
 image::RandomizeSequenceDiagram.png[width="800"]
 
 [NOTE]
-The above Sequence Diagram only shows the updating of group details for freshmen (for clarity purposes, refer to codes for more details). +
+The above Sequence Diagram only shows the updating of group details for freshmen (for clarity purposes, refer to the https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/logic/commands/RandomizeCommand.java[codes] for more details). +
  +
  The algorithm is applied also to OGLs within the RandomizeCommand class.
 
