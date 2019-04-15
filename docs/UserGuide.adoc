@@ -658,6 +658,9 @@ The Excel Spreadsheet will look like this:
 
 image::ExportResult.png[width="800"]
 
+[WARNING]
+
+Save and close the Excel file before exporting.
 
 There are other export commands to produce a spreadsheet for Freshmen and OGL lists as shown in the next two sections. +
 The name of the file will change accordingly, however, the location is the same.
@@ -671,6 +674,10 @@ Format: `export_f`
 * Excel Spreadsheet name is *FOP_MANAGER_FRESHMEN_LIST.xls*. +
 * Excel Spreadsheet will be saved in the current User Directory. +
 
+[WARNING]
+
+Save and close the Excel file before exporting.
+
 [[ExportO]]
 ==== Exporting only the OGLs in the contact list : `export_o`
 
@@ -679,6 +686,11 @@ Format: `export_o`
 
 * Excel Spreadsheet name is *FOP_MANAGER_OGL_LIST.xls*. +
 * Excel Spreadsheet will be saved in the current User Directory. +
+
+[WARNING]
+
+Save and close the Excel file before exporting.
+
 // end::export[]
 
 // tag::import[]
@@ -697,8 +709,9 @@ Format: `import`
 [WARNING]
 
 Spreadsheet name has to be *FOP_MANAGER_LIST.xls* and it has to be located at the current User Directory. +
-The values entered under each respective columns, have to follow the format of the the `add` command.
-The TAG column cannot be empty. If you want it to be empty, put a white space.
+The values entered under each respective columns, have to follow the format of the the `add` command. +
+The TAG column cannot be empty. If you want it to be empty, put a white space. +
+Save and close the Excel file before importing.
 
 ****
 // end::import[]
