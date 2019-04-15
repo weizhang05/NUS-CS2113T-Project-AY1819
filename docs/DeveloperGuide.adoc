@@ -551,6 +551,7 @@ image::RandomizeActivityDiagram.png[width="800"]
 ==== Current Implementation
 
 The `randomize` is achieved by coding a sequence of steps to achieve the allocation of groups to participants:
+
 * Creating list holding specific type of participants (i.e. all OGLs will be stored in a list while freshmen will be stored in another)
 * Shuffles all of the previously created list
 * Assigns all of the participants to a group in order of freshmen, OGLs
@@ -559,6 +560,61 @@ Following is the sequence diagram of the flow of the program when the command is
 
 image::RandomizeSequenceDiagram.png[width="800"]
 
+[NOTE]
+The above Sequence Diagram only shows the updating of group details for freshmen (for clarity purposes, refer to the https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/logic/commands/RandomizeCommand.java[codes] for more details). +
+ +
+ The algorithm is applied also to OGLs within the RandomizeCommand class.
+
+===== Algorithm
+
+This segment will show relevant diagrams explaining the algorithm for the shuffling of assignment
+ and cases where the randomization will not happen. The following diagram shows the annotations and symbols
+  that will be used:
+
+image::RandomizeAlgo1.png[width="800"]
+
+{nbsp} +
+
+The following diagram shows an example where the Project Director has added sufficient OGLs and freshmen to the system,
+ and created sufficient groups:
+
+image::RandomizeAlgo2.png[width="800"]
+
+{nbsp} +
+
+Upon executing the `randomize` command, the system will first assign the freshmen to the groups first:
+
+image::RandomizeAlgo3_1.png[width="800"]
+
+{nbsp} +
+
+Followed by assigning the OGLs to the group:
+
+image::RandomizeAlgo3_2.png[width="800"]
+
+[NOTE]
+The rationale for such assignment is to ensure that the every group has an OGL.
+
+{nbsp} +
+
+Following diagrams shows the cases where the randomization will not happen and will throws an error message backs to the user. +
+
+Insufficient participants:
+
+image::RandomizeAlgo4.png[width="800"]
+
+Insufficient OGLs to cover all the groups:
+
+image::RandomizeAlgo5.png[width="800"]
+
+Insufficient groups:
+
+image::RandomizeAlgo6.png[width="800"]
+
+[TIP]
+Engineers are free to modify the algorithm for the random distribution but are advised to consider the corner
+ cases similarly to the ones mentioned above.
+
 ==== Design Considerations
 
 ===== Aspect: Updating group attribute of participants
@@ -566,22 +622,32 @@ image::RandomizeSequenceDiagram.png[width="800"]
 [options="header"]
 |=========
 |Alternatives |Pros | Cons
-|Programmatically call the `edit` command |Changing of interface with the model only requires changing the EditCommand and Parser |Tightly coupled with EditCommand and Parser
-|Interact with ModelManager (current choice) |Modification is obvious and follow guidelines of the architecture of the system and cleaner code |Coupled with ModelManager
+|Programmatically simulate the calling of the `edit` command |Changing of interface with the Model component only requires changing the EditCommand and Parser |Tightly coupled with EditCommand and EditCommandParser
+|Calls the function that edit the details of the participants by interacting with the Model component (current choice) |Implementation is obvious, follow guidelines of the system architecture and cleaner code base |Coupled with ModelManager
 |=========
-Rationale: Choice is made based on design practice. It may seems very intuitive to programmatically call the `edit` command,
- but it might causes unknown complexity within the system if there is a change in the EditCommand or the parser.
+Rationale: It is to follow the design architecture of the system, allowing it to be consistent with
+ the rest of the codes and cleaner code base. It may seems intuitive for some engineers
+ to programmatically simulate the `edit` command,
+ but it might causes unknown complexity within the system if there is a change in the dependent classes. +
+  +
 
 ===== Aspect: Shuffling of participants
 
 [options="header"]
 |=========
 |Alternatives |Pros | Cons
-|Creating lists for OGLs and freshmen and assigning them list by list (current choice) |Ensures all groups will have at least an OGL and balanced distribution amongst the group |Requires more memory space
+|Creating a list fo freshmen and OGLs, then shuffles the list separately (current choice) |Ensures all groups will have at least an OGL and balanced distribution amongst the group |Requires more memory space
+|Shuffling the list of participant |Saves memory space |Risk having uneven distribution (e.g. all OGLs in a group)
 |=========
 
-Rationale: There is only 1 consideration for this feature due to it's complexity, no other alternative has yet been identified.
-Future developers are free to modify the algorithm but must ensure all groups has at least an OGL and freshmen are evenly distributed (with 1 or 2 difference in numbers for freshmen).
+Rationale: The idea of separating freshmen and OGLs is to ensure that every group will have at least 1 type of participant.
+ By shuffling the list of participant containing both freshmen and OGLs, we risk running into a situation where there
+  are groups with no OGLs, which is something that a Project Director does not want. The current choice ensures that
+   all of the OGLs will be distributed evenly into groups similarly to how the freshmen are distributed.
+
+[NOTE]
+Before the randomization happens, the application ensures that there are sufficient OGLs to cover all of the created
+ groups (i.e. at least 1 OGL per group). Refer to the https://github.com/CS2113-AY1819S2-T08-4/main/blob/master/src/main/java/seedu/address/logic/commands/RandomizeCommand.java[codes] for more details.
 
 //end::randomize[]
 

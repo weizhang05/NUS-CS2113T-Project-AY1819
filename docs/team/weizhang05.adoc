@@ -7,47 +7,67 @@
 
 ---
 
-Hello! My name is Wei Zhang but you may call me Clyde for short. I'm currently a second year student in NUS School of Computing, pursuing a Bachelor of Computing in Information Security at the time he is working on this project for a module *Software Engineering & Object-Oriented Programming (CS2113T)*. +
+Hello! My name is Wei Zhang but you may call me Clyde for short. I'm currently a second year student in NUS School
+ of Computing, pursuing a Bachelor of Computing in Information Security. +
  +
-I held various roles in the development of this project which includes *desiging the application architecture*, *developing core features*, *code integration* and *testing*. +
+At the time when this document was created (over a period of Jan 2019 to April 2019),
+ I took *CS2113T (Software Engineering & Object-Oriented Programming)* and *CCS2101 Effective Communication
+  for Computing Professionals*, which requires me to develop a desktop application and write documentations for it
+   as part of the curriculum. +
  +
-Aside from this project, I'm also a *Software Engineer* where my main interests are *System Design* and *Software Development*.
+I held various roles in the development of this project which includes *designing the application architecture*,
+ *developing core features*, *code integration* and *testing*. +
+ +
+Aside from this project, I'm also a self-taught *Cyber Security Practitioner* where my main interests are
+ *Penetration Testing* and *Digital Forensics*.
 
 == ABOUT:
 
 ---
 
-The purpose of this document is to showcase the contribution of my work towards this project as part of the context of learning in this module. +
+The purpose of this document is to showcase the contribution of my work towards this
+ project as part of the learning in this module. +
  +
-The outline of this document will be listed as follows, mainly describing the work I have done in both technical and non-technical aspect:
+The outline of this document will be listed as follows, mainly describing the work I have done in both technical
+ and non-technical aspect:
 
-* *Summary of Contributions*: Describes mainly the technical aspect of work I have contributing in the development of the project. It also includes any other possible contributions I have done that may not be technical. +
-* *Contributions to User Guide*: Showcases my ability in writing a guide for user of the application that was developed for. +
-* *Contributions to Developer Guide*: Showcases my ability in writing a guide for developers who may continue to work on the development and maintainance of the application in the future.
+* *Summary of Contributions*: Describes mainly the technical aspect of work I have contributing in the development
+ of the project. It also includes any other possible contributions I have done that may not be technical. +
+* *Contributions to User Guide*: Showcases my ability in writing a guide for user of
+ the application that was developed for. +
+* *Contributions to Developer Guide*: Showcases my ability in writing a guide for developers who may continue
+ to work on the development and maintenance of the application in the future.
 
 == PROJECT: FOP Manager
 
+---
+
 == Overview
 
-FOP Manager is a desktop application for NUS undergraduate students who are Project Directors of Freshmen Orientation Programs to manage both participants and committee members of the program. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC. The development of this application is to teach Principles of Software Engineering.
+FOP Manager is a desktop application developed for NUS undergraduate students who are Project Directors
+ of *Freshmen Orientation Programs* to manage both participants and committee members of the program.
+  The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+   It is written in Java, and has about 10 kLoC. The development of this application is to teach
+    Principles of Software Engineering, which is part of the context of CS2113T.
 
 == Summary of contributions
-This segment showcase my contribution to both the development of the application and the documentation. +
+This segment showcase my contribution to both the development of the application and
+ the documentation of the project. +
  +
 
 * *Major enhancement*:
 [options="header"]
 |=======================
-|					                    |Description      																			|Justification 																						|Highlights
-|Randomize Command	                    |Allows the Project Director to automatically assign all participants to created groups.	|The command prevents the Project Director from assigning the participants to the group manually.	|The challenge here is to come out with a suitable algorithm which ensure even distribution with sufficient OGLs for all groups.
-|Redesign current Model and Storage		|Changing the current format of Model and Storage.                                       	|Supports the storing of house and groups on top of the current participants. 						|The challenge here is figuring out how is the whole application designed as this modification requires knowing the code base very well.
+|					                    |Description      																			|Justification 																						                                                                  |Highlights
+|Randomize Command	                    |A command that allows the Project Director to automatically assign all participants to created groups.	|This allows the Project Director to automatically assigns all participants to created group at a random distribution without doing it manually.	|The challenge here is to come out with a suitable algorithm which ensure even distribution and no possible loop holes (e.g. all OGLs in 1 group).
+|Redesign Model and Storage component   |Redesigning the way the application stores and manages data                                     	|This enables the storing and managing of house and groups on top of the current participants. 						|The challenge here is figuring out how is the whole application designed as this modification requires knowing the code base very well.
 |=======================
 
 * *Minor enhancement*:
 [options="header"]
 |=======================
-| 													|Description 																						|Justification 												|Highlights
-|Input box is clear after every command execution 	|Simulate a Terminal/CMD interface which refreshes the command after every entering of commands.    |Improves the user friendliness of using the command line.  |The challenge here is to figure out the code for the UI portion and ensuring which part of it is to be placed. This include ensuring the fix works as well.
+| 													|Description 																						                                                                                                                    |Justification 												                                                                                                        |Highlights
+|Input box is clear after every command execution 	|Simulate a Terminal/CMD (i.e. Command line Interface in Windows/Linux) interface which clears the input segment after every entering of commands (i.e. text is cleared when the user hits the 'enter' button).    |This improves the user friendliness of using the command line as the target users prefers using CLI (Command line Interface) over GUI (Graphical User Interface).  |The challenge here is to figure out the code for the UI component and ensuring which part of it is to be placed. This include ensuring the fix works as well.
 |=======================
 
 * *Code contributed*:
@@ -60,10 +80,13 @@ This segment showcase my contribution to both the development of the application
 * *Other contributions*:
 
 ** Project management:
-*** Reviewing of codes before officially merging and integrating
+*** Reviewing most of the codes before officially merging and integrating
+*** Setting up of the main project repository (GitHub)
+*** Setting up continuous integration technology (TravisCI)
+*** Setting up of code contribution analysis tool (RepoSense)
 *** Managed release for v1.3 and v1.4 on GitHub
 ** Documentation:
-*** Updating of both UG and DG (Pull requests https://github.com/CS2113-AY1819S2-T08-4/main/pull/3[#3], https://github.com/CS2113-AY1819S2-T08-4/main/pull/41[#41], https://github.com/CS2113-AY1819S2-T08-4/main/pull/104[#104], https://github.com/CS2113-AY1819S2-T08-4/main/pull/105[#105], https://github.com/CS2113-AY1819S2-T08-4/main/pull/110[#110], https://github.com/CS2113-AY1819S2-T08-4/main/pull/159/files[#159], https://github.com/CS2113-AY1819S2-T08-4/main/pull/167/files[#167], https://github.com/CS2113-AY1819S2-T08-4/main/pull/169/files[#169], https://github.com/CS2113-AY1819S2-T08-4/main/pull/171[#171])
+*** Updating of both UG and DG (Pull requests https://github.com/CS2113-AY1819S2-T08-4/main/pull/3[#3], https://github.com/CS2113-AY1819S2-T08-4/main/pull/41[#41], https://github.com/CS2113-AY1819S2-T08-4/main/pull/104[#104], https://github.com/CS2113-AY1819S2-T08-4/main/pull/105[#105], https://github.com/CS2113-AY1819S2-T08-4/main/pull/110[#110], https://github.com/CS2113-AY1819S2-T08-4/main/pull/159/files[#159], https://github.com/CS2113-AY1819S2-T08-4/main/pull/167/files[#167], https://github.com/CS2113-AY1819S2-T08-4/main/pull/169/files[#169], https://github.com/CS2113-AY1819S2-T08-4/main/pull/171[#171], https://github.com/CS2113-AY1819S2-T08-4/main/pull/176[#176])
 
 https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=weizhang05[Link to code contribution]
 
