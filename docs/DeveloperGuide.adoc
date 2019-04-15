@@ -551,6 +551,7 @@ image::RandomizeActivityDiagram.png[width="800"]
 ==== Current Implementation
 
 The `randomize` is achieved by coding a sequence of steps to achieve the allocation of groups to participants:
+
 * Creating list holding specific type of participants (i.e. all OGLs will be stored in a list while freshmen will be stored in another)
 * Shuffles all of the previously created list
 * Assigns all of the participants to a group in order of freshmen, OGLs
