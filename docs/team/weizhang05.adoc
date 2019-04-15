@@ -80,7 +80,7 @@ This segment showcase my contribution to both the development of the application
 * *Other contributions*:
 
 ** Project management:
-*** Reviewing of codes before officially merging and integrating
+*** Reviewing most of the codes before officially merging and integrating
 *** Setting up of the main project repository (GitHub)
 *** Setting up continuous integration technology (TravisCI)
 *** Setting up of code contribution analysis tool (RepoSense)
