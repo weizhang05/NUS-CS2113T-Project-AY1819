@@ -604,6 +604,10 @@ Insufficient groups:
 
 image::RandomizeAlgo6.png[width="800"]
 
+[TIP]
+Engineers are free to modify the algorithm for the random distribution but are advised to consider the corner
+ cases similarly to the ones mentioned above.
+
 ==== Design Considerations
 
 ===== Aspect: Updating group attribute of participants
