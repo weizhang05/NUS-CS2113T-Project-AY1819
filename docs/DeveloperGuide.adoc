@@ -560,6 +560,11 @@ Following is the sequence diagram of the flow of the program when the command is
 
 image::RandomizeSequenceDiagram.png[width="800"]
 
+[NOTE]
+The above Sequence Diagram only shows the updating of group details for freshmen (for clarity purposes, refer to codes for more details). +
+ +
+ The algorithm is applied also to OGLs within the RandomizeCommand class.
+
 ==== Design Considerations
 
 ===== Aspect: Updating group attribute of participants
