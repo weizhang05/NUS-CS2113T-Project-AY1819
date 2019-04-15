@@ -46,7 +46,7 @@ public class WriteToExcel {
     private static final int SIXTH_COLUMN = 5;
     private static final int SEVENTH_COLUMN = 6;
     private static final int EIGHTH_COLUMN = 7;
-    private static final int LEFT_OUT_CHARACTER = 4;
+    private static final int LEFT_OUT_CHARACTER = 3;
     private static final int STARTING_INDEX = 0;
     private static final int RECORD_EMPTY = 0;
     private static final String NAME_TITLE = "NAME";
